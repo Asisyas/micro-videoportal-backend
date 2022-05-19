@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<dto xmlns="micro:dto-01"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="micro:dto-01 https://raw.githubusercontent.com/Micro-PHP/dto/master/src/Resource/schema/dto-01.xsd">
+    <class name="ClientStorage\Put">
+        <property name="uuid" type="string" required="true"/>
+        <property name="index" type="string" required="true"/>
+        <property name="data" type="array" required="true"/>
+    </class>
+    <class name="ClientStorage\Post">
+        <property name="uuid" type="string" required="true"/>
+        <property name="index" type="string" required="true"/>
+        <property name="data" type="array" required="true"/>
+    </class>
+    <class name="ClientStorage\Delete">
+        <property name="uuid" type="string" required="true"/>
+        <property name="index" type="string" required="true"/>
+    </class>
+
+</dto>

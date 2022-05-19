@@ -1,0 +1,231 @@
+{
+    "name": "vaderlab/proxy-port",
+    "description": "ProxyPort: Universal proxy server",
+    "type": "project",
+    "license": "Propietary",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../Micro/DependencyInjection",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/ComponentAutowire",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginEavCore",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginEavDoctrine",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginHttpKernel",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginUuid",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginDoctrine",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginRedis",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginHttpKernel",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginAmqp",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginAmqpTaskStatusCore",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginAmqpTaskStatusStorage",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginAmqpTaskStatusDoctrineAdapter",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginSerializer",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginSerializerSymfomyAdapter",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginConsole",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginLogger",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginLoggerMonolog",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/EventEmitter",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/KernelApp",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginEventEmitter",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginStorage",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/Kernel",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginTwig",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginUser",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginDTO",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^6.0"
+
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Stanislau Komar",
+            "email": "head.trackingsoft@gmail.com"
+        }
+    ],
+    "require": {
+        "php": " >= 8.1",
+        "micro/kernel-app": "*",
+        "micro/dependency-injection": "*",
+        "micro/plugin-event-emitter": "*",
+        "micro/plugin-serializer": "*",
+        "micro/serializer-symfony-adapter": "*",
+        "micro/plugin-amqp": "*",
+        "micro/plugin-redis": "*",
+        "micro/plugin-http": "*",
+        "micro/plugin-console": "*",
+        "micro/plugin-uuid": "*",
+        "micro/plugin-eav-doctrine": "*",
+        "micro/plugin-logger-monolog": "*",
+        "micro/plugin-storage":  "*",
+        "micro/plugin-twig":  "*",
+        "micro/plugin-user": "*",
+        "micro/plugin-amqp-task-status-storage": "*",
+        "micro/plugin-dto": "*",
+        "vlucas/phpdotenv": "^5.4",
+        "symfony/cache": "^6.0",
+        "doctrine/annotations": "^1.13",
+        "symfony/event-dispatcher": "^6.0",
+        "symfony/yaml": "^6.0",
+        "symfony/config": "^6.0"
+    }
+}
