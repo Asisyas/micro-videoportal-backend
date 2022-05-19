@@ -13,4 +13,6 @@ interface CategoryFacadeInterface
      * @return CategoryTransfer
      */
     public function createCategory(CreateCategoryTransfer $createCategoryTransfer): CategoryTransfer;
+
+    public function deleteCategory();
 }

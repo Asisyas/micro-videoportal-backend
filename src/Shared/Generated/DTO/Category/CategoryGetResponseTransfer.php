@@ -16,8 +16,8 @@ class CategoryGetResponseTransfer extends AbstractDto
     protected CategoryTransfer $category;
 
     /**
-    * @var integer    */
-    protected integer $flag;
+    * @var int    */
+    protected int $flag;
 
 
     /**
@@ -41,19 +41,19 @@ class CategoryGetResponseTransfer extends AbstractDto
     }
 
     /**
-     * @return integer
+     * @return int
      */
-    public function getFlag(): integer
+    public function getFlag(): int
     {
         return $this->flag;
     }
 
     /**
-     * @param integer $flag
+     * @param int $flag
      *
      * @return self
      */
-    public function setFlag(integer $flag): self
+    public function setFlag(int $flag): self
     {
         $this->flag = $flag;
 
@@ -87,7 +87,7 @@ class CategoryGetResponseTransfer extends AbstractDto
 
             'flag' => [
                 'is_collection'     =>   false ,
-                'type'              => 'integer',
+                'type'              => 'int',
                 'actionName'        => 'Flag',
                 'required'          => true,
                 'dto'               =>  false ,
