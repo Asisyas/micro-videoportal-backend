@@ -8,9 +8,13 @@ use Micro\Framework\Kernel\Configuration\DefaultApplicationConfigurationFactory;
 class DotEnvConfigurationFactory extends DefaultApplicationConfigurationFactory
 {
     /**
-     * @param $fileConfig
+     * @param string $basePath
+     * @param string $fileConfig
      */
-    public function __construct(private $fileConfig = __DIR__ . '/../../../etc/')
+    public function __construct(
+        private readonly string $basePath,
+        private readonly string $fileConfig = __DIR__ . '/../../../etc/'
+    )
     {
         parent::__construct([]);
     }
@@ -20,7 +24,7 @@ class DotEnvConfigurationFactory extends DefaultApplicationConfigurationFactory
      */
     public function create(): ApplicationConfigurationInterface
     {
-        return new DotEnvConfiguration(realpath($this->fileConfig));
+        return new DotEnvConfiguration(realpath($this->basePath . DIRECTORY_SEPARATOR . $this->fileConfig), $this->basePath);
     }
 
     /**

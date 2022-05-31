@@ -23,7 +23,7 @@ class RedisClient implements ClientInterface
                 $putTransfer->getUuid(),
                 $putTransfer->getIndex()
             ),
-            $this->createDataToJson($putTransfer->getData())
+            $this->createData($putTransfer->getData())
         );
     }
 
@@ -37,7 +37,7 @@ class RedisClient implements ClientInterface
                 $postTransfer->getUuid(),
                 $postTransfer->getIndex()
             ),
-            $this->createDataToJson( $postTransfer->getData())
+            $this->createData($postTransfer->getData())
         );
     }
 
@@ -55,12 +55,16 @@ class RedisClient implements ClientInterface
     }
 
     /**
-     * @param array $source
+     * @param array|string $source
      * @return string
      */
-    protected function createDataToJson(array $source): string
+    protected function createData(array|string $source): string
     {
-        return json_encode($source, JSON_PRETTY_PRINT);
+        if(is_scalar($source)) {
+            return $source;
+        }
+
+        return serialize($source);
     }
 
     /**

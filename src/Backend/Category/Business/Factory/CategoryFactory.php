@@ -3,11 +3,10 @@
 namespace App\Backend\Category\Business\Factory;
 
 use App\Backend\Category\Business\Action\ActionProcessorFactoryInterface;
-use App\Backend\Category\Business\Action\ActionProcessorInterface;
 use App\Backend\Category\Business\Expander\CategoryTransfer\CategoryTransferExpanderFactoryInterface;
-use App\Backend\DataSource\Entity\Category;
+use App\Backend\Category\Entity\Category;
+use App\Shared\Generated\DTO\Category\CategoryCreateTransfer;
 use App\Shared\Generated\DTO\Category\CategoryTransfer;
-use App\Shared\Generated\DTO\Category\CreateCategoryTransfer;
 use Micro\Plugin\Doctrine\DoctrineFacadeInterface;
 use Micro\Plugin\Uuid\UuidFacadeInterface;
 
@@ -17,6 +16,7 @@ class CategoryFactory implements CategoryFactoryInterface
      * @param DoctrineFacadeInterface $doctrineFacade
      * @param UuidFacadeInterface $uuidFacade
      * @param CategoryTransferExpanderFactoryInterface $categoryTransferExpanderFactory
+     * @param ActionProcessorFactoryInterface $postCreateActionProcessor
      */
     public function __construct(
         private readonly DoctrineFacadeInterface $doctrineFacade,
@@ -30,11 +30,11 @@ class CategoryFactory implements CategoryFactoryInterface
     /**
      * {@inheritDoc}
      */
-    public function create(CreateCategoryTransfer $createCategoryTransfer): CategoryTransfer
+    public function create(CategoryCreateTransfer $createCategoryTransfer): CategoryTransfer
     {
         $category = new Category($this->uuidFacade->v4());
         $category->setName($createCategoryTransfer->getName());
-        $category->setParentCategoryUuid($createCategoryTransfer->getParentUuid());
+//        $category->setParentCategoryUuid($createCategoryTransfer->getParentUuid());
 
         $em = $this->doctrineFacade->getManager();
         $em->persist($category);

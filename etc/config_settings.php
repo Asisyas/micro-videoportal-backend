@@ -1,3 +1,3 @@
 <?php
 
-return (new \App\Config\DotEnvConfigurationFactory($basedir . '/etc/'))->create();
+return (new \App\Config\DotEnvConfigurationFactory($basedir, '/etc/'))->create();

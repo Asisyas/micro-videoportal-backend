@@ -1,0 +1,12 @@
+routes:
+  home:
+    path: /
+    options:
+      controller: App\Frontend\Api\Controller\ApiController
+      action: 'home'
+
+  category_api:
+    resource: ./category/routing.yaml
+    prefix: /api/category
+    format: yaml
+

@@ -5,6 +5,6 @@
 
     <class name="Category\CategoryCreate">
         <property name="name" type="string" required="true"/>
-        <property name="parentUuid" type="string" required="false"/>
+        <!-- <property name="parentUuid" type="string"/> -->
     </class>
 </dto>

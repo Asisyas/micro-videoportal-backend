@@ -5,6 +5,6 @@
     <class name="Category\Category">
         <property name="uuid" type="string" required="true"/>
         <property name="name" type="string" required="true"/>
-        <property name="parent" type="Category/Category"/>
+        <property name="parent" type="Category\Category"/>
     </class>
 </dto>

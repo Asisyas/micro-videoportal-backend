@@ -11,9 +11,13 @@ class DotEnvConfiguration extends DefaultApplicationConfiguration
 
     /**
      * @param string $configFilePath
+     *
+     * @param string $basePath
      */
-    public function __construct(string $configFilePath)
+    public function __construct(string $configFilePath, string $basePath)
     {
+        $_ENV['BASE_PATH'] = $basePath;
+
         $this->dotenv = Dotenv::createMutable($configFilePath);
         $this->dotenv->load();
 

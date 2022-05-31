@@ -1,0 +1,9 @@
+routes:
+  category_create:
+    path: /
+    methods:
+      - GET
+      - POST
+    options:
+      controller: App\Frontend\Category\Controller\CategoryController
+      action: createCategory

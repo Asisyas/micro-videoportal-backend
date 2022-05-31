@@ -25,7 +25,7 @@ class StorageManager implements StorageManagerInterface
 
         $put->setIndex(Configuration::CLIENT_READER_INDEX);
         $put->setUuid($categoryTransfer->getUuid());
-        $put->setData($categoryTransfer->toArray());
+        $put->setData(serialize($categoryTransfer));
 
         $this->clientStorageFacade->put($put);
     }

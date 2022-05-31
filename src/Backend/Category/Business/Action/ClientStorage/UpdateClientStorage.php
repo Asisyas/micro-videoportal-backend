@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Backend\Category\Business\Action;
+namespace App\Backend\Category\Business\Action\ClientStorage;
 
+use App\Backend\Category\Business\Action\ActionInterface;
 use App\Backend\Category\Business\Storage\StorageManagerInterface;
 use App\Shared\Generated\DTO\Category\CategoryTransfer;
 

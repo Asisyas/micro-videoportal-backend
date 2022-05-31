@@ -4,7 +4,7 @@ namespace App\Backend\Category;
 
 use App\Backend\Category\Business\Action\ActionProcessorFactory;
 use App\Backend\Category\Business\Action\ActionProcessorFactoryInterface;
-use App\Backend\Category\Business\Action\UpdateClientStorageFactory;
+use App\Backend\Category\Business\Action\ClientStorage\UpdateClientStorageFactory;
 use App\Backend\Category\Business\Expander\CategoryTransfer\CategoryTransferExpanderFactory;
 use App\Backend\Category\Business\Expander\CategoryTransfer\CategoryTransferExpanderFactoryInterface;
 use App\Backend\Category\Business\Expander\CategoryTransfer\Expander\BaseFieldExpander;
@@ -13,12 +13,16 @@ use App\Backend\Category\Business\Factory\CategoryFactory;
 use App\Backend\Category\Business\Factory\CategoryFactoryInterface;
 use App\Backend\Category\Business\Storage\StorageManagerFactory;
 use App\Backend\Category\Business\Storage\StorageManagerFactoryInterface;
+use App\Backend\Category\Consumer\CategoryConsumer;
 use App\Backend\Category\Facade\CategoryFacade;
 use App\Backend\ClientStorage\Facade\ClientStorageFacadeInterface;
 use App\Shared\Category\Configuration;
 use App\Shared\Category\Facade\CategoryFacadeInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
+use Micro\Plugin\Amqp\AmqpFacadeInterface;
+use Micro\Plugin\Amqp\Business\Consumer\ConsumerConfigurationInterface;
+use Micro\Plugin\Amqp\Business\Consumer\ConsumerProcessorInterface;
 use Micro\Plugin\Doctrine\DoctrineFacadeInterface;
 use Micro\Plugin\Uuid\UuidFacadeInterface;
 use Psr\Container\ContainerInterface;
@@ -41,6 +45,10 @@ class CategoryPlugin extends AbstractPlugin
     public function provideDependencies(Container $container): void
     {
         $this->container = $container;
+
+        /** @var AmqpFacadeInterface $amqpFacade */
+        $amqpFacade = $container->get(AmqpFacadeInterface::class);
+        $amqpFacade->registerConsumerProcessor($this->createAmqpConsumer($container));
 
         $container->register(Configuration::SERVICE_FACADE_BACKEND, function () {
             return $this->createFacade();
@@ -98,5 +106,10 @@ class CategoryPlugin extends AbstractPlugin
         }
 
         return $this->storageManagerFactory;
+    }
+
+    protected function createAmqpConsumer(Container $container): ConsumerProcessorInterface
+    {
+        return new CategoryConsumer($container);
     }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "vaderlab/proxy-port",
+    "name": "vaderlab/demo-app",
     "description": "ProxyPort: Universal proxy server",
     "type": "project",
     "license": "Propietary",
@@ -7,6 +7,13 @@
         {
             "type": "path",
             "url": "../Micro/DependencyInjection",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginHttp",
             "options": {
                 "symlink": true
             }
@@ -34,13 +41,6 @@
         },
         {
             "type": "path",
-            "url": "../Micro/PluginHttpKernel",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
             "url": "../Micro/PluginUuid",
             "options": {
                 "symlink": true
@@ -56,13 +56,6 @@
         {
             "type": "path",
             "url": "../Micro/PluginRedis",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginHttpKernel",
             "options": {
                 "symlink": true
             }
@@ -90,7 +83,7 @@
         },
         {
             "type": "path",
-            "url": "../Micro/PluginAmqpTaskStatusDoctrineAdapter",
+            "url": "../Micro/PluginAmqpTaskStatusStorageDoctrine",
             "options": {
                 "symlink": true
             }
@@ -210,6 +203,8 @@
         "micro/plugin-serializer": "*",
         "micro/serializer-symfony-adapter": "*",
         "micro/plugin-amqp": "*",
+        "micro/plugin-amqp-task-status-storage-doctrine": "*",
+        "micro/plugin-amqp-task-status-storage": "*",
         "micro/plugin-redis": "*",
         "micro/plugin-http": "*",
         "micro/plugin-console": "*",
@@ -219,7 +214,6 @@
         "micro/plugin-storage":  "*",
         "micro/plugin-twig":  "*",
         "micro/plugin-user": "*",
-        "micro/plugin-amqp-task-status-storage": "*",
         "micro/plugin-dto": "*",
         "vlucas/phpdotenv": "^5.4",
         "symfony/cache": "^6.0",

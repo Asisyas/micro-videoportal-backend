@@ -2,17 +2,17 @@
 
 namespace App\Shared\Category\Facade;
 
+use App\Shared\Generated\DTO\Category\CategoryCreateTransfer;
 use App\Shared\Generated\DTO\Category\CategoryTransfer;
-use App\Shared\Generated\DTO\Category\CreateCategoryTransfer;
 
 interface CategoryFacadeInterface
 {
     /**
-     * @param CreateCategoryTransfer $createCategoryTransfer
+     * @param CategoryCreateTransfer $categoryCreateTransfer
      *
      * @return CategoryTransfer
      */
-    public function createCategory(CreateCategoryTransfer $createCategoryTransfer): CategoryTransfer;
+    public function createCategory(CategoryCreateTransfer $categoryCreateTransfer): CategoryTransfer;
 
-    public function deleteCategory();
+//    public function deleteCategory();
 }

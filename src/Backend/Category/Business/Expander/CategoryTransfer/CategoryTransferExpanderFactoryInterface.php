@@ -2,7 +2,7 @@
 
 namespace App\Backend\Category\Business\Expander\CategoryTransfer;
 
-use App\Backend\DataSource\Entity\Category;
+use App\Backend\Category\Entity\Category;
 
 interface CategoryTransferExpanderFactoryInterface
 {
