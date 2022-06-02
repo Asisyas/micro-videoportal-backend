@@ -8,111 +8,79 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\ClientReader;
 
-use Micro\Library\DTO\Object\AbstractDto;
+use DateTimeInterface;
 
-final class ResponseTransfer extends AbstractDto
+final class ResponseTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    /**
-     * @var string|null
-     */
-    protected string|null $uuid;
+    protected string $uuid;
+    protected string $index;
+    protected array $data;
 
-    /**
-     * @var string|null
-     */
-    protected string|null $index;
-
-    /**
-     * @var array|null
-     */
-    protected array|null $data;
-
-    /**
-     * @return string|null
-     */
-    public function getUuid(): string|null
+    public function getUuid(): string
     {
         return $this->uuid;
     }
 
-    /**
-     * @param string|null $uuid
-     *
-     * @return ResponseTransfer
-     */
-    public function setUuid(string|null $uuid): self
-    {
-        $this->uuid = $uuid;
-
-         return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getIndex(): string|null
+    public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * @param string|null $index
-     *
-     * @return ResponseTransfer
-     */
-    public function setIndex(string|null $index): self
-    {
-        $this->index = $index;
-
-         return $this;
-    }
-
-    /**
-     * @return array|null
-     */
-    public function getData(): array|null
+    public function getData(): array
     {
         return $this->data;
     }
 
-    /**
-     * @param array|null $data
-     *
-     * @return ResponseTransfer
-     */
-    public function setData(array|null $data): self
+    public function setUuid(string $uuid): self
+    {
+        $this->uuid = $uuid;
+
+        return $this;
+    }
+
+    public function setIndex(string $index): self
+    {
+        $this->index = $index;
+
+        return $this;
+    }
+
+    public function setData(array $data): self
     {
         $this->data = $data;
 
-         return $this;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function attributesMetadata(): array
     {
         return array (
           'uuid' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'Uuid',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'uuid',
           ),
           'index' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'Index',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'index',
           ),
           'data' =>
           array (
-            'is_collection' => false,
-            'type' => 'array',
-            'actionName' => 'Data',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'array',
+            ),
+            'required' => true,
+            'actionName' => 'data',
           ),
         );
     }

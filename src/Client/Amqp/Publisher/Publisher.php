@@ -5,6 +5,7 @@ namespace App\Client\Amqp\Publisher;
 use App\Shared\Generated\DTO\Amqp\RequestTransfer;
 use App\Shared\Generated\DTO\Amqp\ResponseTransfer;
 use Micro\Library\DTO\Object\AbstractDto;
+use Micro\Library\DTO\SerializerFacadeInterface;
 use Micro\Plugin\Amqp\AmqpFacadeInterface;
 use Micro\Plugin\Amqp\Business\Message\Message;
 use Micro\Plugin\Uuid\UuidFacadeInterface;
@@ -17,7 +18,8 @@ class Publisher implements PublisherInterface
      */
     public function __construct(
         private readonly UuidFacadeInterface $uuidFacade,
-        private readonly AmqpFacadeInterface $amqpFacade
+        private readonly AmqpFacadeInterface $amqpFacade,
+        private readonly SerializerFacadeInterface $serializerFacade
     ) {}
 
     /**
@@ -68,6 +70,6 @@ class Publisher implements PublisherInterface
             );
         }
 
-        return serialize($messageObject);
+        return $this->serializerFacade->toJsonTransfer($messageObject);
     }
 }

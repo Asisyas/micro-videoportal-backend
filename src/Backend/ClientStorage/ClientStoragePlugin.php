@@ -4,6 +4,7 @@ namespace App\Backend\ClientStorage;
 
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
+use Micro\Library\DTO\SerializerFacadeInterface;
 use Micro\Plugin\Redis\RedisFacadeInterface;
 use App\Backend\ClientStorage\Business\Client\ClientFactoryInterface;
 use App\Backend\ClientStorage\Business\Client\Redis\RedisClientFactory;
@@ -17,25 +18,37 @@ class ClientStoragePlugin extends AbstractPlugin
      */
     public function provideDependencies(Container $container): void
     {
-        $container->register(ClientStorageFacadeInterface::class, function (RedisFacadeInterface $redisFacade) {
-            return $this->createFacade($redisFacade);
+        $container->register(ClientStorageFacadeInterface::class, function (
+            RedisFacadeInterface $redisFacade,
+            SerializerFacadeInterface $serializerFacade
+        ) {
+            $clientFactory = $this->createClientFactory(
+                $redisFacade,
+                $serializerFacade
+            );
+
+            return $this->createFacade($clientFactory);
         });
     }
 
-    protected function createFacade(RedisFacadeInterface $redisFacade): ClientStorageFacadeInterface
+    protected function createFacade(ClientFactoryInterface $clientFactory): ClientStorageFacadeInterface
     {
         return new ClientStorageFacade(
-            clientFactory: $this->createClientFactory($redisFacade)
+            clientFactory: $clientFactory,
         );
     }
 
     /**
      * @param RedisFacadeInterface $redisFacade
+     * @param SerializerFacadeInterface $serializerFacade
      *
      * @return ClientFactoryInterface
      */
-    protected function createClientFactory(RedisFacadeInterface $redisFacade): ClientFactoryInterface
+    protected function createClientFactory(
+        RedisFacadeInterface $redisFacade,
+        SerializerFacadeInterface $serializerFacade
+    ): ClientFactoryInterface
     {
-        return new RedisClientFactory($redisFacade);
+        return new RedisClientFactory($redisFacade, $serializerFacade);
     }
 }

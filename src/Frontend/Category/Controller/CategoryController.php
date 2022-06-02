@@ -4,13 +4,17 @@ namespace App\Frontend\Category\Controller;
 
 use App\Client\Category\Facade\CategoryClientInterface;
 use App\Shared\Generated\DTO\Category\CategoryCreateTransfer;
+use Micro\Library\DTO\SerializerFacadeInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController
 {
-    public function __construct(private readonly CategoryClientInterface $categoryClient)
+    public function __construct(
+        private readonly CategoryClientInterface $categoryClient,
+        private readonly SerializerFacadeInterface $serializerFacade
+    )
     {
     }
 
@@ -27,7 +31,7 @@ class CategoryController
         $statusResponse = $this->categoryClient->create($categoryClientTransfer);
 
         return new JsonResponse(
-            $statusResponse->toArray(),
+            $this->serializerFacade->toArray($statusResponse),
         );
     }
 }

@@ -8,47 +8,35 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\Amqp;
 
-use Micro\Library\DTO\Object\AbstractDto;
+use DateTimeInterface;
 
-final class ResponseTransfer extends AbstractDto
+final class ResponseTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    /**
-     * @var string|null
-     */
-    protected string|null $channel_id;
+    protected string $channel_id;
 
-    /**
-     * @return string|null
-     */
-    public function getChannelId(): string|null
+    public function getChannelId(): string
     {
         return $this->channel_id;
     }
 
-    /**
-     * @param string|null $channel_id
-     *
-     * @return ResponseTransfer
-     */
-    public function setChannelId(string|null $channel_id): self
+    public function setChannelId(string $channel_id): self
     {
         $this->channel_id = $channel_id;
 
-         return $this;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function attributesMetadata(): array
     {
         return array (
           'channel_id' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'ChannelId',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'channelId',
           ),
         );
     }

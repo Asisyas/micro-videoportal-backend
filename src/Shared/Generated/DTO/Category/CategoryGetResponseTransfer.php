@@ -8,79 +8,57 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\Category;
 
-use Micro\Library\DTO\Object\AbstractDto;
+use DateTimeInterface;
 
-final class CategoryGetResponseTransfer extends AbstractDto
+final class CategoryGetResponseTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    /**
-     * @var App\Shared\Generated\DTO\Category\CategoryTransfer|null
-     */
-    protected CategoryTransfer|null $category;
+    protected CategoryTransfer $category;
+    protected int $flag;
 
-    /**
-     * @var int|null
-     */
-    protected int|null $flag;
-
-    /**
-     * @return App\Shared\Generated\DTO\Category\CategoryTransfer|null
-     */
-    public function getCategory(): CategoryTransfer|null
+    public function getCategory(): CategoryTransfer
     {
         return $this->category;
     }
 
-    /**
-     * @param App\Shared\Generated\DTO\Category\CategoryTransfer|null $category
-     *
-     * @return CategoryGetResponseTransfer
-     */
-    public function setCategory(CategoryTransfer|null $category): self
-    {
-        $this->category = $category;
-
-         return $this;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getFlag(): int|null
+    public function getFlag(): int
     {
         return $this->flag;
     }
 
-    /**
-     * @param int|null $flag
-     *
-     * @return CategoryGetResponseTransfer
-     */
-    public function setFlag(int|null $flag): self
+    public function setCategory(CategoryTransfer $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function setFlag(int $flag): self
     {
         $this->flag = $flag;
 
-         return $this;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function attributesMetadata(): array
     {
         return array (
           'category' =>
           array (
-            'is_collection' => false,
-            'type' => 'CategoryTransfer',
-            'actionName' => 'Category',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'App\\Shared\\Generated\\DTO\\Category\\CategoryTransfer',
+            ),
+            'required' => true,
+            'actionName' => 'category',
           ),
           'flag' =>
           array (
-            'is_collection' => false,
-            'type' => 'int',
-            'actionName' => 'Flag',
-            'required' => 'false',
+            'type' =>
+            array (
+              0 => 'int',
+            ),
+            'required' => true,
+            'actionName' => 'flag',
           ),
         );
     }

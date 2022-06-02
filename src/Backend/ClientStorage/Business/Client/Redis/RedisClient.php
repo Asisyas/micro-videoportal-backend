@@ -6,10 +6,15 @@ use App\Backend\ClientStorage\Business\Client\ClientInterface;
 use App\Shared\Generated\DTO\ClientStorage\DeleteTransfer;
 use App\Shared\Generated\DTO\ClientStorage\PostTransfer;
 use App\Shared\Generated\DTO\ClientStorage\PutTransfer;
+use Micro\Library\DTO\Object\AbstractDto;
+use Micro\Library\DTO\SerializerFacadeInterface;
 
 class RedisClient implements ClientInterface
 {
-    public function __construct(private readonly \Redis $redis)
+    public function __construct(
+        private readonly \Redis $redis,
+        private readonly SerializerFacadeInterface $serializerFacade
+    )
     {
     }
 
@@ -55,13 +60,19 @@ class RedisClient implements ClientInterface
     }
 
     /**
-     * @param array|string $source
+     * @param AbstractDto|array|string|int|float $source
      * @return string
+     *
+     * @throws \Micro\Library\DTO\Exception\SerializeException
      */
-    protected function createData(array|string $source): string
+    protected function createData(AbstractDto|array|string|int|float $source): string
     {
         if(is_scalar($source)) {
             return $source;
+        }
+
+        if($source instanceof AbstractDto) {
+            return $this->serializerFacade->toJsonTransfer($source);
         }
 
         return serialize($source);

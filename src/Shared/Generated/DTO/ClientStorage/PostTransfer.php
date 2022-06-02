@@ -8,111 +8,85 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\ClientStorage;
 
+use DateTimeInterface;
 use Micro\Library\DTO\Object\AbstractDto;
 
 final class PostTransfer extends AbstractDto
 {
-    /**
-     * @var string|null
-     */
-    protected string|null $uuid;
+    protected string $uuid;
+    protected string $index;
+    protected AbstractDto|array|string|int|float|bool $data;
 
-    /**
-     * @var string|null
-     */
-    protected string|null $index;
-
-    /**
-     * @var array|string|null
-     */
-    protected array|string|null $data;
-
-    /**
-     * @return string|null
-     */
-    public function getUuid(): string|null
+    public function getUuid(): string
     {
         return $this->uuid;
     }
 
-    /**
-     * @param string|null $uuid
-     *
-     * @return PostTransfer
-     */
-    public function setUuid(string|null $uuid): self
-    {
-        $this->uuid = $uuid;
-
-         return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getIndex(): string|null
+    public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * @param string|null $index
-     *
-     * @return PostTransfer
-     */
-    public function setIndex(string|null $index): self
-    {
-        $this->index = $index;
-
-         return $this;
-    }
-
-    /**
-     * @return array|string|null
-     */
-    public function getData(): array|string|null
+    public function getData(): AbstractDto|array|string|int|float|bool
     {
         return $this->data;
     }
 
-    /**
-     * @param array|string|null $data
-     *
-     * @return PostTransfer
-     */
-    public function setData(array|string|null $data): self
+    public function setUuid(string $uuid): self
+    {
+        $this->uuid = $uuid;
+
+        return $this;
+    }
+
+    public function setIndex(string $index): self
+    {
+        $this->index = $index;
+
+        return $this;
+    }
+
+    public function setData(AbstractDto|array|string|int|float|bool $data): self
     {
         $this->data = $data;
 
-         return $this;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function attributesMetadata(): array
     {
         return array (
           'uuid' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'Uuid',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'uuid',
           ),
           'index' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'Index',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'index',
           ),
           'data' =>
           array (
-            'is_collection' => false,
-            'type' => 'array|string',
-            'actionName' => 'Data',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'Micro\\Library\\DTO\\Object\\AbstractDto',
+              1 => 'array',
+              2 => 'string',
+              3 => 'int',
+              4 => 'float',
+              5 => 'bool',
+            ),
+            'required' => true,
+            'actionName' => 'data',
           ),
         );
     }

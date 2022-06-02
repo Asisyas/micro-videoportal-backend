@@ -8,79 +8,57 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\Amqp;
 
-use Micro\Library\DTO\Object\AbstractDto;
+use DateTimeInterface;
 
-final class RequestTransfer extends AbstractDto
+final class RequestTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    /**
-     * @var string|null
-     */
-    protected string|null $publisher;
+    protected string $publisher;
+    protected mixed $message;
 
-    /**
-     * @var mixed
-     */
-    protected mixed $message = null;
-
-    /**
-     * @return string|null
-     */
-    public function getPublisher(): string|null
+    public function getPublisher(): string
     {
         return $this->publisher;
     }
 
-    /**
-     * @param string|null $publisher
-     *
-     * @return RequestTransfer
-     */
-    public function setPublisher(string|null $publisher): self
-    {
-        $this->publisher = $publisher;
-
-         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getMessage(): mixed
     {
         return $this->message;
     }
 
-    /**
-     * @param mixed $message
-     *
-     * @return RequestTransfer
-     */
+    public function setPublisher(string $publisher): self
+    {
+        $this->publisher = $publisher;
+
+        return $this;
+    }
+
     public function setMessage(mixed $message): self
     {
         $this->message = $message;
 
-         return $this;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function attributesMetadata(): array
     {
         return array (
           'publisher' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'Publisher',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'publisher',
           ),
           'message' =>
           array (
-            'is_collection' => false,
-            'type' => 'mixed',
-            'actionName' => 'Message',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'mixed',
+            ),
+            'required' => true,
+            'actionName' => 'message',
           ),
         );
     }

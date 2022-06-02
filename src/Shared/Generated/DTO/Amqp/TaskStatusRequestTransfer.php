@@ -6,22 +6,22 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Generated\DTO\Category;
+namespace App\Shared\Generated\DTO\Amqp;
 
 use DateTimeInterface;
 
-final class CategoryDeleteTransfer extends \Micro\Library\DTO\Object\AbstractDto
+final class TaskStatusRequestTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    protected string $uuid;
+    protected string $channel_id;
 
-    public function getUuid(): string
+    public function getChannelId(): string
     {
-        return $this->uuid;
+        return $this->channel_id;
     }
 
-    public function setUuid(string $uuid): self
+    public function setChannelId(string $channel_id): self
     {
-        $this->uuid = $uuid;
+        $this->channel_id = $channel_id;
 
         return $this;
     }
@@ -29,14 +29,14 @@ final class CategoryDeleteTransfer extends \Micro\Library\DTO\Object\AbstractDto
     protected static function attributesMetadata(): array
     {
         return array (
-          'uuid' =>
+          'channel_id' =>
           array (
             'type' =>
             array (
               0 => 'string',
             ),
             'required' => true,
-            'actionName' => 'uuid',
+            'actionName' => 'channelId',
           ),
         );
     }

@@ -34,7 +34,6 @@ class CategoryFactory implements CategoryFactoryInterface
     {
         $category = new Category($this->uuidFacade->v4());
         $category->setName($createCategoryTransfer->getName());
-//        $category->setParentCategoryUuid($createCategoryTransfer->getParentUuid());
 
         $em = $this->doctrineFacade->getManager();
         $em->persist($category);

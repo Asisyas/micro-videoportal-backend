@@ -8,79 +8,57 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\Category;
 
-use Micro\Library\DTO\Object\AbstractDto;
+use DateTimeInterface;
 
-final class CategoryGetRequestTransfer extends AbstractDto
+final class CategoryGetRequestTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    /**
-     * @var string|null
-     */
-    protected string|null $uuid;
+    protected string $uuid;
+    protected int $flag;
 
-    /**
-     * @var int|null
-     */
-    protected int|null $flag;
-
-    /**
-     * @return string|null
-     */
-    public function getUuid(): string|null
+    public function getUuid(): string
     {
         return $this->uuid;
     }
 
-    /**
-     * @param string|null $uuid
-     *
-     * @return CategoryGetRequestTransfer
-     */
-    public function setUuid(string|null $uuid): self
-    {
-        $this->uuid = $uuid;
-
-         return $this;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getFlag(): int|null
+    public function getFlag(): int
     {
         return $this->flag;
     }
 
-    /**
-     * @param int|null $flag
-     *
-     * @return CategoryGetRequestTransfer
-     */
-    public function setFlag(int|null $flag): self
+    public function setUuid(string $uuid): self
+    {
+        $this->uuid = $uuid;
+
+        return $this;
+    }
+
+    public function setFlag(int $flag): self
     {
         $this->flag = $flag;
 
-         return $this;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function attributesMetadata(): array
     {
         return array (
           'uuid' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'Uuid',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'uuid',
           ),
           'flag' =>
           array (
-            'is_collection' => false,
-            'type' => 'int',
-            'actionName' => 'Flag',
-            'required' => 'false',
+            'type' =>
+            array (
+              0 => 'int',
+            ),
+            'required' => true,
+            'actionName' => 'flag',
           ),
         );
     }

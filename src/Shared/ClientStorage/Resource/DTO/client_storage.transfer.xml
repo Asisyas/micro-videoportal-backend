@@ -5,12 +5,12 @@
     <class name="ClientStorage\Put">
         <property name="uuid" type="string" required="true"/>
         <property name="index" type="string" required="true"/>
-        <property name="data" type="array|string" required="true"/>
+        <property name="data" type="abstract|array|string|int|float|bool" required="true"/>
     </class>
     <class name="ClientStorage\Post">
         <property name="uuid" type="string" required="true"/>
         <property name="index" type="string" required="true"/>
-        <property name="data" type="array|string" required="true"/>
+        <property name="data" type="abstract|array|string|int|float|bool" required="true"/>
     </class>
     <class name="ClientStorage\Delete">
         <property name="uuid" type="string" required="true"/>

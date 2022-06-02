@@ -8,111 +8,81 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\Category;
 
-use Micro\Library\DTO\Object\AbstractDto;
+use App\Shared\Generated\DTO\Category\CategoryTransfer as CategoryTransfer1;
+use DateTimeInterface;
 
-final class CategoryTransfer extends AbstractDto
+final class CategoryTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    /**
-     * @var string|null
-     */
-    protected string|null $uuid;
+    protected string $uuid;
+    protected string $name;
+    protected CategoryTransfer|null $parent = null;
 
-    /**
-     * @var string|null
-     */
-    protected string|null $name;
-
-    /**
-     * @var App\Shared\Generated\DTO\Category\CategoryTransfer
-     */
-    protected CategoryTransfer $parent;
-
-    /**
-     * @return string|null
-     */
-    public function getUuid(): string|null
+    public function getUuid(): string
     {
         return $this->uuid;
     }
 
-    /**
-     * @param string|null $uuid
-     *
-     * @return CategoryTransfer
-     */
-    public function setUuid(string|null $uuid): self
-    {
-        $this->uuid = $uuid;
-
-         return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getName(): string|null
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     *
-     * @return CategoryTransfer
-     */
-    public function setName(string|null $name): self
-    {
-        $this->name = $name;
-
-         return $this;
-    }
-
-    /**
-     * @return App\Shared\Generated\DTO\Category\CategoryTransfer
-     */
-    public function getParent(): CategoryTransfer
+    public function getParent(): CategoryTransfer|null
     {
         return $this->parent;
     }
 
-    /**
-     * @param App\Shared\Generated\DTO\Category\CategoryTransfer $parent
-     *
-     * @return CategoryTransfer
-     */
-    public function setParent(CategoryTransfer $parent): self
+    public function setUuid(string $uuid): self
+    {
+        $this->uuid = $uuid;
+
+        return $this;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function setParent(CategoryTransfer|null $parent): self
     {
         $this->parent = $parent;
 
-         return $this;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function attributesMetadata(): array
     {
         return array (
           'uuid' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'Uuid',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'uuid',
           ),
           'name' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'Name',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'name',
           ),
           'parent' =>
           array (
-            'is_collection' => false,
-            'type' => 'CategoryTransfer',
-            'actionName' => 'Parent',
+            'type' =>
+            array (
+              0 => 'App\\Shared\\Generated\\DTO\\Category\\CategoryTransfer',
+              1 => 'null',
+            ),
             'required' => false,
+            'actionName' => 'parent',
           ),
         );
     }

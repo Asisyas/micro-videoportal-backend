@@ -6,6 +6,7 @@ use App\Shared\Category\Configuration;
 use App\Shared\Category\Facade\CategoryFacadeInterface;
 use App\Shared\Generated\DTO\Category\CategoryCreateTransfer;
 use Micro\Component\DependencyInjection\Container;
+use Micro\Library\DTO\SerializerFacadeInterface;
 use Micro\Plugin\Amqp\Business\Consumer\ConsumerProcessorInterface;
 use Micro\Plugin\Amqp\Business\Message\MessageReceivedInterface;
 
@@ -16,6 +17,14 @@ class CategoryConsumer implements ConsumerProcessorInterface
      */
     private ?CategoryFacadeInterface $categoryFacade = null;
 
+    /**
+     * @var SerializerFacadeInterface|null
+     */
+    private ?SerializerFacadeInterface  $serializerFacade = null;
+
+    /**
+     * @var Container|null
+     */
     private ?Container $container = null;
 
     /**
@@ -28,13 +37,21 @@ class CategoryConsumer implements ConsumerProcessorInterface
 
     public function receive(MessageReceivedInterface $message): bool
     {
+        $this->provideDependencies();
+
         $content = $message->content();
-        /** @var CategoryCreateTransfer $messageTransfer */
-        $messageTransfer = unserialize($content->getContent());
+        try {
+            /** @var CategoryCreateTransfer $messageTransfer */
+            $messageTransfer = $this->serializerFacade->fromJsonTransfer($content->getContent());
+            $categoryTransfer = $this->categoryFacade->createCategory($messageTransfer);
+            $message->content()->setResultContent($this->serializerFacade->toJsonTransfer($categoryTransfer));
+        } catch (\Throwable $exception) {
+            $message->content()->setResultContent($exception->getMessage());
 
-        $categoryTransfer = $this->getCategoryFacade()->createCategory($messageTransfer);
+            $message->nack();
 
-        $message->content()->setResultContent(serialize($categoryTransfer));
+            return false;
+        }
 
         $message->ack();
 
@@ -44,10 +61,11 @@ class CategoryConsumer implements ConsumerProcessorInterface
     /**
      * @return CategoryFacadeInterface
      */
-    protected function getCategoryFacade(): CategoryFacadeInterface
+    protected function provideDependencies(): CategoryFacadeInterface
     {
         if(!$this->categoryFacade) {
             $this->categoryFacade = $this->container->get(Configuration::SERVICE_FACADE_BACKEND);
+            $this->serializerFacade = $this->container->get(SerializerFacadeInterface::class);
 
             unset($this->container);
         }

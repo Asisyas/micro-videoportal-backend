@@ -8,47 +8,35 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\Category;
 
-use Micro\Library\DTO\Object\AbstractDto;
+use DateTimeInterface;
 
-final class CategoryCreateTransfer extends AbstractDto
+final class CategoryCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    /**
-     * @var string|null
-     */
-    protected string|null $name;
+    protected string $name;
 
-    /**
-     * @return string|null
-     */
-    public function getName(): string|null
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string|null $name
-     *
-     * @return CategoryCreateTransfer
-     */
-    public function setName(string|null $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
-         return $this;
+        return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected static function attributesMetadata(): array
     {
         return array (
           'name' =>
           array (
-            'is_collection' => false,
-            'type' => 'string',
-            'actionName' => 'Name',
-            'required' => 'true',
+            'type' =>
+            array (
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'name',
           ),
         );
     }
