@@ -1,0 +1,9 @@
+routes:
+  action_status_get:
+    path: /{channel_id}
+    methods:
+      - GET
+      - POST
+    options:
+      controller: App\Frontend\ActionStatus\Controller\ActionStatusController
+      action: getStatus

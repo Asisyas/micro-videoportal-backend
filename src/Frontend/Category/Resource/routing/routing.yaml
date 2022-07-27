@@ -1,0 +1,18 @@
+routes:
+  category_create:
+    path: /create
+    methods:
+      - GET
+      - POST
+    options:
+      action: createCategory
+      controller: App\Frontend\Category\Controller\CategoryController
+
+  category_restore:
+    path: /restore
+    methods:
+      - GET
+      - POST
+    options:
+      controller: App\Frontend\Category\Controller\CategoryController
+      action: restore

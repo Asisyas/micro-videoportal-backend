@@ -1,12 +1,53 @@
 routes:
-  home:
-    path: /
+  action_status:
+    resource: ./ActionStatus/action_status.yaml
+    prefix: /api/action
+    format: yaml
     options:
-      controller: App\Frontend\Api\Controller\ApiController
-      action: 'home'
+      handler:
+        request:
+          - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
+        response:
+          - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
 
-  category_api:
-    resource: ./category/routing.yaml
+  plugins:
+    resource: ./plugins_secured.yaml
+    format: yaml
+    options:
+      handler:
+        request:
+          - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
+        response:
+          - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
+
+  security:
+    resource: '@HttpSecurityPlugin/Resource/routing/routing.yaml'
+    prefix: /security
+    format: yaml
+    options:
+      security:
+        provider: api
+
+
+
+  user_front:
+    resource: '@UserFrontPlugin/Resource/routing/routing.yaml'
+    prefix: /api/user
+    format: yaml
+    options:
+      handler:
+        request:
+          - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
+        response:
+          - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
+
+  category_front:
+    resource: '@CategoryFrontPlugin/Resource/routing/routing.yaml'
     prefix: /api/category
     format: yaml
-
+    options:
+      handler:
+        request:
+          - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
+        response:
+          - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler

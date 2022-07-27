@@ -44,12 +44,6 @@ class CategoryPlugin extends AbstractPlugin
      */
     public function provideDependencies(Container $container): void
     {
-        $this->container = $container;
-
-        /** @var AmqpFacadeInterface $amqpFacade */
-        $amqpFacade = $container->get(AmqpFacadeInterface::class);
-        $amqpFacade->registerConsumerProcessor($this->createAmqpConsumer($container));
-
         $container->register(Configuration::SERVICE_FACADE_BACKEND, function () {
             return $this->createFacade();
         });
@@ -106,10 +100,5 @@ class CategoryPlugin extends AbstractPlugin
         }
 
         return $this->storageManagerFactory;
-    }
-
-    protected function createAmqpConsumer(Container $container): ConsumerProcessorInterface
-    {
-        return new CategoryConsumer($container);
     }
 }

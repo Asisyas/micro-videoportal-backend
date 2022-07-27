@@ -26,12 +26,4 @@ class DotEnvConfigurationFactory extends DefaultApplicationConfigurationFactory
     {
         return new DotEnvConfiguration(realpath($this->basePath . DIRECTORY_SEPARATOR . $this->fileConfig), $this->basePath);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function getValue(string $key, mixed $default): mixed
-    {
-        return getenv($key, $default);
-    }
 }

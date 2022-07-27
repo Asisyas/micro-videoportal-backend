@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<dto xmlns="micro:dto-01"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="micro:dto-01 https://raw.githubusercontent.com/Micro-PHP/dto/master/src/Resource/schema/dto-01.xsd">
+
+    <class name="File\CredentialsRequest">
+        <property name="name" type="string" required="true"/>
+        <property name="crc32" type="string" required="true"/>
+        <property name="size" type="int" required="true"/>
+        <property name="type" type="string" required="true" />
+    </class>
+
+    <class name="File\CredentialsResponse">
+        <property name="id" type="string" required="true"/>
+        <property name="chunk_size" type="int" required="true"/>
+        <property name="chunk_count" type="int" required="true"/>
+        <property name="size" type="int" required="true"/>
+    </class>
+
+    <class name="File\ChunkRequest">
+        <property name="channel" type="string" required="true"/>
+        <property name="chunk" type="int" required="true"/>
+        <property name="blob" type="string" required="true" />
+    </class>
+    
+    <class name="File\ChunkResponse">
+        <property name="size_remaining" type="int" required="true" />
+        <property name="size_loaded" type="int" required="true" />
+    </class>
+
+</dto>

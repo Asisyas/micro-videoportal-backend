@@ -76,7 +76,7 @@ class CategoryConsumer implements ConsumerProcessorInterface
     /**
      * {@inheritDoc}
      */
-    public function name(): string
+    public static function name(): string
     {
         return Configuration::AMQP_CONSUMER_CATEGORY;
     }

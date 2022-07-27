@@ -1,0 +1,5 @@
+routes:
+  file_plugin:
+    resource: '@FilePluginFrontend/Resource/routing/routing.yaml'
+    format: yaml
+    prefix: /api/file

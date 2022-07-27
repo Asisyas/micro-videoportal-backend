@@ -1,0 +1,9 @@
+routes:
+  user_create:
+    path: /create
+    methods:
+      - GET
+      - POST
+    options:
+      action: createUser
+      controller: App\Frontend\User\Controller\UserCreateController

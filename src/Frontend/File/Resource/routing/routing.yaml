@@ -1,0 +1,17 @@
+routes:
+  file_channel_open:
+    path: /register
+    methods:
+      - POST
+      - GET
+    options:
+      action: createChannel
+      controller: 'App\Frontend\File\Controller\FileUploadController'
+
+  file_channel_upload:
+    path: /upload
+    methods:
+      - PUT
+    options:
+      action: register
+      controller: 'App\Frontend\File\Controller\FileUploadController'

@@ -13,6 +13,27 @@
         },
         {
             "type": "path",
+            "url": "../Micro/PluginConfigurationHelper",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginSecurity",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginHttpSecurity",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
             "url": "../Micro/PluginHttp",
             "options": {
                 "symlink": true
@@ -77,6 +98,20 @@
         {
             "type": "path",
             "url": "../Micro/PluginAmqpTaskStatusStorage",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginAmqpTaskStatusClient",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginAmqpTaskStatusClientDoctrine",
             "options": {
                 "symlink": true
             }
@@ -174,6 +209,20 @@
         },
         {
             "type": "path",
+            "url": "../Micro/PluginUserModelDoctrine",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginUserManagerDoctrine",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
             "url": "../Micro/PluginDTO",
             "options": {
                 "symlink": true
@@ -198,6 +247,7 @@
     "require": {
         "php": " >= 8.1",
         "micro/kernel-app": "*",
+        "micro/plugin-configuration-helper": "*",
         "micro/dependency-injection": "*",
         "micro/plugin-event-emitter": "*",
         "micro/plugin-serializer": "*",
@@ -205,6 +255,8 @@
         "micro/plugin-amqp": "*",
         "micro/plugin-amqp-task-status-storage-doctrine": "*",
         "micro/plugin-amqp-task-status-storage": "*",
+        "micro/plugin-amqp-task-status-client": "*",
+        "micro/plugin-amqp-task-status-client-doctrine": "*",
         "micro/plugin-redis": "*",
         "micro/plugin-http": "*",
         "micro/plugin-console": "*",
@@ -214,7 +266,11 @@
         "micro/plugin-storage":  "*",
         "micro/plugin-twig":  "*",
         "micro/plugin-user": "*",
+        "micro/plugin-user-model-doctrine": "*",
+        "micro/plugin-user-manager-doctrine": "*",
         "micro/plugin-dto": "*",
+        "micro/plugin-security": "*",
+        "micro/plugin-http-security": "*",
         "vlucas/phpdotenv": "^5.4",
         "symfony/cache": "^6.0",
         "doctrine/annotations": "^1.13",
