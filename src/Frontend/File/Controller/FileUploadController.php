@@ -4,15 +4,14 @@ namespace App\Frontend\File\Controller;
 
 use App\Client\File\FileClientInterface;
 use App\Frontend\File\Facade\FileFacadeInterface;
-use App\Shared\Generated\DTO\File\ChunkRequestTransfer;
 use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
+use App\Shared\Generated\DTO\File\ChunkTransfer;
 use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
-use App\Shared\Generated\DTO\File\StreamGetTransfer;
-use App\Shared\Generated\DTO\File\StreamTransfer;
 use Micro\Plugin\Http\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class FileUploadController
 {
@@ -30,13 +29,13 @@ class FileUploadController
     /**
      * @param Request $request
      *
-     * @return StreamTransfer|JsonResponse
+     * @return FileTransfer|JsonResponse
      *
      * @throws BadRequestException
      */
     public function createFile(Request $request): FileTransfer|JsonResponse
     {
-        $reqContent = json_decode($request->getContent(), true);
+        $reqContent = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
         $violations = $this->fileFacade->validateCreateStreamRequest($reqContent);
         if($violations !== null) {
             return new JsonResponse([
@@ -56,21 +55,56 @@ class FileUploadController
     /**
      * @param Request $request
      *
-     * @return ChunkResponseTransfer
+     * @return Response|ChunkResponseTransfer
      *
      * @throws BadRequestException
      */
-    public function uploadFile(Request $request): ChunkResponseTransfer
+    public function uploadFile(Request $request): Response|ChunkResponseTransfer
     {
-        $requestContent = json_decode($request->getContent());
+        $content = $request->getContent();
+        $contentSize = $request->headers->get('Content-Length', 0);
+        $contentRange = $request->headers->get('Content-Range');
+        $fileId = $request->headers->get('File-Id');
+
+        preg_match('/bytes=(\d+)-(\d+)\/(\d+)?/', $contentRange, $matches);
+        if(count($matches) < 4) {
+            throw new BadRequestException('Invalid "Content-Range" header.');
+        }
+
+        $chunkOffset = intval($matches[1]);
+        $chunkSize = intval($matches[2]) - $chunkOffset;
+
+        $chunkTransfer = new ChunkTransfer();
+        $chunkTransfer->setBlob($content);
+        $chunkTransfer->setOffset($chunkOffset);
+        $chunkTransfer->setSize($chunkSize);
+        $chunkTransfer->setFileId($fileId);
+
+        $chunkResponseTransfer = $this->fileClient->uploadFile($chunkTransfer);
+        if($chunkResponseTransfer->getSizeRemaining() === 0) {
+            return new Response(null, 201);
+        }
+
+        return new Response(null, 206, [
+            'Content-Range' => sprintf('bytes=%d-%d',
+                $chunkResponseTransfer->getSizeLoaded(),
+                $chunkResponseTransfer->getSizeRemaining()
+            )
+        ]);
+    }
+
+
+    /*
+     *  $requestContent = json_decode($request->getContent());
 
         $findChannelRequest = new StreamGetTransfer();
         $findChannelRequest->setStreamId($requestContent?->id);
 
-        $channel = $this->fileClient->getStream($findChannelRequest);
+      //  $channel = $this->fileClient->getStream($findChannelRequest);
 
         $contentSize = $request->headers->get('Content-Length', 0);
         $contentRange = $request->headers->get('Content-Range');
+        $fileId = $request->headers->get('File-Id');
         if(!$contentRange || !$contentSize) {
             throw new BadRequestException();
         }
@@ -123,5 +157,5 @@ class FileUploadController
         $chunkResponse->setSizeRemaining($channel->getSize() - $fileSizeCurrent);
 
         return $chunkResponse;
-    }
+     */
 }
