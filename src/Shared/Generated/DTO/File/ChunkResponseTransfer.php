@@ -10,31 +10,25 @@ namespace App\Shared\Generated\DTO\File;
 
 use DateTimeInterface;
 
-final class ChunkTransfer extends \Micro\Library\DTO\Object\AbstractDto
+final class ChunkResponseTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected string $file_id;
-    protected int $size;
-    protected int $offset;
-    protected string $blob;
+    protected int $size_remaining;
+    protected int $size_loaded;
 
     public function getFileId(): string
     {
         return $this->file_id;
     }
 
-    public function getSize(): int
+    public function getSizeRemaining(): int
     {
-        return $this->size;
+        return $this->size_remaining;
     }
 
-    public function getOffset(): int
+    public function getSizeLoaded(): int
     {
-        return $this->offset;
-    }
-
-    public function getBlob(): string
-    {
-        return $this->blob;
+        return $this->size_loaded;
     }
 
     public function setFileId(string $file_id): self
@@ -44,23 +38,16 @@ final class ChunkTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this;
     }
 
-    public function setSize(int $size): self
+    public function setSizeRemaining(int $size_remaining): self
     {
-        $this->size = $size;
+        $this->size_remaining = $size_remaining;
 
         return $this;
     }
 
-    public function setOffset(int $offset): self
+    public function setSizeLoaded(int $size_loaded): self
     {
-        $this->offset = $offset;
-
-        return $this;
-    }
-
-    public function setBlob(string $blob): self
-    {
-        $this->blob = $blob;
+        $this->size_loaded = $size_loaded;
 
         return $this;
     }
@@ -77,32 +64,23 @@ final class ChunkTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'required' => true,
             'actionName' => 'fileId',
           ),
-          'size' =>
+          'size_remaining' =>
           array (
             'type' =>
             array (
               0 => 'int',
             ),
             'required' => true,
-            'actionName' => 'size',
+            'actionName' => 'sizeRemaining',
           ),
-          'offset' =>
+          'size_loaded' =>
           array (
             'type' =>
             array (
               0 => 'int',
             ),
             'required' => true,
-            'actionName' => 'offset',
-          ),
-          'blob' =>
-          array (
-            'type' =>
-            array (
-              0 => 'string',
-            ),
-            'required' => true,
-            'actionName' => 'blob',
+            'actionName' => 'sizeLoaded',
           ),
         );
     }
