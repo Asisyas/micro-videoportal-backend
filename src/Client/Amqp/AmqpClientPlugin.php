@@ -8,6 +8,8 @@ use App\Client\Amqp\Publisher\PublisherFactory;
 use App\Client\Amqp\Publisher\PublisherFactoryInterface;
 use App\Client\Amqp\Receiver\ReceiverFactory;
 use App\Client\Amqp\Receiver\ReceiverFactoryInterface;
+use App\Client\Amqp\Rpc\RpcFactory;
+use App\Client\Amqp\Rpc\RpcFactoryInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 use Micro\Library\DTO\SerializerFacadeInterface;
@@ -30,9 +32,33 @@ class AmqpClientPlugin extends AbstractPlugin
         ) {
             $publisherFactory = $this->createPublisherFactory($uuidFacade, $amqpFacade, $serializerFacade);
             $receiverFactory = $this->createReceiverFactory($serializerFacade, $clientTaskStatusDriverFactory);
+            $rpcFactory = $this->createRpcFactory($uuidFacade, $amqpFacade, $serializerFacade);
 
-            return $this->createClient($publisherFactory, $receiverFactory);
+            return $this->createClient(
+                $publisherFactory,
+                $receiverFactory,
+                $rpcFactory
+            );
         });
+    }
+
+    /**
+     * @param UuidFacadeInterface $uuidFacade
+     * @param AmqpFacadeInterface $amqpFacade
+     * @param SerializerFacadeInterface $serializerFacade
+     * @return RpcFactoryInterface
+     */
+    protected function createRpcFactory(
+        UuidFacadeInterface $uuidFacade,
+        AmqpFacadeInterface $amqpFacade,
+        SerializerFacadeInterface $serializerFacade
+    ): RpcFactoryInterface
+    {
+        return new RpcFactory(
+            $uuidFacade,
+            $amqpFacade,
+            $serializerFacade
+        );
     }
 
     /**
@@ -49,14 +75,20 @@ class AmqpClientPlugin extends AbstractPlugin
     /**
      * @param PublisherFactoryInterface $publisherFactory
      * @param ReceiverFactoryInterface $receiverFactory
+     * @param RpcFactoryInterface $rpcFactory
      *
      * @return AmqpClientInterface
      */
-    protected function createClient(PublisherFactoryInterface $publisherFactory, ReceiverFactoryInterface $receiverFactory): AmqpClientInterface
+    protected function createClient(
+        PublisherFactoryInterface $publisherFactory,
+        ReceiverFactoryInterface $receiverFactory,
+        RpcFactoryInterface $rpcFactory
+    ): AmqpClientInterface
     {
         return new AmqpClient(
             $publisherFactory,
-            $receiverFactory
+            $receiverFactory,
+            $rpcFactory
         );
     }
 

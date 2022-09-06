@@ -3,3 +3,8 @@ routes:
     resource: '@FilePluginFrontend/Resource/routing/routing.yaml'
     format: yaml
     prefix: /api/file
+
+  video_plugin:
+    resource: '@VideoPluginFrontend/Resource/routing/routing.yaml'
+    format: yaml
+    prefix: /api/video

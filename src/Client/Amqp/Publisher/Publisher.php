@@ -15,6 +15,7 @@ class Publisher implements PublisherInterface
     /**
      * @param UuidFacadeInterface $uuidFacade
      * @param AmqpFacadeInterface $amqpFacade
+     * @param SerializerFacadeInterface $serializerFacade
      */
     public function __construct(
         private readonly UuidFacadeInterface $uuidFacade,

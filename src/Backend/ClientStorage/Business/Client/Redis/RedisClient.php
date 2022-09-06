@@ -8,11 +8,12 @@ use App\Shared\Generated\DTO\ClientStorage\PostTransfer;
 use App\Shared\Generated\DTO\ClientStorage\PutTransfer;
 use Micro\Library\DTO\Object\AbstractDto;
 use Micro\Library\DTO\SerializerFacadeInterface;
+use Micro\Plugin\Redis\Redis\RedisInterface;
 
 class RedisClient implements ClientInterface
 {
     public function __construct(
-        private readonly \Redis $redis,
+        private readonly RedisInterface $redis,
         private readonly SerializerFacadeInterface $serializerFacade
     )
     {

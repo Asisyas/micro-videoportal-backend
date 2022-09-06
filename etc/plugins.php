@@ -35,19 +35,19 @@ return [
     /*  APPLICATION PLUGINS */
     // Backend
     App\Backend\ClientStorage\ClientStoragePlugin::class,
-    App\Backend\Category\CategoryPlugin::class,
     App\Backend\User\UserPlugin::class,
     App\Backend\File\FilePlugin::class,
+    App\Backend\Video\VideoPlugin::class,
 
     //Client
     App\Client\Amqp\AmqpClientPlugin::class,
     App\Client\ClientReader\ClientReaderPlugin::class,
-    App\Client\Category\CategoryClientPlugin::class,
     App\Client\User\UserClientPlugin::class,
     App\Client\File\FilePlugin::class,
+    App\Client\Video\VideoPlugin::class,
 
     //Front
-    App\Frontend\Category\CategoryFrontPlugin::class,
     App\Frontend\User\UserFrontPlugin::class,
     App\Frontend\File\FilePlugin::class,
+    App\Frontend\Video\VideoPlugin::class
 ];

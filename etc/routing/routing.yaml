@@ -19,6 +19,7 @@ routes:
           - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
         response:
           - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
+          - App\Frontend\Common\ResponseTransformer\ResponseExceptionHandler
 
   security:
     resource: '@HttpSecurityPlugin/Resource/routing/routing.yaml'
@@ -33,17 +34,6 @@ routes:
   user_front:
     resource: '@UserFrontPlugin/Resource/routing/routing.yaml'
     prefix: /api/user
-    format: yaml
-    options:
-      handler:
-        request:
-          - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
-        response:
-          - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
-
-  category_front:
-    resource: '@CategoryFrontPlugin/Resource/routing/routing.yaml'
-    prefix: /api/category
     format: yaml
     options:
       handler:

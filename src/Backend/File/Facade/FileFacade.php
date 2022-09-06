@@ -2,26 +2,33 @@
 
 namespace App\Backend\File\Facade;
 
-use App\Backend\File\Business\Channel\Factory\ChannelFactoryInterface;
-use App\Shared\Generated\DTO\File\CredentialsRequestTransfer;
-use App\Shared\Generated\DTO\File\CredentialsResponseTransfer;
+use App\Backend\File\Business\File\Factory\FileFactoryInterface;
+use App\Shared\Generated\DTO\File\ChunkRequestTransfer;
+use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
+use App\Shared\Generated\DTO\File\FileCreateTransfer;
+use App\Shared\Generated\DTO\File\FileTransfer;
 
 class FileFacade implements FileFacadeInterface
 {
-    public function __construct(private readonly ChannelFactoryInterface $channelFactory)
+    /**
+     * @param FileFactoryInterface $fileFactory]
+     */
+    public function __construct(private readonly FileFactoryInterface $fileFactory)
     {
     }
 
     /**
      * {@inheritDoc}
      */
-    public function createChannel(CredentialsRequestTransfer $credentialsRequestTransfer): CredentialsResponseTransfer
+    public function createFile(FileCreateTransfer $fileCreateTransfer): FileTransfer
     {
-        return $this->channelFactory->create($credentialsRequestTransfer);
+        return $this->fileFactory->create($fileCreateTransfer);
     }
 
-    public function getChannel()
+    /**
+     * {@inheritDoc}
+     */
+    public function uploadFile(ChunkRequestTransfer $chunkRequestTransfer): ChunkResponseTransfer
     {
-        // TODO: Implement getChannel() method.
     }
 }

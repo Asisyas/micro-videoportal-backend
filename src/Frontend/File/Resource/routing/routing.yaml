@@ -5,7 +5,7 @@ routes:
       - POST
       - GET
     options:
-      action: createChannel
+      action: createFile
       controller: 'App\Frontend\File\Controller\FileUploadController'
 
   file_channel_upload:
@@ -13,5 +13,5 @@ routes:
     methods:
       - PUT
     options:
-      action: register
+      action: uploadFile
       controller: 'App\Frontend\File\Controller\FileUploadController'

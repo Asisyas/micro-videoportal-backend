@@ -2,17 +2,25 @@
 
 namespace App\Client\File;
 
-
-use App\Shared\Generated\DTO\Amqp\ResponseTransfer;
-use App\Shared\Generated\DTO\File\CredentialsRequestTransfer;
+use App\Shared\Generated\DTO\File\FileCreateTransfer;
+use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\File\StreamGetTransfer;
+use App\Shared\Generated\DTO\File\StreamTransfer;
 
 
 interface FileClientInterface
 {
     /**
-     * @param CredentialsRequestTransfer $fileCredentialsTransfer
+     * @param FileCreateTransfer $streamCreateTransfer
      *
-     * @return ResponseTransfer
+     * @return FileTransfer
      */
-    public function createChannel(CredentialsRequestTransfer $fileCredentialsTransfer): ResponseTransfer;
+    public function createFile(FileCreateTransfer $fileCreateTransfer): FileTransfer;
+
+    /**
+     * @param StreamGetTransfer $streamGetTransfer
+     *
+     * @return StreamTransfer
+     */
+    public function getStream(StreamGetTransfer $streamGetTransfer): StreamTransfer;
 }

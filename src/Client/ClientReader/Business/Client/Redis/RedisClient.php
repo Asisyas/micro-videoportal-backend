@@ -5,13 +5,14 @@ namespace App\Client\ClientReader\Business\Client\Redis;
 use App\Client\ClientReader\Business\Client\ClientInterface;
 use App\Shared\Generated\DTO\ClientReader\RequestTransfer;
 use App\Shared\Generated\DTO\ClientReader\ResponseTransfer;
+use Micro\Plugin\Redis\Redis\RedisInterface;
 
 class RedisClient implements ClientInterface
 {
     /**
-     * @param \Redis $redis
+     * @param RedisInterface $redis
      */
-    public function __construct(private readonly \Redis $redis)
+    public function __construct(private readonly RedisInterface $redis)
     {
     }
 
