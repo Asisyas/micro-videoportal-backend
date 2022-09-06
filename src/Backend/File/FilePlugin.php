@@ -2,12 +2,12 @@
 
 namespace App\Backend\File;
 
-use App\Backend\File\Business\Channel\Expander\CredentialsResponse\CredentialsResponseExpanderFactory;
-use App\Backend\File\Business\Channel\Expander\CredentialsResponse\CredentialsResponseExpanderFactoryInterface;
-use App\Backend\File\Business\Channel\Expander\CredentialsResponse\Expander\BaseExpander;
-use App\Backend\File\Business\Channel\Expander\CredentialsResponse\Expander\ExpanderInterface;
-use App\Backend\File\Business\Channel\Factory\ChannelFactory;
-use App\Backend\File\Business\Channel\Factory\ChannelFactoryInterface;
+use App\Backend\ClientStorage\Facade\ClientStorageFacadeInterface;
+use App\Backend\File\Business\File\Factory\FileFactory;
+use App\Backend\File\Business\File\Factory\FileFactoryInterface;
+use App\Backend\File\Business\File\Storage\FileStorageFactory;
+use App\Backend\File\Business\File\Storage\FileStorageFactoryInterface;
+use App\Backend\File\Configuration\FilePluginConfigurationInterface;
 use App\Backend\File\Facade\FileFacade;
 use App\Backend\File\Facade\FileFacadeInterface;
 use Micro\Component\DependencyInjection\Container;
@@ -15,68 +15,80 @@ use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 use Micro\Plugin\Doctrine\DoctrineFacadeInterface;
 use Micro\Plugin\Uuid\UuidFacadeInterface;
 
+/**
+ * @method FilePluginConfigurationInterface configuration()
+ */
 class FilePlugin extends AbstractPlugin
 {
+    /**
+     * {@inheritDoc}
+     */
     public function provideDependencies(Container $container): void
     {
         $container->register(FileFacadeInterface::class, function (
             UuidFacadeInterface $uuidFacade,
-            DoctrineFacadeInterface $doctrineFacade
+            DoctrineFacadeInterface $doctrineFacade,
+            ClientStorageFacadeInterface $clientStorageFacade
         ) {
-            return $this->createFacade($uuidFacade, $doctrineFacade);
+            return $this->createFacade(
+                $uuidFacade,
+                $doctrineFacade,
+                $clientStorageFacade
+            );
         });
     }
 
     /**
      * @param UuidFacadeInterface $uuidFacade
      * @param DoctrineFacadeInterface $doctrineFacade
+     * @param ClientStorageFacadeInterface $clientStorageFacade
      *
      * @return FileFacadeInterface
      */
-    protected function createFacade(UuidFacadeInterface $uuidFacade, DoctrineFacadeInterface $doctrineFacade): FileFacadeInterface
+    protected function createFacade(
+        UuidFacadeInterface $uuidFacade,
+        DoctrineFacadeInterface $doctrineFacade,
+        ClientStorageFacadeInterface $clientStorageFacade
+    ): FileFacadeInterface
     {
-        $channelFactory = $this->createChannelFactory(
+        $fileStorageFactory = $this->createFileStorageFactory($clientStorageFacade);
+
+        $fileFactory = $this->createFileFactory(
             $uuidFacade,
-            $doctrineFacade
+            $doctrineFacade,
+            $fileStorageFactory
         );
 
-        return new FileFacade($channelFactory);
+        return new FileFacade($fileFactory);
+    }
+
+    /**
+     * @param ClientStorageFacadeInterface $clientStorageFacade
+     *
+     * @return FileStorageFactoryInterface
+     */
+    protected function createFileStorageFactory(ClientStorageFacadeInterface $clientStorageFacade): FileStorageFactoryInterface
+    {
+        return new FileStorageFactory($clientStorageFacade);
     }
 
     /**
      * @param UuidFacadeInterface $uuidFacade
      * @param DoctrineFacadeInterface $doctrineFacade
+     * @param FileStorageFactoryInterface $fileStorageFactory
      *
-     * @return ChannelFactoryInterface
+     * @return FileFactoryInterface
      */
-    protected function createChannelFactory(UuidFacadeInterface $uuidFacade, DoctrineFacadeInterface $doctrineFacade): ChannelFactoryInterface
+    protected function createFileFactory(
+        UuidFacadeInterface $uuidFacade,
+        DoctrineFacadeInterface $doctrineFacade,
+        FileStorageFactoryInterface $fileStorageFactory
+    ): FileFactoryInterface
     {
-        $credentialsResponseExpanderFactory = $this->createCredentialsResponseExpanderFactory();
-
-        return new ChannelFactory(
+        return new FileFactory(
             $uuidFacade,
             $doctrineFacade,
-            $credentialsResponseExpanderFactory
-        );
-    }
-
-    /**
-     * @return iterable<ExpanderInterface>
-     */
-    protected function createCredentialsResponseExpanderIterator(): iterable
-    {
-        return [
-            new BaseExpander()
-        ];
-    }
-
-    /**
-     * @return CredentialsResponseExpanderFactoryInterface
-     */
-    protected function createCredentialsResponseExpanderFactory(): CredentialsResponseExpanderFactoryInterface
-    {
-        return new CredentialsResponseExpanderFactory(
-            $this->createCredentialsResponseExpanderIterator()
+            $fileStorageFactory
         );
     }
 

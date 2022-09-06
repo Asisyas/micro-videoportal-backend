@@ -2,20 +2,25 @@
 
 namespace App\Backend\File\Facade;
 
-use App\Shared\Generated\DTO\File\CredentialsRequestTransfer;
-use App\Shared\Generated\DTO\File\CredentialsResponseTransfer;
+use App\Shared\Generated\DTO\File\ChunkRequestTransfer;
+use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
+use App\Shared\Generated\DTO\File\FileCreateTransfer;
+use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\File\StreamTransfer;
 
 interface FileFacadeInterface
 {
     /**
-     * @param CredentialsRequestTransfer $credentialsRequestTransfer
+     * @param FileCreateTransfer $fileCreateTransfer
      *
-     * @return CredentialsResponseTransfer
+     * @return FileTransfer
      */
-    public function createChannel(CredentialsRequestTransfer $credentialsRequestTransfer): CredentialsResponseTransfer;
+    public function createFile(FileCreateTransfer $fileCreateTransfer): FileTransfer;
 
     /**
-     * @return mixed
+     * @param ChunkRequestTransfer $chunkRequestTransfer
+     *
+     * @return ChunkResponseTransfer
      */
-    public function getChannel();
+    public function uploadFile(ChunkRequestTransfer $chunkRequestTransfer): ChunkResponseTransfer;
 }

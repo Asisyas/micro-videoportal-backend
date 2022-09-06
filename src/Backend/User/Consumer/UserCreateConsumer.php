@@ -35,19 +35,15 @@ class UserCreateConsumer implements ConsumerProcessorInterface
     /**
      * {@inheritDoc}
      */
-    public function receive(MessageReceivedInterface $message): bool
+    public function receive(MessageReceivedInterface $message): void
     {
         try {
             $this->provideDependencies();
             $this->execute($message);
             $message->ack();
-
-            return true;
         } catch (\Exception $e) {
             $message->content()->setResultContent($e);
             $message->nack();
-
-            return false;
         }
     }
 

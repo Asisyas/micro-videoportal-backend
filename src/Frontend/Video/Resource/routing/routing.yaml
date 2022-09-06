@@ -1,0 +1,8 @@
+routes:
+  video_get:
+    path: /{video_id}
+    methods:
+      - GET
+    options:
+      action: getVideo
+      controller: App\Frontend\Video\Controller\VideoController
