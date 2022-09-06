@@ -1,4 +1,12 @@
-# Experimental application based on Micro Framework.
+# Experimental video portal application based on Micro Framework.
+
+### Technologies used
+ - [Ffmpeg](https://ffmpeg.org/)
+ - [RabitMQ](https://www.rabbitmq.com/)
+ - [Docker](https://www.docker.com/)
+ - [Redis](https://redis.io/)
+ - [Doctrine](https://www.doctrine-project.org/)
+ - [ElasticSearch](https://www.elastic.co/)
 
 ### Short description
  - Client: Clients for reading data. (Redis, Elastic)
