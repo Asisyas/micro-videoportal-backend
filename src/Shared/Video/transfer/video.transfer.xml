@@ -6,8 +6,18 @@
     <class name="Video\Video">
         <property name="id" type="string" required="true"/>
         <property name="name" type="string" required="true" />
-        <property name="url" type="string" required="true" />
         <property name="created_at" type="datetime" required="true"/>
+        <property name="resolutions" type="Video\Resolution" is_collection="true" />
+    </class>
+
+    <class name="Video\VideoCreate">
+        <property name="file_id" type="string" required="true" />
+    </class>
+
+    <class name="Video\Resolution">
+        <property name="height" type="int" required="true"/>
+        <property name="width" type="int" required="true"/>
+        <property name="fps" type="int" required="true"/>
     </class>
 
     <class name="Video\VideoGet">
