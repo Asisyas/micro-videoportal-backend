@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<dto xmlns="micro:dto-01"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="micro:dto-01 https://raw.githubusercontent.com/Micro-PHP/dto/master/src/Resource/schema/dto-01.xsd">
+
+    <class name="VideoConfiguration\Resolutions">
+        <property name="resolutions" type="VideoConfiguration\Resolution" is_collection="true" />
+    </class>
+
+    <class name="VideoConfiguration\Resolution">
+        <property name="height" type="int" required="true"/>
+        <property name="width" type="int" required="true"/>
+        <property name="fps" type="int" required="true" />
+    </class>
+
+    <class name="VideoConfiguration\FfmpegResolutionConfigurationSet">
+        <property name="resolution" type="VideoConfiguration\Resolution" required="true"/>
+        <property name="configuration" type="VideoConfiguration\FfmpegResolutionConfiguration" required="true"/>
+    </class>
+
+    <class name="VideoConfiguration\FfmpegResolutionConfiguration">
+        <property name="minrate" type="int" required="true"/>
+        <property name="maxrate" type="int" required="true" />
+        <property name="tile_columns" type="int" required="true" />
+        <property name="threads" type="int" required="true" />
+        <property name="crf" type="int" required="true" />
+        <property name="hwaccel" type="string" required="true" />
+        <property name="speed" type="int" required="true" />
+    </class>
+</dto>

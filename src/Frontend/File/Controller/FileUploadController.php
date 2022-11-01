@@ -67,7 +67,7 @@ class FileUploadController
         $fileId = $request->headers->get('File-Id');
 
         preg_match('/bytes=(\d+)-(\d+)\/(\d+)?/', $contentRange, $matches);
-        if(count($matches) < 4) {
+        if(count($matches) < 4) { //TODO: Range Not Satisfiable
             throw new BadRequestException('Invalid "Content-Range" header.');
         }
 

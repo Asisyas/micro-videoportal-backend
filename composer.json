@@ -34,6 +34,13 @@
         },
         {
             "type": "path",
+            "url": "../Micro/PluginFfmpeg",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
             "url": "../Micro/PluginHttp",
             "options": {
                 "symlink": true
@@ -227,6 +234,20 @@
             "options": {
                 "symlink": true
             }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginTemporal",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginLocator",
+            "options": {
+                "symlink": true
+            }
         }
     ],
     "require-dev": {
@@ -247,6 +268,7 @@
     "require": {
         "php": " >= 8.1",
         "micro/kernel-app": "*",
+        "micro/plugin-locator": "*",
         "micro/plugin-configuration-helper": "*",
         "micro/dependency-injection": "*",
         "micro/plugin-event-emitter": "*",
@@ -271,6 +293,8 @@
         "micro/plugin-dto": "*",
         "micro/plugin-security": "*",
         "micro/plugin-http-security": "*",
+        "micro/plugin-temporal": "*",
+        "micro/plugin-ffmpeg": "*",
         "vlucas/phpdotenv": "^5.4",
         "symfony/cache": "^6.0",
         "doctrine/annotations": "^1.13",

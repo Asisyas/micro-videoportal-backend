@@ -22,6 +22,8 @@ class ClientReaderFacade implements ClientReaderFacadeInterface
      */
     public function lookup(RequestTransfer $requestTransfer): ResponseTransfer
     {
-        return $this->clientFactory->create()->lookup($requestTransfer);
+        return $this->clientFactory
+            ->create()
+            ->lookup($requestTransfer);
     }
 }

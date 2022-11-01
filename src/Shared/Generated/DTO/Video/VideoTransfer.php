@@ -9,13 +9,14 @@ declare(strict_types=1);
 namespace App\Shared\Generated\DTO\Video;
 
 use DateTimeInterface;
+use Micro\Library\DTO\Object\Collection;
 
 final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected string $id;
     protected string $name;
-    protected string $url;
     protected DateTimeInterface $created_at;
+    protected iterable|null $resolutions = null;
 
     public function getId(): string
     {
@@ -27,14 +28,14 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this->name;
     }
 
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
     public function getCreatedAt(): DateTimeInterface
     {
         return $this->created_at;
+    }
+
+    public function getResolutions(): iterable|null
+    {
+        return $this->resolutions;
     }
 
     public function setId(string $id): self
@@ -51,18 +52,30 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this;
     }
 
-    public function setUrl(string $url): self
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
     public function setCreatedAt(DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
+    }
+
+    public function setResolutions(iterable|null $resolutions): self
+    {
+        if(!$resolutions) {
+                        $this->resolutions = null;
+
+                        return $this;
+                    }
+
+                    if(!$this->resolutions) {
+                        $this->resolutions = new Collection();
+                    }
+
+                    foreach($resolutions as $item) {
+                        $this->resolutions->add($item);
+                    }
+
+                    return $this;
     }
 
     protected static function attributesMetadata(): array
@@ -86,15 +99,6 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'required' => true,
             'actionName' => 'name',
           ),
-          'url' =>
-          array (
-            'type' =>
-            array (
-              0 => 'string',
-            ),
-            'required' => true,
-            'actionName' => 'url',
-          ),
           'created_at' =>
           array (
             'type' =>
@@ -103,6 +107,16 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
             ),
             'required' => true,
             'actionName' => 'createdAt',
+          ),
+          'resolutions' =>
+          array (
+            'type' =>
+            array (
+              0 => 'iterable',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'resolutions',
           ),
         );
     }
