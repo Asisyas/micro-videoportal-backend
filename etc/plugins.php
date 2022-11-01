@@ -15,6 +15,10 @@ return [
     Micro\Plugin\DTO\DTOPlugin::class,
     Micro\Plugin\Http\HttpPlugin::class,
     Micro\Plugin\Configuration\Helper\ConfigurationHelperPlugin::class,
+    Micro\Plugin\Locator\LocatorPlugin::class,
+
+    /* Video converter FFMPEG */
+    Micro\Plugin\Ffmpeg\FfmpegPlugin::class,
 
     /* Security */
     Micro\Plugin\Security\SecurityPlugin::class,
@@ -32,12 +36,18 @@ return [
     Micro\Plugin\Amqp\TaskStatus\Client\AmqpTaskStatusClientPlugin::class,
     Micro\Plugin\Amqp\TaskStatus\Client\Doctrine\AmqpTaskStatusClientDoctrinePlugin::class,
 
+    // SAGA
+    Micro\Plugin\Temporal\TemporalPlugin::class,
+
     /*  APPLICATION PLUGINS */
     // Backend
     App\Backend\ClientStorage\ClientStoragePlugin::class,
     App\Backend\User\UserPlugin::class,
     App\Backend\File\FilePlugin::class,
     App\Backend\Video\VideoPlugin::class,
+    App\Backend\VideoConverter\VideoConverterPlugin::class,
+
+    App\Backend\Test\TestPlugin::class,
 
     //Client
     App\Client\Amqp\AmqpClientPlugin::class,
@@ -49,5 +59,7 @@ return [
     //Front
     App\Frontend\User\UserFrontPlugin::class,
     App\Frontend\File\FilePlugin::class,
-    App\Frontend\Video\VideoPlugin::class
+    App\Frontend\Video\VideoPlugin::class,
+
+    App\Saga\VideoUpload\VideoUploadSagaPlugin::class
 ];

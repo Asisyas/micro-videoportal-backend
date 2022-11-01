@@ -2,6 +2,7 @@
 
 namespace App\Frontend\Common\ResponseTransformer;
 
+use Micro\Plugin\Http\Exception\BadRequestException;
 use Micro\Plugin\Http\Handler\Response\ResponseHandlerContextInterface;
 use Micro\Plugin\Http\Handler\Response\ResponseHandlerInterface;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
