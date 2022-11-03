@@ -5,6 +5,8 @@ namespace App\Client\File;
 use App\Client\Amqp\Client\AmqpClientInterface;
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
 use App\Client\File\Client\FileClient;
+use App\Client\File\Expander\File\FileTransferExpanderFactory;
+use App\Client\File\Expander\File\FileTransferExpanderFactoryInterface;
 use App\Client\File\Reader\FileClientReaderFactory;
 use App\Client\File\Reader\FileClientReaderFactoryInterface;
 use App\Client\File\Store\FileClientStoreFactory;
@@ -40,6 +42,14 @@ class FilePlugin extends AbstractPlugin
     }
 
     /**
+     * @return FileTransferExpanderFactoryInterface
+     */
+    protected function createFileTransferExpanderFactory(): FileTransferExpanderFactoryInterface
+    {
+        return new FileTransferExpanderFactory();
+    }
+
+    /**
      * @param AmqpClientInterface $amqpClient
      *
      * @return FileClientStoreFactoryInterface
@@ -60,7 +70,11 @@ class FilePlugin extends AbstractPlugin
         SerializerFacadeInterface $serializerFacade
     ): FileClientReaderFactoryInterface
     {
-        return new FileClientReaderFactory($clientReaderFacade, $serializerFacade);
+        return new FileClientReaderFactory(
+            $clientReaderFacade,
+            $serializerFacade,
+            $this->createFileTransferExpanderFactory()
+        );
     }
 
     /**

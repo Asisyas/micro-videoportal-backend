@@ -2,10 +2,14 @@
 
 namespace App\Backend\Test;
 
+use App\Backend\File\Facade\FileFacadeInterface;
 use App\Backend\Test\Command\ClassLocatorCommand;
 use App\Backend\Test\Command\SagaCreateCommand;
 use App\Backend\Test\Command\SagaExecuteCommand;
 use App\Backend\Test\Command\VideoConvertCommand;
+use App\Backend\Test\Command\VideoExtractMetadataCommand;
+use App\Backend\VideoConverter\Facade\VideoConverterFacadeInterface;
+use App\Client\File\FileClientInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 use Micro\Plugin\Console\CommandProviderInterface;
@@ -25,8 +29,15 @@ class TestPlugin extends AbstractPlugin implements CommandProviderInterface
         return [
             new SagaExecuteCommand($container->get(TemporalFacadeInterface::class)),
             new SagaCreateCommand($container->get(TemporalFacadeInterface::class)),
-            new VideoConvertCommand($container->get(FfmpegFacadeInterface::class)),
             new ClassLocatorCommand($container->get(LocatorFacadeInterface::class)),
+            new VideoConvertCommand(
+                $container->get(VideoConverterFacadeInterface::class),
+                $container->get(FileClientInterface::class)
+            ),
+            new VideoExtractMetadataCommand(
+                $container->get(VideoConverterFacadeInterface::class),
+                $container->get(FileClientInterface::class)
+            )
         ];
     }
 }

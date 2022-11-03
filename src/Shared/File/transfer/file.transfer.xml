@@ -9,6 +9,10 @@
         <property name="content_type" type="string" required="true"/>
     </class>
 
+    <class name="File\FileCreated">
+        <property name="id" type="string" required="true" />
+    </class>
+
     <class name="File\FileGet">
         <property name="id" type="string" required="true" />
     </class>
@@ -23,6 +27,7 @@
         <property name="size" type="int" required="true" />
         <property name="content_type" type="string" required="true"/>
         <property name="created_at" type="datetime" required="true" />
+        <property name="file_path_internal" type="string" />
     </class>
 
     <class name="File\Chunk">

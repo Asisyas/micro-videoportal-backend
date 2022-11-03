@@ -6,6 +6,7 @@ use App\Client\File\FileClientInterface;
 use App\Frontend\File\Facade\FileFacadeInterface;
 use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
 use App\Shared\Generated\DTO\File\ChunkTransfer;
+use App\Shared\Generated\DTO\File\FileCreatedTransfer;
 use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use Micro\Plugin\Http\Exception\BadRequestException;
@@ -33,7 +34,7 @@ class FileUploadController
      *
      * @throws BadRequestException
      */
-    public function createFile(Request $request): FileTransfer|JsonResponse
+    public function createFile(Request $request): FileCreatedTransfer|JsonResponse
     {
         $reqContent = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
         $violations = $this->fileFacade->validateCreateStreamRequest($reqContent);

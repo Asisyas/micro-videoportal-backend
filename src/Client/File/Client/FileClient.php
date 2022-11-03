@@ -8,6 +8,7 @@ use App\Client\File\Store\FileClientStoreFactoryInterface;
 use App\Client\File\Uploader\FileUploaderFactoryInterface;
 use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
 use App\Shared\Generated\DTO\File\ChunkTransfer;
+use App\Shared\Generated\DTO\File\FileCreatedTransfer;
 use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
@@ -40,7 +41,7 @@ class FileClient implements FileClientInterface
     /**
      * {@inheritDoc}
      */
-    public function createFile(FileCreateTransfer $fileCreateTransfer): FileTransfer
+    public function createFile(FileCreateTransfer $fileCreateTransfer): FileCreatedTransfer
     {
         return $this->fileClientStoreFactory
             ->create()

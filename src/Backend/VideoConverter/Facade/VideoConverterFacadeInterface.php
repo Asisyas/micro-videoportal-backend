@@ -2,21 +2,24 @@
 
 namespace App\Backend\VideoConverter\Facade;
 
-use App\Shared\Generated\DTO\Amqp\ResponseTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
-use App\Shared\Generated\DTO\Video\SourceFileMetadataTransfer;
-use App\Shared\Generated\DTO\VideoConverter\VideoResolutionConvertRunTransfer;
+use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
+use App\Shared\Generated\DTO\VideoConverter\VideoConvertTransfer;
+use App\Shared\Generated\DTO\VideoConverter\VideoMetadataTransfer;
 
 interface VideoConverterFacadeInterface
 {
     /**
-     * @param VideoResolutionConvertRunTransfer $resolutionConvertRunTransfer
+     * @param FileTransfer $fileTransfer
      *
-     * @return ResponseTransfer
+     * @return VideoMetadataTransfer
      */
-    public function runVideoResolutionConverting(VideoResolutionConvertRunTransfer $resolutionConvertRunTransfer): ResponseTransfer;
+    public function extractVideoMetadata(FileTransfer $fileTransfer): VideoMetadataTransfer;
 
-    public function runVideoConverting();
-
-    public function getVideoMetadata(FileTransfer $fileTransfer): SourceFileMetadataTransfer;
+    /**
+     * @param VideoConvertTransfer $videoConvertTransfer
+     *
+     * @return VideoConvertResultTransfer
+     */
+    public function convertVideo(VideoConvertTransfer $videoConvertTransfer): VideoConvertResultTransfer;
 }

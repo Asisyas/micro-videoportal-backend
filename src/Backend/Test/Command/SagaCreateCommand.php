@@ -28,7 +28,7 @@ class SagaCreateCommand extends Command
         );
 
         $fileGetTransfer = new FileGetTransfer();
-        $fileGetTransfer->setId('9936634f-0483-4ad1-84c0-31f1db5819e1');
+        $fileGetTransfer->setId('796a41d6-f495-4789-8a9b-c4d65749fa33');
 
         $run = $client->start($stub, $fileGetTransfer);
         $output->writeln(

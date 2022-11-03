@@ -4,6 +4,8 @@ namespace App\Client\File;
 
 use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
 use App\Shared\Generated\DTO\File\ChunkTransfer;
+use App\Shared\Generated\DTO\File\FileCreatedTransfer;
+use App\Shared\Generated\DTO\File\FileCreatedTransferTransfer;
 use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
@@ -12,11 +14,11 @@ use App\Shared\Generated\DTO\File\FileTransfer;
 interface FileClientInterface
 {
     /**
-     * @param FileCreateTransfer $streamCreateTransfer
+     * @param FileCreateTransfer $fileCreateTransfer
      *
-     * @return FileTransfer
+     * @return FileCreatedTransfer
      */
-    public function createFile(FileCreateTransfer $fileCreateTransfer): FileTransfer;
+    public function createFile(FileCreateTransfer $fileCreateTransfer): FileCreatedTransfer;
 
     /**
      * @param FileGetTransfer $fileGetTransfer
