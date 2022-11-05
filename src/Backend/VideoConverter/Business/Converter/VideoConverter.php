@@ -6,29 +6,30 @@ use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoConvertTransfer;
 use FFMpeg\Coordinate\Dimension;
 use FFMpeg\Filters\Audio\SimpleFilter;
-use FFMpeg\Filters\Video\FrameRateFilter;
 use FFMpeg\Filters\Video\ResizeFilter;
 use FFMpeg\Format\Video\WebM;
+use League\Flysystem\FilesystemOperator;
 use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
 
 class VideoConverter implements VideoConverterInterface
 {
     public function __construct(
-        private readonly FfmpegFacadeInterface $ffmpegFacade
+        private readonly FfmpegFacadeInterface $ffmpegFacade,
+        private readonly FilesystemOperator $filesystemOperator
     )
     {
-
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function convert(VideoConvertTransfer $videoConvertTransfer): VideoConvertResultTransfer
     {
         $file = $videoConvertTransfer->getFile();
         $resolution = $videoConvertTransfer->getResolution();
-        $meta = $videoConvertTransfer->getMeta();
-        $metaVideo = $meta->getStreamVideo();
 
         $convertSource = $this->ffmpegFacade
-            ->open($file->getFilePathInternal())
+            ->open($this->filesystemOperator->publicUrl($file->getId()))
             ->addFilter(
                 new SimpleFilter([
                     '-an'
@@ -45,7 +46,11 @@ class VideoConverter implements VideoConverterInterface
         $format = new WebM('libvorbis', 'libvpx-vp9');
         $format->setKiloBitrate(6000);
 
-        $convertSource->save($format, '/tmp/videoportal/' . $file->getId() . '-' . $resolution->getWidth() . '.webm');
+        $tempPointer = tmpfile();
+        $convertSource->save($format, $tempPointer);
+
+        $stream = fopen($tempPointer, 'r');
+        $this->filesystemOperator->writeStream($file->getId() . '_' . $resolution->getHeight() . 'webm', $stream);
 
         return new VideoConvertResultTransfer();
     }

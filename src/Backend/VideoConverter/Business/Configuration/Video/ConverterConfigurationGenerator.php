@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Backend\Video\Business\Configuration\Video;
+namespace App\Backend\VideoConverter\Business\Configuration\Video;
 
 use App\Backend\VideoConverter\Options\Converter\ResolutionVideoOptionsInterface;
 use App\Shared\Generated\DTO\VideoConverter\VideoConvertCollectionTransfer;
-use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoConvertTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoMetadataTransfer;
 
@@ -35,7 +34,7 @@ class ConverterConfigurationGenerator implements ConverterConfigurationGenerator
             }
 
             $result[] = (new VideoConvertTransfer())
-                ->setFile;
+                ->setFile();
         }
 
         return (new VideoConvertCollectionTransfer())->setItems($result);

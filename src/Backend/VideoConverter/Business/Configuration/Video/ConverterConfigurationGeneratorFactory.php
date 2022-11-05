@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Backend\Video\Business\Configuration\Video;
+namespace App\Backend\VideoConverter\Business\Configuration\Video;
 
 class ConverterConfigurationGeneratorFactory implements ConverterConfigurationGeneratorFactoryInterface
 {

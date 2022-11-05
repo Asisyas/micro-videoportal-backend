@@ -17,7 +17,6 @@ final class FileTransfer extends \Micro\Library\DTO\Object\AbstractDto
     protected int $size;
     protected string $content_type;
     protected DateTimeInterface $created_at;
-    protected string|null $file_path_internal = null;
 
     public function getId(): string
     {
@@ -42,11 +41,6 @@ final class FileTransfer extends \Micro\Library\DTO\Object\AbstractDto
     public function getCreatedAt(): DateTimeInterface
     {
         return $this->created_at;
-    }
-
-    public function getFilePathInternal(): string|null
-    {
-        return $this->file_path_internal;
     }
 
     public function setId(string $id): self
@@ -80,13 +74,6 @@ final class FileTransfer extends \Micro\Library\DTO\Object\AbstractDto
     public function setCreatedAt(DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function setFilePathInternal(string|null $file_path_internal): self
-    {
-        $this->file_path_internal = $file_path_internal;
 
         return $this;
     }
@@ -138,16 +125,6 @@ final class FileTransfer extends \Micro\Library\DTO\Object\AbstractDto
             ),
             'required' => true,
             'actionName' => 'createdAt',
-          ),
-          'file_path_internal' =>
-          array (
-            'type' =>
-            array (
-              0 => 'string',
-              1 => 'null',
-            ),
-            'required' => false,
-            'actionName' => 'filePathInternal',
           ),
         );
     }

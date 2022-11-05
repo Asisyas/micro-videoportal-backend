@@ -13,6 +13,7 @@ use App\Backend\VideoConverter\Facade\VideoConverterFacadeInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
+use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
 class VideoConverterPlugin extends AbstractPlugin
 {
@@ -21,15 +22,19 @@ class VideoConverterPlugin extends AbstractPlugin
      */
     private readonly FfmpegFacadeInterface $ffmpegFacade;
 
+    private readonly FilesystemFacadeInterface $filesystemFacade;
+
     /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
         $container->register(VideoConverterFacadeInterface::class, function(
-            FfmpegFacadeInterface $ffmpegFacade
+            FfmpegFacadeInterface $ffmpegFacade,
+            FilesystemFacadeInterface $filesystemFacade
         ) {
             $this->ffmpegFacade = $ffmpegFacade;
+            $this->filesystemFacade = $filesystemFacade;
 
             return $this->createFacade();
         });
@@ -63,7 +68,8 @@ class VideoConverterPlugin extends AbstractPlugin
     protected function createVideoConverterFactory(): VideoConverterFactoryInterface
     {
         return new VideoConverterFactory(
-            $this->ffmpegFacade
+            $this->ffmpegFacade,
+            $this->filesystemFacade
         );
     }
 

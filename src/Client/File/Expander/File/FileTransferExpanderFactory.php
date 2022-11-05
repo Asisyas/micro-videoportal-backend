@@ -2,8 +2,6 @@
 
 namespace App\Client\File\Expander\File;
 
-use App\Client\File\Expander\File\Impl\FilePathInternalExpander;
-
 class FileTransferExpanderFactory implements FileTransferExpanderFactoryInterface
 {
     /**
@@ -12,7 +10,6 @@ class FileTransferExpanderFactory implements FileTransferExpanderFactoryInterfac
     public function create(): FileTransferExpanderInterface
     {
         return new FileTransferExpander(
-            new FilePathInternalExpander()
         );
     }
 }

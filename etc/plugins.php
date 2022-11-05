@@ -16,6 +16,7 @@ return [
     Micro\Plugin\Http\HttpPlugin::class,
     Micro\Plugin\Configuration\Helper\ConfigurationHelperPlugin::class,
     Micro\Plugin\Locator\LocatorPlugin::class,
+    Micro\Plugin\Filesystem\FilesystemPlugin::class,
 
     /* Video converter FFMPEG */
     Micro\Plugin\Ffmpeg\FfmpegPlugin::class,
