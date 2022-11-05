@@ -2,17 +2,18 @@
 
 namespace App\Frontend\File\Facade;
 
+use App\Shared\Generated\DTO\File\FileTransfer;
 use Micro\Plugin\Http\Exception\BadRequestException;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 interface FileFacadeInterface
 {
     /**
-     * @param array $source
+     * @param Request $request
      *
-     * @return ConstraintViolationListInterface|null
+     * @return FileTransfer
      *
      * @throws BadRequestException
      */
-    public function validateCreateStreamRequest(array $source): ConstraintViolationListInterface|null;
+    public function handleFileUploadRequest(Request $request): FileTransfer;
 }

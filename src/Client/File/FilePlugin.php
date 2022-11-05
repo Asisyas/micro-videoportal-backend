@@ -12,10 +12,11 @@ use App\Client\File\Reader\FileClientReaderFactoryInterface;
 use App\Client\File\Store\FileClientStoreFactory;
 use App\Client\File\Store\FileClientStoreFactoryInterface;
 use App\Client\File\Uploader\FileUploaderFactoryInterface;
-use App\Client\File\Uploader\Local\FileUploaderFactory;
+use App\Client\File\Uploader\FileUploaderFactory;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 use Micro\Library\DTO\SerializerFacadeInterface;
+use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
 class FilePlugin extends AbstractPlugin
 {
@@ -27,11 +28,12 @@ class FilePlugin extends AbstractPlugin
         $container->register(FileClientInterface::class, function (
             AmqpClientInterface $amqpClient,
             ClientReaderFacadeInterface $clientReaderFacade,
-            SerializerFacadeInterface $serializerFacade
+            SerializerFacadeInterface $serializerFacade,
+            FilesystemFacadeInterface $filesystemFacade
         ) {
             $fileStoreClientFactory = $this->createFileClientStoreFactory($amqpClient);
-            $fileClientReaderFactory = $this->createFileClientReaderFactory($clientReaderFacade, $serializerFacade);
-            $fileUploaderFactory = $this->createFileUploaderFactory($fileClientReaderFactory);
+            $fileClientReaderFactory = $this->createFileClientReaderFactory($clientReaderFacade, $serializerFacade, $filesystemFacade);
+            $fileUploaderFactory = $this->createFileUploaderFactory($fileStoreClientFactory, $filesystemFacade);
 
             return $this->createClient(
                 $fileStoreClientFactory,
@@ -62,12 +64,14 @@ class FilePlugin extends AbstractPlugin
     /**
      * @param ClientReaderFacadeInterface $clientReaderFacade
      * @param SerializerFacadeInterface $serializerFacade
+     * @param FilesystemFacadeInterface $filesystemFacade
      *
      * @return FileClientReaderFactoryInterface
      */
     protected function createFileClientReaderFactory(
         ClientReaderFacadeInterface $clientReaderFacade,
-        SerializerFacadeInterface $serializerFacade
+        SerializerFacadeInterface $serializerFacade,
+        FilesystemFacadeInterface $filesystemFacade
     ): FileClientReaderFactoryInterface
     {
         return new FileClientReaderFactory(
@@ -78,14 +82,19 @@ class FilePlugin extends AbstractPlugin
     }
 
     /**
-     * @param FileClientReaderFactoryInterface $fileClientReaderFactory
+     * @param FileClientStoreFactoryInterface $fileClientReaderFactory
+     * @param FilesystemFacadeInterface $filesystemFacade
      *
      * @return FileUploaderFactoryInterface
      */
-    protected function createFileUploaderFactory(FileClientReaderFactoryInterface $fileClientReaderFactory): FileUploaderFactoryInterface
+    protected function createFileUploaderFactory(
+        FileClientStoreFactoryInterface $fileClientStoreFactory,
+        FilesystemFacadeInterface $filesystemFacade
+    ): FileUploaderFactoryInterface
     {
         return new FileUploaderFactory(
-            $fileClientReaderFactory
+            $fileClientStoreFactory,
+            $filesystemFacade
         );
     }
 

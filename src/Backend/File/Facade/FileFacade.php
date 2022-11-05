@@ -3,10 +3,9 @@
 namespace App\Backend\File\Facade;
 
 use App\Backend\File\Business\File\Factory\FileFactoryInterface;
-use App\Shared\Generated\DTO\File\ChunkRequestTransfer;
-use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
 use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\File\FileUploadTransfer;
 
 class FileFacade implements FileFacadeInterface
 {
@@ -20,15 +19,8 @@ class FileFacade implements FileFacadeInterface
     /**
      * {@inheritDoc}
      */
-    public function createFile(FileCreateTransfer $fileCreateTransfer): FileTransfer
+    public function createFile(FileUploadTransfer $fileUploadTransfer): FileTransfer
     {
-        return $this->fileFactory->create($fileCreateTransfer);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function uploadFile(ChunkRequestTransfer $chunkRequestTransfer): ChunkResponseTransfer
-    {
+        return $this->fileFactory->create($fileUploadTransfer);
     }
 }

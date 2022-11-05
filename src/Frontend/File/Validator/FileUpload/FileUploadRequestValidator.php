@@ -1,36 +1,51 @@
 <?php
 
-namespace App\Frontend\File\Validator\Stream;
+namespace App\Frontend\File\Validator\FileUpload;
 
 use App\Frontend\Common\Validator\ArrayObject\AbstractValidator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CreateStreamRequestValidator extends AbstractValidator
+class FileUploadRequestValidator extends AbstractValidator
 {
+    /**
+     * @param array $source
+     * @return void
+     *
+     * @throws \Micro\Plugin\Http\Exception\BadRequestException
+     */
+    public function validate(array $source): void
+    {
+        foreach ($source as $item => $value) {
+            $source[$item] = $value[0];
+        }
+
+        parent::validate($source);
+    }
+
     /**
      * @return Constraint
      */
     protected function createValidationSchema(): Constraint
     {
-
         return new Assert\Collection([
-            'content_type'  => [
+            'content-type'  => [
                 new Assert\NotBlank(),
                 new Assert\Type(['type' => 'string']),
             ],
-            'name'  => [
+            'x-file-name'  => [
                 new Assert\NotBlank(),
                 new Assert\Type(['type' => 'string']),
                 new Assert\Length([
                     'min'   => 1,
                 ]),
             ],
-            'size'  => [
+            'content-length'  => [
                 new Assert\NotBlank(),
-                new Assert\Type(['type' => 'integer']),
+                new Assert\GreaterThan(1),
                 new Assert\Positive(),
             ],
-        ]);
+        ], null, null, true
+        );
     }
 }

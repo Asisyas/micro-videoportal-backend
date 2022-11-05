@@ -7,6 +7,7 @@ use App\Backend\File\Entity\File;
 use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\File\FileUploadTransfer;
 use Micro\Plugin\Doctrine\DoctrineFacadeInterface;
 use Micro\Plugin\Uuid\UuidFacadeInterface;
 
@@ -28,16 +29,16 @@ class FileFactory implements FileFactoryInterface
     /**
      * {@inheritDoc}
      */
-    public function create(FileCreateTransfer $createTransfer): FileTransfer
+    public function create(FileUploadTransfer $fileUploadTransfer): FileTransfer
     {
         $em = $this->doctrineFacade->getManager();
         $fileStorage = $this->fileStorageFactory->create();
 
         $file = new File(
             $this->uuidFacade->v4(),
-            $createTransfer->getName(),
-            $createTransfer->getSize(),
-            $createTransfer->getContentType()
+            $fileUploadTransfer->getName(),
+            $fileUploadTransfer->getSize(),
+            $fileUploadTransfer->getContentType()
         );
 
         $em->beginTransaction();

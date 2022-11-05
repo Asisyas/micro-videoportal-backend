@@ -2,24 +2,15 @@
 
 namespace App\Client\File;
 
-use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
 use App\Shared\Generated\DTO\File\ChunkTransfer;
-use App\Shared\Generated\DTO\File\FileCreatedTransfer;
-use App\Shared\Generated\DTO\File\FileCreatedTransferTransfer;
 use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\File\FileUploadTransfer;
 
 
 interface FileClientInterface
 {
-    /**
-     * @param FileCreateTransfer $fileCreateTransfer
-     *
-     * @return FileCreatedTransfer
-     */
-    public function createFile(FileCreateTransfer $fileCreateTransfer): FileCreatedTransfer;
-
     /**
      * @param FileGetTransfer $fileGetTransfer
      *
@@ -28,9 +19,9 @@ interface FileClientInterface
     public function lookupFile(FileGetTransfer $fileGetTransfer): FileTransfer;
 
     /**
-     * @param ChunkTransfer $chunkTransfer
+     * @param FileUploadTransfer $fileUploadTransfer
      *
-     * @return ChunkResponseTransfer
+     * @return FileTransfer
      */
-    public function uploadFile(ChunkTransfer $chunkTransfer): ChunkResponseTransfer;
+    public function uploadFile(FileUploadTransfer $fileUploadTransfer): FileTransfer;
 }

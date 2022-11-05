@@ -3,14 +3,11 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="micro:dto-01 https://raw.githubusercontent.com/Micro-PHP/dto/master/src/Resource/schema/dto-01.xsd">
 
-    <class name="File\FileCreate">
+    <class name="File\FileUpload">
         <property name="name" type="string" required="true" />
         <property name="size" type="int" required="true" />
         <property name="content_type" type="string" required="true"/>
-    </class>
-
-    <class name="File\FileCreated">
-        <property name="id" type="string" required="true" />
+        <property name="source" type="string" required="true" description="Source stream address"/>
     </class>
 
     <class name="File\FileGet">

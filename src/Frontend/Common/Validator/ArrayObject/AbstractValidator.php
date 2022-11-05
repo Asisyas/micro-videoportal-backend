@@ -3,36 +3,30 @@
 namespace App\Frontend\Common\Validator\ArrayObject;
 
 use App\Frontend\Common\Validator\ValidatorInterface;
+use Micro\Plugin\Http\Exception\BadRequestException;
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validation;
 
 abstract class AbstractValidator implements ValidatorInterface
 {
     /**
-     * @param array $source
-     */
-    public function __construct(private readonly array $source)
-    {
-    }
-
-    /**
      * {@inheritDoc}
      */
-    public function validate(): ConstraintViolationListInterface|null
+    public function validate(array $source): void
     {
         $validator = Validation::createValidator();
-
         $result = $validator->validate(
-            $this->source,
+            $source,
             $this->createValidationSchema(),
         );
 
         if($result->count() === 0) {
-            return null;
+            return;
         }
 
-        return $result;
+        throw new BadRequestException(
+            $result
+        );
     }
 
     /**

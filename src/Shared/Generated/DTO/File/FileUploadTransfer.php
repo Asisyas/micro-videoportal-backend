@@ -10,12 +10,14 @@ namespace App\Shared\Generated\DTO\File;
 
 use DateTimeInterface;
 
-final class FileCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
+final class FileUploadTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected string $name;
     protected int $size;
     protected string $content_type;
-    protected string $stream_type;
+
+    /** Source stream address */
+    protected string $source;
 
     public function getName(): string
     {
@@ -32,9 +34,9 @@ final class FileCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this->content_type;
     }
 
-    public function getStreamType(): string
+    public function getSource(): string
     {
-        return $this->stream_type;
+        return $this->source;
     }
 
     public function setName(string $name): self
@@ -58,9 +60,9 @@ final class FileCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this;
     }
 
-    public function setStreamType(string $stream_type): self
+    public function setSource(string $source): self
     {
-        $this->stream_type = $stream_type;
+        $this->source = $source;
 
         return $this;
     }
@@ -95,14 +97,14 @@ final class FileCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'required' => true,
             'actionName' => 'contentType',
           ),
-          'stream_type' =>
+          'source' =>
           array (
             'type' =>
             array (
               0 => 'string',
             ),
             'required' => true,
-            'actionName' => 'streamType',
+            'actionName' => 'source',
           ),
         );
     }
