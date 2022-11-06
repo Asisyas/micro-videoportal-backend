@@ -63,9 +63,7 @@ $pluginsCommon = [
 $pluginClients = [
     App\Client\Amqp\AmqpClientPlugin::class,
     App\Client\ClientReader\ClientReaderPlugin::class,
-    App\Client\User\UserClientPlugin::class,
     App\Client\File\FilePlugin::class,
-    App\Client\Video\VideoPlugin::class,
 ];
 
 return array_merge($pluginsCommon, $pluginClients, ($isCli ?  $pluginsBack: $pluginsFront));
