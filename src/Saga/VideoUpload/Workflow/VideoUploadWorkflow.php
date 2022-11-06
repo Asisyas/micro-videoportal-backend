@@ -6,13 +6,11 @@ use App\Saga\VideoUpload\Activity\UploadVideoActivityInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\Video\SourceFileMetadataTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
-use App\Shared\Generated\DTO\VideoConverterConfigTransfer;
 use Carbon\CarbonInterval;
 use Temporal\Activity\ActivityOptions;
 use Temporal\Common\RetryOptions;
 use Temporal\Internal\Workflow\ActivityProxy;
 use Temporal\Workflow;
-use Temporal\Workflow\QueryMethod;
 use Temporal\Workflow\Saga;
 
 class VideoUploadWorkflow implements VideoUploadWorkflowInterface
@@ -51,6 +49,7 @@ class VideoUploadWorkflow implements VideoUploadWorkflowInterface
                 'title' => $metadata->getName(),
                 'resolutions' => []
             ];
+            /*
             foreach ($metadata->getResolution() as $resolution) {
                 $configTransfer = new VideoConverterConfigTransfer();
                 $configTransfer
@@ -61,6 +60,7 @@ class VideoUploadWorkflow implements VideoUploadWorkflowInterface
 
                 $result['resolutions'][] = yield $this->activity->convertVideo($configTransfer);
             }
+            */
 
             //$saga->addCompensation(fn() => yield $this->activities->cancelHotel($hotelReservationID, $name));
 

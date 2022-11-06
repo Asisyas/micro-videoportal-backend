@@ -58,12 +58,15 @@ $pluginsCommon = [
 
     // SAGA
     Micro\Plugin\Temporal\TemporalPlugin::class,
+
+    App\Saga\VideoPublish\VideoPublishPlugin::class,
 ];
 
 $pluginClients = [
     App\Client\Amqp\AmqpClientPlugin::class,
     App\Client\ClientReader\ClientReaderPlugin::class,
     App\Client\File\FilePlugin::class,
+    App\Client\VideoPublish\VideoPublishPlugin::class,
 ];
 
 return array_merge($pluginsCommon, $pluginClients, ($isCli ?  $pluginsBack: $pluginsFront));

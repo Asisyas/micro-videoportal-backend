@@ -15,6 +15,8 @@ final class ResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDto
     protected int $height;
     protected int $width;
     protected int $fps;
+    protected int|null $bitRate = null;
+    protected int|null $frameRate = null;
 
     public function getHeight(): int
     {
@@ -29,6 +31,16 @@ final class ResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDto
     public function getFps(): int
     {
         return $this->fps;
+    }
+
+    public function getBitRate(): int|null
+    {
+        return $this->bitRate;
+    }
+
+    public function getFrameRate(): int|null
+    {
+        return $this->frameRate;
     }
 
     public function setHeight(int $height): self
@@ -48,6 +60,20 @@ final class ResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDto
     public function setFps(int $fps): self
     {
         $this->fps = $fps;
+
+        return $this;
+    }
+
+    public function setBitRate(int|null $bitRate): self
+    {
+        $this->bitRate = $bitRate;
+
+        return $this;
+    }
+
+    public function setFrameRate(int|null $frameRate): self
+    {
+        $this->frameRate = $frameRate;
 
         return $this;
     }
@@ -81,6 +107,26 @@ final class ResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDto
             ),
             'required' => true,
             'actionName' => 'fps',
+          ),
+          'bitRate' =>
+          array (
+            'type' =>
+            array (
+              0 => 'int',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'bitRate',
+          ),
+          'frameRate' =>
+          array (
+            'type' =>
+            array (
+              0 => 'int',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'frameRate',
           ),
         );
     }

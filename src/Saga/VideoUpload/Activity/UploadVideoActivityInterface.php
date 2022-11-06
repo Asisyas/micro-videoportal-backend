@@ -5,7 +5,6 @@ namespace App\Saga\VideoUpload\Activity;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\Video\SourceFileMetadataTransfer;
-use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Generated\DTO\VideoConverterConfigTransfer;
 use Temporal\Activity\ActivityInterface;
 

@@ -2,9 +2,13 @@
 
 namespace App\Backend\VideoConverter\Business\Converter;
 
+use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoConvertTransfer;
+use FFMpeg\Coordinate\AspectRatio;
 use FFMpeg\Coordinate\Dimension;
+use FFMpeg\Coordinate\FrameRate;
 use FFMpeg\Filters\Audio\SimpleFilter;
 use FFMpeg\Filters\Video\ResizeFilter;
 use FFMpeg\Format\Video\WebM;
@@ -23,13 +27,11 @@ class VideoConverter implements VideoConverterInterface
     /**
      * {@inheritDoc}
      */
-    public function convert(VideoConvertTransfer $videoConvertTransfer): VideoConvertResultTransfer
+    public function convert(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): VideoConvertResultTransfer
     {
-        $file = $videoConvertTransfer->getFile();
-        $resolution = $videoConvertTransfer->getResolution();
 
         $convertSource = $this->ffmpegFacade
-            ->open($this->filesystemOperator->publicUrl($file->getId()))
+            ->open($this->filesystemOperator->publicUrl($fileTransfer->getId()))
             ->addFilter(
                 new SimpleFilter([
                     '-an'
@@ -37,20 +39,22 @@ class VideoConverter implements VideoConverterInterface
             );
         $filters = $convertSource->filters();
         $filters->resize(new Dimension(
-                    $resolution->getWidth(),
-                    $resolution->getHeight()
-                ),ResizeFilter::RESIZEMODE_INSET, false)
+            $resolutionTransfer->getWidth(),
+            $resolutionTransfer->getHeight()
+            ),ResizeFilter::RESIZEMODE_INSET, false)
         ;
+        $filters->framerate(new FrameRate($resolutionTransfer->getFrameRate()), 0.5);
         $filters->synchronize();
 
         $format = new WebM('libvorbis', 'libvpx-vp9');
-        $format->setKiloBitrate(6000);
+        $format->setKiloBitrate($resolutionTransfer->getBitRate());
 
-        $tempPointer = tmpfile();
-        $convertSource->save($format, $tempPointer);
+        $tmpFileResource = tmpfile();
+        $tempPointer = stream_get_meta_data($tmpFileResource);
+        $tempFileDest = $tempPointer['uri'];
+        $convertSource->save($format, $tempFileDest);
 
-        $stream = fopen($tempPointer, 'r');
-        $this->filesystemOperator->writeStream($file->getId() . '_' . $resolution->getHeight() . 'webm', $stream);
+        $this->filesystemOperator->writeStream($fileTransfer->getId() . '_' . $resolutionTransfer->getHeight() . '.webm', $tmpFileResource);
 
         return new VideoConvertResultTransfer();
     }

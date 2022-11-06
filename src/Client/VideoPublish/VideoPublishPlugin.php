@@ -1,16 +1,24 @@
 <?php
 
-namespace App\Saga\VideoUpload;
+namespace App\Client\VideoPublish;
 
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 
-class VideoUploadSagaPlugin extends AbstractPlugin
+class VideoPublishPlugin extends AbstractPlugin
 {
     /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function name(): string
+    {
+        return 'VideoPublishPluginClient';
     }
 }

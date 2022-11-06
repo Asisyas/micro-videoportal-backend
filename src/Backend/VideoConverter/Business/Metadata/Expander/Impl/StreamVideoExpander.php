@@ -26,8 +26,8 @@ class StreamVideoExpander implements VideoMetadataExpanderInterface
             ->setFrameRate((int)$rate)
             ->setBitRate($stream->get('bit_rate'))
             ->setCodec($stream->get('codec_name'))
-            ->setWidth($stream->get('width'))
-            ->setHeight($stream->get('height'))
+            ->setWidth((int) $stream->get('width'))
+            ->setHeight((int) $stream->get('height'))
             ->setDuration($stream->get('duration'));
 
         $metadataTransfer->setStreamVideo($streamTransfer);

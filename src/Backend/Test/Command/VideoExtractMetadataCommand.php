@@ -33,8 +33,9 @@ class VideoExtractMetadataCommand extends Command
         $fileGet = new FileGetTransfer();
         $fileGet->setId($videoFile);
         $file = $this->fileClient->lookupFile($fileGet);
-
-        dump($this->videoConverterFacade->extractVideoMetadata($file));
+        $meta = $this->videoConverterFacade->extractVideoMetadata($file);
+        dump($meta);
+        dump($this->videoConverterFacade->calculateVideoResolutions($meta));
 
         return self::SUCCESS;
     }

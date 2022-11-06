@@ -18,10 +18,16 @@
         <property name="resolution" type="VideoConverter\Resolution" required="true"/>
     </class>
 
+    <class name="VideoConverter\ResolutionCollection">
+        <property name="resolutions" type="VideoConverter\Resolution" is_collection="true"/>
+    </class>
+
     <class name="VideoConverter\Resolution">
         <property name="height" type="int" required="true"/>
         <property name="width" type="int" required="true"/>
         <property name="fps" type="int" required="true" />
+        <property name="bitRate" type="int"/>
+        <property name="frameRate" type="int"/>
     </class>
 
     <class name="VideoConverter\VideoMetadata">

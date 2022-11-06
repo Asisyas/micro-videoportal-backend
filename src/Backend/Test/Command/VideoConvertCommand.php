@@ -50,7 +50,10 @@ class VideoConvertCommand extends Command
             ->setFile($file)
         ;
 
-        $result = $this->videoConverterFacade->convertVideo($videoConvert);
+        $result = $this->videoConverterFacade->convertVideo($file, (new \App\Shared\Generated\DTO\Video\ResolutionTransfer())
+            ->setHeight(240)
+            ->setWidth(426)
+        );
 
         dump($result);
 

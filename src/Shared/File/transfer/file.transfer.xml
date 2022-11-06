@@ -25,18 +25,4 @@
         <property name="content_type" type="string" required="true"/>
         <property name="created_at" type="datetime" required="true" />
     </class>
-
-    <class name="File\Chunk">
-        <property name="file_id" type="string" required="true"/>
-        <property name="size" type="int" required="true" />
-        <property name="offset" type="int" required="true" />
-        <property name="blob" type="string" required="true" />
-    </class>
-
-    <class name="File\ChunkResponse">
-        <property name="file_id" type="string" required="true" />
-        <property name="size_remaining" type="int" required="true" />
-        <property name="size_loaded" type="int" required="true" />
-    </class>
-
 </dto>

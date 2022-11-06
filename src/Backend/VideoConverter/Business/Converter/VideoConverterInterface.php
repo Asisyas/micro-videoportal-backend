@@ -2,15 +2,17 @@
 
 namespace App\Backend\VideoConverter\Business\Converter;
 
+use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
-use App\Shared\Generated\DTO\VideoConverter\VideoConvertTransfer;
 
 interface VideoConverterInterface
 {
     /**
-     * @param VideoConvertTransfer $videoConvertTransfer
+     * @param FileTransfer $fileTransfer
+     * @param ResolutionTransfer $resolutionTransfer
      *
-     * @return mixed
+     * @return VideoConvertResultTransfer
      */
-    public function convert(VideoConvertTransfer $videoConvertTransfer): VideoConvertResultTransfer;
+    public function convert(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): VideoConvertResultTransfer;
 }

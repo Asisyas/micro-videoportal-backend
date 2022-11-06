@@ -4,9 +4,18 @@ namespace App\Backend\VideoConverter\Options\Converter;
 
 interface ResolutionVideoOptionsInterface
 {
+    /**
+     * @return int
+     */
     public function getHeight(): int;
 
-    public function getWidth(): int;
+    /**
+     * @return int
+     */
+    public function getBitRate(): int;
 
-    public function supports();
+    /**
+     * @return int
+     */
+    public function getFrameRate(): int;
 }

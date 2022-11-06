@@ -9,6 +9,7 @@ interface VideoMetadataExtractorInterface
 {
     /**
      * @param FileTransfer $fileTransfer
+     *
      * @return VideoMetadataTransfer
      */
     public function extract(FileTransfer $fileTransfer): VideoMetadataTransfer;

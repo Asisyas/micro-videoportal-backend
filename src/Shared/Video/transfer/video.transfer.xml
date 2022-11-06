@@ -17,7 +17,9 @@
     <class name="Video\Resolution">
         <property name="height" type="int" required="true"/>
         <property name="width" type="int" required="true"/>
-        <property name="fps" type="int" required="true"/>
+        <property name="fps" type="int" required="true" />
+        <property name="bitRate" type="int"/>
+        <property name="frameRate" type="int"/>
     </class>
 
     <class name="Video\VideoGet">
@@ -29,11 +31,5 @@
         <property name="length" type="int" />
         <property name="name" type="string" />
         <property name="resolution" type="Video\Resolution" is_collection="true" />
-    </class>
-
-    <class name="VideoConverterConfig">
-        <property name="file" type="File\File" />
-        <property name="metadata" type="Video\SourceFileMetadata"/>
-        <property name="resolution" type="Video\Resolution"/>
     </class>
 </dto>

@@ -2,6 +2,8 @@
 
 namespace App\Backend\VideoConverter;
 
+use App\Backend\VideoConverter\Business\Configuration\Video\VideoResolutionsCalculatorFactory;
+use App\Backend\VideoConverter\Business\Configuration\Video\VideoResolutionsCalculatorFactoryInterface;
 use App\Backend\VideoConverter\Business\Converter\VideoConverterFactory;
 use App\Backend\VideoConverter\Business\Converter\VideoConverterFactoryInterface;
 use App\Backend\VideoConverter\Business\Metadata\Expander\VideoMetadataExpanderFactoryInterface;
@@ -10,11 +12,16 @@ use App\Backend\VideoConverter\Business\Metadata\VideoMetadataExtractorFactory;
 use App\Backend\VideoConverter\Business\Metadata\VideoMetadataExtractorFactoryInterface;
 use App\Backend\VideoConverter\Facade\VideoConverterFacade;
 use App\Backend\VideoConverter\Facade\VideoConverterFacadeInterface;
+use App\Backend\VideoConverter\Options\Converter\Resolution;
+use App\Backend\VideoConverter\Options\Converter\ResolutionVideoOptionsInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
 use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
+/**
+ * @method VideoConverterPluginConfiguration configuration()
+ */
 class VideoConverterPlugin extends AbstractPlugin
 {
     /**
@@ -41,14 +48,41 @@ class VideoConverterPlugin extends AbstractPlugin
     }
 
     /**
+     * @return VideoResolutionsCalculatorFactoryInterface
+     */
+    protected function createVideoResolutionsCalculatorFactory(): VideoResolutionsCalculatorFactoryInterface
+    {
+        return new VideoResolutionsCalculatorFactory(
+            ...$this->createResolutionsAvailableCollection()
+        );
+    }
+
+    /**
      * @return VideoConverterFacadeInterface
      */
     protected function createFacade(): VideoConverterFacadeInterface
     {
         return new VideoConverterFacade(
             $this->createVideoMetadataExtractorFactory(),
-            $this->createVideoConverterFactory()
+            $this->createVideoConverterFactory(),
+            $this->createVideoResolutionsCalculatorFactory()
         );
+    }
+
+    /**
+     * @return iterable<ResolutionVideoOptionsInterface>
+     */
+    protected function createResolutionsAvailableCollection(): iterable
+    {
+        foreach ($this->configuration()->getResolutionsList() as $res) {
+            $result[] = new Resolution(
+                $res[0],
+                $res[1],
+                $res[2]
+            );
+        }
+
+        return $result;
     }
 
     /**
@@ -58,7 +92,8 @@ class VideoConverterPlugin extends AbstractPlugin
     {
         return new VideoMetadataExtractorFactory(
             $this->ffmpegFacade,
-            $this->createVideoMetadataFromStreamExpanderFactory()
+            $this->createVideoMetadataFromStreamExpanderFactory(),
+            $this->filesystemFacade
         );
     }
 

@@ -4,6 +4,7 @@ namespace App\Backend\VideoConverter\Business\Metadata;
 
 use App\Backend\VideoConverter\Business\Metadata\Expander\VideoMetadataExpanderFactoryInterface;
 use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
+use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
 class VideoMetadataExtractorFactory implements VideoMetadataExtractorFactoryInterface
 {
@@ -13,7 +14,8 @@ class VideoMetadataExtractorFactory implements VideoMetadataExtractorFactoryInte
      */
     public function __construct(
         private readonly FfmpegFacadeInterface $ffmpegFacade,
-        private readonly VideoMetadataExpanderFactoryInterface $videoMetadataExpanderFactory
+        private readonly VideoMetadataExpanderFactoryInterface $videoMetadataExpanderFactory,
+        private readonly FilesystemFacadeInterface $filesystemFacade
     )
     {
     }
@@ -25,7 +27,8 @@ class VideoMetadataExtractorFactory implements VideoMetadataExtractorFactoryInte
     {
         return new VideoMetadataExtractor(
             $this->ffmpegFacade,
-            $this->videoMetadataExpanderFactory
+            $this->videoMetadataExpanderFactory,
+            $this->filesystemFacade
         );
     }
 }

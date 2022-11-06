@@ -2,8 +2,6 @@
 
 namespace App\Client\File;
 
-use App\Shared\Generated\DTO\File\ChunkTransfer;
-use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
