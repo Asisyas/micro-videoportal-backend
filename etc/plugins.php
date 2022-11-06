@@ -1,6 +1,38 @@
 <?php
 
-return [
+$isCli = php_sapi_name() == 'cli';
+
+$pluginsFront = [
+    Micro\Plugin\Http\HttpPlugin::class,
+    Micro\Plugin\Http\Security\HttpSecurityPlugin::class,
+    App\Frontend\File\FilePlugin::class,
+    App\Frontend\VideoPublish\VideoPublishPlugin::class,
+    App\Saga\VideoUpload\VideoUploadSagaPlugin::class
+];
+
+$pluginsBack = [
+    // Task Status Storage writer
+    Micro\Plugin\Amqp\TaskStatus\Storage\AmqpTaskStatusStoragePlugin::class,
+    Micro\Plugin\Amqp\TaskStatus\Storage\Doctrine\AmqpTaskStatusStorageDoctrinePlugin::class,
+
+    Micro\Plugin\User\Model\Doctrine\UserModelDoctrinePlugin::class,
+    Micro\Plugin\User\Manager\Doctrine\UserManagerDoctrinePlugin::class,
+
+    Micro\Plugin\Console\ConsolePlugin::class,
+    /* Video converter FFMPEG */
+    Micro\Plugin\Ffmpeg\FfmpegPlugin::class,
+
+    /*  APPLICATION PLUGINS */
+    // Backend
+    App\Backend\ClientStorage\ClientStoragePlugin::class,
+    App\Backend\File\FilePlugin::class,
+    App\Backend\VideoConverter\VideoConverterPlugin::class,
+
+    App\Backend\Test\TestPlugin::class,
+
+];
+
+$pluginsCommon = [
     // Common
     Micro\Plugin\Uuid\UuidPlugin::class,
     Micro\Plugin\Logger\Monolog\MonologPlugin::class,
@@ -8,30 +40,17 @@ return [
     Micro\Plugin\Serializer\SerializerPlugin::class,
     Micro\Plugin\Serializer\Adapter\Symfony\SerializerSymfonyAdapterPlugin::class,
     Micro\Plugin\Redis\RedisPlugin::class,
-    Micro\Plugin\Doctrine\DoctrinePlugin::class,
-    Micro\Plugin\Console\ConsolePlugin::class,
-    Micro\Plugin\User\Model\Doctrine\UserModelDoctrinePlugin::class,
-    Micro\Plugin\User\Manager\Doctrine\UserManagerDoctrinePlugin::class,
     Micro\Plugin\DTO\DTOPlugin::class,
-    Micro\Plugin\Http\HttpPlugin::class,
     Micro\Plugin\Configuration\Helper\ConfigurationHelperPlugin::class,
     Micro\Plugin\Locator\LocatorPlugin::class,
     Micro\Plugin\Filesystem\FilesystemPlugin::class,
 
-    /* Video converter FFMPEG */
-    Micro\Plugin\Ffmpeg\FfmpegPlugin::class,
-
-    /* Security */
     Micro\Plugin\Security\SecurityPlugin::class,
-    Micro\Plugin\Http\Security\HttpSecurityPlugin::class,
-
     /*  AMQP */
     // Core services for consume/produce
     Micro\Plugin\Amqp\AmqpPlugin::class,
 
-    // Task Status Storage writer
-    Micro\Plugin\Amqp\TaskStatus\Storage\AmqpTaskStatusStoragePlugin::class,
-    Micro\Plugin\Amqp\TaskStatus\Storage\Doctrine\AmqpTaskStatusStorageDoctrinePlugin::class,
+    Micro\Plugin\Doctrine\DoctrinePlugin::class,
 
     // Task Status Client reader
     Micro\Plugin\Amqp\TaskStatus\Client\AmqpTaskStatusClientPlugin::class,
@@ -39,28 +58,14 @@ return [
 
     // SAGA
     Micro\Plugin\Temporal\TemporalPlugin::class,
+];
 
-    /*  APPLICATION PLUGINS */
-    // Backend
-    App\Backend\ClientStorage\ClientStoragePlugin::class,
-    App\Backend\User\UserPlugin::class,
-    App\Backend\File\FilePlugin::class,
-    App\Backend\Video\VideoPlugin::class,
-    App\Backend\VideoConverter\VideoConverterPlugin::class,
-
-    App\Backend\Test\TestPlugin::class,
-
-    //Client
+$pluginClients = [
     App\Client\Amqp\AmqpClientPlugin::class,
     App\Client\ClientReader\ClientReaderPlugin::class,
     App\Client\User\UserClientPlugin::class,
     App\Client\File\FilePlugin::class,
     App\Client\Video\VideoPlugin::class,
-
-    //Front
-    App\Frontend\User\UserFrontPlugin::class,
-    App\Frontend\File\FilePlugin::class,
-    App\Frontend\Video\VideoPlugin::class,
-
-    App\Saga\VideoUpload\VideoUploadSagaPlugin::class
 ];
+
+return array_merge($pluginsCommon, $pluginClients, ($isCli ?  $pluginsBack: $pluginsFront));

@@ -7,10 +7,8 @@ use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\Video\SourceFileMetadataTransfer;
-use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Generated\DTO\VideoConverterConfigTransfer;
 use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
-use Micro\Plugin\Logger\LoggerFacadeInterface;
 
 class UploadVideoActivity implements UploadVideoActivityInterface
 {

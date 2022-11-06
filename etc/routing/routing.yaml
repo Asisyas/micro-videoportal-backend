@@ -1,15 +1,4 @@
 routes:
-  action_status:
-    resource: ./ActionStatus/action_status.yaml
-    prefix: /api/action
-    format: yaml
-    options:
-      handler:
-        request:
-          - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
-        response:
-          - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
-
   plugins:
     resource: ./plugins_secured.yaml
     format: yaml
@@ -28,16 +17,3 @@ routes:
     options:
       security:
         provider: api
-
-
-
-  user_front:
-    resource: '@UserFrontPlugin/Resource/routing/routing.yaml'
-    prefix: /api/user
-    format: yaml
-    options:
-      handler:
-        request:
-          - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
-        response:
-          - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
