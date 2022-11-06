@@ -24,7 +24,7 @@ class VideoResolutionsCalculator implements VideoResolutionsCalculatorInterface
         $videoStreamMetadata = $metadataTransfer->getStreamVideo();
         $heightOriginal = $videoStreamMetadata->getHeight();
         $widthOriginal = $videoStreamMetadata->getWidth();
-        $bitRateOriginal = $videoStreamMetadata->getBitRate();
+        $bitRateOriginal = $videoStreamMetadata->getBitRate() / 1000;
 
         $heightMeasure =  $heightOriginal / $widthOriginal;
 

@@ -56,6 +56,8 @@ class VideoConverter implements VideoConverterInterface
 
         $this->filesystemOperator->writeStream($fileTransfer->getId() . '_' . $resolutionTransfer->getHeight() . '.webm', $tmpFileResource);
 
+        fclose($tmpFileResource);
+
         return new VideoConvertResultTransfer();
     }
 }
