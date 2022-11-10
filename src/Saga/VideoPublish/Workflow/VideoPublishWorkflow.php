@@ -4,6 +4,7 @@ namespace App\Saga\VideoPublish\Workflow;
 
 use App\Saga\VideoPublish\Activity\VideoPublishActivityInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
+use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use Carbon\CarbonInterval;
 use Temporal\Activity\ActivityOptions;
 use Temporal\Common\RetryOptions;
@@ -21,7 +22,8 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         $this->activity = Workflow::newActivityStub(
             VideoPublishActivityInterface::class,
             ActivityOptions::new()
-                ->withStartToCloseTimeout(CarbonInterval::hour(1))
+                ->withStartToCloseTimeout(CarbonInterval::hour(24))
+            //    ->withTaskQueue('VideoPublish')
                 ->withRetryOptions(RetryOptions::new()->withMaximumAttempts(1))
         );
     }
@@ -34,6 +36,9 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
 
         try {
             $fileTransfer = yield $this->activity->lookupSourceFile($fileGetTransfer);
+            $saga->addCompensation(fn() => yield $this->activity
+                ->removeSourceFile((new FileRemoveTransfer())->setId($fileTransfer->getId())));
+
             $videoMetadata = yield $this->activity->extractVideoMetadata($fileTransfer);
             $resolutions = yield $this->activity->calculateVideoResolutions($videoMetadata);
             foreach ($resolutions->getResolutions() as $resolution) {

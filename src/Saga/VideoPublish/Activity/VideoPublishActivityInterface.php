@@ -3,6 +3,7 @@
 namespace App\Saga\VideoPublish\Activity;
 
 use App\Shared\Generated\DTO\File\FileGetTransfer;
+use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\ResolutionCollectionTransfer;
@@ -19,6 +20,13 @@ interface VideoPublishActivityInterface extends MicroActivityInterface
      * @return FileTransfer
      */
     public function lookupSourceFile(FileGetTransfer $fileGetTransfer): FileTransfer;
+
+    /**
+     * @param FileRemoveTransfer $fileRemoveTransfer
+     *
+     * @return bool
+     */
+    public function removeSourceFile(FileRemoveTransfer $fileRemoveTransfer): bool;
 
     /**
      * @param FileTransfer $fileTransfer

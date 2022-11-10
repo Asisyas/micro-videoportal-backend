@@ -14,12 +14,12 @@ class VideoConverterPluginConfiguration extends PluginConfiguration
     public function getResolutionsList(): array
     {
         return [
-            [ 240,  65, 24],
-            [ 480,  65, 24],
-            [ 720,  65,  30],
-            [ 1080, 100, 30],
-            [ 1440, 200, 30],
-            [ 2160, 600, 30],
+            [ 360,  100, 24],
+            [ 480,  350, 24],
+            [ 720,  500,  30],
+            [ 1080, 800, 30],
+            [ 1440, 1600, 30],
+            [ 2160, 3500, 30],
         ];
     }
 }

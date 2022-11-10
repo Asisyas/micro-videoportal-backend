@@ -82,7 +82,7 @@ class FilePlugin extends AbstractPlugin
     }
 
     /**
-     * @param FileClientStoreFactoryInterface $fileClientReaderFactory
+     * @param FileClientStoreFactoryInterface $fileClientStoreFactory
      * @param FilesystemFacadeInterface $filesystemFacade
      *
      * @return FileUploaderFactoryInterface

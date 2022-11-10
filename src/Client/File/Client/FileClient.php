@@ -6,11 +6,8 @@ use App\Client\File\FileClientInterface;
 use App\Client\File\Reader\FileClientReaderFactoryInterface;
 use App\Client\File\Store\FileClientStoreFactoryInterface;
 use App\Client\File\Uploader\FileUploaderFactoryInterface;
-use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
-use App\Shared\Generated\DTO\File\ChunkTransfer;
-use App\Shared\Generated\DTO\File\FileCreatedTransfer;
-use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
+use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
 
@@ -26,6 +23,10 @@ class FileClient implements FileClientInterface
         private readonly FileClientReaderFactoryInterface $fileClientReaderFactory,
         private readonly FileUploaderFactoryInterface $fileUploaderFactory
     )
+    {
+    }
+
+    public function deleteFile(FileRemoveTransfer $fileRemoveTransfer): void
     {
     }
 

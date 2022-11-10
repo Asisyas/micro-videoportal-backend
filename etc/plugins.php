@@ -29,7 +29,7 @@ $pluginsBack = [
     App\Backend\VideoConverter\VideoConverterPlugin::class,
 
     App\Backend\Test\TestPlugin::class,
-
+    App\Backend\Video\VideoPlugin::class,
 ];
 
 $pluginsCommon = [
@@ -44,6 +44,7 @@ $pluginsCommon = [
     Micro\Plugin\Configuration\Helper\ConfigurationHelperPlugin::class,
     Micro\Plugin\Locator\LocatorPlugin::class,
     Micro\Plugin\Filesystem\FilesystemPlugin::class,
+    Micro\Plugin\Filesystem\Adapter\Aws\FilesystemS3AdapterPlugin::class,
 
     Micro\Plugin\Security\SecurityPlugin::class,
     /*  AMQP */
@@ -60,6 +61,7 @@ $pluginsCommon = [
     Micro\Plugin\Temporal\TemporalPlugin::class,
 
     App\Saga\VideoPublish\VideoPublishPlugin::class,
+    App\Client\Video\VideoClientPlugin::class,
 ];
 
 $pluginClients = [

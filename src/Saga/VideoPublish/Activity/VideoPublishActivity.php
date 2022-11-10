@@ -5,6 +5,7 @@ namespace App\Saga\VideoPublish\Activity;
 use App\Backend\VideoConverter\Facade\VideoConverterFacadeInterface;
 use App\Client\File\FileClientInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
+use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\ResolutionCollectionTransfer;
@@ -21,6 +22,16 @@ class VideoPublishActivity implements VideoPublishActivityInterface
         private readonly VideoConverterFacadeInterface $videoConverterFacade
     )
     {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeSourceFile(FileRemoveTransfer $fileRemoveTransfer): bool
+    {
+        $this->fileClient->deleteFile($fileRemoveTransfer);
+
+        return true;
     }
 
     /**

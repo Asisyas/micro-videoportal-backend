@@ -24,7 +24,7 @@ class SagaCreateCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $fileGetTransfer = new FileGetTransfer();
-        $fileGetTransfer->setId('88c2917e-0e3b-4f2b-8162-12f77c46fee7');
+        $fileGetTransfer->setId('08215c24-dbd2-47f5-a35d-a1425a2ba501');
         $client = $this->temporalFacade->workflowClient();
         $stub = $client->newWorkflowStub(
             VideoPublishWorkflowInterface::class

@@ -6,14 +6,14 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../Micro/DependencyInjection",
+            "url": "../Micro/PluginFilesystem",
             "options": {
                 "symlink": true
             }
         },
         {
             "type": "path",
-            "url": "../Micro/PluginFilesystem",
+            "url": "../Micro/PluginFilesystemS3Adapter",
             "options": {
                 "symlink": true
             }
@@ -49,13 +49,6 @@
         {
             "type": "path",
             "url": "../Micro/PluginHttp",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/ComponentAutowire",
             "options": {
                 "symlink": true
             }
@@ -303,6 +296,7 @@
         "micro/plugin-temporal": "*",
         "micro/plugin-ffmpeg": "*",
         "micro/plugin-filesystem": "*",
+        "micro/plugin-filesystem-s3": "*",
         "vlucas/phpdotenv": "^5.4",
         "symfony/cache": "^6.0",
         "doctrine/annotations": "^1.13",
