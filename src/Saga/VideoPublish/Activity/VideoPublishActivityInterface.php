@@ -5,8 +5,10 @@ namespace App\Saga\VideoPublish\Activity;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\ResolutionCollectionTransfer;
+use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoMetadataTransfer;
 use Temporal\Activity\ActivityInterface;
 use Micro\Plugin\Temporal\Activity\ActivityInterface as MicroActivityInterface;
@@ -46,7 +48,7 @@ interface VideoPublishActivityInterface extends MicroActivityInterface
      * @param FileTransfer $fileTransfer
      * @param ResolutionTransfer $resolutionTransfer
      *
-     * @return mixed
+     * @return ResolutionSimpleTransfer
      */
-    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer);
+    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): ResolutionSimpleTransfer;
 }

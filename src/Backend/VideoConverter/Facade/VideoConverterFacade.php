@@ -6,6 +6,7 @@ use App\Backend\VideoConverter\Business\Configuration\Video\VideoResolutionsCalc
 use App\Backend\VideoConverter\Business\Converter\VideoConverterFactoryInterface;
 use App\Backend\VideoConverter\Business\Metadata\VideoMetadataExtractorFactoryInterface;
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\ResolutionCollectionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
@@ -35,7 +36,7 @@ class VideoConverterFacade implements VideoConverterFacadeInterface
     /**
      * {@inheritDoc}
      */
-    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): VideoConvertResultTransfer
+    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): ResolutionSimpleTransfer
     {
         return $this
             ->videoConverterFactory

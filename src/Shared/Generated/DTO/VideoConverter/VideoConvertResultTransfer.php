@@ -8,19 +8,20 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\VideoConverter;
 
+use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
 use DateTimeInterface;
 
 final class VideoConvertResultTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected string $path;
-    protected ResolutionTransfer $resolution;
+    protected ResolutionSimpleTransfer $resolution;
 
     public function getPath(): string
     {
         return $this->path;
     }
 
-    public function getResolution(): ResolutionTransfer
+    public function getResolution(): ResolutionSimpleTransfer
     {
         return $this->resolution;
     }
@@ -32,7 +33,7 @@ final class VideoConvertResultTransfer extends \Micro\Library\DTO\Object\Abstrac
         return $this;
     }
 
-    public function setResolution(ResolutionTransfer $resolution): self
+    public function setResolution(ResolutionSimpleTransfer $resolution): self
     {
         $this->resolution = $resolution;
 
@@ -55,7 +56,7 @@ final class VideoConvertResultTransfer extends \Micro\Library\DTO\Object\Abstrac
           array (
             'type' =>
             array (
-              0 => 'App\\Shared\\Generated\\DTO\\VideoConverter\\ResolutionTransfer',
+              0 => 'App\\Shared\\Generated\\DTO\\Video\\ResolutionSimpleTransfer',
             ),
             'required' => true,
             'actionName' => 'resolution',

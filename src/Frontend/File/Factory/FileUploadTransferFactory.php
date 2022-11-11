@@ -2,8 +2,8 @@
 
 namespace App\Frontend\File\Factory;
 
+use App\Frontend\Common\Validator\ArrayObject\ArrayValidatorFactoryInterface;
 use App\Frontend\File\Expander\FileUpload\FileUploadTransferExpanderFactoryInterface;
-use App\Frontend\File\Validator\FileUpload\FileUploadRequestValidatorFactory;
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -11,11 +11,11 @@ class FileUploadTransferFactory implements FileUploadTransferFactoryInterface
 {
     /**
      * @param FileUploadTransferExpanderFactoryInterface $fileUploadTransferExpanderFactory
-     * @param FileUploadRequestValidatorFactory $fileUploadRequestValidatorFactory
+     * @param ArrayValidatorFactoryInterface $fileUploadRequestValidatorFactory
      */
     public function __construct(
         private readonly FileUploadTransferExpanderFactoryInterface $fileUploadTransferExpanderFactory,
-        private readonly FileUploadRequestValidatorFactory $fileUploadRequestValidatorFactory
+        private readonly ArrayValidatorFactoryInterface $fileUploadRequestValidatorFactory
     )
     {
     }

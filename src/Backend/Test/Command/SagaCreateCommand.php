@@ -39,7 +39,7 @@ class SagaCreateCommand extends Command
             )
         );
 
-        $output->writeln(sprintf("Result:\n<info>%s</info>", print_r($run->getResult(), true)));
+        $output->writeln(sprintf("Result:\n<info>%s</info>", 'TEST', true));
 
 
         return self::SUCCESS;

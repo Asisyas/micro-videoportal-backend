@@ -7,8 +7,10 @@ use App\Client\File\FileClientInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\ResolutionCollectionTransfer;
+use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoMetadataTransfer;
 
 class VideoPublishActivity implements VideoPublishActivityInterface
@@ -59,13 +61,10 @@ class VideoPublishActivity implements VideoPublishActivityInterface
     }
 
     /**
-     * @param FileTransfer $fileTransfer
-     * @param ResolutionTransfer $resolutionTransfer
-     *
-     * @return void
+     * {@inheritDoc}
      */
-    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer)
+    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): ResolutionSimpleTransfer
     {
-        $this->videoConverterFacade->convertVideo($fileTransfer, $resolutionTransfer);
+        return $this->videoConverterFacade->convertVideo($fileTransfer, $resolutionTransfer);
     }
 }

@@ -9,13 +9,19 @@
         <property name="resolution" type="VideoConverter\Resolution" required="true"/>
     </class>
 
+    <class name="VideoConverter\PublishStatus">
+        <property name="id" type="string" description="Video Unique ID" />
+        <property name="resolutions" type="Video\Resolution" is_collection="true"/>
+        <property name="status" type="int"/>
+    </class>
+
     <class name="VideoConverter\VideoConvertCollection">
         <property name="items" type="VideoConverter\VideoConvert" is_collection="true" required="true"/>
     </class>
 
     <class name="VideoConverter\VideoConvertResult">
         <property name="path" type="string" required="true"/>
-        <property name="resolution" type="VideoConverter\Resolution" required="true"/>
+        <property name="resolution" type="Video\ResolutionSimple" required="true"/>
     </class>
 
     <class name="VideoConverter\ResolutionCollection">

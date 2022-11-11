@@ -6,6 +6,7 @@ use App\Backend\File\Facade\FileFacadeInterface;
 use App\Backend\Test\Command\ClassLocatorCommand;
 use App\Backend\Test\Command\SagaCreateCommand;
 use App\Backend\Test\Command\SagaExecuteCommand;
+use App\Backend\Test\Command\SagaStatusCommand;
 use App\Backend\Test\Command\VideoConvertCommand;
 use App\Backend\Test\Command\VideoCreateCommand;
 use App\Backend\Test\Command\VideoExtractMetadataCommand;
@@ -29,12 +30,12 @@ class TestPlugin extends AbstractPlugin implements CommandProviderInterface
     public function provideConsoleCommands(Container $container): array
     {
         return [
-            new SagaExecuteCommand($container->get(TemporalFacadeInterface::class)),
+            new SagaStatusCommand($container->get(TemporalFacadeInterface::class)),
             new SagaCreateCommand($container->get(TemporalFacadeInterface::class)),
             new ClassLocatorCommand($container->get(LocatorFacadeInterface::class)),
+            new SagaExecuteCommand($container->get(TemporalFacadeInterface::class)),
             new VideoCreateCommand(
                 $container->get(VideoClientInterface::class),
-                $container->get(FileClientInterface::class)
             ),
             new VideoConvertCommand(
                 $container->get(VideoConverterFacadeInterface::class),

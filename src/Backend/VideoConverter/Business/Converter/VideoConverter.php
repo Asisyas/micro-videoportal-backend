@@ -3,6 +3,7 @@
 namespace App\Backend\VideoConverter\Business\Converter;
 
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
 use FFMpeg\Coordinate\Dimension;
@@ -24,7 +25,7 @@ class VideoConverter implements VideoConverterInterface
     /**
      * {@inheritDoc}
      */
-    public function convert(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): VideoConvertResultTransfer
+    public function convert(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): ResolutionSimpleTransfer
     {
 
         $convertSource = $this->ffmpegFacade
@@ -65,7 +66,8 @@ class VideoConverter implements VideoConverterInterface
             fclose($tmpFileResource);
         }
 
-        return (new VideoConvertResultTransfer())
-            ->setPath($path);
+        return (new ResolutionSimpleTransfer())
+            ->setResolution($resolutionTransfer->getHeight())
+            ->setFile($path);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Backend\VideoConverter\Facade;
 
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\ResolutionCollectionTransfer;
 use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
@@ -22,9 +23,9 @@ interface VideoConverterFacadeInterface
      * @param FileTransfer $fileTransfer
      * @param ResolutionTransfer $resolutionTransfer
      *
-     * @return VideoConvertResultTransfer
+     * @return ResolutionSimpleTransfer
      */
-    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): VideoConvertResultTransfer;
+    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): ResolutionSimpleTransfer;
 
     /**
      * @param VideoMetadataTransfer $videoMetadataTransfer
