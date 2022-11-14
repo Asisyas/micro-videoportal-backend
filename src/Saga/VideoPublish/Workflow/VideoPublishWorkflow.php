@@ -5,10 +5,14 @@ namespace App\Saga\VideoPublish\Workflow;
 use App\Saga\VideoPublish\Activity\VideoPublishActivityInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
-use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
-use App\Shared\Generated\DTO\VideoConverter\PublishStatusTransfer;
-use App\Shared\VideoConverter\Configuration;
+use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaMetadataTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaResolutionTransfer;
 use Carbon\CarbonInterval;
+use Micro\Library\DTO\Object\Collection;
 use Temporal\Activity\ActivityOptions;
 use Temporal\Common\RetryOptions;
 use Temporal\Internal\Workflow\ActivityProxy;
@@ -20,15 +24,11 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
     /** @var VideoPublishActivityInterface */
     private ActivityProxy $activity;
 
-    /** @var PublishStatusTransfer  */
-    private PublishStatusTransfer $videoPublishStatus;
+    /** @var MediaConvertedResultCollectionTransfer  */
+    private MediaConvertedResultCollectionTransfer $convertedResultCollection;
 
     public function __construct()
     {
-        $this->videoPublishStatus = (new PublishStatusTransfer())->setStatus(0);
-
-        $this->updateProcessStatus(Configuration::STATUS_PENDING, '|');
-
         $this->activity = Workflow::newActivityStub(
             VideoPublishActivityInterface::class,
             ActivityOptions::new()
@@ -36,14 +36,17 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
             //    ->withTaskQueue('VideoPublish')
                 ->withRetryOptions(RetryOptions::new()->withMaximumAttempts(1))
         );
+
+        $this->convertedResultCollection = new MediaConvertedResultCollectionTransfer();
+        $this->convertedResultCollection->setResults([]);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function lookupStatus(): PublishStatusTransfer
+    public function lookupStatus(): MediaConvertedResultCollectionTransfer
     {
-        return $this->videoPublishStatus;
+        return $this->convertedResultCollection;
     }
 
     /**
@@ -55,29 +58,39 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         $saga = new Saga();
         $saga->setParallelCompensation(true);
 
-        $saga->addCompensation(function() {
-            $this->updateProcessStatus(Configuration::STATUS_IS_PROGRESS, '^');
-            $this->updateProcessStatus(Configuration::STATUS_FAIL, '|');
-        });
         try {
-            $this->updateProcessStatus(Configuration::STATUS_PENDING, '^');
-            $this->updateProcessStatus(Configuration::STATUS_CONVERT_IN_PROGRESS, '|');
-
+            /** @var FileTransfer $fileTransfer */
             $fileTransfer = yield $this->activity->lookupSourceFile($fileGetTransfer);
-            $saga->addCompensation(fn() => yield $this->activity
-                ->removeSourceFile((new FileRemoveTransfer())->setId($fileTransfer->getId())));
 
-            $videoMetadata = yield $this->activity->extractVideoMetadata($fileTransfer);
-            $resolutions = yield $this->activity->calculateVideoResolutions($videoMetadata);
-            $this->updateProcessStatus(Configuration::STATUS_CONVERT_IN_PROGRESS, '|');
-            foreach ($resolutions->getResolutions() as $resolution) {
-                /** @var ResolutionSimpleTransfer $videoConvertedTransfer */
-                $videoConvertedTransfer = yield $this->activity->convertVideo($fileTransfer, $resolution);
-                $this->addResolution($videoConvertedTransfer);
+            $saga
+                ->addCompensation(
+                    fn() => yield $this->activity->removeSourceFile((new FileRemoveTransfer())->setId($fileTransfer->getId()))
+                );
+
+            $this->convertedResultCollection->setVideoId($fileTransfer->getId());
+
+            /** @var MediaMetadataTransfer $mediaMetadataTransfer */
+            $mediaMetadataTransfer                  = yield $this->activity->extractMediaMetadata($fileTransfer);
+            $mediaResolutionsCollectionTransfer     = yield $this->activity->calculateMediaResolutions($mediaMetadataTransfer);
+            $mediaConfigurationTransfer             = (new MediaConfigurationTransfer())->setFile($fileTransfer);
+
+            /** @var MediaResolutionTransfer $resolutionTransfer */
+            $i = 0;
+            $dashManifest = null;
+            foreach ($mediaResolutionsCollectionTransfer->getResolutions() as $resolutionTransfer) {
+                $mediaConfigurationTransfer->setResolutionConfiguration($resolutionTransfer);
+
+                /** @var MediaConvertedResultTransfer $videoConvertedTransfer */
+                $videoConvertedTransfer = yield $this->activity->convert($mediaConfigurationTransfer);
+
+                $this->convertedResultCollection->setResults([$videoConvertedTransfer]);
+
+                if(1 > $i++) {
+                    continue;
+                }
+
+                $dashManifest = yield $this->activity->generateDashManifest($this->convertedResultCollection);
             }
-
-            $this->updateProcessStatus(Configuration::STATUS_CONVERT_IN_PROGRESS, '^');
-            $this->updateProcessStatus(Configuration::STATUS_CONVERT_SUCCESS, '|');
 
             return 'CONVERTED!';
 
@@ -86,33 +99,5 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
 
             throw $exception;
         }
-    }
-
-    protected function addResolution(ResolutionSimpleTransfer $resolutionSimpleTransfer): void
-    {
-        $this->videoPublishStatus->setResolutions([$resolutionSimpleTransfer]);
-    }
-
-    /**
-     * @param int $statusMask
-     * @param string $operation
-     *
-     * @return void
-     */
-    protected function updateProcessStatus(int $statusMask, string $operation): void
-    {
-        $status = $this->videoPublishStatus->getStatus();
-        switch ($operation) {
-            case '&':
-                $status &= $statusMask;
-                break;
-            case '|':
-                $status |= $statusMask;
-                break;
-            case '^':
-                $status ^= $statusMask;
-        }
-
-        $this->videoPublishStatus->setStatus($status);
     }
 }

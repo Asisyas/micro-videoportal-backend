@@ -21,7 +21,6 @@ class SagaStatusCommand extends Command
 
     public function configure()
     {
-        $this->addArgument('run-id', InputArgument::REQUIRED);
         $this->addArgument('workflow-id', InputArgument::REQUIRED);
     }
 
@@ -30,7 +29,6 @@ class SagaStatusCommand extends Command
         $wf = $this->temporalFacade->workflowClient()->newRunningWorkflowStub(
             VideoPublishWorkflowInterface::class,
             $input->getArgument('workflow-id'),
-            $input->getArgument('run-id'),
         );
 
         dump($wf->lookupStatus());

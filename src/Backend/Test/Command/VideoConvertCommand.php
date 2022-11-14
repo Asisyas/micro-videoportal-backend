@@ -2,11 +2,12 @@
 
 namespace App\Backend\Test\Command;
 
-use App\Backend\VideoConverter\Facade\VideoConverterFacadeInterface;
+use App\Backend\MediaConverter\Facade\MediaConverterFacadeInterface;
 use App\Client\File\FileClientInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
-use App\Shared\Generated\DTO\VideoConverter\ResolutionTransfer;
-use App\Shared\Generated\DTO\VideoConverter\VideoConvertTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
+use App\Shared\Generated\DTO\MediaConverter\ResolutionTransfer;
+use App\Shared\Generated\DTO\MediaConverter\VideoConvertTransfer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -15,8 +16,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class VideoConvertCommand extends Command
 {
     public function __construct(
-        private readonly VideoConverterFacadeInterface $videoConverterFacade,
-        private readonly FileClientInterface $fileClient
+        private readonly MediaConverterFacadeInterface $videoConverterFacade,
+        private readonly FileClientInterface           $fileClient
     )
     {
         parent::__construct('test:video:convert');
@@ -36,26 +37,33 @@ class VideoConvertCommand extends Command
         $fileGet->setId($videoFile);
         $file = $this->fileClient->lookupFile($fileGet);
 
-        $metadata = $this->videoConverterFacade->extractVideoMetadata($file);
-        $videoStreamMeta = $metadata->getStreamVideo();
+        $metadata = $this->videoConverterFacade->extractMediaMetadata($file);
+        $resolutions = $this->videoConverterFacade->calculateMediaResolutions($metadata);
+        $mediaConfiguration = new MediaConfigurationTransfer();
+        $mediaConfiguration
+            ->setFile($file);
 
-        $videoConvert = new VideoConvertTransfer();
-        $videoConvert
-            ->setMeta($metadata)
-            ->setResolution(
-                (new ResolutionTransfer())
-                ->setHeight($videoStreamMeta->getHeight())
-                ->setWidth($videoStreamMeta->getWidth())
-            )
-            ->setFile($file)
-        ;
+        $results = [];
 
-        $result = $this->videoConverterFacade->convertVideo($file, (new \App\Shared\Generated\DTO\Video\ResolutionTransfer())
-            ->setHeight(240)
-            ->setWidth(426)
-        );
+        dump($metadata);
 
-        dump($result);
+        foreach ($resolutions->getResolutions() as $resolution) {
+            $mediaConfiguration->setResolutionConfiguration($resolution);
+
+            dump($mediaConfiguration);
+
+            $result = $this->videoConverterFacade->convert(
+                $mediaConfiguration
+            );
+
+            $output->writeln(
+                sprintf('Converted %s', $result->getSrc())
+            );
+
+            $results[] = $result;
+        }
+
+        dump($results);
 
         return self::SUCCESS;
     }

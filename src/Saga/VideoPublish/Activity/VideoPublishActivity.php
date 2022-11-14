@@ -2,26 +2,32 @@
 
 namespace App\Saga\VideoPublish\Activity;
 
-use App\Backend\VideoConverter\Facade\VideoConverterFacadeInterface;
+use App\Backend\MediaConverter\Facade\MediaConverterFacadeInterface;
 use App\Client\File\FileClientInterface;
+use App\Client\Video\Client\VideoClientInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
-use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
-use App\Shared\Generated\DTO\Video\ResolutionTransfer;
-use App\Shared\Generated\DTO\VideoConverter\ResolutionCollectionTransfer;
-use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
-use App\Shared\Generated\DTO\VideoConverter\VideoMetadataTransfer;
+use App\Shared\Generated\DTO\MediaConverter\DashManifestTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaMetadataTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaResolutionCollectionTransfer;
+use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoTransfer;
 
 class VideoPublishActivity implements VideoPublishActivityInterface
 {
     /**
      * @param FileClientInterface $fileClient
-     * @param VideoConverterFacadeInterface $videoConverterFacade
+     * @param MediaConverterFacadeInterface $videoConverterFacade
+     * @param VideoClientInterface $videoClient
      */
     public function __construct(
-        private readonly FileClientInterface $fileClient,
-        private readonly VideoConverterFacadeInterface $videoConverterFacade
+        private readonly FileClientInterface           $fileClient,
+        private readonly MediaConverterFacadeInterface $videoConverterFacade,
+        private readonly VideoClientInterface          $videoClient
     )
     {
     }
@@ -47,24 +53,40 @@ class VideoPublishActivity implements VideoPublishActivityInterface
     /**
      * {@inheritDoc}
      */
-    public function extractVideoMetadata(FileTransfer $fileTransfer): VideoMetadataTransfer
+    public function extractMediaMetadata(FileTransfer $fileTransfer): MediaMetadataTransfer
     {
-        return $this->videoConverterFacade->extractVideoMetadata($fileTransfer);
+        return $this->videoConverterFacade->extractMediaMetadata($fileTransfer);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function calculateVideoResolutions(VideoMetadataTransfer $videoMetadataTransfer): ResolutionCollectionTransfer
+    public function calculateMediaResolutions(MediaMetadataTransfer $videoMetadataTransfer): MediaResolutionCollectionTransfer
     {
-        return $this->videoConverterFacade->calculateVideoResolutions($videoMetadataTransfer);
+        return $this->videoConverterFacade->calculateMediaResolutions($videoMetadataTransfer);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): ResolutionSimpleTransfer
+    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer): MediaConvertedResultTransfer
     {
-        return $this->videoConverterFacade->convertVideo($fileTransfer, $resolutionTransfer);
+        return $this->videoConverterFacade->convert($mediaConfigurationTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer
+    {
+        return $this->videoClient->createVideo($videoCreateTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function generateDashManifest(MediaConvertedResultCollectionTransfer $convertedResultCollectionTransfer): DashManifestTransfer
+    {
+        return $this->videoConverterFacade->generateDashManifest($convertedResultCollectionTransfer);
     }
 }

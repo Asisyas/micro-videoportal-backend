@@ -5,17 +5,30 @@ namespace App\Saga\VideoPublish\Activity;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\MediaConverter\DashManifestTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaMetadataTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaResolutionCollectionTransfer;
+use App\Shared\Generated\DTO\MediaConverter\StreamTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
 use App\Shared\Generated\DTO\Video\ResolutionTransfer;
-use App\Shared\Generated\DTO\VideoConverter\ResolutionCollectionTransfer;
-use App\Shared\Generated\DTO\VideoConverter\VideoConvertResultTransfer;
-use App\Shared\Generated\DTO\VideoConverter\VideoMetadataTransfer;
+use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoTransfer;
 use Temporal\Activity\ActivityInterface;
 use Micro\Plugin\Temporal\Activity\ActivityInterface as MicroActivityInterface;
 
 #[ActivityInterface]
 interface VideoPublishActivityInterface extends MicroActivityInterface
 {
+    /**
+     * @param VideoCreateTransfer $videoCreateTransfer
+     *
+     * @return VideoTransfer
+     */
+    public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer;
+
     /**
      * @param FileGetTransfer $fileGetTransfer
      *
@@ -33,22 +46,28 @@ interface VideoPublishActivityInterface extends MicroActivityInterface
     /**
      * @param FileTransfer $fileTransfer
      *
-     * @return VideoMetadataTransfer
+     * @return MediaMetadataTransfer
      */
-    public function extractVideoMetadata(FileTransfer $fileTransfer): VideoMetadataTransfer;
+    public function extractMediaMetadata(FileTransfer $fileTransfer): MediaMetadataTransfer;
 
     /**
-     * @param VideoMetadataTransfer $videoMetadataTransfer
+     * @param MediaMetadataTransfer $videoMetadataTransfer
      *
-     * @return ResolutionCollectionTransfer
+     * @return MediaResolutionCollectionTransfer
      */
-    public function calculateVideoResolutions(VideoMetadataTransfer $videoMetadataTransfer): ResolutionCollectionTransfer;
+    public function calculateMediaResolutions(MediaMetadataTransfer $videoMetadataTransfer): MediaResolutionCollectionTransfer;
 
     /**
-     * @param FileTransfer $fileTransfer
-     * @param ResolutionTransfer $resolutionTransfer
+     * @param MediaConfigurationTransfer $mediaConfigurationTransfer
      *
-     * @return ResolutionSimpleTransfer
+     * @return MediaConvertedResultTransfer
      */
-    public function convertVideo(FileTransfer $fileTransfer, ResolutionTransfer $resolutionTransfer): ResolutionSimpleTransfer;
+    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer): MediaConvertedResultTransfer;
+
+    /**
+     * @param MediaConvertedResultCollectionTransfer $convertedResultCollectionTransfer
+     *
+     * @return DashManifestTransfer
+     */
+    public function generateDashManifest(MediaConvertedResultCollectionTransfer $convertedResultCollectionTransfer): DashManifestTransfer;
 }

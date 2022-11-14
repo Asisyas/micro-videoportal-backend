@@ -22,19 +22,13 @@
     <class name="Video\Resolution">
         <property name="height" type="int" required="true"/>
         <property name="width" type="int" required="true"/>
-        <property name="fps" type="int" required="true" />
-        <property name="bitRate" type="int"/>
+        <property name="bitRateMin" type="int"/>
+        <property name="bitRateMax" type="int"/>
         <property name="frameRate" type="int"/>
+        <property name="media_type_flag" type="bool" />
     </class>
 
     <class name="Video\VideoGet">
         <property name="video_id" type="string" required="true"/>
-    </class>
-
-    <class name="Video\SourceFileMetadata">
-        <property name="format" type="string" />
-        <property name="length" type="int" />
-        <property name="name" type="string" />
-        <property name="resolution" type="Video\Resolution" is_collection="true" />
     </class>
 </dto>

@@ -7,7 +7,6 @@ $pluginsFront = [
     Micro\Plugin\Http\Security\HttpSecurityPlugin::class,
     App\Frontend\File\FilePlugin::class,
     App\Frontend\VideoPublish\VideoPublishPlugin::class,
-    App\Saga\VideoUpload\VideoUploadSagaPlugin::class
 ];
 
 $pluginsBack = [
@@ -26,7 +25,7 @@ $pluginsBack = [
     // Backend
     App\Backend\ClientStorage\ClientStoragePlugin::class,
     App\Backend\File\FilePlugin::class,
-    App\Backend\VideoConverter\VideoConverterPlugin::class,
+    App\Backend\MediaConverter\MediaConverterPlugin::class,
 
     App\Backend\Test\TestPlugin::class,
     App\Backend\Video\VideoPlugin::class,
@@ -68,7 +67,6 @@ $pluginClients = [
     App\Client\Amqp\AmqpClientPlugin::class,
     App\Client\ClientReader\ClientReaderPlugin::class,
     App\Client\File\FilePlugin::class,
-    App\Client\VideoPublish\VideoPublishPlugin::class,
 ];
 
 return array_merge($pluginsCommon, $pluginClients, ($isCli ?  $pluginsBack: $pluginsFront));
