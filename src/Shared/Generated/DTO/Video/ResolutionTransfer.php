@@ -14,7 +14,10 @@ final class ResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected int $height;
     protected int $width;
-    protected int $fps;
+    protected int|null $bitRateMin = null;
+    protected int|null $bitRateMax = null;
+    protected int|null $frameRate = null;
+    protected bool|null $media_type_flag = null;
 
     public function getHeight(): int
     {
@@ -26,9 +29,24 @@ final class ResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this->width;
     }
 
-    public function getFps(): int
+    public function getBitRateMin(): int|null
     {
-        return $this->fps;
+        return $this->bitRateMin;
+    }
+
+    public function getBitRateMax(): int|null
+    {
+        return $this->bitRateMax;
+    }
+
+    public function getFrameRate(): int|null
+    {
+        return $this->frameRate;
+    }
+
+    public function getMediaTypeFlag(): bool|null
+    {
+        return $this->media_type_flag;
     }
 
     public function setHeight(int $height): self
@@ -45,9 +63,30 @@ final class ResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this;
     }
 
-    public function setFps(int $fps): self
+    public function setBitRateMin(int|null $bitRateMin): self
     {
-        $this->fps = $fps;
+        $this->bitRateMin = $bitRateMin;
+
+        return $this;
+    }
+
+    public function setBitRateMax(int|null $bitRateMax): self
+    {
+        $this->bitRateMax = $bitRateMax;
+
+        return $this;
+    }
+
+    public function setFrameRate(int|null $frameRate): self
+    {
+        $this->frameRate = $frameRate;
+
+        return $this;
+    }
+
+    public function setMediaTypeFlag(bool|null $media_type_flag): self
+    {
+        $this->media_type_flag = $media_type_flag;
 
         return $this;
     }
@@ -73,14 +112,45 @@ final class ResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'required' => true,
             'actionName' => 'width',
           ),
-          'fps' =>
+          'bitRateMin' =>
           array (
             'type' =>
             array (
               0 => 'int',
+              1 => 'null',
             ),
-            'required' => true,
-            'actionName' => 'fps',
+            'required' => false,
+            'actionName' => 'bitRateMin',
+          ),
+          'bitRateMax' =>
+          array (
+            'type' =>
+            array (
+              0 => 'int',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'bitRateMax',
+          ),
+          'frameRate' =>
+          array (
+            'type' =>
+            array (
+              0 => 'int',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'frameRate',
+          ),
+          'media_type_flag' =>
+          array (
+            'type' =>
+            array (
+              0 => 'bool',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'mediaTypeFlag',
           ),
         );
     }

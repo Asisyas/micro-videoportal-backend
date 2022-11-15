@@ -7,33 +7,37 @@
         <property name="id" type="string" required="true"/>
         <property name="name" type="string" required="true" />
         <property name="created_at" type="datetime" required="true"/>
-        <property name="resolutions" type="Video\Resolution" is_collection="true" />
+        <property name="media" type="Video\Source" />
     </class>
 
     <class name="Video\VideoCreate">
         <property name="file_id" type="string" required="true" />
     </class>
 
+    <class name="Video\ResolutionSimple">
+        <property name="file" type="string" />
+        <property name="resolution" type="string"/>
+    </class>
+
     <class name="Video\Resolution">
         <property name="height" type="int" required="true"/>
         <property name="width" type="int" required="true"/>
-        <property name="fps" type="int" required="true"/>
+        <property name="bitRateMin" type="int"/>
+        <property name="bitRateMax" type="int"/>
+        <property name="frameRate" type="int"/>
+        <property name="media_type_flag" type="bool" />
     </class>
 
     <class name="Video\VideoGet">
         <property name="video_id" type="string" required="true"/>
     </class>
 
-    <class name="Video\SourceFileMetadata">
-        <property name="format" type="string" />
-        <property name="length" type="int" />
-        <property name="name" type="string" />
-        <property name="resolution" type="Video\Resolution" is_collection="true" />
+    <class name="Video\SourceSet">
+        <property name="video" type="Video\Video" />
+        <property name="src" type="string" />
     </class>
 
-    <class name="VideoConverterConfig">
-        <property name="file" type="File\File" />
-        <property name="metadata" type="Video\SourceFileMetadata"/>
-        <property name="resolution" type="Video\Resolution"/>
+    <class name="Video\Source">
+        <property name="src" type="string" />
     </class>
 </dto>

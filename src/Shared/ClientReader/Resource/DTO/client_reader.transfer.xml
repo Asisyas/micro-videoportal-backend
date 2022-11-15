@@ -9,6 +9,6 @@
     <class name="ClientReader\Response">
         <property name="uuid" type="string" required="true"/>
         <property name="index" type="string" required="true"/>
-        <property name="data" type="array" required="true"/>
+        <property name="data" type="abstract" required="true"/>
     </class>
 </dto>

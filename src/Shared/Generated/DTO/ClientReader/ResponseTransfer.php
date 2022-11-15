@@ -9,12 +9,13 @@ declare(strict_types=1);
 namespace App\Shared\Generated\DTO\ClientReader;
 
 use DateTimeInterface;
+use Micro\Library\DTO\Object\AbstractDto;
 
-final class ResponseTransfer extends \Micro\Library\DTO\Object\AbstractDto
+final class ResponseTransfer extends AbstractDto
 {
     protected string $uuid;
     protected string $index;
-    protected array $data;
+    protected AbstractDto $data;
 
     public function getUuid(): string
     {
@@ -26,7 +27,7 @@ final class ResponseTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this->index;
     }
 
-    public function getData(): array
+    public function getData(): AbstractDto
     {
         return $this->data;
     }
@@ -45,7 +46,7 @@ final class ResponseTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this;
     }
 
-    public function setData(array $data): self
+    public function setData(AbstractDto $data): self
     {
         $this->data = $data;
 
@@ -77,7 +78,7 @@ final class ResponseTransfer extends \Micro\Library\DTO\Object\AbstractDto
           array (
             'type' =>
             array (
-              0 => 'array',
+              0 => 'Micro\\Library\\DTO\\Object\\AbstractDto',
             ),
             'required' => true,
             'actionName' => 'data',

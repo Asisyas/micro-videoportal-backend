@@ -4,7 +4,12 @@ routes:
     format: yaml
     prefix: /api/file
 
-  video_plugin:
-    resource: '@VideoPluginFrontend/Resource/routing/routing.yaml'
+  video_publish_plugin:
+    resource: '@VideoPublishPluginFrontend/Resource/routing/routing.yaml'
+    format: yaml
+    prefix: /api/video
+
+  video_watch_plugin:
+    resource: '@VideoWatchPluginFrontend/Resource/routing/routing.yaml'
     format: yaml
     prefix: /api/video

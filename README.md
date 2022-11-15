@@ -2,11 +2,13 @@
 
 ### Technologies used
  - [Ffmpeg](https://ffmpeg.org/)
- - [RabitMQ](https://www.rabbitmq.com/)
+ - [RabitMQ](https://www.rabbitmq.com/) - deprecated
  - [Docker](https://www.docker.com/)
  - [Redis](https://redis.io/)
  - [Doctrine](https://www.doctrine-project.org/)
  - [ElasticSearch](https://www.elastic.co/)
+ - [Temporal](https://temporal.io/)
+ - [RoadRunner](https://roadrunner.dev/)
 
 ### Short description
  - Client: Clients for reading data. (Redis, Elastic)

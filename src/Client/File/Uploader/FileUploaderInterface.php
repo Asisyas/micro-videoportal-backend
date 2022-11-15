@@ -2,15 +2,15 @@
 
 namespace App\Client\File\Uploader;
 
-use App\Shared\Generated\DTO\File\ChunkResponseTransfer;
-use App\Shared\Generated\DTO\File\ChunkTransfer;
+use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\File\FileUploadTransfer;
 
 interface FileUploaderInterface
 {
     /**
-     * @param ChunkTransfer $chunkTransfer
+     * @param FileUploadTransfer $fileUploadTransfer
      *
-     * @return ChunkResponseTransfer
+     * @return FileTransfer
      */
-    public function upload(ChunkTransfer $chunkTransfer): ChunkResponseTransfer;
+    public function uploadFromStream(FileUploadTransfer $fileUploadTransfer): FileTransfer;
 }

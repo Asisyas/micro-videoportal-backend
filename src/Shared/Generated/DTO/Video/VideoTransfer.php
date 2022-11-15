@@ -9,14 +9,13 @@ declare(strict_types=1);
 namespace App\Shared\Generated\DTO\Video;
 
 use DateTimeInterface;
-use Micro\Library\DTO\Object\Collection;
 
 final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected string $id;
     protected string $name;
     protected DateTimeInterface $created_at;
-    protected iterable|null $resolutions = null;
+    protected SourceTransfer|null $media = null;
 
     public function getId(): string
     {
@@ -33,9 +32,9 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this->created_at;
     }
 
-    public function getResolutions(): iterable|null
+    public function getMedia(): SourceTransfer|null
     {
-        return $this->resolutions;
+        return $this->media;
     }
 
     public function setId(string $id): self
@@ -59,23 +58,11 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this;
     }
 
-    public function setResolutions(iterable|null $resolutions): self
+    public function setMedia(SourceTransfer|null $media): self
     {
-        if(!$resolutions) {
-                        $this->resolutions = null;
+        $this->media = $media;
 
-                        return $this;
-                    }
-
-                    if(!$this->resolutions) {
-                        $this->resolutions = new Collection();
-                    }
-
-                    foreach($resolutions as $item) {
-                        $this->resolutions->add($item);
-                    }
-
-                    return $this;
+        return $this;
     }
 
     protected static function attributesMetadata(): array
@@ -108,15 +95,15 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'required' => true,
             'actionName' => 'createdAt',
           ),
-          'resolutions' =>
+          'media' =>
           array (
             'type' =>
             array (
-              0 => 'iterable',
+              0 => 'App\\Shared\\Generated\\DTO\\Video\\SourceTransfer',
               1 => 'null',
             ),
             'required' => false,
-            'actionName' => 'resolutions',
+            'actionName' => 'media',
           ),
         );
     }

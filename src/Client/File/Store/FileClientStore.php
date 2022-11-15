@@ -5,8 +5,9 @@ namespace App\Client\File\Store;
 use App\Client\Amqp\Client\AmqpClientInterface;
 use App\Shared\File\Configuration;
 use App\Shared\Generated\DTO\Amqp\RpcRequestTransfer;
-use App\Shared\Generated\DTO\File\FileCreateTransfer;
+use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\File\FileUploadTransfer;
 
 class FileClientStore implements FileClientStoreInterface
 {
@@ -22,16 +23,21 @@ class FileClientStore implements FileClientStoreInterface
     /**
      * {@inheritDoc}
      */
-    public function createFile(FileCreateTransfer $fileCreateTransfer): FileTransfer
+    public function createFile(FileUploadTransfer $fileUploadTransfer): FileTransfer
     {
         $request = new RpcRequestTransfer();
 
-        $request->setMessage($fileCreateTransfer);
+        $request->setMessage($fileUploadTransfer);
         $request->setPublisher(Configuration::PUBLISHER_FILE_CREATE_NAME);
 
         /** @var FileTransfer $response */
-        $response = $this->amqpClient->rpc($request);
+        $fileTransfer = $this->amqpClient->rpc($request);
 
-        return $response;
+        return $fileTransfer;
+    }
+
+    public function deleteFile(FileRemoveTransfer $fileRemoveTransfer): bool
+    {
+        return true;
     }
 }

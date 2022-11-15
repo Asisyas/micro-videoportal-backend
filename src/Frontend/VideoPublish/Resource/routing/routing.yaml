@@ -1,0 +1,8 @@
+routes:
+  video_publish:
+    path: /publish
+    methods:
+      - POST
+    options:
+      action: publish
+      controller: 'App\Frontend\VideoPublish\Controller\VideoPublishController'

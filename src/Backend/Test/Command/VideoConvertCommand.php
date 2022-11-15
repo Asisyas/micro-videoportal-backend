@@ -2,17 +2,22 @@
 
 namespace App\Backend\Test\Command;
 
-use FFMpeg\Format\Video\WebM;
-use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
+use App\Backend\MediaConverter\Facade\MediaConverterFacadeInterface;
+use App\Client\File\FileClientInterface;
+use App\Shared\Generated\DTO\File\FileGetTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
+use App\Shared\Generated\DTO\MediaConverter\ResolutionTransfer;
+use App\Shared\Generated\DTO\MediaConverter\VideoConvertTransfer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 class VideoConvertCommand extends Command
 {
     public function __construct(
-        private readonly FfmpegFacadeInterface $ffmpegFacade
+        private readonly MediaConverterFacadeInterface $videoConverterFacade,
+        private readonly FileClientInterface           $fileClient
     )
     {
         parent::__construct('test:video:convert');
@@ -22,25 +27,43 @@ class VideoConvertCommand extends Command
     {
         parent::configure();
 
-        $this->addArgument('videofile');
+        $this->addArgument('video_id', InputOption::VALUE_REQUIRED);
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $videoFile = $input->getArgument('videofile');
-        $media = $this->ffmpegFacade->open($videoFile);
+        $videoFile = $input->getArgument('video_id');
+        $fileGet = new FileGetTransfer();
+        $fileGet->setId($videoFile);
+        $file = $this->fileClient->lookupFile($fileGet);
 
-        $format = new WebM('libvorbis', 'libvpx-vp9');
-        $format->setAdditionalParameters();
+        $metadata = $this->videoConverterFacade->extractMediaMetadata($file);
+        $resolutions = $this->videoConverterFacade->calculateMediaResolutions($metadata);
+        $mediaConfiguration = new MediaConfigurationTransfer();
+        $mediaConfiguration
+            ->setFile($file);
 
-        $io = new SymfonyStyle($input, $output);
-        $pb = $io->createProgressBar();
-        $pb->setMaxSteps(100);
-        $format->on('progress', function ($video, $format, $percentage) use ($pb) {
-            $pb->setProgress((int) $percentage);
-        });
+        $results = [];
 
-        $media->save($format, '/home/kost/Videos/conwerted.webm');
+        dump($metadata);
+
+        foreach ($resolutions->getResolutions() as $resolution) {
+            $mediaConfiguration->setResolutionConfiguration($resolution);
+
+            dump($mediaConfiguration);
+
+            $result = $this->videoConverterFacade->convert(
+                $mediaConfiguration
+            );
+
+            $output->writeln(
+                sprintf('Converted %s', $result->getSrc())
+            );
+
+            $results[] = $result;
+        }
+
+        dump($results);
 
         return self::SUCCESS;
     }

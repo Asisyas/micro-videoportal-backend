@@ -5,6 +5,7 @@ namespace App\Backend\File\Consumer;
 use App\Backend\File\Facade\FileFacadeInterface;
 use App\Shared\File\Configuration;
 use App\Shared\Generated\DTO\File\FileCreateTransfer;
+use App\Shared\Generated\DTO\File\FileUploadTransfer;
 use Micro\Library\DTO\SerializerFacadeInterface;
 use Micro\Plugin\Amqp\AmqpFacadeInterface;
 use Micro\Plugin\Amqp\Business\Consumer\ConsumerProcessorInterface;
@@ -30,9 +31,9 @@ class FileCreateConsumer implements ConsumerProcessorInterface
      */
     public function receive(MessageReceivedInterface $message): void
     {
-        /** @var FileCreateTransfer $fileCreateTransfer */
-        $fileCreateTransfer = $this->serializerFacade->fromJsonTransfer($message->content()->getContent());
-        $result = $this->fileFacade->createFile($fileCreateTransfer);
+        /** @var FileUploadTransfer $fileUploadTransfer */
+        $fileUploadTransfer = $this->serializerFacade->fromJsonTransfer($message->content()->getContent());
+        $result = $this->fileFacade->createFile($fileUploadTransfer);
         $resultContent = $this->serializerFacade->toJsonTransfer($result);
         $message->content()->setResultContent($resultContent);
 

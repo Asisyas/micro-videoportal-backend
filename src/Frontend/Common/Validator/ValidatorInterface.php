@@ -3,14 +3,13 @@
 namespace App\Frontend\Common\Validator;
 
 use Micro\Plugin\Http\Exception\BadRequestException;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 interface ValidatorInterface
 {
     /**
-     * @return ConstraintViolationListInterface|null
+     * @param array $source
      *
      * @throws BadRequestException
      */
-    public function validate(): ConstraintViolationListInterface|null;
+    public function validate(array $source): void;
 }

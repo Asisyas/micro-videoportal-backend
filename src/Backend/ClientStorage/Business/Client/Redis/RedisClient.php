@@ -61,22 +61,14 @@ class RedisClient implements ClientInterface
     }
 
     /**
-     * @param AbstractDto|array|string|int|float $source
+     * @param AbstractDto $source
      * @return string
      *
      * @throws \Micro\Library\DTO\Exception\SerializeException
      */
-    protected function createData(AbstractDto|array|string|int|float $source): string
+    protected function createData(AbstractDto $source): string
     {
-        if(is_scalar($source)) {
-            return $source;
-        }
-
-        if($source instanceof AbstractDto) {
-            return $this->serializerFacade->toJsonTransfer($source);
-        }
-
-        return serialize($source);
+        return $this->serializerFacade->toJsonTransfer($source);
     }
 
     /**

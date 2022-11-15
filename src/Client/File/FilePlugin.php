@@ -5,15 +5,17 @@ namespace App\Client\File;
 use App\Client\Amqp\Client\AmqpClientInterface;
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
 use App\Client\File\Client\FileClient;
+use App\Client\File\Expander\File\FileTransferExpanderFactory;
+use App\Client\File\Expander\File\FileTransferExpanderFactoryInterface;
 use App\Client\File\Reader\FileClientReaderFactory;
 use App\Client\File\Reader\FileClientReaderFactoryInterface;
 use App\Client\File\Store\FileClientStoreFactory;
 use App\Client\File\Store\FileClientStoreFactoryInterface;
 use App\Client\File\Uploader\FileUploaderFactoryInterface;
-use App\Client\File\Uploader\Local\FileUploaderFactory;
+use App\Client\File\Uploader\FileUploaderFactory;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
-use Micro\Library\DTO\SerializerFacadeInterface;
+use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
 class FilePlugin extends AbstractPlugin
 {
@@ -25,11 +27,12 @@ class FilePlugin extends AbstractPlugin
         $container->register(FileClientInterface::class, function (
             AmqpClientInterface $amqpClient,
             ClientReaderFacadeInterface $clientReaderFacade,
-            SerializerFacadeInterface $serializerFacade
+            FilesystemFacadeInterface $filesystemFacade
+
         ) {
             $fileStoreClientFactory = $this->createFileClientStoreFactory($amqpClient);
-            $fileClientReaderFactory = $this->createFileClientReaderFactory($clientReaderFacade, $serializerFacade);
-            $fileUploaderFactory = $this->createFileUploaderFactory($fileClientReaderFactory);
+            $fileClientReaderFactory = $this->createFileClientReaderFactory($clientReaderFacade);
+            $fileUploaderFactory = $this->createFileUploaderFactory($fileStoreClientFactory, $filesystemFacade);
 
             return $this->createClient(
                 $fileStoreClientFactory,
@@ -37,6 +40,14 @@ class FilePlugin extends AbstractPlugin
                 $fileUploaderFactory
             );
         });
+    }
+
+    /**
+     * @return FileTransferExpanderFactoryInterface
+     */
+    protected function createFileTransferExpanderFactory(): FileTransferExpanderFactoryInterface
+    {
+        return new FileTransferExpanderFactory();
     }
 
     /**
@@ -51,27 +62,33 @@ class FilePlugin extends AbstractPlugin
 
     /**
      * @param ClientReaderFacadeInterface $clientReaderFacade
-     * @param SerializerFacadeInterface $serializerFacade
      *
      * @return FileClientReaderFactoryInterface
      */
     protected function createFileClientReaderFactory(
-        ClientReaderFacadeInterface $clientReaderFacade,
-        SerializerFacadeInterface $serializerFacade
+        ClientReaderFacadeInterface $clientReaderFacade
     ): FileClientReaderFactoryInterface
     {
-        return new FileClientReaderFactory($clientReaderFacade, $serializerFacade);
+        return new FileClientReaderFactory(
+            $clientReaderFacade,
+            $this->createFileTransferExpanderFactory()
+        );
     }
 
     /**
-     * @param FileClientReaderFactoryInterface $fileClientReaderFactory
+     * @param FileClientStoreFactoryInterface $fileClientStoreFactory
+     * @param FilesystemFacadeInterface $filesystemFacade
      *
      * @return FileUploaderFactoryInterface
      */
-    protected function createFileUploaderFactory(FileClientReaderFactoryInterface $fileClientReaderFactory): FileUploaderFactoryInterface
+    protected function createFileUploaderFactory(
+        FileClientStoreFactoryInterface $fileClientStoreFactory,
+        FilesystemFacadeInterface $filesystemFacade
+    ): FileUploaderFactoryInterface
     {
         return new FileUploaderFactory(
-            $fileClientReaderFactory
+            $fileClientStoreFactory,
+            $filesystemFacade
         );
     }
 

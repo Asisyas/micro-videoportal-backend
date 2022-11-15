@@ -3,6 +3,7 @@
 namespace App\Client\File\Reader;
 
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
+use App\Client\File\Expander\File\FileTransferExpanderInterface;
 use App\Shared\File\Configuration;
 use App\Shared\Generated\DTO\ClientReader\RequestTransfer;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
@@ -13,11 +14,11 @@ class FileClientReader implements FileClientReaderInterface
 {
     /**
      * @param ClientReaderFacadeInterface $clientReaderFacade
-     * @param SerializerFacadeInterface $serializerFacade
+     * @param FileTransferExpanderInterface $fileTransferExpander
      */
     public function __construct(
         private readonly ClientReaderFacadeInterface $clientReaderFacade,
-        private readonly SerializerFacadeInterface $serializerFacade
+        private readonly FileTransferExpanderInterface $fileTransferExpander
     )
     {
     }
@@ -35,7 +36,8 @@ class FileClientReader implements FileClientReaderInterface
 
         $response = $this->clientReaderFacade->lookup($request);
         /** @var FileTransfer $fileTransfer */
-        $fileTransfer = $this->serializerFacade->fromArrayTransfer($response->getData());
+        $fileTransfer = $response->getData();
+        $this->fileTransferExpander->expand($fileTransfer);
 
         return $fileTransfer;
     }
