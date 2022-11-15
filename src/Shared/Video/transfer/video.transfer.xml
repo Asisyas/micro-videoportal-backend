@@ -7,7 +7,7 @@
         <property name="id" type="string" required="true"/>
         <property name="name" type="string" required="true" />
         <property name="created_at" type="datetime" required="true"/>
-        <property name="resolutions" type="Video\Resolution" is_collection="true" />
+        <property name="media" type="Video\Source" />
     </class>
 
     <class name="Video\VideoCreate">
@@ -30,5 +30,14 @@
 
     <class name="Video\VideoGet">
         <property name="video_id" type="string" required="true"/>
+    </class>
+
+    <class name="Video\SourceSet">
+        <property name="video" type="Video\Video" />
+        <property name="src" type="string" />
+    </class>
+
+    <class name="Video\Source">
+        <property name="src" type="string" />
     </class>
 </dto>

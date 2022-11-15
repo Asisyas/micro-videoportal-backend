@@ -8,3 +8,8 @@ routes:
     resource: '@VideoPublishPluginFrontend/Resource/routing/routing.yaml'
     format: yaml
     prefix: /api/video
+
+  video_watch_plugin:
+    resource: '@VideoWatchPluginFrontend/Resource/routing/routing.yaml'
+    format: yaml
+    prefix: /api/video

@@ -15,7 +15,6 @@ use App\Client\File\Uploader\FileUploaderFactoryInterface;
 use App\Client\File\Uploader\FileUploaderFactory;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
-use Micro\Library\DTO\SerializerFacadeInterface;
 use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
 class FilePlugin extends AbstractPlugin
@@ -28,11 +27,11 @@ class FilePlugin extends AbstractPlugin
         $container->register(FileClientInterface::class, function (
             AmqpClientInterface $amqpClient,
             ClientReaderFacadeInterface $clientReaderFacade,
-            SerializerFacadeInterface $serializerFacade,
             FilesystemFacadeInterface $filesystemFacade
+
         ) {
             $fileStoreClientFactory = $this->createFileClientStoreFactory($amqpClient);
-            $fileClientReaderFactory = $this->createFileClientReaderFactory($clientReaderFacade, $serializerFacade, $filesystemFacade);
+            $fileClientReaderFactory = $this->createFileClientReaderFactory($clientReaderFacade);
             $fileUploaderFactory = $this->createFileUploaderFactory($fileStoreClientFactory, $filesystemFacade);
 
             return $this->createClient(
@@ -63,20 +62,15 @@ class FilePlugin extends AbstractPlugin
 
     /**
      * @param ClientReaderFacadeInterface $clientReaderFacade
-     * @param SerializerFacadeInterface $serializerFacade
-     * @param FilesystemFacadeInterface $filesystemFacade
      *
      * @return FileClientReaderFactoryInterface
      */
     protected function createFileClientReaderFactory(
-        ClientReaderFacadeInterface $clientReaderFacade,
-        SerializerFacadeInterface $serializerFacade,
-        FilesystemFacadeInterface $filesystemFacade
+        ClientReaderFacadeInterface $clientReaderFacade
     ): FileClientReaderFactoryInterface
     {
         return new FileClientReaderFactory(
             $clientReaderFacade,
-            $serializerFacade,
             $this->createFileTransferExpanderFactory()
         );
     }

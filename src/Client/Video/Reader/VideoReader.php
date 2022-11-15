@@ -14,7 +14,7 @@ class VideoReader implements VideoReaderInterface
      * @param ClientReaderFacadeInterface $clientReaderFacade
      */
     public function __construct(
-        private readonly ClientReaderFacadeInterface $clientReaderFacade
+        private readonly ClientReaderFacadeInterface $clientReaderFacade,
     )
     {
     }

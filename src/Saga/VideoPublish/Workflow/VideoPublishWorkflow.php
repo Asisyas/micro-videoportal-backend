@@ -6,11 +6,14 @@ use App\Saga\VideoPublish\Activity\VideoPublishActivityInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\MediaConverter\DashManifestTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaMetadataTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaResolutionTransfer;
+use App\Shared\Generated\DTO\Video\SourceTransfer;
+use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use Carbon\CarbonInterval;
 use Micro\Library\DTO\Object\Collection;
 use Temporal\Activity\ActivityOptions;
@@ -62,10 +65,17 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
             /** @var FileTransfer $fileTransfer */
             $fileTransfer = yield $this->activity->lookupSourceFile($fileGetTransfer);
 
+            /*
             $saga
                 ->addCompensation(
                     fn() => yield $this->activity->removeSourceFile((new FileRemoveTransfer())->setId($fileTransfer->getId()))
                 );
+            */
+
+            $videoTransfer = yield $this->activity->createVideo(
+                (new VideoCreateTransfer())
+                ->setFileId($fileTransfer->getId())
+            );
 
             $this->convertedResultCollection->setVideoId($fileTransfer->getId());
 
@@ -76,7 +86,6 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
 
             /** @var MediaResolutionTransfer $resolutionTransfer */
             $i = 0;
-            $dashManifest = null;
             foreach ($mediaResolutionsCollectionTransfer->getResolutions() as $resolutionTransfer) {
                 $mediaConfigurationTransfer->setResolutionConfiguration($resolutionTransfer);
 
@@ -88,8 +97,13 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
                 if(1 > $i++) {
                     continue;
                 }
-
+                /** @var DashManifestTransfer $dashManifest */
                 $dashManifest = yield $this->activity->generateDashManifest($this->convertedResultCollection);
+
+                if($i === 2) {
+                    $videoTransfer->setMedia((new SourceTransfer())->setSrc($dashManifest->getSrc()));
+                    $videoTransfer = yield $this->activity->updateVideo($videoTransfer);
+                }
             }
 
             return 'CONVERTED!';

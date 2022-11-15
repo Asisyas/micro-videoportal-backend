@@ -70,4 +70,11 @@ interface VideoPublishActivityInterface extends MicroActivityInterface
      * @return DashManifestTransfer
      */
     public function generateDashManifest(MediaConvertedResultCollectionTransfer $convertedResultCollectionTransfer): DashManifestTransfer;
+
+    /**
+     * @param VideoTransfer $videoTransfer
+     *
+     * @return VideoTransfer
+     */
+    public function updateVideo(VideoTransfer $videoTransfer): VideoTransfer;
 }

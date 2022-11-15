@@ -14,12 +14,10 @@ class FileClientReader implements FileClientReaderInterface
 {
     /**
      * @param ClientReaderFacadeInterface $clientReaderFacade
-     * @param SerializerFacadeInterface $serializerFacade
      * @param FileTransferExpanderInterface $fileTransferExpander
      */
     public function __construct(
         private readonly ClientReaderFacadeInterface $clientReaderFacade,
-        private readonly SerializerFacadeInterface $serializerFacade,
         private readonly FileTransferExpanderInterface $fileTransferExpander
     )
     {
@@ -38,7 +36,7 @@ class FileClientReader implements FileClientReaderInterface
 
         $response = $this->clientReaderFacade->lookup($request);
         /** @var FileTransfer $fileTransfer */
-        $fileTransfer = $this->serializerFacade->fromArrayTransfer($response->getData());
+        $fileTransfer = $response->getData();
         $this->fileTransferExpander->expand($fileTransfer);
 
         return $fileTransfer;

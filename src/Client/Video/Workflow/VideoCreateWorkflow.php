@@ -40,9 +40,7 @@ class VideoCreateWorkflow implements VideoCreateWorkflowInterface
     }
 
     /**
-     * @param VideoCreateTransfer $videoCreateTransfer
-     *
-     * @return VideoTransfer
+     * {@inheritDoc}
      */
     public function createVideo(VideoCreateTransfer $videoCreateTransfer)
     {

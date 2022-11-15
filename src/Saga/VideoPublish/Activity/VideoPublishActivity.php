@@ -89,4 +89,12 @@ class VideoPublishActivity implements VideoPublishActivityInterface
     {
         return $this->videoConverterFacade->generateDashManifest($convertedResultCollectionTransfer);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function updateVideo(VideoTransfer $videoTransfer): VideoTransfer
+    {
+        return $this->videoClient->updateVideo($videoTransfer);
+    }
 }

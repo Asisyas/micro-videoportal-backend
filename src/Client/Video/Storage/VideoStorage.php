@@ -5,6 +5,8 @@ namespace App\Client\Video\Storage;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Saga\CreateVideo\VideoCreateWorkflowInterface;
+use App\Shared\Video\Saga\VideoUpdate\VideoUpdateActivityInterface;
+use App\Shared\Video\Saga\VideoUpdate\VideoUpdateWorkflowInterface;
 use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 
 class VideoStorage implements VideoStorageInterface
@@ -19,9 +21,7 @@ class VideoStorage implements VideoStorageInterface
     }
 
     /**
-     * @param VideoCreateTransfer $videoCreateTransfer
-     *
-     * @return VideoTransfer
+     * {@inheritDoc}
      */
     public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer
     {
@@ -31,6 +31,21 @@ class VideoStorage implements VideoStorageInterface
         );
 
         $run = $client->start($stub, $videoCreateTransfer);
+
+        return $run->getResult();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function updateVideo(VideoTransfer $videoTransfer): VideoTransfer
+    {
+        $client = $this->temporalFacade->workflowClient();
+        $stub = $client->newWorkflowStub(
+            VideoUpdateWorkflowInterface::class
+        );
+
+        $run = $client->start($stub, $videoTransfer);
 
         return $run->getResult();
     }

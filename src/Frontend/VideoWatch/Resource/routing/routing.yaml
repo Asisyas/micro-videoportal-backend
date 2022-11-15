@@ -1,0 +1,8 @@
+routes:
+  video_watch:
+    path: /{id}
+    methods:
+      - GET
+    options:
+      action: getVideo
+      controller: 'App\Frontend\VideoWatch\Controller\VideoWatchController'

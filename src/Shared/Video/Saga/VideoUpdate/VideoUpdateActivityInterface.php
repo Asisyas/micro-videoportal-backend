@@ -1,20 +1,14 @@
 <?php
 
-namespace App\Backend\Video\Facade;
+namespace App\Shared\Video\Saga\VideoUpdate;
 
-use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Exception\VideoNotFoundException;
+use Micro\Plugin\Temporal\Activity\ActivityInterface;
 
-interface VideoFacadeInterface
+#[\Temporal\Activity\ActivityInterface(prefix: 'video_update.')]
+interface VideoUpdateActivityInterface extends ActivityInterface
 {
-    /**
-     * @param VideoCreateTransfer $videoCreateTransfer
-     *
-     * @return VideoTransfer
-     */
-    public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer;
-
     /**
      * @param VideoTransfer $videoTransfer
      *

@@ -25,4 +25,12 @@ class VideoFacade implements VideoFacadeInterface
     {
         return $this->videoFactory->create($videoCreateTransfer);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function updateVideo(VideoTransfer $videoTransfer): VideoTransfer
+    {
+        return $this->videoFactory->update($videoTransfer);
+    }
 }

@@ -13,4 +13,11 @@ interface VideoStorageInterface
      * @return VideoTransfer
      */
     public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer;
+
+    /**
+     * @param VideoTransfer $videoTransfer
+     *
+     * @return VideoTransfer
+     */
+    public function updateVideo(VideoTransfer $videoTransfer): VideoTransfer;
 }

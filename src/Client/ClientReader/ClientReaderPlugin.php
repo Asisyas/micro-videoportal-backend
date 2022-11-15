@@ -4,6 +4,7 @@ namespace App\Client\ClientReader;
 
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
+use Micro\Library\DTO\SerializerFacadeInterface;
 use Micro\Plugin\Redis\RedisFacadeInterface;
 use App\Client\ClientReader\Business\Client\ClientFactoryInterface;
 use App\Client\ClientReader\Business\Client\Redis\RedisClientFactory;
@@ -13,32 +14,48 @@ use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
 class ClientReaderPlugin extends AbstractPlugin
 {
     /**
+     * @var RedisFacadeInterface
+     */
+    private readonly RedisFacadeInterface $redisFacade;
+
+    /**
+     * @var SerializerFacadeInterface
+     */
+    private readonly SerializerFacadeInterface $serializerFacade;
+
+    /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
-        $container->register(ClientReaderFacadeInterface::class, function (RedisFacadeInterface $redisFacade) {
-            return $this->createFacade($redisFacade);
+        $container->register(ClientReaderFacadeInterface::class, function (
+            RedisFacadeInterface $redisFacade,
+            SerializerFacadeInterface $serializerFacade
+
+        ) {
+            $this->redisFacade = $redisFacade;
+            $this->serializerFacade = $serializerFacade;
+
+            return $this->createFacade();
         });
     }
 
     /**
-     * @param RedisFacadeInterface $redisFacade
-     *
      * @return ClientReaderFacadeInterface
      */
-    protected function createFacade(RedisFacadeInterface $redisFacade): ClientReaderFacadeInterface
+    protected function createFacade(): ClientReaderFacadeInterface
     {
-        return new ClientReaderFacade($this->createClientFactory($redisFacade));
+        return new ClientReaderFacade($this->createClientFactory());
     }
 
     /**
-     * @param RedisFacadeInterface $redisFacade
-     *
      * @return ClientFactoryInterface
      */
-    protected function createClientFactory(RedisFacadeInterface $redisFacade): ClientFactoryInterface
+    protected function createClientFactory(): ClientFactoryInterface
     {
-        return new RedisClientFactory($redisFacade);
+        return new RedisClientFactory(
+            $this->redisFacade,
+            $this->serializerFacade
+        );
     }
 }

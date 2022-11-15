@@ -25,6 +25,9 @@ class Video
     #[ORM\Column(type: 'datetime', nullable: true)]
     private DateTime $updatedAt;
 
+    #[ORM\Column(type: 'string', length: 200, nullable: true)]
+    private $mediaSrc = null;
+
     /**
      * @param string $id
      * @param string $title
@@ -87,6 +90,8 @@ class Video
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
@@ -103,5 +108,25 @@ class Video
     public function getUpdatedAt(): DateTime|null
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return null
+     */
+    public function getMediaSrc(): string|null
+    {
+        return $this->mediaSrc;
+    }
+
+    /**
+     * @param string|null $mediaSrc
+     *
+     * @return self
+     */
+    public function setMediaSrc(string|null $mediaSrc): self
+    {
+        $this->mediaSrc = $mediaSrc;
+
+        return $this;
     }
 }
