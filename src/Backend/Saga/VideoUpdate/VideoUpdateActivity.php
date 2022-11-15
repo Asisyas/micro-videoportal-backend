@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Backend\Video\Saga\VideoUpdate;
+namespace App\Backend\Saga\VideoUpdate;
 
 use App\Backend\Video\Facade\VideoFacadeInterface;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
-use App\Shared\Video\Saga\VideoUpdate\VideoUpdateActivityInterface;
+use App\Shared\Saga\VideoUpdate\VideoUpdateActivityInterface;
 
 class VideoUpdateActivity implements VideoUpdateActivityInterface
 {

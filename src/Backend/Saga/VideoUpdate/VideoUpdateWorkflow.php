@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Client\Video\Workflow;
+namespace App\Backend\Saga\VideoUpdate;
 
-use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
-use App\Shared\Video\Saga\CreateVideo\VideoCreateActivityInterface;
-use App\Shared\Video\Saga\CreateVideo\VideoCreateWorkflowInterface;
+use App\Shared\Saga\VideoUpdate\VideoUpdateActivityInterface;
+use App\Shared\Saga\VideoUpdate\VideoUpdateWorkflowInterface;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\Exception\ORMException;
 use Temporal\Activity\ActivityOptions;
@@ -13,16 +12,17 @@ use Temporal\Common\RetryOptions;
 use Temporal\Internal\Workflow\ActivityProxy;
 use Temporal\Workflow;
 
-class VideoCreateWorkflow implements VideoCreateWorkflowInterface
+class VideoUpdateWorkflow implements VideoUpdateWorkflowInterface
 {
+
     /**
-     * @var VideoCreateActivityInterface
+     * @var VideoUpdateActivityInterface
      */
     private ActivityProxy $activity;
 
     public function __construct()
     {
-        $this->activity = Workflow::newActivityStub(VideoCreateActivityInterface::class,
+        $this->activity = Workflow::newActivityStub(VideoUpdateActivityInterface::class,
             ActivityOptions::new()
                 ->withStartToCloseTimeout(30)
                 ->withHeartbeatTimeout(30)
@@ -42,18 +42,8 @@ class VideoCreateWorkflow implements VideoCreateWorkflowInterface
     /**
      * {@inheritDoc}
      */
-    public function createVideo(VideoCreateTransfer $videoCreateTransfer)
+    public function updateVideo(VideoTransfer $videoTransfer)
     {
-        $saga = new Workflow\Saga();
-        try {
-            /** @var VideoTransfer $videoTransfer */
-            $videoTransfer = yield $this->activity->createVideo($videoCreateTransfer);
-        } catch (\Throwable $exception) {
-            $saga->compensate();
-
-            throw $exception;
-        }
-
-        return $videoTransfer;
+        return yield $this->activity->updateVideo($videoTransfer);
     }
 }

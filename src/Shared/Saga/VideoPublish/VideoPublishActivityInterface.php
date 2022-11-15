@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Saga\VideoPublish\Activity;
+namespace App\Shared\Saga\VideoPublish;
 
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
@@ -11,9 +11,6 @@ use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransf
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaMetadataTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaResolutionCollectionTransfer;
-use App\Shared\Generated\DTO\MediaConverter\StreamTransfer;
-use App\Shared\Generated\DTO\Video\ResolutionSimpleTransfer;
-use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use Temporal\Activity\ActivityInterface;

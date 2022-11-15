@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\Video\Saga\VideoUpdate;
+namespace App\Shared\Saga\VideoUpdate;
 
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Exception\VideoNotFoundException;

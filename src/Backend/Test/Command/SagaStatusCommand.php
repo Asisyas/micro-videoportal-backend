@@ -2,8 +2,7 @@
 
 namespace App\Backend\Test\Command;
 
-use App\Saga\VideoPublish\Activity\VideoPublishActivityInterface;
-use App\Saga\VideoPublish\Workflow\VideoPublishWorkflowInterface;
+use App\Shared\Saga\VideoPublish\VideoPublishWorkflowInterface;
 use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

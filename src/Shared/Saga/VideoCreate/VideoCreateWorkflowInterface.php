@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Shared\Video\Saga\CreateVideo;
+namespace App\Shared\Saga\VideoCreate;
 
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
