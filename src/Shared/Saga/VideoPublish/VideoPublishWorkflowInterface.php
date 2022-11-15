@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Saga\VideoPublish\Workflow;
+namespace App\Shared\Saga\VideoPublish;
 
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
-use App\Shared\Generated\DTO\MediaConverter\PublishStatusTransfer;
 use Temporal\Workflow\QueryMethod;
 use Temporal\Workflow\WorkflowInterface;
 use Temporal\Workflow\WorkflowMethod;

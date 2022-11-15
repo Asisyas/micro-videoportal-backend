@@ -2,13 +2,8 @@
 
 namespace App\Backend\Test\Command;
 
-use App\Backend\Test\Activity\TestActivityStubInterface;
-use App\Backend\Test\Workflow\TestWorkflowInterface;
-use App\Saga\VideoPublish\Workflow\VideoPublishWorkflowInterface;
-use App\Saga\VideoUpload\Workflow\VideoUploadWorkflowInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
-use App\Shared\Generated\DTO\User\UserTransfer;
-use App\Shared\Generated\DTO\Video\VideoTransfer;
+use App\Shared\Saga\VideoPublish\VideoPublishWorkflowInterface;
 use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,7 +19,7 @@ class SagaCreateCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $fileGetTransfer = new FileGetTransfer();
-        $fileGetTransfer->setId('f77d724b-a325-408d-9686-31fb28c2127c');
+        $fileGetTransfer->setId('4135d2dc-baab-4ee5-925a-8aabc397a692');
         $client = $this->temporalFacade->workflowClient();
         $stub = $client->newWorkflowStub(
             VideoPublishWorkflowInterface::class

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Saga\VideoPublish\Activity;
+namespace App\Backend\Saga\VideoPublish;
 
 use App\Backend\MediaConverter\Facade\MediaConverterFacadeInterface;
 use App\Client\File\FileClientInterface;
@@ -16,6 +16,7 @@ use App\Shared\Generated\DTO\MediaConverter\MediaMetadataTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaResolutionCollectionTransfer;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
+use App\Shared\Saga\VideoPublish\VideoPublishActivityInterface;
 
 class VideoPublishActivity implements VideoPublishActivityInterface
 {

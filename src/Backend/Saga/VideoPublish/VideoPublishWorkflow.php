@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Saga\VideoPublish\Workflow;
+namespace App\Backend\Saga\VideoPublish;
 
-use App\Saga\VideoPublish\Activity\VideoPublishActivityInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
-use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\MediaConverter\DashManifestTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
@@ -14,8 +12,9 @@ use App\Shared\Generated\DTO\MediaConverter\MediaMetadataTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaResolutionTransfer;
 use App\Shared\Generated\DTO\Video\SourceTransfer;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Saga\VideoPublish\VideoPublishActivityInterface;
+use App\Shared\Saga\VideoPublish\VideoPublishWorkflowInterface;
 use Carbon\CarbonInterval;
-use Micro\Library\DTO\Object\Collection;
 use Temporal\Activity\ActivityOptions;
 use Temporal\Common\RetryOptions;
 use Temporal\Internal\Workflow\ActivityProxy;
