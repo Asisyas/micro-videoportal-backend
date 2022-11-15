@@ -60,7 +60,7 @@ $pluginsCommon = [
     // SAGA
     Micro\Plugin\Temporal\TemporalPlugin::class,
 
-    App\Saga\VideoPublish\VideoPublishPlugin::class,
+    App\Backend\Saga\SagaPlugin::class,
     App\Client\Video\VideoClientPlugin::class,
 ];
 
