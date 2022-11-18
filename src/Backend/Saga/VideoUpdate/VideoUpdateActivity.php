@@ -24,4 +24,14 @@ class VideoUpdateActivity implements VideoUpdateActivityInterface
     {
         return $this->videoFacade->updateVideo($videoTransfer);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function populate(VideoTransfer $videoTransfer): bool
+    {
+        $this->videoFacade->populateVideo($videoTransfer);
+
+        return true;
+    }
 }

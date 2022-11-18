@@ -14,7 +14,6 @@ use Temporal\Workflow;
 
 class VideoUpdateWorkflow implements VideoUpdateWorkflowInterface
 {
-
     /**
      * @var VideoUpdateActivityInterface
      */

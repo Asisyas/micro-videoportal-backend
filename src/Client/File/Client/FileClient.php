@@ -28,7 +28,9 @@ class FileClient implements FileClientInterface
 
     public function deleteFile(FileRemoveTransfer $fileRemoveTransfer): void
     {
-        $this->fileClientStoreFactory->create()->deleteFile($fileRemoveTransfer);
+        $this->fileClientStoreFactory
+            ->create()
+            ->deleteFile($fileRemoveTransfer);
     }
 
     /**

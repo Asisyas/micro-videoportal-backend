@@ -5,20 +5,20 @@ namespace App\Backend\MediaConverter\Business\Metadata;
 use App\Backend\MediaConverter\Business\Metadata\Expander\MetadataExpanderFactoryInterface;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaMetadataTransfer;
+use League\Flysystem\FilesystemOperator;
 use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
-use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
 class MediaMetadataExtractor implements MediaMetadataExtractorInterface
 {
     /**
      * @param FfmpegFacadeInterface $ffmpegFacade
      * @param MetadataExpanderFactoryInterface $videoMetadataExpander
-     * @param FilesystemFacadeInterface $filesystemFacade
+     * @param FilesystemOperator $filesystem
      */
     public function __construct(
         private readonly FfmpegFacadeInterface            $ffmpegFacade,
         private readonly MetadataExpanderFactoryInterface $videoMetadataExpander,
-        private readonly FilesystemFacadeInterface        $filesystemFacade
+        private readonly FilesystemOperator               $filesystem
     )
     {
     }
@@ -30,7 +30,7 @@ class MediaMetadataExtractor implements MediaMetadataExtractorInterface
     {
         $streams = $this->ffmpegFacade
             ->ffprobe()
-            ->streams($this->filesystemFacade->createFsOperator()->publicUrl($fileTransfer->getId()))
+            ->streams($this->filesystem->publicUrl($fileTransfer->getId()))
         ;
 
         $metadataTransfer = new MediaMetadataTransfer();

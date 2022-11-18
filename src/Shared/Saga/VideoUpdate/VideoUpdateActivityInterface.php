@@ -17,4 +17,11 @@ interface VideoUpdateActivityInterface extends ActivityInterface
      * @throws VideoNotFoundException
      */
     public function updateVideo(VideoTransfer $videoTransfer): VideoTransfer;
+
+    /**
+     * @param VideoTransfer $videoTransfer
+     *
+     * @return bool
+     */
+    public function populate(VideoTransfer $videoTransfer): bool;
 }

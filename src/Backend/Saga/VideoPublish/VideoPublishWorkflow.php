@@ -36,7 +36,10 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
             ActivityOptions::new()
                 ->withStartToCloseTimeout(CarbonInterval::hour(24))
             //    ->withTaskQueue('VideoPublish')
-                ->withRetryOptions(RetryOptions::new()->withMaximumAttempts(1))
+                ->withRetryOptions(
+                    RetryOptions::new()
+                        ->withMaximumAttempts(3)
+            )
         );
 
         $this->convertedResultCollection = new MediaConvertedResultCollectionTransfer();

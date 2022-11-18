@@ -2,7 +2,9 @@
 
 namespace App\Frontend\Common\ResponseTransformer;
 
+use App\Client\ClientReader\Exception\NotFoundException as ClientReaderNotFoundException;
 use Micro\Plugin\Http\Exception\BadRequestException;
+use Micro\Plugin\Http\Exception\HttpNotFoundException;
 use Micro\Plugin\Http\Handler\Response\ResponseHandlerContextInterface;
 use Micro\Plugin\Http\Handler\Response\ResponseHandlerInterface;
 use PhpAmqpLib\Exception\AMQPTimeoutException;
@@ -33,6 +35,12 @@ class ResponseExceptionHandler implements ResponseHandlerInterface
            );
 
            return;
+       }
+
+       if($exception instanceof ClientReaderNotFoundException) {
+           $responseHandlerContext->setException(
+               new HttpNotFoundException($exception->getMessage())
+           );
        }
 
        if($exception instanceof AMQPTimeoutException) {

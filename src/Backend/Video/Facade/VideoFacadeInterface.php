@@ -23,4 +23,11 @@ interface VideoFacadeInterface
      * @throws VideoNotFoundException
      */
     public function updateVideo(VideoTransfer $videoTransfer): VideoTransfer;
+
+    /**
+     * @param VideoTransfer $videoTransfer
+     *
+     * @return void
+     */
+    public function populateVideo(VideoTransfer $videoTransfer): void;
 }

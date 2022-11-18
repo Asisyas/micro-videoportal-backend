@@ -22,6 +22,7 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
     protected int|null $frame_rate = null;
     protected float|null $duration = null;
     protected int|null $media_type_flag = null;
+    protected int|null $rotation = null;
 
     public function getCodec(): string|null
     {
@@ -71,6 +72,11 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
     public function getMediaTypeFlag(): int|null
     {
         return $this->media_type_flag;
+    }
+
+    public function getRotation(): int|null
+    {
+        return $this->rotation;
     }
 
     public function setCodec(string|null $codec): self
@@ -139,6 +145,13 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
     public function setMediaTypeFlag(int|null $media_type_flag): self
     {
         $this->media_type_flag = $media_type_flag;
+
+        return $this;
+    }
+
+    public function setRotation(int|null $rotation): self
+    {
+        $this->rotation = $rotation;
 
         return $this;
     }
@@ -245,6 +258,16 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             ),
             'required' => false,
             'actionName' => 'mediaTypeFlag',
+          ),
+          'rotation' =>
+          array (
+            'type' =>
+            array (
+              0 => 'int',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'rotation',
           ),
         );
     }

@@ -20,25 +20,14 @@ class MediaConverterPluginConfiguration extends PluginConfiguration
     {
         return [
             // height,  kbps-min,   kbps-max,   frame-max,  GOP     key_int_min     flag
-            [   144,    300,        300,       24,         150,    150,            self::FLAG_VIDEO  ],
+            [   144,    150,        150,        24,         150,    150,            self::FLAG_VIDEO  ],
 
-            [   240,    300,        300,       30,         150,    150,            self::FLAG_HDR    ],
-            [   240,    500,        500,       60,         150,    150,            self::FLAG_HDR    ],
-            [   240,    500,        500,        30,         150,    150,            self::FLAG_VIDEO  ],
-            [   240,    800,        800,        60,         150,    150,            self::FLAG_VIDEO  ],
+            [   240,    250,        250,        24,         150,    150,            self::FLAG_VIDEO    ],
 
-            [   360,    null,       null,       30,         150,    150,            self::FLAG_HDR    ],
-            [   360,    null,       null,       60,         150,    150,            self::FLAG_HDR    ],
-            [   360,    1000,       1000,       30,         150,    150,            self::FLAG_VIDEO  ],
-            [   360,    1500,       1500,       60,         150,    150,            self::FLAG_VIDEO  ],
+            [   360,    450,        450,        24,         150,    150,            self::FLAG_VIDEO    ],
 
-            [   480,    null,       null,       30,         150,    150,            self::FLAG_HDR    ],
-            [   480,    null,       null,       60,         150,    150,            self::FLAG_HDR    ],
-            [   480,    2500,       2500,       30,         150,    150,            self::FLAG_VIDEO  ],
-            [   480,    4000,       4000,       60,         150,    150,            self::FLAG_VIDEO  ],
+            [   480,    500,        500,        30,         150,    150,            self::FLAG_VIDEO    ],
 
-            [   720,    6500,       6500,       30,         150,    150,            self::FLAG_HDR    ],
-            [   720,    9500,       9500,       60,         150,    150,            self::FLAG_HDR    ],
             [   720,    5000,       6500,       30,         150,    150,            self::FLAG_VIDEO  ],
             [   720,    7500,       7500,       60,         150,    150,            self::FLAG_VIDEO  ],
 

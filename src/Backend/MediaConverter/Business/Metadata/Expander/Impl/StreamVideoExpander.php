@@ -31,6 +31,18 @@ class StreamVideoExpander extends AbstractStreamExpander
         if($this->isHdr($stream)) {
             $streamTransfer->setMediaTypeFlag(MediaConverterPluginConfiguration::FLAG_HDR);
         }
+
+        $streamTransfer->setRotation($this->getRotation($stream));
+    }
+
+    protected function getRotation(Stream $stream): int
+    {
+        $tags = $stream->get('tags');
+        if(!$tags) {
+            return 0;
+        }
+
+        return $tags['rotate'] ?: 0;
     }
 
     /**

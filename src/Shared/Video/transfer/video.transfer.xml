@@ -40,4 +40,12 @@
     <class name="Video\Source">
         <property name="src" type="string" />
     </class>
+
+    <class name="Video\VideoIndex">
+        <property name="id" type="string"/>
+        <property name="title" type="string"/>
+        <property name="description" type="string"/>
+        <property name="resolutions" type="array" />
+        <property name="created_at" type="datetime"/>
+    </class>
 </dto>

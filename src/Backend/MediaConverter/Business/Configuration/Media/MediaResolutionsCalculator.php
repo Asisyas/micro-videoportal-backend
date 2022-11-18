@@ -95,6 +95,8 @@ class MediaResolutionsCalculator implements MediaResolutionsCalculatorInterface
                     ;
                 }
 
+                $mediaResolutionTransfer->setRotation($streamMetadata->getRotation());
+
                 $result[] = $mediaResolutionTransfer;
             }
         }

@@ -53,6 +53,7 @@
         <property name="keyint_min" type="int" />
         <property name="gop" type="int" />
         <property name="media_type_flag" type="int" />
+        <property name="rotation" type="int" />
     </class>
 
     <class name="MediaConverter\MediaMetadata">
@@ -71,6 +72,7 @@
         <property name="frame_rate" type="int" />
         <property name="duration" type="float" />
         <property name="media_type_flag" type="int" />
+        <property name="rotation" type="int" />
     </class>
 
 </dto>

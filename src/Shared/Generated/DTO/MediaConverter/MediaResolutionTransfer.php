@@ -20,6 +20,7 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
     protected int|null $keyint_min = null;
     protected int|null $gop = null;
     protected int|null $media_type_flag = null;
+    protected int|null $rotation = null;
 
     public function getHeight(): int|null
     {
@@ -59,6 +60,11 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
     public function getMediaTypeFlag(): int|null
     {
         return $this->media_type_flag;
+    }
+
+    public function getRotation(): int|null
+    {
+        return $this->rotation;
     }
 
     public function setHeight(int|null $height): self
@@ -113,6 +119,13 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
     public function setMediaTypeFlag(int|null $media_type_flag): self
     {
         $this->media_type_flag = $media_type_flag;
+
+        return $this;
+    }
+
+    public function setRotation(int|null $rotation): self
+    {
+        $this->rotation = $rotation;
 
         return $this;
     }
@@ -199,6 +212,16 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
             ),
             'required' => false,
             'actionName' => 'mediaTypeFlag',
+          ),
+          'rotation' =>
+          array (
+            'type' =>
+            array (
+              0 => 'int',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'rotation',
           ),
         );
     }
