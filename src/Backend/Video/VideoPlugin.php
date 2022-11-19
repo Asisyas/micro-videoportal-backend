@@ -2,12 +2,10 @@
 
 namespace App\Backend\Video;
 
-use App\Backend\ClientStorage\Facade\ClientStorageFacadeInterface;
-use App\Backend\Video\Business\Factory\VideoFactory;
-use App\Backend\Video\Business\Factory\VideoFactoryInterface;
+use App\Backend\Video\Business\Manager\VideoManagerFactory;
+use App\Backend\Video\Business\Manager\VideoManagerFactoryInterface;
 use App\Backend\Video\Facade\VideoFacade;
 use App\Backend\Video\Facade\VideoFacadeInterface;
-use App\Client\File\FileClientInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 use Micro\Plugin\Doctrine\DoctrineFacadeInterface;
@@ -20,28 +18,14 @@ class VideoPlugin extends AbstractPlugin
     private readonly DoctrineFacadeInterface $doctrineFacade;
 
     /**
-     * @var ClientStorageFacadeInterface
-     */
-    private ClientStorageFacadeInterface $clientStorageFacade;
-
-    /**
-     * @var FileClientInterface
-     */
-    private FileClientInterface $fileClient;
-
-    /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
         $container->register(VideoFacadeInterface::class, function (
-            DoctrineFacadeInterface $doctrineFacade,
-            ClientStorageFacadeInterface $clientStorageFacade,
-            FileClientInterface $fileClient
+            DoctrineFacadeInterface $doctrineFacade
         ) {
             $this->doctrineFacade = $doctrineFacade;
-            $this->clientStorageFacade = $clientStorageFacade;
-            $this->fileClient = $fileClient;
 
             return $this->createFacade();
         });
@@ -53,19 +37,17 @@ class VideoPlugin extends AbstractPlugin
     protected function createFacade(): VideoFacadeInterface
     {
         return new VideoFacade(
-            $this->createVideoFactory(),
+            $this->createVideoManagerFactory(),
         );
     }
 
     /**
-     * @return VideoFactoryInterface
+     * @return VideoManagerFactoryInterface
      */
-    protected function createVideoFactory(): VideoFactoryInterface
+    protected function createVideoManagerFactory(): VideoManagerFactoryInterface
     {
-        return new VideoFactory(
-            $this->doctrineFacade,
-            $this->clientStorageFacade,
-            $this->fileClient
+        return new VideoManagerFactory(
+            $this->doctrineFacade
         );
     }
 }

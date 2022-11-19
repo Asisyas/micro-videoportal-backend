@@ -5,6 +5,8 @@ namespace App\Client\Video;
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
 use App\Client\Video\Client\VideoClient;
 use App\Client\Video\Client\VideoClientInterface;
+use App\Client\Video\Publisher\VideoPublisherFactory;
+use App\Client\Video\Publisher\VideoPublisherFactoryInterface;
 use App\Client\Video\Reader\VideoReaderFactory;
 use App\Client\Video\Reader\VideoReaderFactoryInterface;
 use App\Client\Video\Storage\VideoStorageFactory;
@@ -24,6 +26,7 @@ class VideoClientPlugin extends AbstractPlugin
      * @var TemporalFacadeInterface
      */
     private readonly TemporalFacadeInterface $temporalFacade;
+
 
     /**
      * {@inheritDoc}
@@ -48,8 +51,17 @@ class VideoClientPlugin extends AbstractPlugin
     {
         return new VideoClient(
             $this->createVideoReaderFactory(),
-            $this->createVideoStorageFactory()
+            $this->createVideoStorageFactory(),
+            $this->createVideoPublisherFactory()
         );
+    }
+
+    /**
+     * @return VideoPublisherFactoryInterface
+     */
+    protected function createVideoPublisherFactory(): VideoPublisherFactoryInterface
+    {
+        return new VideoPublisherFactory($this->temporalFacade);
     }
 
     /**

@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Backend\File\Saga;
+
+use App\Shared\File\Saga\FileActivityInterface;
+use App\Shared\File\Saga\FileCreateWorkflowInterface;
+use App\Shared\Generated\DTO\File\FileUploadTransfer;
+use Carbon\CarbonInterval;
+use Temporal\Activity\ActivityOptions;
+use Temporal\Common\RetryOptions;
+use Temporal\Internal\Workflow\ActivityProxy;
+use Temporal\Workflow;
+use \Generator;
+
+class FileCreateWorkflow implements FileCreateWorkflowInterface
+{
+    /**
+     * {@inheritDoc}
+     */
+    public function createFile(FileUploadTransfer $fileUploadTransfer): Generator
+    {
+        return yield $this
+            ->createFileActivity()
+            ->createFile($fileUploadTransfer);
+    }
+
+    /**
+     * @return ActivityProxy<FileActivityInterface>
+     */
+    protected function createFileActivity(): ActivityProxy
+    {
+        return Workflow::newActivityStub(
+            FileActivityInterface::class,
+            ActivityOptions::new()
+                ->withStartToCloseTimeout(CarbonInterval::minute())
+                ->withRetryOptions(
+                    RetryOptions::new()
+                        ->withMaximumAttempts(5)
+                )
+        );
+    }
+}

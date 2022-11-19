@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<dto xmlns="micro:dto-01"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="micro:dto-01 https://raw.githubusercontent.com/Micro-PHP/dto/master/src/Resource/schema/dto-01.xsd">
+
+    <class name="Video\VideoDescriptionPut">
+        <property name="video_id" type="string" required="true" />
+        <property name="source" type="Video\VideoDescription" />
+    </class>
+
+    <class name="Video\VideoDescriptionGet">
+        <property name="video_id" type="string" required="true" />
+    </class>
+
+    <class name="Video\VideoDescription">
+        <property name="title" type="string" required="true" />
+        <property name="description" type="string"/>
+    </class>
+
+    <class name="Video\VideoDescriptionDelete">
+        <property name="video_id" type="string" required="true"/>
+    </class>
+
+    <class name="Video\VideoWatch">
+        <property name="title" type="string" required="true" />
+        <property name="description" type="string" />
+    </class>
+</dto>

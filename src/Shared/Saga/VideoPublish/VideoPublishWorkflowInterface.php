@@ -3,8 +3,6 @@
 namespace App\Shared\Saga\VideoPublish;
 
 use App\Shared\Generated\DTO\File\FileGetTransfer;
-use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
-use Temporal\Workflow\QueryMethod;
 use Temporal\Workflow\WorkflowInterface;
 use Temporal\Workflow\WorkflowMethod;
 use Micro\Plugin\Temporal\Workflow\WorkflowInterface as MicroWorkflowInterface;
@@ -17,9 +15,6 @@ interface VideoPublishWorkflowInterface extends MicroWorkflowInterface
      *
      * @return mixed
      */
-    #[WorkflowMethod("VideoPublish")]
+    #[WorkflowMethod("Video_Publish")]
     public function publish(FileGetTransfer $fileGetTransfer);
-
-    #[QueryMethod(name: 'getStatus')]
-    public function lookupStatus(): MediaConvertedResultCollectionTransfer;
 }

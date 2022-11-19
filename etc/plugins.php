@@ -11,9 +11,7 @@ $pluginsFront = [
 ];
 
 $pluginsBack = [
-    // Task Status Storage writer
-    Micro\Plugin\Amqp\TaskStatus\Storage\AmqpTaskStatusStoragePlugin::class,
-    Micro\Plugin\Amqp\TaskStatus\Storage\Doctrine\AmqpTaskStatusStorageDoctrinePlugin::class,
+    Micro\Plugin\Doctrine\DoctrinePlugin::class,
 
     Micro\Plugin\User\Model\Doctrine\UserModelDoctrinePlugin::class,
     Micro\Plugin\User\Manager\Doctrine\UserManagerDoctrinePlugin::class,
@@ -29,7 +27,14 @@ $pluginsBack = [
     App\Backend\MediaConverter\MediaConverterPlugin::class,
 
     App\Backend\Test\TestPlugin::class,
+
+    App\Backend\SearchStorage\SearchStoragePlugin::class,
+
+    /** Video Plugins */
     App\Backend\Video\VideoPlugin::class,
+    App\Backend\VideoPublish\VideoPublishPlugin::class,
+    App\Backend\VideoDescription\VideoDescriptionPlugin::class,
+
 ];
 
 $pluginsCommon = [
@@ -45,17 +50,10 @@ $pluginsCommon = [
     Micro\Plugin\Locator\LocatorPlugin::class,
     Micro\Plugin\Filesystem\FilesystemPlugin::class,
     Micro\Plugin\Filesystem\Adapter\Aws\FilesystemS3AdapterPlugin::class,
+    App\Shared\FsOperatorDecorator\FsOperatorDecoratorPlugin::class,
+    Micro\Plugin\Elastic\ElasticPlugin::class,
 
     Micro\Plugin\Security\SecurityPlugin::class,
-    /*  AMQP */
-    // Core services for consume/produce
-    Micro\Plugin\Amqp\AmqpPlugin::class,
-
-    Micro\Plugin\Doctrine\DoctrinePlugin::class,
-
-    // Task Status Client reader
-    Micro\Plugin\Amqp\TaskStatus\Client\AmqpTaskStatusClientPlugin::class,
-    Micro\Plugin\Amqp\TaskStatus\Client\Doctrine\AmqpTaskStatusClientDoctrinePlugin::class,
 
     // SAGA
     Micro\Plugin\Temporal\TemporalPlugin::class,
@@ -65,9 +63,9 @@ $pluginsCommon = [
 ];
 
 $pluginClients = [
-    App\Client\Amqp\AmqpClientPlugin::class,
     App\Client\ClientReader\ClientReaderPlugin::class,
     App\Client\File\FilePlugin::class,
+    App\Client\Search\SearchClientPlugin::class,
 ];
 
 return array_merge($pluginsCommon, $pluginClients, ($isCli ?  $pluginsBack: $pluginsFront));

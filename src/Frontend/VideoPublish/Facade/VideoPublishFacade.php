@@ -2,8 +2,8 @@
 
 namespace App\Frontend\VideoPublish\Facade;
 
+use App\Client\Video\Client\VideoClientInterface;
 use App\Frontend\VideoPublish\Factory\VideoPublishTransferFactoryInterface;
-use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -11,9 +11,11 @@ class VideoPublishFacade implements VideoPublishFacadeInterface
 {
     /**
      * @param VideoPublishTransferFactoryInterface $videoPublishTransferFactory
+     * @param VideoClientInterface $videoClient
      */
     public function __construct(
-        private readonly VideoPublishTransferFactoryInterface $videoPublishTransferFactory
+        private readonly VideoPublishTransferFactoryInterface $videoPublishTransferFactory,
+        private readonly VideoClientInterface $videoClient
     )
     {
     }
@@ -21,16 +23,12 @@ class VideoPublishFacade implements VideoPublishFacadeInterface
     /**
      * {@inheritDoc}
      */
-    public function createVideoPublishTransferFromRequest(Request $request): VideoPublishTransfer
-    {
-        return $this->videoPublishTransferFactory->createFromRequest($request);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function handleVideoPublishRequest(Request $request): Response
     {
-        return new Response('Hello, world!');
+        $this->videoClient->videoPublish(
+            $this->videoPublishTransferFactory->createFromRequest($request)
+        );
+
+        return new Response();
     }
 }

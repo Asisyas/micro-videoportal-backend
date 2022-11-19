@@ -13,28 +13,22 @@ use DateTimeInterface;
 final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected string $id;
-    protected string $name;
-    protected DateTimeInterface $created_at;
-    protected SourceTransfer|null $media = null;
+    protected string|null $src = null;
+    protected DateTimeInterface|null $created_at = null;
 
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function getSrc(): string|null
     {
-        return $this->name;
+        return $this->src;
     }
 
-    public function getCreatedAt(): DateTimeInterface
+    public function getCreatedAt(): DateTimeInterface|null
     {
         return $this->created_at;
-    }
-
-    public function getMedia(): SourceTransfer|null
-    {
-        return $this->media;
     }
 
     public function setId(string $id): self
@@ -44,23 +38,16 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this;
     }
 
-    public function setName(string $name): self
+    public function setSrc(string|null $src): self
     {
-        $this->name = $name;
+        $this->src = $src;
 
         return $this;
     }
 
-    public function setCreatedAt(DateTimeInterface $created_at): self
+    public function setCreatedAt(DateTimeInterface|null $created_at): self
     {
         $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function setMedia(SourceTransfer|null $media): self
-    {
-        $this->media = $media;
 
         return $this;
     }
@@ -77,33 +64,25 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'required' => true,
             'actionName' => 'id',
           ),
-          'name' =>
+          'src' =>
           array (
             'type' =>
             array (
               0 => 'string',
+              1 => 'null',
             ),
-            'required' => true,
-            'actionName' => 'name',
+            'required' => false,
+            'actionName' => 'src',
           ),
           'created_at' =>
           array (
             'type' =>
             array (
               0 => 'DateTimeInterface',
-            ),
-            'required' => true,
-            'actionName' => 'createdAt',
-          ),
-          'media' =>
-          array (
-            'type' =>
-            array (
-              0 => 'App\\Shared\\Generated\\DTO\\Video\\SourceTransfer',
               1 => 'null',
             ),
             'required' => false,
-            'actionName' => 'media',
+            'actionName' => 'createdAt',
           ),
         );
     }

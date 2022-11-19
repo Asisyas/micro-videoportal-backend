@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<dto xmlns="micro:dto-01"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="micro:dto-01 https://raw.githubusercontent.com/Micro-PHP/dto/master/src/Resource/schema/dto-01.xsd">
+
+    <class name="MediaConverter\VideoConvert">
+        <property name="file" type="File\File" required="true"/>
+        <property name="meta" type="MediaConverter\VideoMetadata" />
+        <property name="resolution" type="MediaConverter\Resolution" required="true"/>
+    </class>
+
+    <class name="MediaConverter\PublishStatus">
+        <property name="id" type="string" description="Video Unique ID" />
+        <property name="resolutions" type="Video\Resolution" is_collection="true"/>
+        <property name="status" type="int"/>
+    </class>
+
+    <class name="MediaConverter\VideoConvertCollection">
+        <property name="items" type="MediaConverter\VideoConvert" is_collection="true" required="true"/>
+    </class>
+
+    <class name="MediaConverter\MediaConvertedResult">
+        <property name="src" type="string" required="true"/>
+        <property name="resolution" type="MediaConverter\MediaResolution" required="true"/>
+    </class>
+
+    <class name="MediaConverter\MediaResolutionCollection">
+        <property name="resolutions" type="MediaConverter\MediaResolution" is_collection="true"/>
+    </class>
+
+    <class name="MediaConverter\MediaConfiguration">
+        <property name="file" type="File\File" />
+        <property name="video" type="Video\Video" />
+        <property name="resolution_configuration" type="MediaConverter\MediaResolution" />
+    </class>
+
+    <class name="MediaConverter\MediaConvertedResultCollection">
+        <property name="video_id" type="string" />
+        <property name="results" type="MediaConverter\MediaConvertedResult" is_collection="true" />
+    </class>
+
+    <class name="MediaConverter\DashManifest">
+        <property name="src" type="string" />
+    </class>
+
+    <class name="MediaConverter\MediaResolution">
+        <property name="height" type="int"/>
+        <property name="width" type="int"/>
+        <property name="fps" type="int" />
+        <property name="bit_rate" type="int"/>
+        <property name="frame_rate" type="int"/>
+        <property name="keyint_min" type="int" />
+        <property name="gop" type="int" />
+        <property name="media_type_flag" type="int" />
+        <property name="rotation" type="int" />
+    </class>
+
+    <class name="MediaConverter\MediaMetadata">
+        <property name="format" type="string" />
+        <property name="streams" type="MediaConverter\Stream" is_collection="true"/>
+    </class>
+
+    <class name="MediaConverter\Stream">
+        <property name="codec" type="string"/>
+        <property name="rate" type="int" />
+        <property name="channel_count" type="int" />
+        <property name="channel_layout" type="string"/>
+        <property name="height" type="int"/>
+        <property name="width" type="int" />
+        <property name="bitRate" type="int" />
+        <property name="frame_rate" type="int" />
+        <property name="duration" type="float" />
+        <property name="media_type_flag" type="int" />
+        <property name="rotation" type="int" />
+    </class>
+
+</dto>

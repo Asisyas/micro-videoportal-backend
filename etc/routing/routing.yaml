@@ -8,6 +8,7 @@ routes:
           - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
         response:
           - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
+          - App\Frontend\Common\ResponseTransformer\TemporalExceptionHandler
           - App\Frontend\Common\ResponseTransformer\ResponseExceptionHandler
 
   security:

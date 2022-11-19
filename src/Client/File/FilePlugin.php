@@ -2,7 +2,6 @@
 
 namespace App\Client\File;
 
-use App\Client\Amqp\Client\AmqpClientInterface;
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
 use App\Client\File\Client\FileClient;
 use App\Client\File\Expander\File\FileTransferExpanderFactory;
@@ -16,29 +15,47 @@ use App\Client\File\Uploader\FileUploaderFactory;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
+use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 
 class FilePlugin extends AbstractPlugin
 {
+    /**
+     * @var TemporalFacadeInterface
+     */
+    private readonly TemporalFacadeInterface            $temporalFacade;
+
+    /**
+     * @var ClientReaderFacadeInterface
+     */
+    private readonly ClientReaderFacadeInterface        $clientReaderFacade;
+
+    /**
+     * @var FilesystemFacadeInterface
+     */
+    private readonly FilesystemFacadeInterface          $filesystemFacade;
+
+    /**
+     * @var FileClientStoreFactoryInterface
+     */
+    private readonly FileClientStoreFactoryInterface    $fileClientStoreFactory;
+
     /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
         $container->register(FileClientInterface::class, function (
-            AmqpClientInterface $amqpClient,
+            TemporalFacadeInterface $temporalFacade,
             ClientReaderFacadeInterface $clientReaderFacade,
             FilesystemFacadeInterface $filesystemFacade
 
         ) {
-            $fileStoreClientFactory = $this->createFileClientStoreFactory($amqpClient);
-            $fileClientReaderFactory = $this->createFileClientReaderFactory($clientReaderFacade);
-            $fileUploaderFactory = $this->createFileUploaderFactory($fileStoreClientFactory, $filesystemFacade);
+            $this->temporalFacade           = $temporalFacade;
+            $this->clientReaderFacade       = $clientReaderFacade;
+            $this->filesystemFacade         = $filesystemFacade;
+            $this->fileClientStoreFactory   = $this->createFileClientStoreFactory();
 
-            return $this->createClient(
-                $fileStoreClientFactory,
-                $fileClientReaderFactory,
-                $fileUploaderFactory
-            );
+            return $this->createClient();
         });
     }
 
@@ -51,63 +68,46 @@ class FilePlugin extends AbstractPlugin
     }
 
     /**
-     * @param AmqpClientInterface $amqpClient
-     *
      * @return FileClientStoreFactoryInterface
      */
-    protected function createFileClientStoreFactory(AmqpClientInterface $amqpClient): FileClientStoreFactoryInterface
+    protected function createFileClientStoreFactory(): FileClientStoreFactoryInterface
     {
-        return new FileClientStoreFactory($amqpClient);
+        return new FileClientStoreFactory(
+            $this->temporalFacade
+        );
     }
 
     /**
-     * @param ClientReaderFacadeInterface $clientReaderFacade
-     *
      * @return FileClientReaderFactoryInterface
      */
-    protected function createFileClientReaderFactory(
-        ClientReaderFacadeInterface $clientReaderFacade
-    ): FileClientReaderFactoryInterface
+    protected function createFileClientReaderFactory(): FileClientReaderFactoryInterface
     {
         return new FileClientReaderFactory(
-            $clientReaderFacade,
+            $this->clientReaderFacade,
             $this->createFileTransferExpanderFactory()
         );
     }
 
     /**
-     * @param FileClientStoreFactoryInterface $fileClientStoreFactory
-     * @param FilesystemFacadeInterface $filesystemFacade
-     *
      * @return FileUploaderFactoryInterface
      */
-    protected function createFileUploaderFactory(
-        FileClientStoreFactoryInterface $fileClientStoreFactory,
-        FilesystemFacadeInterface $filesystemFacade
-    ): FileUploaderFactoryInterface
+    protected function createFileUploaderFactory(): FileUploaderFactoryInterface
     {
         return new FileUploaderFactory(
-            $fileClientStoreFactory,
-            $filesystemFacade
+            $this->fileClientStoreFactory,
+            $this->filesystemFacade
         );
     }
 
     /**
-     * @param FileClientStoreFactoryInterface $fileClientStoreFactory
-     * @param FileClientReaderFactoryInterface $fileClientReaderFactory
-     * @param FileUploaderFactoryInterface $fileUploaderFactory
      * @return FileClientInterface
      */
-    protected function createClient(
-        FileClientStoreFactoryInterface $fileClientStoreFactory,
-        FileClientReaderFactoryInterface $fileClientReaderFactory,
-        FileUploaderFactoryInterface $fileUploaderFactory
-    ): FileClientInterface
+    protected function createClient(): FileClientInterface
     {
         return new FileClient(
-            $fileClientStoreFactory,
-            $fileClientReaderFactory,
-            $fileUploaderFactory
+            $this->fileClientStoreFactory,
+            $this->createFileClientReaderFactory(),
+            $this->createFileUploaderFactory()
         );
     }
 

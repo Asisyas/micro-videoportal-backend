@@ -2,13 +2,11 @@
 
 namespace App\Backend\MediaConverter\Business\Dash;
 
-use App\Backend\MediaConverter\Format\DashManifest;
 use App\Backend\MediaConverter\MediaConverterPluginConfiguration;
 use App\Shared\Generated\DTO\MediaConverter\DashManifestTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaResolutionTransfer;
-use FFMpeg\Media\AdvancedMedia;
 use League\Flysystem\FilesystemOperator;
 use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
 
@@ -26,6 +24,9 @@ class DashManifestGenerator implements DashManifestGeneratorInterface
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function generate(MediaConvertedResultCollectionTransfer $convertedResultCollectionTransfer): DashManifestTransfer
     {
         $additionalParameters = ['-f', 'webm_dash_manifest'];
@@ -66,7 +67,7 @@ class DashManifestGenerator implements DashManifestGeneratorInterface
         array_push($additionalParameters, ...$copyMaps);
         $additionalParameters[] = '-adaptation_sets';
         $adaptationSetString = sprintf(
-            'id=0,streams=%s', implode(',', $videoStreams)
+            'id=0,streams=%s', implode(',', array_reverse($videoStreams))
         );
 
         if($audioStreams) {
@@ -75,7 +76,8 @@ class DashManifestGenerator implements DashManifestGeneratorInterface
 
         $additionalParameters[] = $adaptationSetString;
 
-        $destination = $convertedResultCollectionTransfer->getVideoId() . '.mpd';
+        $fileId = $convertedResultCollectionTransfer->getVideoId();
+        $destination = sprintf('%s.stream.mpd', $fileId);
 
         $this->save($additionalParameters, $destination);
 

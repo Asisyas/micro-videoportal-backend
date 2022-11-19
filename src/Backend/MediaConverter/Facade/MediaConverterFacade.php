@@ -44,11 +44,11 @@ class MediaConverterFacade implements MediaConverterFacadeInterface
     /**
      * {@inheritDoc}
      */
-    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer): MediaConvertedResultTransfer
+    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer, callable $progressListener = null): MediaConvertedResultTransfer
     {
         return $this->mediaConverterFactory
             ->create()
-            ->convert($mediaConfigurationTransfer);
+            ->convert($mediaConfigurationTransfer, $progressListener);
     }
 
     /**

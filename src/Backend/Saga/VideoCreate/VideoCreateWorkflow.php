@@ -15,9 +15,6 @@ use Temporal\Workflow;
 
 class VideoCreateWorkflow implements VideoCreateWorkflowInterface
 {
-    /**
-     * @var VideoCreateActivityInterface
-     */
     private ActivityProxy $activity;
 
     public function __construct()
@@ -42,7 +39,8 @@ class VideoCreateWorkflow implements VideoCreateWorkflowInterface
     /**
      * {@inheritDoc}
      */
-    public function createVideo(VideoCreateTransfer $videoCreateTransfer)
+    #[Workflow\WorkflowMethod("VideoCreate")]
+    public function createVideo(VideoCreateTransfer $videoCreateTransfer): \Generator
     {
         $saga = new Workflow\Saga();
         try {

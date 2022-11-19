@@ -11,6 +11,7 @@ class MediaMetadataExtractorFactory implements MediaMetadataExtractorFactoryInte
     /**
      * @param FfmpegFacadeInterface $ffmpegFacade
      * @param MetadataExpanderFactoryInterface $videoMetadataExpanderFactory
+     * @param FilesystemFacadeInterface $filesystemFacade
      */
     public function __construct(
         private readonly FfmpegFacadeInterface            $ffmpegFacade,
@@ -28,7 +29,7 @@ class MediaMetadataExtractorFactory implements MediaMetadataExtractorFactoryInte
         return new MediaMetadataExtractor(
             $this->ffmpegFacade,
             $this->videoMetadataExpanderFactory,
-            $this->filesystemFacade
+            $this->filesystemFacade->createFsOperator()
         );
     }
 }

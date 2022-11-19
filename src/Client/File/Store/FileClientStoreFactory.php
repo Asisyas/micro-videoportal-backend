@@ -2,15 +2,15 @@
 
 namespace App\Client\File\Store;
 
-use App\Client\Amqp\Client\AmqpClientInterface;
+use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 
 class FileClientStoreFactory implements FileClientStoreFactoryInterface
 {
     /**
-     * @param AmqpClientInterface $amqpClient
+     * @param TemporalFacadeInterface $temporalFacade
      */
     public function __construct(
-        private readonly AmqpClientInterface $amqpClient
+        private readonly TemporalFacadeInterface $temporalFacade
     )
     {
     }
@@ -20,6 +20,6 @@ class FileClientStoreFactory implements FileClientStoreFactoryInterface
      */
     public function create(): FileClientStoreInterface
     {
-        return new FileClientStore($this->amqpClient);
+        return new FileClientStore($this->temporalFacade->workflowClient());
     }
 }

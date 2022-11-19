@@ -2,12 +2,12 @@
 
 namespace App\Client\Video\Client;
 
+use App\Client\Video\Publisher\VideoPublisherFactoryInterface;
 use App\Client\Video\Reader\VideoReaderFactoryInterface;
 use App\Client\Video\Storage\VideoStorageFactoryInterface;
-use App\Shared\Generated\DTO\File\FileTransfer;
-use App\Shared\Generated\DTO\Video\SourceSetTransfer;
+use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
-use App\Shared\Generated\DTO\Video\VideoGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 
 class VideoClient implements VideoClientInterface
@@ -15,10 +15,12 @@ class VideoClient implements VideoClientInterface
     /**
      * @param VideoReaderFactoryInterface $videoReaderFactory
      * @param VideoStorageFactoryInterface $videoStorageFactory
+     * @param VideoPublisherFactoryInterface $videoPublisherFactory
      */
     public function __construct(
         private readonly VideoReaderFactoryInterface $videoReaderFactory,
-        private readonly VideoStorageFactoryInterface $videoStorageFactory
+        private readonly VideoStorageFactoryInterface $videoStorageFactory,
+        private readonly VideoPublisherFactoryInterface $videoPublisherFactory
     )
     {
     }
@@ -36,7 +38,17 @@ class VideoClient implements VideoClientInterface
     /**
      * {@inheritDoc}
      */
-    public function lookupVideo(VideoGetTransfer $videoGetTransfer): VideoTransfer
+    public function videoPublish(FileGetTransfer $fileGetTransfer): void
+    {
+        $this->videoPublisherFactory
+            ->create()
+            ->publish($fileGetTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function lookupVideo(VideoWatchTRansfer $videoGetTransfer): VideoTransfer
     {
         return $this->videoReaderFactory
             ->create()

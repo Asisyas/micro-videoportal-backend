@@ -5,6 +5,12 @@ namespace App\Backend\MediaConverter;
 use App\Backend\MediaConverter\Business\Configuration\Media\MediaResolutionsCalculatorFactory;
 use App\Backend\MediaConverter\Business\Configuration\Media\MediaResolutionsCalculatorFactoryInterface;
 use App\Backend\MediaConverter\Business\Converter\ConverterFactoryInterface;
+use App\Backend\MediaConverter\Business\Converter\Expander\Ext\DefaultsExpander;
+use App\Backend\MediaConverter\Business\Converter\Expander\Ext\DisableAudioVideoExpander;
+use App\Backend\MediaConverter\Business\Converter\Expander\Ext\VideoFiltersExpander;
+use App\Backend\MediaConverter\Business\Converter\Expander\Ext\VideoVerticalExpander;
+use App\Backend\MediaConverter\Business\Converter\Expander\FilterExpanderFactory;
+use App\Backend\MediaConverter\Business\Converter\Expander\FilterExpanderFactoryInterface;
 use App\Backend\MediaConverter\Business\Converter\MediaConverterFactory;
 use App\Backend\MediaConverter\Business\Dash\DashManifestGeneratorFactory;
 use App\Backend\MediaConverter\Business\Dash\DashManifestGeneratorFactoryInterface;
@@ -125,7 +131,18 @@ class MediaConverterPlugin extends AbstractPlugin
         return new MediaConverterFactory(
             $this->ffmpegFacade,
             $this->filesystemFacade,
+            $this->createFilterExpanderFactory(),
             $this->configuration()
+        );
+    }
+
+    protected function createFilterExpanderFactory(): FilterExpanderFactoryInterface
+    {
+        return new FilterExpanderFactory(
+            new DefaultsExpander(),
+            new DisableAudioVideoExpander(),
+            new VideoFiltersExpander(),
+            new VideoVerticalExpander(),
         );
     }
 
