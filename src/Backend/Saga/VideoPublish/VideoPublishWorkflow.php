@@ -12,12 +12,20 @@ use App\Shared\Generated\DTO\MediaConverter\MediaMetadataTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaResolutionTransfer;
 use App\Shared\Generated\DTO\Video\SourceTransfer;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
+use App\Shared\Generated\DTO\Video\VideoTransfer;
+use App\Shared\MediaConverter\Saga\MediaConvertActivityInterface;
+use App\Shared\MediaConverter\Saga\MediaConvertWorkflowInterface;
 use App\Shared\Saga\VideoPublish\VideoPublishActivityInterface;
 use App\Shared\Saga\VideoPublish\VideoPublishWorkflowInterface;
+use App\Shared\Video\Saga\VideoCreateWorkflowInterface;
+use App\Shared\VideoDescription\Saga\VideoDescriptionCreateWorkflowInterface;
 use Carbon\CarbonInterval;
 use Temporal\Activity\ActivityOptions;
 use Temporal\Common\RetryOptions;
 use Temporal\Internal\Workflow\ActivityProxy;
+use Temporal\Internal\Workflow\ChildWorkflowProxy;
+use Temporal\Promise;
 use Temporal\Workflow;
 use Temporal\Workflow\Saga;
 
@@ -26,8 +34,16 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
     /** @var VideoPublishActivityInterface */
     private ActivityProxy $activity;
 
+    private readonly ChildWorkflowProxy $workflowVideoDescriptionCreate;
+
+    private readonly ChildWorkflowProxy $workflowVideoCreate;
+
+    private readonly ChildWorkflowProxy $workflowMediaConverter;
+
     /** @var MediaConvertedResultCollectionTransfer  */
     private MediaConvertedResultCollectionTransfer $convertedResultCollection;
+
+    private bool $convertedFinish = false;
 
     public function __construct()
     {
@@ -35,11 +51,24 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
             VideoPublishActivityInterface::class,
             ActivityOptions::new()
                 ->withStartToCloseTimeout(CarbonInterval::hour(24))
-            //    ->withTaskQueue('VideoPublish')
+                ->withHeartbeatTimeout(CarbonInterval::minute(10))
                 ->withRetryOptions(
                     RetryOptions::new()
-                        ->withMaximumAttempts(3)
+                        ->withMaximumAttempts(10)
+
             )
+        );
+
+        $this->workflowVideoDescriptionCreate = Workflow::newChildWorkflowStub(
+            VideoDescriptionCreateWorkflowInterface::class
+        );
+
+        $this->workflowVideoCreate = Workflow::newChildWorkflowStub(
+            VideoCreateWorkflowInterface::class
+        );
+
+        $this->workflowMediaConverter = Workflow::newChildWorkflowStub(
+            MediaConvertWorkflowInterface::class
         );
 
         $this->convertedResultCollection = new MediaConvertedResultCollectionTransfer();
@@ -67,48 +96,22 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
             /** @var FileTransfer $fileTransfer */
             $fileTransfer = yield $this->activity->lookupSourceFile($fileGetTransfer);
 
-            /*
-            $saga
-                ->addCompensation(
-                    fn() => yield $this->activity->removeSourceFile((new FileRemoveTransfer())->setId($fileTransfer->getId()))
-                );
-            */
-
-            $videoTransfer = yield $this->activity->createVideo(
+            /** @var VideoTransfer $videoTransfer */
+            $videoTransfer = yield $this->workflowVideoCreate->createVideo(
                 (new VideoCreateTransfer())
-                ->setFileId($fileTransfer->getId())
+                    ->setVideoId($fileTransfer->getId())
             );
 
-            $this->convertedResultCollection->setVideoId($fileTransfer->getId());
+            yield $this->workflowVideoDescriptionCreate->create((new VideoDescriptionTransfer)
+                ->setVideoId($videoTransfer->getId())
+                ->setTitle($fileTransfer->getName())
+            );
 
-            /** @var MediaMetadataTransfer $mediaMetadataTransfer */
-            $mediaMetadataTransfer                  = yield $this->activity->extractMediaMetadata($fileTransfer);
-            $mediaResolutionsCollectionTransfer     = yield $this->activity->calculateMediaResolutions($mediaMetadataTransfer);
-            $mediaConfigurationTransfer             = (new MediaConfigurationTransfer())->setFile($fileTransfer);
-
-            /** @var MediaResolutionTransfer $resolutionTransfer */
-            $i = 0;
-            foreach ($mediaResolutionsCollectionTransfer->getResolutions() as $resolutionTransfer) {
-                $mediaConfigurationTransfer->setResolutionConfiguration($resolutionTransfer);
-
-                /** @var MediaConvertedResultTransfer $videoConvertedTransfer */
-                $videoConvertedTransfer = yield $this->activity->convert($mediaConfigurationTransfer);
-
-                $this->convertedResultCollection->setResults([$videoConvertedTransfer]);
-
-                if(1 > $i++) {
-                    continue;
-                }
-                /** @var DashManifestTransfer $dashManifest */
-                $dashManifest = yield $this->activity->generateDashManifest($this->convertedResultCollection);
-
-                if($i === 2) {
-                    $videoTransfer->setMedia((new SourceTransfer())->setSrc($dashManifest->getSrc()));
-                    $videoTransfer = yield $this->activity->updateVideo($videoTransfer);
-                }
-            }
-
-            return 'CONVERTED!';
+            return yield $this->workflowMediaConverter->convert(
+                (new MediaConfigurationTransfer())
+                    ->setFile($fileTransfer)
+                    ->setVideo($videoTransfer)
+            );
 
         } catch (\Throwable $exception) {
             $saga->compensate();

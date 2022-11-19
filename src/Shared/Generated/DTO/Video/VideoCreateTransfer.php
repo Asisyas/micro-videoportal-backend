@@ -12,16 +12,16 @@ use DateTimeInterface;
 
 final class VideoCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    protected string $file_id;
+    protected string $video_id;
 
-    public function getFileId(): string
+    public function getVideoId(): string
     {
-        return $this->file_id;
+        return $this->video_id;
     }
 
-    public function setFileId(string $file_id): self
+    public function setVideoId(string $video_id): self
     {
-        $this->file_id = $file_id;
+        $this->video_id = $video_id;
 
         return $this;
     }
@@ -29,14 +29,14 @@ final class VideoCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
     protected static function attributesMetadata(): array
     {
         return array (
-          'file_id' =>
+          'video_id' =>
           array (
             'type' =>
             array (
               0 => 'string',
             ),
             'required' => true,
-            'actionName' => 'fileId',
+            'actionName' => 'videoId',
           ),
         );
     }

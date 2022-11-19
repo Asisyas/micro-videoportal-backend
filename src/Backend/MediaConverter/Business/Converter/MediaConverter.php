@@ -10,6 +10,7 @@ use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
 use FFMpeg\Coordinate\FrameRate;
 use FFMpeg\Filters\Audio\SimpleFilter;
+use FFMpeg\Format\ProgressableInterface;
 use FFMpeg\Format\Video\DefaultVideo;
 use FFMpeg\Format\Video\WebM;
 use FFMpeg\Media\Audio;
@@ -37,7 +38,7 @@ class MediaConverter implements ConverterInterface
     {
     }
 
-    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer): MediaConvertedResultTransfer
+    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer, callable $progressListener = null): MediaConvertedResultTransfer
     {
         $fileTransfer       = $mediaConfigurationTransfer->getFile();
         $resolutionTransfer = $mediaConfigurationTransfer->getResolutionConfiguration();
@@ -52,6 +53,12 @@ class MediaConverter implements ConverterInterface
         $kbRate = $resolutionTransfer->getBitRate();
         if($kbRate) {
             $format->setKiloBitrate($kbRate);
+        }
+
+        if($progressListener !== null) {
+            $format->on('progress', function($video, $format, float $percentage) use ($progressListener) {
+                $progressListener($percentage);
+            });
         }
 
         $isVideoDisable = ($mediaSourceType & MediaConverterPluginConfiguration::FLAG_VIDEO)

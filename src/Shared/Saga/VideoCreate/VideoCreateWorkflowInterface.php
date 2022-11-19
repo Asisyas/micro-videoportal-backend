@@ -4,6 +4,7 @@ namespace App\Shared\Saga\VideoCreate;
 
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
+use Generator;
 use Micro\Plugin\Temporal\Workflow\WorkflowInterface;
 use Temporal\Workflow\WorkflowMethod;
 
@@ -13,8 +14,8 @@ interface VideoCreateWorkflowInterface extends WorkflowInterface
     /**
      * @param VideoCreateTransfer $videoCreateTransfer
      *
-     * @return VideoTransfer
+     * @return Generator<VideoTransfer>
      */
-    #[WorkflowMethod("VideoCreate")]
-    public function createVideo(VideoCreateTransfer $videoCreateTransfer);
+    #[WorkflowMethod("create")]
+    public function createVideo(VideoCreateTransfer $videoCreateTransfer): Generator;
 }

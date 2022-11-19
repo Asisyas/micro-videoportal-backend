@@ -53,7 +53,10 @@ class VideoConvertCommand extends Command
             dump($mediaConfiguration);
 
             $result = $this->videoConverterFacade->convert(
-                $mediaConfiguration
+                $mediaConfiguration,
+                function ($a = null, $b = null, $c = null) {
+                    dump($a, $b, $c);
+                }
             );
 
             $output->writeln(

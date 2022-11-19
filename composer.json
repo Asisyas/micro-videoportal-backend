@@ -13,6 +13,13 @@
         },
         {
             "type": "path",
+            "url": "../Micro/PluginElastic",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
             "url": "../Micro/PluginFilesystemS3Adapter",
             "options": {
                 "symlink": true
@@ -84,48 +91,6 @@
         {
             "type": "path",
             "url": "../Micro/PluginRedis",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginAmqp",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginAmqpTaskStatusCore",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginAmqpTaskStatusStorage",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginAmqpTaskStatusClient",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginAmqpTaskStatusClientDoctrine",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginAmqpTaskStatusStorageDoctrine",
             "options": {
                 "symlink": true
             }
@@ -274,11 +239,6 @@
         "micro/plugin-event-emitter": "*",
         "micro/plugin-serializer": "*",
         "micro/serializer-symfony-adapter": "*",
-        "micro/plugin-amqp": "*",
-        "micro/plugin-amqp-task-status-storage-doctrine": "*",
-        "micro/plugin-amqp-task-status-storage": "*",
-        "micro/plugin-amqp-task-status-client": "*",
-        "micro/plugin-amqp-task-status-client-doctrine": "*",
         "micro/plugin-redis": "*",
         "micro/plugin-http": "*",
         "micro/plugin-console": "*",
@@ -297,6 +257,7 @@
         "micro/plugin-ffmpeg": "*",
         "micro/plugin-filesystem": "*",
         "micro/plugin-filesystem-s3": "*",
+        "micro/plugin-elastic": "*",
         "vlucas/phpdotenv": "^5.4",
         "symfony/cache": "^6.0",
         "doctrine/annotations": "^1.13",

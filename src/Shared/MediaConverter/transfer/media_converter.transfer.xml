@@ -30,9 +30,8 @@
 
     <class name="MediaConverter\MediaConfiguration">
         <property name="file" type="File\File" />
+        <property name="video" type="Video\Video" />
         <property name="resolution_configuration" type="MediaConverter\MediaResolution" />
-        <property name="is_disable_video" type="bool" />
-        <property name="is_disable_audio" type="bool" />
     </class>
 
     <class name="MediaConverter\MediaConvertedResultCollection">

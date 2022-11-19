@@ -3,7 +3,6 @@
 namespace App\Backend\File\Facade;
 
 use App\Backend\File\Business\File\Factory\FileFactoryInterface;
-use App\Shared\Generated\DTO\File\FileCreateTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
 

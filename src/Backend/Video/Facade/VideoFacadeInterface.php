@@ -3,6 +3,7 @@
 namespace App\Backend\Video\Facade;
 
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoSrcSetTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Exception\VideoNotFoundException;
 
@@ -16,18 +17,11 @@ interface VideoFacadeInterface
     public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer;
 
     /**
-     * @param VideoTransfer $videoTransfer
+     * @param VideoSrcSetTransfer $videoSrcSetTransfer
      *
-     * @return VideoTransfer
+     * @return void
      *
      * @throws VideoNotFoundException
      */
-    public function updateVideo(VideoTransfer $videoTransfer): VideoTransfer;
-
-    /**
-     * @param VideoTransfer $videoTransfer
-     *
-     * @return void
-     */
-    public function populateVideo(VideoTransfer $videoTransfer): void;
+    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer): void;
 }

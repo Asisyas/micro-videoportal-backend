@@ -21,10 +21,11 @@ interface MediaConverterFacadeInterface
 
     /**
      * @param MediaConfigurationTransfer $mediaConfigurationTransfer
+     * @param callable|null $progressListener
      *
      * @return MediaConvertedResultTransfer
      */
-    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer): MediaConvertedResultTransfer;
+    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer, callable $progressListener = null): MediaConvertedResultTransfer;
 
     /**
      * @param MediaMetadataTransfer $videoMetadataTransfer

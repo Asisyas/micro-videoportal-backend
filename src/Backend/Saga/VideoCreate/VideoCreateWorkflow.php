@@ -42,7 +42,8 @@ class VideoCreateWorkflow implements VideoCreateWorkflowInterface
     /**
      * {@inheritDoc}
      */
-    public function createVideo(VideoCreateTransfer $videoCreateTransfer)
+    #[Workflow\WorkflowMethod("VideoCreate")]
+    public function createVideo(VideoCreateTransfer $videoCreateTransfer): \Generator
     {
         $saga = new Workflow\Saga();
         try {

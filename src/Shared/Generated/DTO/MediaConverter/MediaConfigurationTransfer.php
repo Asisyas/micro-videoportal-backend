@@ -9,33 +9,28 @@ declare(strict_types=1);
 namespace App\Shared\Generated\DTO\MediaConverter;
 
 use App\Shared\Generated\DTO\File\FileTransfer;
+use App\Shared\Generated\DTO\Video\VideoTransfer;
 use DateTimeInterface;
 
 final class MediaConfigurationTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected FileTransfer|null $file = null;
+    protected VideoTransfer|null $video = null;
     protected MediaResolutionTransfer|null $resolution_configuration = null;
-    protected bool|null $is_disable_video = null;
-    protected bool|null $is_disable_audio = null;
 
     public function getFile(): FileTransfer|null
     {
         return $this->file;
     }
 
+    public function getVideo(): VideoTransfer|null
+    {
+        return $this->video;
+    }
+
     public function getResolutionConfiguration(): MediaResolutionTransfer|null
     {
         return $this->resolution_configuration;
-    }
-
-    public function getIsDisableVideo(): bool|null
-    {
-        return $this->is_disable_video;
-    }
-
-    public function getIsDisableAudio(): bool|null
-    {
-        return $this->is_disable_audio;
     }
 
     public function setFile(FileTransfer|null $file): self
@@ -45,23 +40,16 @@ final class MediaConfigurationTransfer extends \Micro\Library\DTO\Object\Abstrac
         return $this;
     }
 
+    public function setVideo(VideoTransfer|null $video): self
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
     public function setResolutionConfiguration(MediaResolutionTransfer|null $resolution_configuration): self
     {
         $this->resolution_configuration = $resolution_configuration;
-
-        return $this;
-    }
-
-    public function setIsDisableVideo(bool|null $is_disable_video): self
-    {
-        $this->is_disable_video = $is_disable_video;
-
-        return $this;
-    }
-
-    public function setIsDisableAudio(bool|null $is_disable_audio): self
-    {
-        $this->is_disable_audio = $is_disable_audio;
 
         return $this;
     }
@@ -79,6 +67,16 @@ final class MediaConfigurationTransfer extends \Micro\Library\DTO\Object\Abstrac
             'required' => false,
             'actionName' => 'file',
           ),
+          'video' =>
+          array (
+            'type' =>
+            array (
+              0 => 'App\\Shared\\Generated\\DTO\\Video\\VideoTransfer',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'video',
+          ),
           'resolution_configuration' =>
           array (
             'type' =>
@@ -88,26 +86,6 @@ final class MediaConfigurationTransfer extends \Micro\Library\DTO\Object\Abstrac
             ),
             'required' => false,
             'actionName' => 'resolutionConfiguration',
-          ),
-          'is_disable_video' =>
-          array (
-            'type' =>
-            array (
-              0 => 'bool',
-              1 => 'null',
-            ),
-            'required' => false,
-            'actionName' => 'isDisableVideo',
-          ),
-          'is_disable_audio' =>
-          array (
-            'type' =>
-            array (
-              0 => 'bool',
-              1 => 'null',
-            ),
-            'required' => false,
-            'actionName' => 'isDisableAudio',
           ),
         );
     }

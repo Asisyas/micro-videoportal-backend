@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\MediaConverter;
 
-use App\Shared\Generated\DTO\Video\ResolutionTransfer;
 use DateTimeInterface;
 use Micro\Library\DTO\Object\Collection;
 

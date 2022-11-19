@@ -10,13 +10,12 @@ use Temporal\Client\WorkflowClientInterface;
 class VideoPublisher implements VideoPublisherInterface
 {
     /**
-     * @param TemporalFacadeInterface $temporalFacade
+     * @param WorkflowClientInterface $workflowClient
      */
     public function __construct(
         private readonly WorkflowClientInterface $workflowClient
     )
     {
-
     }
 
     /**

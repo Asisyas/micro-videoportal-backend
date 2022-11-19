@@ -42,7 +42,7 @@ class StreamVideoExpander extends AbstractStreamExpander
             return 0;
         }
 
-        return $tags['rotate'] ?: 0;
+        return $tags['rotate'] ?? 0;
     }
 
     /**
