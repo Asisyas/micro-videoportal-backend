@@ -4,6 +4,7 @@ namespace App\Backend\Video\Facade;
 
 use App\Backend\Video\Business\Manager\VideoManagerFactoryInterface;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
 use App\Shared\Generated\DTO\Video\VideoSrcSetTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
@@ -19,9 +20,14 @@ class VideoFacade implements VideoFacadeInterface
     {
     }
 
-    public function lookupVideo(VideoWatchTRansfer $videoGetTransfer): VideoTransfer
+    /**
+     * {@inheritDoc}
+     */
+    public function lookupVideo(VideoGetTransfer $videoGetTransfer): VideoTransfer
     {
-
+        return $this->videoManagerFactory
+            ->create()
+            ->lookup($videoGetTransfer);
     }
 
     /**
@@ -34,6 +40,9 @@ class VideoFacade implements VideoFacadeInterface
             ->createVideo($videoCreateTransfer);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer): void
     {
         $this->videoManagerFactory

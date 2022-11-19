@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Backend\VideoPublish\Business\Index;
+namespace App\Backend\VideoPublish\Facade;
 
 use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 
-interface VideoIndexPropagateManagerInterface
+interface VideoPublishFacadeInterface
 {
     /**
      * @param VideoGetTransfer $videoGetTransfer

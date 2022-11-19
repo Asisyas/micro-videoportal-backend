@@ -2,16 +2,30 @@
 
 namespace App\Backend\VideoPublish\Business\Index;
 
-use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
+use App\Backend\VideoPublish\Business\Factory\VideoWatchTransferFactoryInterface;
+use App\Backend\VideoPublish\Business\Index\Propagator\IndexPropagatorInterface;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 
 class VideoIndexPropagateManager implements VideoIndexPropagateManagerInterface
 {
-    public function __construct()
+    /**
+     * @param VideoWatchTransferFactoryInterface $videoWatchTransferFactory
+     * @param IndexPropagatorInterface $indexPropagator
+     */
+    public function __construct(
+        private readonly VideoWatchTransferFactoryInterface $videoWatchTransferFactory,
+        private readonly IndexPropagatorInterface $indexPropagator
+    )
     {
     }
 
-    public function propagateVideo(VideoWatchTransfer $videoWatchTransfer): void
+    /**
+     * {@inheritDoc}
+     */
+    public function propagateVideo(VideoGetTransfer $videoGetTransfer): void
     {
-        // TODO: Implement propagateVideo() method.
+        $videoWatchTransfer = $this->videoWatchTransferFactory->create($videoGetTransfer);
+
+        $this->indexPropagator->propagate($videoWatchTransfer);
     }
 }

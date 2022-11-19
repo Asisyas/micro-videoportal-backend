@@ -4,8 +4,6 @@ namespace App\Client\Search\Engine;
 
 use App\Shared\Generated\DTO\Search\SearchTransfer;
 use Elastic\Elasticsearch\Client;
-use Micro\Library\DTO\SerializerFacadeInterface;
-use Micro\Plugin\Elastic\Facade\ElasticFacadeInterface;
 
 class ElasticEngine implements SearchEngineInterface
 {
@@ -29,8 +27,6 @@ class ElasticEngine implements SearchEngineInterface
             'body'  => $searchTransfer->getQuery()
         ];
 
-        $response = $this->elasticClient->search($searchOpts);
-
-        return $response;
+        return $this->elasticClient->search($searchOpts);
     }
 }

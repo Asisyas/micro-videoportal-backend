@@ -15,5 +15,5 @@ interface VideoWatchFacadeInterface
      *
      * @throws NotFoundHttpException
      */
-    public function getVideoFromRequest(Request $request): VideoWatchTransfer;
+    public function handleVideoWatchRequest(Request $request): VideoWatchTransfer;
 }

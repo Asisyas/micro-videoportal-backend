@@ -15,6 +15,8 @@ use App\Backend\Test\Command\VideoConvertCommand;
 use App\Backend\Test\Command\VideoCreateCommand;
 use App\Backend\Test\Command\VideoExtractMetadataCommand;
 use App\Backend\MediaConverter\Facade\MediaConverterFacadeInterface;
+use App\Backend\Test\Command\VideoPropagateCommand;
+use App\Backend\VideoPublish\Facade\VideoPublishFacadeInterface;
 use App\Client\File\FileClientInterface;
 use App\Client\Search\Client\SearchClientInterface;
 use App\Client\Video\Client\VideoClientInterface;
@@ -40,6 +42,7 @@ class TestPlugin extends AbstractPlugin implements CommandProviderInterface
             new SagaCreateCommand($container->get(TemporalFacadeInterface::class)),
             new ClassLocatorCommand($container->get(LocatorFacadeInterface::class)),
             new SagaExecuteCommand($container->get(TemporalFacadeInterface::class)),
+            new VideoPropagateCommand($container->get(VideoPublishFacadeInterface::class)),
             new TestVideoSearchCommand(
                 $container->get(SearchClientInterface::class)
             ),

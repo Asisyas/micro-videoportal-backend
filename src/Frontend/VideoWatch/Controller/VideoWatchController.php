@@ -25,6 +25,6 @@ class VideoWatchController
      */
     public function getVideo(Request $request): VideoWatchTransfer
     {
-        return $this->videoWatchFacade->getVideoFromRequest($request);
+        return $this->videoWatchFacade->handleVideoWatchRequest($request);
     }
 }

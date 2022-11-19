@@ -34,7 +34,7 @@ class TestVideoSearchCommand extends Command
         $searchTransfer->setQuery([
             'query' => [
                 'fuzzy' => [
-                    'name'  => [
+                    'title'  => [
                         'value' => $input->getArgument('search-string'),
                         "boost" =>        1.0,
                         "fuzziness" =>     2,

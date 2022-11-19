@@ -8,6 +8,7 @@ use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\MediaConverter\Saga\MediaConvertWorkflowInterface;
 use App\Shared\Saga\VideoPublish\VideoPublishActivityInterface;
@@ -83,11 +84,18 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
                 ->setSource((new VideoDescriptionTransfer())->setTitle($fileTransfer->getName()))
             );
 
-            return yield $this->workflowMediaConverter->convert(
+            $videoConverted = yield $this->workflowMediaConverter->convert(
                 (new MediaConfigurationTransfer())
                     ->setFile($fileTransfer)
                     ->setVideo($videoTransfer)
             );
+
+            yield $this->activity->propagateVideo(
+                (new VideoGetTransfer())
+                    ->setVideoId($videoTransfer->getId())
+            );
+
+            return $videoConverted;
 
         } catch (\Throwable $exception) {
             $saga->compensate();

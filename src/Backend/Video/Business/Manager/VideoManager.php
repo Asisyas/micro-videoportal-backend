@@ -4,11 +4,15 @@ namespace App\Backend\Video\Business\Manager;
 
 use App\Backend\Video\Entity\Video;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoSrcSetTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Exception\VideoNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * @TODO: VideoTransfer expander
+ */
 class VideoManager implements VideoManagerInterface
 {
     /**
@@ -25,12 +29,8 @@ class VideoManager implements VideoManagerInterface
      */
     public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer): void
     {
-        $videoId = $videoSrcSetTransfer->getVideoId();
-
-        /** @var Video $videoEntity */
-        $videoEntity = $this->entityManager->getRepository(Video::class)->findOneBy([
-            'id'    => $videoId,
-        ]);
+        $videoId        = $videoSrcSetTransfer->getVideoId();
+        $videoEntity    = $this->lookupVideoEntity($videoId);
 
         if(!$videoEntity) {
             throw new VideoNotFoundException(sprintf('No video found with id "%s"', $videoId));
@@ -56,5 +56,44 @@ class VideoManager implements VideoManagerInterface
         $this->entityManager->flush();
 
         return $videoTransfer;
+    }
+
+    /**
+     * @param VideoGetTransfer $videoGetTransfer
+     *
+     * @return VideoTransfer
+     *
+     * @throws VideoNotFoundException
+     */
+    public function lookup(VideoGetTransfer $videoGetTransfer): VideoTransfer
+    {
+        $videoEntity = $this->lookupVideoEntity($videoGetTransfer->getVideoId());
+
+        return (new VideoTransfer())
+            ->setId($videoEntity->getId())
+            ->setSrc($videoEntity->getSrc())
+            ->setCreatedAt($videoEntity->getCreatedAt())
+            ;
+    }
+
+    /**
+     * @param string $videoId
+     *
+     * @return Video
+     *
+     * @throws VideoNotFoundException
+     */
+    protected function lookupVideoEntity(string $videoId): Video
+    {
+        /** @var Video $videoEntity */
+        $videoEntity = $this->entityManager->getRepository(Video::class)->findOneBy([
+            'id'    => $videoId,
+        ]);
+
+        if(!$videoEntity) {
+            throw new VideoNotFoundException(sprintf('No video found with id "%s"', $videoId));
+        }
+
+        return $videoEntity;
     }
 }
