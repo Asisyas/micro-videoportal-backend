@@ -27,10 +27,13 @@ $pluginsBack = [
     App\Backend\MediaConverter\MediaConverterPlugin::class,
 
     App\Backend\Test\TestPlugin::class,
-    App\Backend\Video\VideoPlugin::class,
-    App\Backend\VideoDescription\VideoDescriptionPlugin::class,
 
     App\Backend\SearchStorage\SearchStoragePlugin::class,
+
+    /** Video Plugins */
+    App\Backend\Video\VideoPlugin::class,
+    App\Backend\VideoPublish\VideoPublishPlugin::class,
+    App\Backend\VideoDescription\VideoDescriptionPlugin::class,
 
 ];
 

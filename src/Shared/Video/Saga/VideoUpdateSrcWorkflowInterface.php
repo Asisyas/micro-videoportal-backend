@@ -7,6 +7,7 @@ use App\Shared\Video\Exception\VideoNotFoundException;
 use Generator;
 use Micro\Plugin\Temporal\Workflow\WorkflowInterface;
 use Temporal\Workflow\WorkflowInterface as TemporalWorkflow;
+use Temporal\Workflow\WorkflowMethod;
 
 #[TemporalWorkflow]
 interface VideoUpdateSrcWorkflowInterface extends WorkflowInterface
@@ -14,9 +15,8 @@ interface VideoUpdateSrcWorkflowInterface extends WorkflowInterface
     /**
      * @param VideoSrcSetTransfer $videoSrcSetTransfer
      *
-     * @return Generator
-     *
      * @throws VideoNotFoundException
      */
-    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer): Generator;
+    #[WorkflowMethod(name: 'Video_Src_Update')]
+    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer);
 }

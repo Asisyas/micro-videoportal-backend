@@ -30,8 +30,10 @@ class VideoActivity implements VideoActivityInterface
     /**
      * {@inheritDoc}
      */
-    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer): void
+    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer): bool
     {
         $this->videoFacade->updateVideoSrc($videoSrcSetTransfer);
+
+        return true;
     }
 }

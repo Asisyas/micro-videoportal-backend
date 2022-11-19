@@ -2,7 +2,7 @@
 
 namespace App\Shared\VideoDescription\Saga;
 
-use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
+use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use Micro\Plugin\Temporal\Workflow\WorkflowInterface;
 use Temporal\Workflow\WorkflowMethod;
 
@@ -10,10 +10,10 @@ use Temporal\Workflow\WorkflowMethod;
 interface VideoDescriptionUpdateWorkflowInterface extends WorkflowInterface
 {
     /**
-     * @param VideoDescriptionTransfer $videoDescriptionTransfer
+     * @param VideoDescriptionPutTransfer $videoDescriptionPutTransfer
      *
      * @return bool
      */
     #[WorkflowMethod(name: 'update')]
-    public function update(VideoDescriptionTransfer $videoDescriptionTransfer): bool;
+    public function update(VideoDescriptionPutTransfer $videoDescriptionPutTransfer): bool;
 }

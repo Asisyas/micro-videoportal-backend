@@ -2,6 +2,8 @@
 
 namespace App\Backend\VideoDescription\Saga;
 
+use App\Shared\Generated\DTO\Video\VideoDescriptionGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
 use App\Shared\VideoDescription\Saga\VideoDescriptionCreateActivityInterface;
 use App\Shared\VideoDescription\Saga\VideoDescriptionCreateWorkflowInterface;
@@ -13,9 +15,6 @@ use Temporal\Workflow;
 
 class VideoDescriptionCreateWorkflow implements VideoDescriptionCreateWorkflowInterface
 {
-    /**
-     * @var VideoDescriptionCreateActivityInterface
-     */
     private ActivityProxy $activity;
 
     public function __construct()
@@ -37,8 +36,9 @@ class VideoDescriptionCreateWorkflow implements VideoDescriptionCreateWorkflowIn
     /**
      * {@inheritDoc}
      */
-    #[Workflow\WorkflowMethod(name: 'create')] public function create(VideoDescriptionTransfer $videoDescriptionTransfer)
+    #[Workflow\WorkflowMethod(name: 'Video_Description_Create')]
+    public function create(VideoDescriptionPutTransfer $videoDescriptionPutTransfer)
     {
-        yield $this->activity->create($videoDescriptionTransfer);
+        yield $this->activity->create($videoDescriptionPutTransfer);
     }
 }

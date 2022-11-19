@@ -3,7 +3,7 @@
 namespace App\Backend\VideoDescription\Saga;
 
 use App\Backend\VideoDescription\Facade\VideoDescriptionFacadeInterface;
-use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
+use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\VideoDescription\Saga\VideoDescriptionCreateActivityInterface;
 
 class VideoDescriptionCreateActivity implements VideoDescriptionCreateActivityInterface
@@ -20,8 +20,8 @@ class VideoDescriptionCreateActivity implements VideoDescriptionCreateActivityIn
     /**
      * {@inheritDoc}
      */
-    public function create(VideoDescriptionTransfer $videoDescriptionTransfer)
+    public function create(VideoDescriptionPutTransfer $videoDescriptionPutTransfer)
     {
-        yield $this->videoDescriptionFacade->create($videoDescriptionTransfer);
+        return $this->videoDescriptionFacade->create($videoDescriptionPutTransfer);
     }
 }

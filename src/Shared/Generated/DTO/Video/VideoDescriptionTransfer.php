@@ -8,18 +8,10 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\Video;
 
-use DateTimeInterface;
-
 final class VideoDescriptionTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    protected string $video_id;
     protected string $title;
     protected string|null $description = null;
-
-    public function getVideoId(): string
-    {
-        return $this->video_id;
-    }
 
     public function getTitle(): string
     {
@@ -29,13 +21,6 @@ final class VideoDescriptionTransfer extends \Micro\Library\DTO\Object\AbstractD
     public function getDescription(): string|null
     {
         return $this->description;
-    }
-
-    public function setVideoId(string $video_id): self
-    {
-        $this->video_id = $video_id;
-
-        return $this;
     }
 
     public function setTitle(string $title): self
@@ -55,15 +40,6 @@ final class VideoDescriptionTransfer extends \Micro\Library\DTO\Object\AbstractD
     protected static function attributesMetadata(): array
     {
         return array (
-          'video_id' =>
-          array (
-            'type' =>
-            array (
-              0 => 'string',
-            ),
-            'required' => true,
-            'actionName' => 'videoId',
-          ),
           'title' =>
           array (
             'type' =>

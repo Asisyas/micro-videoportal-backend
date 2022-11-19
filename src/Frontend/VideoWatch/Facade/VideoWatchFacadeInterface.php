@@ -2,7 +2,7 @@
 
 namespace App\Frontend\VideoWatch\Facade;
 
-use App\Shared\Generated\DTO\Video\VideoTransfer;
+use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -11,9 +11,9 @@ interface VideoWatchFacadeInterface
     /**
      * @param Request $request
      *
-     * @return VideoTransfer
+     * @return VideoWatchTransfer
      *
      * @throws NotFoundHttpException
      */
-    public function getVideoFromRequest(Request $request): VideoTransfer;
+    public function getVideoFromRequest(Request $request): VideoWatchTransfer;
 }

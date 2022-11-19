@@ -21,9 +21,9 @@ interface VideoActivityInterface extends ActivityInterface
     /**
      * @param VideoSrcSetTransfer $videoSrcSetTransfer
      *
-     * @return void
+     * @return bool
      *
      * @throws VideoNotFoundException
      */
-    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer): void;
+    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer): bool;
 }

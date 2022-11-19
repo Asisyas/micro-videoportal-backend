@@ -3,7 +3,7 @@
 namespace App\Backend\VideoDescription\Saga;
 
 use App\Backend\VideoDescription\Facade\VideoDescriptionFacadeInterface;
-use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
+use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\VideoDescription\Saga\VideoDescriptionUpdateActivityInterface;
 
 class VideoDescriptionUpdateActivity implements VideoDescriptionUpdateActivityInterface
@@ -20,8 +20,8 @@ class VideoDescriptionUpdateActivity implements VideoDescriptionUpdateActivityIn
     /**
      * {@inheritDoc}
      */
-    public function update(VideoDescriptionTransfer $videoDescriptionTransfer): bool
+    public function update(VideoDescriptionPutTransfer $videoDescriptionPutTransfer): bool
     {
-        return $this->videoDescriptionFacade->update($videoDescriptionTransfer);
+        return $this->videoDescriptionFacade->update($videoDescriptionPutTransfer);
     }
 }

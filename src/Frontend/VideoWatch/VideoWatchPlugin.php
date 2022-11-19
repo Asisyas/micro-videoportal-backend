@@ -13,27 +13,13 @@ use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
 class VideoWatchPlugin extends AbstractPlugin
 {
-    /**
-     * @var VideoClientInterface
-     */
-    private readonly VideoClientInterface $videoClient;
-
-    /**
-     * @var FilesystemFacadeInterface
-     */
-    private readonly FilesystemFacadeInterface $filesystemFacade;
 
     /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
-        $container->register(VideoWatchFacadeInterface::class, function (
-            VideoClientInterface $videoClient,
-            FilesystemFacadeInterface $filesystemFacade
-        ) {
-            $this->videoClient = $videoClient;
-            $this->filesystemFacade = $filesystemFacade;
+        $container->register(VideoWatchFacadeInterface::class, function () {
 
             return $this->createFacade();
         });
@@ -45,18 +31,7 @@ class VideoWatchPlugin extends AbstractPlugin
     protected function createFacade(): VideoWatchFacadeInterface
     {
         return new VideoWatchFacade(
-            $this->videoClient,
-            $this->createVideoGetTransferFactory(),
-            $this->filesystemFacade
         );
-    }
-
-    /**
-     * @return VideoGetTransferFactoryInterface
-     */
-    protected function createVideoGetTransferFactory(): VideoGetTransferFactoryInterface
-    {
-        return new VideoGetTransferFactory();
     }
 
     /**

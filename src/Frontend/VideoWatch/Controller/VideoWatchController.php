@@ -4,6 +4,7 @@ namespace App\Frontend\VideoWatch\Controller;
 
 use App\Frontend\VideoWatch\Facade\VideoWatchFacadeInterface;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
+use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
 class VideoWatchController
@@ -20,9 +21,9 @@ class VideoWatchController
     /**
      * @param Request $request
      *
-     * @return VideoTransfer
+     * @return VideoWatchTransfer
      */
-    public function getVideo(Request $request): VideoTransfer
+    public function getVideo(Request $request): VideoWatchTransfer
     {
         return $this->videoWatchFacade->getVideoFromRequest($request);
     }

@@ -2,25 +2,41 @@
 
 namespace App\Backend\VideoDescription\Facade;
 
+use App\Backend\VideoDescription\Business\Manager\VideoDescriptionManagerFactoryInterface;
 use App\Shared\Generated\DTO\Video\VideoDescriptionDeleteTransfer;
+use App\Shared\Generated\DTO\Video\VideoDescriptionGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
 
 class VideoDescriptionFacade implements VideoDescriptionFacadeInterface
 {
     /**
-     * {@inheritDoc}
+     * @param VideoDescriptionManagerFactoryInterface $videoDescriptionManagerFactory
      */
-    public function update(VideoDescriptionTransfer $videoDescriptionTransfer): bool
+    public function __construct(
+        private readonly VideoDescriptionManagerFactoryInterface $videoDescriptionManagerFactory
+    )
     {
-        // TODO: Implement update() method.
     }
 
     /**
      * {@inheritDoc}
      */
-    public function create(VideoDescriptionTransfer $videoDescriptionTransfer): bool
+    public function update(VideoDescriptionPutTransfer $descriptionPutTransfer): bool
     {
-        // TODO: Implement create() method.
+        return $this->videoDescriptionManagerFactory
+            ->create()
+            ->update($descriptionPutTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function create(VideoDescriptionPutTransfer $descriptionPutTransfer): bool
+    {
+        return $this->videoDescriptionManagerFactory
+            ->create()
+            ->create($descriptionPutTransfer);
     }
 
     /**
@@ -28,6 +44,18 @@ class VideoDescriptionFacade implements VideoDescriptionFacadeInterface
      */
     public function delete(VideoDescriptionDeleteTransfer $videoDescriptionDeleteTransfer): bool
     {
-        // TODO: Implement delete() method.
+        return $this->videoDescriptionManagerFactory
+            ->create()
+            ->delete($videoDescriptionDeleteTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function lookup(VideoDescriptionGetTransfer $descriptionGetTransfer): VideoDescriptionTransfer
+    {
+        return $this->videoDescriptionManagerFactory
+            ->create()
+            ->lookup($descriptionGetTransfer);
     }
 }
