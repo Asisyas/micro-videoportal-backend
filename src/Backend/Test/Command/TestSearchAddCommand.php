@@ -5,7 +5,7 @@ namespace App\Backend\Test\Command;
 use App\Backend\SearchStorage\Facade\SearchStorageFacadeInterface;
 use App\Client\Video\Client\VideoClientInterface;
 use App\Shared\Generated\DTO\Search\IndexAddTransfer;
-use App\Shared\Generated\DTO\Video\VideoGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,7 +28,7 @@ class TestSearchAddCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $videoGetTransfer = new VideoGetTransfer();
+        $videoGetTransfer = new VideoWatchTRansfer();
         $videoGetTransfer->setVideoId($input->getArgument('video-id'));
 
         $videoTransfer = $this->videoClient->lookupVideo($videoGetTransfer);

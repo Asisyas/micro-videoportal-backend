@@ -7,7 +7,7 @@ use App\Client\Search\Client\SearchClientInterface;
 use App\Client\Video\Client\VideoClientInterface;
 use App\Shared\Generated\DTO\Search\IndexAddTransfer;
 use App\Shared\Generated\DTO\Search\SearchTransfer;
-use App\Shared\Generated\DTO\Video\VideoGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

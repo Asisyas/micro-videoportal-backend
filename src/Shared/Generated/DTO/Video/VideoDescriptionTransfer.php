@@ -8,6 +8,8 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\Video;
 
+use DateTimeInterface;
+
 final class VideoDescriptionTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected string $title;

@@ -16,6 +16,8 @@ interface ClientStorageFacadeInterface
     public function put(PutTransfer $putTransfer): void;
 
     /**
+     * @deprecated
+     *
      * @param PostTransfer $postTransfer
      *
      * @return void
