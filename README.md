@@ -1,4 +1,4 @@
-# [WIP] It is a viewportal engine focused on Dynamic Adaptive Streaming over HTTP based on MicroFramework
+# [WIP] It is a video portal engine focused on Dynamic Adaptive Streaming over HTTP based on MicroFramework
 
 ### Used external technologies
  - [PHP ~8.1](https://www.php.net/releases/8.1/en.php)
