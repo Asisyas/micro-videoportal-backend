@@ -12,10 +12,10 @@ class VideoDescription
     #[ORM\Column(type: 'string', length: 150, unique: true, nullable: false)]
     private string $id;
 
-    #[ORM\Column(type: 'string', length: 150, unique: true, nullable: false)]
+    #[ORM\Column(type: 'string', length: 150, unique: false, nullable: false)]
     private string $title;
 
-    #[ORM\Column(type: 'text', nullable: false)]
+    #[ORM\Column(type: 'text', unique: false, nullable: false)]
     private string $description;
 
     /**

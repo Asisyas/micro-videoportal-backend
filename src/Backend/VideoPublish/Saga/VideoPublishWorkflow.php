@@ -46,16 +46,34 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
 
             )
         );
+    }
 
-        $this->workflowVideoDescriptionCreate = Workflow::newChildWorkflowStub(
+    /**
+     * @return VideoDescriptionCreateWorkflowInterface
+     */
+    protected function createVideoDescriptionWorkflow(): ChildWorkflowProxy
+    {
+        return Workflow::newChildWorkflowStub(
             VideoDescriptionCreateWorkflowInterface::class
         );
+    }
 
-        $this->workflowVideoCreate = Workflow::newChildWorkflowStub(
+    /**
+     * @return VideoCreateWorkflowInterface
+     */
+    protected function createVideoCreateWorkflow(): ChildWorkflowProxy
+    {
+        return Workflow::newChildWorkflowStub(
             VideoCreateWorkflowInterface::class
         );
+    }
 
-        $this->workflowMediaConverter = Workflow::newChildWorkflowStub(
+    /**
+     * @return MediaConvertWorkflowInterface
+     */
+    protected function createMediaConverterWorkflow(): ChildWorkflowProxy
+    {
+        return Workflow::newChildWorkflowStub(
             MediaConvertWorkflowInterface::class
         );
     }
@@ -68,32 +86,35 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
     {
         $saga = new Saga();
         $saga->setParallelCompensation(true);
+        $videoGetTransfer = (new VideoGetTransfer())
+            ->setVideoId($fileGetTransfer->getId());
 
         try {
             /** @var FileTransfer $fileTransfer */
             $fileTransfer = yield $this->activity->lookupSourceFile($fileGetTransfer);
 
             /** @var VideoTransfer $videoTransfer */
-            $videoTransfer = yield $this->workflowVideoCreate->createVideo(
-                (new VideoCreateTransfer())
-                    ->setVideoId($fileTransfer->getId())
+            $videoTransfer = yield $this
+                ->createVideoCreateWorkflow()
+                ->createVideo((new VideoCreateTransfer())->setVideoId($fileTransfer->getId())
             );
 
-            yield $this->workflowVideoDescriptionCreate->create((new VideoDescriptionPutTransfer())
-                ->setVideoId($videoTransfer->getId())
-                ->setSource((new VideoDescriptionTransfer())->setTitle($fileTransfer->getName()))
+            yield $this
+                ->createVideoDescriptionWorkflow()
+                ->create((new VideoDescriptionPutTransfer())
+                    ->setVideoId($videoTransfer->getId())
+                    ->setSource((new VideoDescriptionTransfer())->setTitle($fileTransfer->getName()))
             );
 
-            $videoConverted = yield $this->workflowMediaConverter->convert(
+            yield $this->activity->propagateVideo($videoGetTransfer);
+
+            $videoConverted = yield $this->createMediaConverterWorkflow()->convert(
                 (new MediaConfigurationTransfer())
                     ->setFile($fileTransfer)
                     ->setVideo($videoTransfer)
             );
 
-            yield $this->activity->propagateVideo(
-                (new VideoGetTransfer())
-                    ->setVideoId($videoTransfer->getId())
-            );
+           // yield $this->activity->propagateVideo($videoGetTransfer);
 
             return $videoConverted;
 

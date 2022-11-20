@@ -8,6 +8,7 @@ $pluginsFront = [
     App\Frontend\File\FilePlugin::class,
     App\Frontend\VideoPublish\VideoPublishPlugin::class,
     App\Frontend\VideoWatch\VideoWatchPlugin::class,
+    App\Frontend\VideoSearch\VideoSearchPlugin::class,
 ];
 
 $pluginsBack = [

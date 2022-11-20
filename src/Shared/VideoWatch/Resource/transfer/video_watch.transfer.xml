@@ -6,5 +6,6 @@
     <class name="Video\VideoWatch">
         <property name="id" type="string" required="true"/>
         <property name="src" type="string" />
+        <property name="created_at" type="datetime"/>
     </class>
 </dto>

@@ -13,3 +13,8 @@ routes:
     resource: '@VideoPublishPluginFrontend/Resource/routing/routing.yaml'
     format: yaml
     prefix: /api/video/publish
+
+  video_search_plugin:
+    resource: '@VideoSearchPluginFrontend/Resource/routing/routing.yaml'
+    format: yaml
+    prefix: /api/search

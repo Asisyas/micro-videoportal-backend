@@ -14,4 +14,14 @@
         <property name="id" type="string" />
     </class>
 
+    <class name="Search\SearchResultCollection">
+        <property name="total" type="int"/>
+        <property name="results" type="Search\Result" is_collection="true"/>
+    </class>
+
+    <class name="Search\Result">
+        <property name="type" type="string" />
+        <property name="source" type="abstract" />
+    </class>
+
 </dto>
