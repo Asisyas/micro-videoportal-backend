@@ -31,7 +31,7 @@ class TestVideoSearchCommand extends Command
     {
         $searchTransfer = new SearchTransfer();
         $searchTransfer->setIndex('video');
-        $searchTransfer->setQuery([
+        /*$searchTransfer->setQuery([
             'query' => [
                 'fuzzy' => [
                     'title'  => [
@@ -44,6 +44,27 @@ class TestVideoSearchCommand extends Command
                 ]
             ]
         ]);
+        */
+        /*
+        $searchTransfer->setQuery([
+            'query' => [
+                'bool'  => [
+                    'should'    => [
+                        [
+                            'match' => [
+                                'title' => $input->getArgument('search-string'),
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+        */
+
+        $searchTransfer->setQuery([
+            '_source' => false,
+        ]);
+
 
         $result = $this->searchClient->search($searchTransfer);
 

@@ -2,6 +2,7 @@
 
 namespace App\Client\Search\Engine;
 
+use App\Shared\Generated\DTO\Search\SearchResultCollectionTransfer;
 use App\Shared\Generated\DTO\Search\SearchTransfer;
 
 interface SearchEngineInterface
@@ -9,7 +10,7 @@ interface SearchEngineInterface
     /**
      * @param SearchTransfer $searchTransfer
      *
-     * @return mixed
+     * @return SearchResultCollectionTransfer
      */
-    public function search(SearchTransfer $searchTransfer): mixed;
+    public function search(SearchTransfer $searchTransfer): SearchResultCollectionTransfer;
 }

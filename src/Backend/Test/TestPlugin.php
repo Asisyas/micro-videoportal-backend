@@ -42,7 +42,7 @@ class TestPlugin extends AbstractPlugin implements CommandProviderInterface
             new SagaCreateCommand($container->get(TemporalFacadeInterface::class)),
             new ClassLocatorCommand($container->get(LocatorFacadeInterface::class)),
             new SagaExecuteCommand($container->get(TemporalFacadeInterface::class)),
-            new VideoPropagateCommand($container->get(VideoPublishFacadeInterface::class)),
+            new VideoPropagateCommand($container->get(TemporalFacadeInterface::class)),
             new TestVideoSearchCommand(
                 $container->get(SearchClientInterface::class)
             ),

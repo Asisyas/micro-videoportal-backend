@@ -14,6 +14,7 @@ final class VideoWatchTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
     protected string $id;
     protected string|null $src = null;
+    protected DateTimeInterface|null $created_at = null;
     protected string $title;
     protected string|null $description = null;
 
@@ -25,6 +26,11 @@ final class VideoWatchTransfer extends \Micro\Library\DTO\Object\AbstractDto
     public function getSrc(): string|null
     {
         return $this->src;
+    }
+
+    public function getCreatedAt(): DateTimeInterface|null
+    {
+        return $this->created_at;
     }
 
     public function getTitle(): string
@@ -47,6 +53,13 @@ final class VideoWatchTransfer extends \Micro\Library\DTO\Object\AbstractDto
     public function setSrc(string|null $src): self
     {
         $this->src = $src;
+
+        return $this;
+    }
+
+    public function setCreatedAt(DateTimeInterface|null $created_at): self
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }
@@ -86,6 +99,16 @@ final class VideoWatchTransfer extends \Micro\Library\DTO\Object\AbstractDto
             ),
             'required' => false,
             'actionName' => 'src',
+          ),
+          'created_at' =>
+          array (
+            'type' =>
+            array (
+              0 => 'DateTimeInterface',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'createdAt',
           ),
           'title' =>
           array (

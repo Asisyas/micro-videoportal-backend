@@ -6,6 +6,7 @@ use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Saga\VideoPublish\VideoPublishWorkflowInterface;
 use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 use Temporal\Client\WorkflowClientInterface;
+use Temporal\Client\WorkflowOptions;
 
 class VideoPublisher implements VideoPublisherInterface
 {
@@ -23,7 +24,10 @@ class VideoPublisher implements VideoPublisherInterface
      */
     public function publish(FileGetTransfer $fileGetTransfer): void
     {
-        $stub = $this->workflowClient->newWorkflowStub(VideoPublishWorkflowInterface::class);
+        $stub = $this->workflowClient->newWorkflowStub(
+            VideoPublishWorkflowInterface::class,
+            WorkflowOptions::new()->withWorkflowId($fileGetTransfer->getId())
+        );
 
         $this->workflowClient->start($stub, $fileGetTransfer);
     }

@@ -1,0 +1,8 @@
+routes:
+  video_search:
+    path: /
+    methods:
+      - GET
+    options:
+      action: search
+      controller: 'App\Frontend\VideoSearch\Controller\VideoSearchController'

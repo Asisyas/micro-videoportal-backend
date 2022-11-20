@@ -21,8 +21,6 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
 {
     private readonly ActivityProxy $mediaConvertActivity;
 
-    private readonly ChildWorkflowProxy $videoUpdateSrcActivity;
-
     public function __construct()
     {
         $this->mediaConvertActivity =  Workflow::newActivityStub(
@@ -36,14 +34,20 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
                 ->withStartToCloseTimeout(CarbonInterval::hour(24))
         );
 
-        $this->videoUpdateSrcActivity = Workflow::newChildWorkflowStub(
-            VideoUpdateSrcWorkflowInterface::class,
-                Workflow\ChildWorkflowOptions::new()
-                    ->withRetryOptions(
-                        RetryOptions::new()->withMaximumAttempts(10)
-                    )
-        );
+    }
 
+    /**
+     * @return VideoUpdateSrcWorkflowInterface
+     */
+    protected function createUpdateSrcWorkflow(): ChildWorkflowProxy
+    {
+        return Workflow::newChildWorkflowStub(
+            VideoUpdateSrcWorkflowInterface::class,
+            Workflow\ChildWorkflowOptions::new()
+                ->withRetryOptions(
+                    RetryOptions::new()->withMaximumAttempts(10)
+                )
+        );
     }
 
     /**
@@ -57,7 +61,6 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
         $resolutionsCollection  = yield $this->mediaConvertActivity->calculateMediaResolutions($mediaMetadataTransfer);
 
         $convertedCollection->setVideoId($fileTransfer->getId());
-        $isSrcSet = false;
         foreach ($resolutionsCollection->getResolutions() as $resolutionTransfer) {
             $mediaConfigurationTransfer->setResolutionConfiguration($resolutionTransfer);
 
@@ -72,17 +75,13 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
             /** @var DashManifestTransfer $dashManifest */
             $dashManifest = yield $this->mediaConvertActivity->generateDashManifest($convertedCollection);
 
-            if($isSrcSet) {
-                continue;
-            }
-
-            yield $this->videoUpdateSrcActivity->updateVideoSrc(
-                (new VideoSrcSetTransfer())
-                    ->setVideoId($mediaConfigurationTransfer->getVideo()->getId())
-                    ->setSrc($dashManifest->getSrc())
+            yield $this
+                ->createUpdateSrcWorkflow()
+                ->updateVideoSrc(
+                    (new VideoSrcSetTransfer())
+                        ->setVideoId($mediaConfigurationTransfer->getVideo()->getId())
+                        ->setSrc($dashManifest->getSrc())
             );
-
-            $isSrcSet = true;
         }
 
         return $mediaConfigurationTransfer;

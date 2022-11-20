@@ -2,10 +2,14 @@
 
 namespace App\Client\Search;
 
+use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
 use App\Client\Search\Client\SearchClient;
 use App\Client\Search\Client\SearchClientInterface;
 use App\Client\Search\Engine\ElasticEngineFactory;
 use App\Client\Search\Engine\SearchEngineFactoryInterface;
+use App\Client\Search\Expander\SearchResults\SearchResultsExpanderFactory;
+use App\Client\Search\Expander\SearchResults\SearchResultsExpanderFactoryInterface;
+use App\Client\Search\Expander\SearchResults\Video\TemporaryExpander;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 use Micro\Plugin\Elastic\Facade\ElasticFacadeInterface;
@@ -18,14 +22,21 @@ class SearchClientPlugin extends AbstractPlugin
     private readonly ElasticFacadeInterface $elasticFacade;
 
     /**
+     * @var ClientReaderFacadeInterface
+     */
+    private readonly ClientReaderFacadeInterface $clientReaderFacade;
+
+    /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
         $container->register(SearchClientInterface::class, function (
-            ElasticFacadeInterface $elasticFacade
+            ElasticFacadeInterface $elasticFacade,
+            ClientReaderFacadeInterface $clientReaderFacade
         ) {
             $this->elasticFacade = $elasticFacade;
+            $this->clientReaderFacade = $clientReaderFacade;
 
             return $this->createClient();
         });
@@ -46,6 +57,19 @@ class SearchClientPlugin extends AbstractPlugin
      */
     public function createSearchEngineFactory(): SearchEngineFactoryInterface
     {
-        return new ElasticEngineFactory($this->elasticFacade);
+        return new ElasticEngineFactory(
+            $this->elasticFacade,
+            $this->createSearchResultsExpanderFactory()
+        );
+    }
+
+    /**
+     * @return SearchResultsExpanderFactoryInterface
+     */
+    public function createSearchResultsExpanderFactory(): SearchResultsExpanderFactoryInterface
+    {
+        return new SearchResultsExpanderFactory(
+            new TemporaryExpander($this->clientReaderFacade)
+        );
     }
 }
