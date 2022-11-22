@@ -3,11 +3,11 @@
 namespace App\Frontend\Common\ResponseTransformer;
 
 use App\Client\ClientReader\Exception\NotFoundException as ClientReaderNotFoundException;
-use Micro\Plugin\Http\Exception\BadRequestException;
+use Http\Client\Exception\HttpException;
+use Micro\Plugin\Http\Exception\HttpBadRequestException;
 use Micro\Plugin\Http\Exception\HttpNotFoundException;
 use Micro\Plugin\Http\Handler\Response\ResponseHandlerContextInterface;
 use Micro\Plugin\Http\Handler\Response\ResponseHandlerInterface;
-use PhpAmqpLib\Exception\AMQPTimeoutException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -21,7 +21,27 @@ class ResponseExceptionHandler implements ResponseHandlerInterface
            return;
        }
 
-       if($exception instanceof BadRequestException) {
+       if($exception instanceof HttpException) {
+           $message = $exception->getMessage();
+           $response = new Response('', $exception->getCode());
+
+           if($exception instanceof HttpBadRequestException) {
+               $sourceConstraintsViolations = $exception->getSource();
+
+               if($sourceConstraintsViolations !== null) {
+                   $message = json_encode($this->buildMessage($sourceConstraintsViolations));
+                   $response->headers->set('Content-Type', 'application/json');
+               }
+           }
+
+           $responseHandlerContext->setResponse(
+               $response->setContent($message)
+           );
+
+           return;
+       }
+
+       if($exception instanceof HttpBadRequestException) {
            $sourceConstraintsViolations = $exception->getSource();
            $message = $exception->getMessage();
            $response = new Response('', 400);

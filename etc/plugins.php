@@ -4,11 +4,15 @@ $isCli = php_sapi_name() == 'cli';
 
 $pluginsFront = [
     Micro\Plugin\Http\HttpPlugin::class,
-    Micro\Plugin\Http\Security\HttpSecurityPlugin::class,
+
+    App\Frontend\Security\SecurityPlugin::class,
+
     App\Frontend\File\FilePlugin::class,
+
     App\Frontend\VideoPublish\VideoPublishPlugin::class,
     App\Frontend\VideoWatch\VideoWatchPlugin::class,
     App\Frontend\VideoSearch\VideoSearchPlugin::class,
+    App\Frontend\VideoChannel\VideoChannelPlugin::class,
 ];
 
 $pluginsBack = [
@@ -35,6 +39,7 @@ $pluginsBack = [
     App\Backend\Video\VideoPlugin::class,
     App\Backend\VideoPublish\VideoPublishPlugin::class,
     App\Backend\VideoDescription\VideoDescriptionPlugin::class,
+    App\Backend\VideoChannel\VideoChannelPlugin::class,
 
 ];
 
@@ -67,6 +72,7 @@ $pluginClients = [
     App\Client\ClientReader\ClientReaderPlugin::class,
     App\Client\File\FilePlugin::class,
     App\Client\Search\SearchClientPlugin::class,
+    App\Client\VideoChannel\VideoChannelClientPlugin::class,
 ];
 
 return array_merge($pluginsCommon, $pluginClients, ($isCli ?  $pluginsBack: $pluginsFront));

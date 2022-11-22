@@ -12,7 +12,7 @@ class FileUploadRequestValidator extends AbstractValidator
      * @param array $source
      * @return void
      *
-     * @throws \Micro\Plugin\Http\Exception\BadRequestException
+     * @throws \Micro\Plugin\Http\Exception\HttpBadRequestException
      */
     public function validate(array $source): void
     {

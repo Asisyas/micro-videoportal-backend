@@ -3,7 +3,7 @@
 namespace App\Frontend\Common\Validator\ArrayObject;
 
 use App\Frontend\Common\Validator\ValidatorInterface;
-use Micro\Plugin\Http\Exception\BadRequestException;
+use Micro\Plugin\Http\Exception\HttpBadRequestException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Validation;
 
@@ -24,7 +24,7 @@ abstract class AbstractValidator implements ValidatorInterface
             return;
         }
 
-        throw new BadRequestException(
+        throw new HttpBadRequestException(
             $result
         );
     }

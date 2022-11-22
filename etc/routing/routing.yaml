@@ -5,16 +5,8 @@ routes:
     options:
       handler:
         request:
-          - App\Frontend\Common\Authenticate\RequestHandler\AuthenticateRequestCookieHandler
+          - App\Frontend\Security\Handler\Request\RequestHeaderAuthenticateHandler
         response:
           - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
           - App\Frontend\Common\ResponseTransformer\TemporalExceptionHandler
           - App\Frontend\Common\ResponseTransformer\ResponseExceptionHandler
-
-  security:
-    resource: '@HttpSecurityPlugin/Resource/routing/routing.yaml'
-    prefix: /security
-    format: yaml
-    options:
-      security:
-        provider: api

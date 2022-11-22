@@ -2,14 +2,14 @@
 
 namespace App\Frontend\Common\Validator;
 
-use Micro\Plugin\Http\Exception\BadRequestException;
+use Micro\Plugin\Http\Exception\HttpBadRequestException;
 
 interface ValidatorInterface
 {
     /**
      * @param array $source
      *
-     * @throws BadRequestException
+     * @throws HttpBadRequestException
      */
     public function validate(array $source): void;
 }

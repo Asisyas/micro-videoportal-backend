@@ -28,6 +28,9 @@ class VideoSearchFacade implements VideoSearchFacadeInterface
         $searchTransfer
             ->setIndex('video')
             ->setQuery([
+                'sort'  => [
+                    '_score'
+                ],
                 '_source' => false,
             ])
         ;

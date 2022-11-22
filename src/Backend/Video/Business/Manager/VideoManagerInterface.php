@@ -14,6 +14,8 @@ interface VideoManagerInterface
      * @param VideoGetTransfer $videoGetTransfer
      *
      * @return VideoTransfer
+     *
+     * @throws VideoNotFoundException
      */
     public function lookup(VideoGetTransfer $videoGetTransfer): VideoTransfer;
 

@@ -11,7 +11,11 @@ use App\Shared\Video\Exception\VideoNotFoundException;
 interface VideoFacadeInterface
 {
     /**
+     * @param VideoGetTransfer $videoGetTransfer
+     *
      * @return VideoTransfer
+     *
+     * @throws VideoNotFoundException
      */
     public function lookupVideo(VideoGetTransfer $videoGetTransfer): VideoTransfer;
 

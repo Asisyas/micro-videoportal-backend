@@ -4,7 +4,7 @@ namespace App\Frontend\File\Controller;
 
 use App\Frontend\File\Facade\FileFacadeInterface;
 use App\Shared\Generated\DTO\File\FileTransfer;
-use Micro\Plugin\Http\Exception\BadRequestException;
+use Micro\Plugin\Http\Exception\HttpBadRequestException;
 use Symfony\Component\HttpFoundation\Request;
 
 class FileUploadController
@@ -23,7 +23,7 @@ class FileUploadController
      *
      * @return FileTransfer
      *
-     * @throws BadRequestException
+     * @throws HttpBadRequestException
      */
     public function uploadFile(Request $request): FileTransfer
     {

@@ -26,6 +26,7 @@ class ElasticEngine implements SearchEngineInterface
     public function search(SearchTransfer $searchTransfer): SearchResultCollectionTransfer
     {
         $searchOpts = [
+            'size'    => 10000,
             'index' => $searchTransfer->getIndex(),
             'body'  => $searchTransfer->getQuery()
         ];
