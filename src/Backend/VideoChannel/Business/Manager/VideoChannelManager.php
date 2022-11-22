@@ -46,7 +46,7 @@ class VideoChannelManager implements VideoChannelManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function createChannel(VideoChannelCreateTransfer $videoChannelCreateTransfer): VideoChannelTransfer
+    public function createChannel(VideoChannelCreateTransfer $videoChannelCreateTransfer): void
     {
         $channel = new VideoChannel(
             $videoChannelCreateTransfer->getId(),
@@ -68,11 +68,5 @@ class VideoChannelManager implements VideoChannelManagerInterface
                 $exception
             );
         }
-
-        // TODO: Temporary solution
-        return $this->lookupChannel(
-            (new VideoChannelGetTransfer())
-                ->setChannelId($videoChannelCreateTransfer->getId())
-        );
     }
 }

@@ -24,9 +24,9 @@ class VideoChannelFacade implements VideoChannelFacadeInterface
     /**
      * {@inheritDoc}
      */
-    public function createChannel(VideoChannelCreateTransfer $videoChannelCreateTransfer): VideoChannelTransfer
+    public function createChannel(VideoChannelCreateTransfer $videoChannelCreateTransfer): void
     {
-        return $this->videoChannelManagerFactory
+        $this->videoChannelManagerFactory
             ->create()
             ->createChannel($videoChannelCreateTransfer);
     }

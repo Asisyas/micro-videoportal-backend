@@ -12,11 +12,11 @@ interface VideoChannelManagerInterface
     /**
      * @param VideoChannelCreateTransfer $videoChannelCreateTransfer
      *
-     * @return VideoChannelTransfer
+     * @return void
      *
      * @throws ChannelIdAlreadyExistsException
      */
-    public function createChannel(VideoChannelCreateTransfer $videoChannelCreateTransfer): VideoChannelTransfer;
+    public function createChannel(VideoChannelCreateTransfer $videoChannelCreateTransfer): void;
 
     /**
      * @param VideoChannelGetTransfer $videoChannelGetTransfer
