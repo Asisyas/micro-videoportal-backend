@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2df14b70343591b7802cc5d4412b0657",
+    "content-hash": "98da8f05f92c206d2e5e87ae557ffe8a",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1531,10 +1531,16 @@
         {
             "name": "micro/event-emitter",
             "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/lib-event-emitter.git",
+                "reference": "19c41010d550406ea1cb3c7792ebf55fefa88478"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/EventEmitter",
-                "reference": "ba5a197e9c960fac41ff03175e350bd746fd1835"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/lib-event-emitter/zipball/19c41010d550406ea1cb3c7792ebf55fefa88478",
+                "reference": "19c41010d550406ea1cb3c7792ebf55fefa88478",
+                "shasum": ""
             },
             "require": {
                 "php": ">=8.0"
@@ -1545,6 +1551,7 @@
                     "Micro\\Component\\EventEmitter\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1555,10 +1562,11 @@
                 }
             ],
             "description": "Micro Framework: Event emitter component",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/lib-event-emitter/issues",
+                "source": "https://github.com/Micro-PHP/lib-event-emitter/tree/v1.0"
+            },
+            "time": "2022-11-23T18:27:57+00:00"
         },
         {
             "name": "micro/kernel",
@@ -1759,6 +1767,47 @@
                 "symlink": true,
                 "relative": true
             }
+        },
+        {
+            "name": "micro/plugin-event-emitter",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-event-emitter.git",
+                "reference": "ac870b08ed674cc56ef967ec335f12090b3f7fdd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-event-emitter/zipball/ac870b08ed674cc56ef967ec335f12090b3f7fdd",
+                "reference": "ac870b08ed674cc56ef967ec335f12090b3f7fdd",
+                "shasum": ""
+            },
+            "require": {
+                "micro/event-emitter": "^1",
+                "micro/kernel": "^1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micro\\Plugin\\EventEmitter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stanislau.Komar",
+                    "email": "stanislau_komar@epam.com"
+                }
+            ],
+            "description": "Micro Framework: Application plugin to provide an event emitter",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-event-emitter/issues",
+                "source": "https://github.com/Micro-PHP/plugin-event-emitter/tree/v1.0"
+            },
+            "time": "2022-11-23T20:17:17+00:00"
         },
         {
             "name": "micro/plugin-ffmpeg",

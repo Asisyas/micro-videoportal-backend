@@ -118,21 +118,7 @@
         },
         {
             "type": "path",
-            "url": "../Micro/EventEmitter",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
             "url": "../Micro/KernelApp",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginEventEmitter",
             "options": {
                 "symlink": true
             }
@@ -216,6 +202,7 @@
         "micro/plugin-configuration-helper": "*",
         "micro/plugin-serializer": "*",
         "micro/serializer-symfony-adapter": "*",
+        "micro/plugin-event-emitter": "^1",
         "micro/plugin-redis": "*",
         "micro/plugin-http": "*",
         "micro/plugin-console": "*",
