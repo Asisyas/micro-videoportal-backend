@@ -35,7 +35,7 @@ class VideoChannel
     {
         $this->id = $id;
         $this->ownerId = $ownerId;
-        $this->title = $title;
+        $this->title = $title ?: $id;
 
         $this->createdAt = new DateTime('now');
     }

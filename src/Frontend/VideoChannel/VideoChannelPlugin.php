@@ -6,8 +6,8 @@ use App\Client\VideoChannel\Client\VideoChannelClientInterface;
 use App\Frontend\Security\Facade\SecurityFacadeInterface;
 use App\Frontend\VideoChannel\Facade\VideoChannelFacade;
 use App\Frontend\VideoChannel\Facade\VideoChannelFacadeInterface;
-use App\Frontend\VideoChannel\Handler\ChannelCreateRequestHandlerFactory;
-use App\Frontend\VideoChannel\Handler\ChannelCreateRequestHandlerFactoryInterface;
+use App\Frontend\VideoChannel\Handler\Create\ChannelCreateRequestHandlerFactory;
+use App\Frontend\VideoChannel\Handler\Create\ChannelCreateRequestHandlerFactoryInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 

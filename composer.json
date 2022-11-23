@@ -62,20 +62,6 @@
         },
         {
             "type": "path",
-            "url": "../Micro/PluginEavCore",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginEavDoctrine",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
             "url": "../Micro/PluginUuid",
             "options": {
                 "symlink": true
@@ -160,13 +146,6 @@
         },
         {
             "type": "path",
-            "url": "../Micro/Kernel",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
             "url": "../Micro/PluginTwig",
             "options": {
                 "symlink": true
@@ -232,21 +211,17 @@
     ],
     "require": {
         "php": " >= 8.1",
-        "micro/kernel-app": "*",
+        "micro/kernel-app": "^1",
         "micro/plugin-locator": "*",
         "micro/plugin-configuration-helper": "*",
-        "micro/dependency-injection": "*",
-        "micro/plugin-event-emitter": "*",
         "micro/plugin-serializer": "*",
         "micro/serializer-symfony-adapter": "*",
         "micro/plugin-redis": "*",
         "micro/plugin-http": "*",
         "micro/plugin-console": "*",
         "micro/plugin-uuid": "*",
-        "micro/plugin-eav-doctrine": "*",
         "micro/plugin-logger-monolog": "*",
         "micro/plugin-storage":  "*",
-        "micro/plugin-twig":  "*",
         "micro/plugin-user": "*",
         "micro/plugin-user-model-doctrine": "*",
         "micro/plugin-user-manager-doctrine": "*",

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Frontend\VideoChannel\Handler;
+namespace App\Frontend\VideoChannel\Handler\Create;
 
 interface ChannelCreateRequestHandlerFactoryInterface
 {

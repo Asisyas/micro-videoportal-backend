@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Frontend\VideoChannel\Handler;
+namespace App\Frontend\VideoChannel\Handler\Create;
 
 use App\Client\VideoChannel\Client\VideoChannelClientInterface;
 use App\Frontend\Security\Facade\SecurityFacadeInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Frontend\VideoChannel\Handler;
+namespace App\Frontend\VideoChannel\Handler\Create;
 
 use App\Shared\Generated\DTO\Video\VideoChannelTransfer;
 use Symfony\Component\HttpFoundation\Request;

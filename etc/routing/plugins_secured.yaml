@@ -12,7 +12,7 @@ routes:
   video_publish_plugin:
     resource: '@VideoPublishPluginFrontend/Resource/routing/routing.yaml'
     format: yaml
-    prefix: /api/video/publish
+    prefix: /api/channel
 
   video_channel_plugin:
     resource: '@VideoChannelPluginFrontend/Resource/routing/routing.yaml'

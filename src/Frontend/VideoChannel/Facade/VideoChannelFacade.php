@@ -2,7 +2,7 @@
 
 namespace App\Frontend\VideoChannel\Facade;
 
-use App\Frontend\VideoChannel\Handler\ChannelCreateRequestHandlerFactoryInterface;
+use App\Frontend\VideoChannel\Handler\Create\ChannelCreateRequestHandlerFactoryInterface;
 use App\Shared\Generated\DTO\Video\VideoChannelTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
