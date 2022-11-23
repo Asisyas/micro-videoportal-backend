@@ -7,6 +7,7 @@ use App\Client\Video\Reader\VideoReaderFactoryInterface;
 use App\Client\Video\Storage\VideoStorageFactoryInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 
@@ -38,11 +39,11 @@ class VideoClient implements VideoClientInterface
     /**
      * {@inheritDoc}
      */
-    public function videoPublish(FileGetTransfer $fileGetTransfer): void
+    public function videoPublish(VideoPublishTransfer $videoPublishTransfer): void
     {
         $this->videoPublisherFactory
             ->create()
-            ->publish($fileGetTransfer);
+            ->publish($videoPublishTransfer);
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
 use App\Shared\Generated\DTO\Video\VideoGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\MediaConverter\Saga\MediaConvertWorkflowInterface;
 use App\Shared\Saga\VideoPublish\VideoPublishActivityInterface;
@@ -82,28 +83,33 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
      * {@inheritDoc}
      */
     #[Workflow\WorkflowMethod("VideoPublish")]
-    public function publish(FileGetTransfer $fileGetTransfer)
+    public function publish(VideoPublishTransfer $videoPublishTransfer)
     {
         $saga = new Saga();
         $saga->setParallelCompensation(true);
-        $videoGetTransfer = (new VideoGetTransfer())
-            ->setVideoId($fileGetTransfer->getId());
+        $videoId            = $videoPublishTransfer->getFileId();
+        $fileGetTransfer    = new FileGetTransfer();
+        $videoGetTransfer   = (new VideoGetTransfer())
+            ->setVideoId($videoId);
+
+        $fileGetTransfer->setId($videoId);
 
         try {
             /** @var FileTransfer $fileTransfer */
             $fileTransfer = yield $this->activity->lookupSourceFile($fileGetTransfer);
-
             /** @var VideoTransfer $videoTransfer */
             $videoTransfer = yield $this
                 ->createVideoCreateWorkflow()
-                ->createVideo((new VideoCreateTransfer())->setVideoId($fileTransfer->getId())
-            );
+                ->publishVideo($videoPublishTransfer);
 
             yield $this
                 ->createVideoDescriptionWorkflow()
                 ->create((new VideoDescriptionPutTransfer())
-                    ->setVideoId($videoTransfer->getId())
-                    ->setSource((new VideoDescriptionTransfer())->setTitle($fileTransfer->getName()))
+                    ->setVideoId($videoId)
+                    ->setSource(
+                        (new VideoDescriptionTransfer())
+                            ->setTitle($fileTransfer->getName())
+                    )
             );
 
             yield $this->activity->propagateVideo($videoGetTransfer);
@@ -113,8 +119,6 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
                     ->setFile($fileTransfer)
                     ->setVideo($videoTransfer)
             );
-
-           // yield $this->activity->propagateVideo($videoGetTransfer);
 
             return $videoConverted;
 

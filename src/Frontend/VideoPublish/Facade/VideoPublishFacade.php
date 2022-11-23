@@ -25,9 +25,9 @@ class VideoPublishFacade implements VideoPublishFacadeInterface
      */
     public function handleVideoPublishRequest(Request $request): Response
     {
-        $this->videoClient->videoPublish(
-            $this->videoPublishTransferFactory->createFromRequest($request)
-        );
+        $videoPublishTransfer = $this->videoPublishTransferFactory->createFromRequest($request);
+
+        $this->videoClient->videoPublish($videoPublishTransfer);
 
         return new Response();
     }

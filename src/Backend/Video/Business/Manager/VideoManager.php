@@ -5,6 +5,7 @@ namespace App\Backend\Video\Business\Manager;
 use App\Backend\Video\Entity\Video;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use App\Shared\Generated\DTO\Video\VideoSrcSetTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Exception\VideoNotFoundException;
@@ -44,13 +45,17 @@ class VideoManager implements VideoManagerInterface
     /**
      * {@inheritDoc}
      */
-    public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer
+    public function createVideo(VideoPublishTransfer $videoPublishTransfer): VideoTransfer
     {
-        $videoID        = $videoCreateTransfer->getVideoId();
+        $videoID        = $videoPublishTransfer->getFileId();
+        $channelId      = $videoPublishTransfer->getChannelId();
         $videoTransfer  = new VideoTransfer();
-        $videoEntity    = new Video($videoID);
+        $videoEntity    = new Video($videoID, $channelId);
 
-        $videoTransfer->setId($videoID);
+        $videoTransfer
+            ->setId($videoID)
+            ->setChannelId($channelId)
+        ;
 
         $this->entityManager->persist($videoEntity);
         $this->entityManager->flush();
@@ -73,6 +78,7 @@ class VideoManager implements VideoManagerInterface
             ->setId($videoEntity->getId())
             ->setSrc($videoEntity->getSrc())
             ->setCreatedAt($videoEntity->getCreatedAt())
+            ->setChannelId($videoEntity->getChannelId())
             ;
     }
 

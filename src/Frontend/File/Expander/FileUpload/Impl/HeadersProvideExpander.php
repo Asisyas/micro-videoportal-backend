@@ -14,8 +14,9 @@ class HeadersProvideExpander implements FileUploadTransferExpanderInterface
     public function expand(FileUploadTransfer $fileUploadTransfer, Request $request): void
     {
         $filenameEncoded = $request->headers->get('x-file-name', 'New video');
-        $filename = base64_decode($filenameEncoded);
-        if($filename === false) {
+        $filename = base64_decode($filenameEncoded, true);
+
+        if($filename === false || base64_encode($filename) !== $filenameEncoded) {
             $filename = $filenameEncoded;
         }
 

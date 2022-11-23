@@ -3,6 +3,7 @@
 namespace App\Frontend\VideoPublish\Factory;
 
 use App\Shared\Generated\DTO\File\FileGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use Symfony\Component\HttpFoundation\Request;
 
 class VideoPublishTransferFactory implements VideoPublishTransferFactoryInterface
@@ -14,12 +15,15 @@ class VideoPublishTransferFactory implements VideoPublishTransferFactoryInterfac
     /**
      * {@inheritDoc}
      */
-    public function createFromRequest(Request $request): FileGetTransfer
+    public function createFromRequest(Request $request): VideoPublishTransfer
     {
+        $channelId = $request->query->get('channel_id');
         $fileId = $request->query->get('file_id');
-        $fileGetTransfer = new FileGetTransfer();
 
-        return $fileGetTransfer
-            ->setId($fileId);
+        $videoPublishTransfer = new VideoPublishTransfer();
+
+        return $videoPublishTransfer
+            ->setChannelId($channelId)
+            ->setFileId($fileId);
     }
 }

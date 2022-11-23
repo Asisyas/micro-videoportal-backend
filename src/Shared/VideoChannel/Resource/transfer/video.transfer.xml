@@ -20,4 +20,12 @@
         <property name="channel_id" type="string" required="true" />
     </class>
 
+    <class name="Video\Video">
+        <property name="channel_id" type="string" />
+    </class>
+
+    <class name="Video\VideoCreate">
+        <property name="channel_id" type="string"/>
+    </class>
+
 </dto>

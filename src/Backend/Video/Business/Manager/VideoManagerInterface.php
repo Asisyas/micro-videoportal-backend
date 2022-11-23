@@ -4,6 +4,7 @@ namespace App\Backend\Video\Business\Manager;
 
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use App\Shared\Generated\DTO\Video\VideoSrcSetTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Exception\VideoNotFoundException;
@@ -20,11 +21,11 @@ interface VideoManagerInterface
     public function lookup(VideoGetTransfer $videoGetTransfer): VideoTransfer;
 
     /**
-     * @param VideoCreateTransfer $videoCreateTransfer
+     * @param VideoPublishTransfer $videoPublishTransfer
      *
      * @return VideoTransfer
      */
-    public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer;
+    public function createVideo(VideoPublishTransfer $videoPublishTransfer): VideoTransfer;
 
     /**
      * @param VideoSrcSetTransfer $videoSrcSetTransfer

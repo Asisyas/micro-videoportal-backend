@@ -8,21 +8,33 @@ declare(strict_types=1);
 
 namespace App\Shared\Generated\DTO\Video;
 
-use App\Shared\Generated\DTO\File\FileTransfer;
 use DateTimeInterface;
 
 final class VideoPublishTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
-    protected FileTransfer|null $file = null;
+    protected string $channel_id;
+    protected string|null $file_id = null;
 
-    public function getFile(): FileTransfer|null
+    public function getChannelId(): string
     {
-        return $this->file;
+        return $this->channel_id;
     }
 
-    public function setFile(FileTransfer|null $file): self
+    public function getFileId(): string|null
     {
-        $this->file = $file;
+        return $this->file_id;
+    }
+
+    public function setChannelId(string $channel_id): self
+    {
+        $this->channel_id = $channel_id;
+
+        return $this;
+    }
+
+    public function setFileId(string|null $file_id): self
+    {
+        $this->file_id = $file_id;
 
         return $this;
     }
@@ -30,15 +42,24 @@ final class VideoPublishTransfer extends \Micro\Library\DTO\Object\AbstractDto
     protected static function attributesMetadata(): array
     {
         return array (
-          'file' =>
+          'channel_id' =>
           array (
             'type' =>
             array (
-              0 => 'App\\Shared\\Generated\\DTO\\File\\FileTransfer',
+              0 => 'string',
+            ),
+            'required' => true,
+            'actionName' => 'channelId',
+          ),
+          'file_id' =>
+          array (
+            'type' =>
+            array (
+              0 => 'string',
               1 => 'null',
             ),
             'required' => false,
-            'actionName' => 'file',
+            'actionName' => 'fileId',
           ),
         );
     }
