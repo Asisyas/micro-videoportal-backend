@@ -18,8 +18,8 @@ $pluginsFront = [
 $pluginsBack = [
     Micro\Plugin\Doctrine\DoctrinePlugin::class,
 
-    Micro\Plugin\User\Model\Doctrine\UserModelDoctrinePlugin::class,
-    Micro\Plugin\User\Manager\Doctrine\UserManagerDoctrinePlugin::class,
+//    Micro\Plugin\User\Model\Doctrine\UserModelDoctrinePlugin::class,
+//    Micro\Plugin\User\Manager\Doctrine\UserManagerDoctrinePlugin::class,
 
     Micro\Plugin\Console\ConsolePlugin::class,
     /* Video converter FFMPEG */
@@ -47,7 +47,6 @@ $pluginsCommon = [
     // Common
     Micro\Plugin\Uuid\UuidPlugin::class,
     Micro\Plugin\Logger\Monolog\MonologPlugin::class,
-    Micro\Plugin\EventEmitter\EventEmitterPlugin::class,
     Micro\Plugin\Serializer\SerializerPlugin::class,
     Micro\Plugin\Serializer\Adapter\Symfony\SerializerSymfonyAdapterPlugin::class,
     Micro\Plugin\Redis\RedisPlugin::class,

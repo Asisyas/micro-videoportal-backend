@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98da8f05f92c206d2e5e87ae557ffe8a",
+    "content-hash": "9282ff2567c2026d88b812b542a92d73",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -361,6 +361,667 @@
             "time": "2022-07-02T10:48:51+00:00"
         },
         {
+            "name": "doctrine/cache",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/cache.git",
+                "reference": "1ca8f21980e770095a31456042471a57bc4c68fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/1ca8f21980e770095a31456042471a57bc4c68fb",
+                "reference": "1ca8f21980e770095a31456042471a57bc4c68fb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1 || ^8.0"
+            },
+            "conflict": {
+                "doctrine/common": ">2.2,<2.4"
+            },
+            "require-dev": {
+                "cache/integration-tests": "dev-master",
+                "doctrine/coding-standard": "^9",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "psr/cache": "^1.0 || ^2.0 || ^3.0",
+                "symfony/cache": "^4.4 || ^5.4 || ^6",
+                "symfony/var-exporter": "^4.4 || ^5.4 || ^6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Cache library is a popular cache implementation that supports many different drivers such as redis, memcache, apc, mongodb and others.",
+            "homepage": "https://www.doctrine-project.org/projects/cache.html",
+            "keywords": [
+                "abstraction",
+                "apcu",
+                "cache",
+                "caching",
+                "couchdb",
+                "memcached",
+                "php",
+                "redis",
+                "xcache"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/cache/issues",
+                "source": "https://github.com/doctrine/cache/tree/2.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcache",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-05-20T20:07:39+00:00"
+        },
+        {
+            "name": "doctrine/collections",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/collections.git",
+                "reference": "2b44dd4cbca8b5744327de78bafef5945c7e7b5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/collections/zipball/2b44dd4cbca8b5744327de78bafef5945c7e7b5e",
+                "reference": "2b44dd4cbca8b5744327de78bafef5945c7e7b5e",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/deprecations": "^0.5.3 || ^1",
+                "php": "^7.1.3 || ^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9.0 || ^10.0",
+                "phpstan/phpstan": "^1.4.8",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.1.5",
+                "vimeo/psalm": "^4.22"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Collections\\": "lib/Doctrine/Common/Collections"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Collections library that adds additional functionality on top of PHP arrays.",
+            "homepage": "https://www.doctrine-project.org/projects/collections.html",
+            "keywords": [
+                "array",
+                "collections",
+                "iterators",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/collections/issues",
+                "source": "https://github.com/doctrine/collections/tree/1.8.0"
+            },
+            "time": "2022-09-01T20:12:10+00:00"
+        },
+        {
+            "name": "doctrine/common",
+            "version": "3.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/common.git",
+                "reference": "8b5e5650391f851ed58910b3e3d48a71062eeced"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/8b5e5650391f851ed58910b3e3d48a71062eeced",
+                "reference": "8b5e5650391f851ed58910b3e3d48a71062eeced",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/persistence": "^2.0 || ^3.0",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9.0 || ^10.0",
+                "doctrine/collections": "^1",
+                "phpstan/phpstan": "^1.4.1",
+                "phpstan/phpstan-phpunit": "^1",
+                "phpunit/phpunit": "^7.5.20 || ^8.5 || ^9.0",
+                "squizlabs/php_codesniffer": "^3.0",
+                "symfony/phpunit-bridge": "^6.1",
+                "vimeo/psalm": "^4.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Common project is a library that provides additional functionality that other Doctrine projects depend on such as better reflection support, proxies and much more.",
+            "homepage": "https://www.doctrine-project.org/projects/common.html",
+            "keywords": [
+                "common",
+                "doctrine",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/common/issues",
+                "source": "https://github.com/doctrine/common/tree/3.4.3"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcommon",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-10-09T11:47:59+00:00"
+        },
+        {
+            "name": "doctrine/dbal",
+            "version": "3.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/dbal.git",
+                "reference": "f38ee8aaca2d58ee88653cb34a6a3880c23f38a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/f38ee8aaca2d58ee88653cb34a6a3880c23f38a5",
+                "reference": "f38ee8aaca2d58ee88653cb34a6a3880c23f38a5",
+                "shasum": ""
+            },
+            "require": {
+                "composer-runtime-api": "^2",
+                "doctrine/cache": "^1.11|^2.0",
+                "doctrine/deprecations": "^0.5.3|^1",
+                "doctrine/event-manager": "^1|^2",
+                "php": "^7.4 || ^8.0",
+                "psr/cache": "^1|^2|^3",
+                "psr/log": "^1|^2|^3"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "10.0.0",
+                "jetbrains/phpstorm-stubs": "2022.2",
+                "phpstan/phpstan": "1.8.10",
+                "phpstan/phpstan-strict-rules": "^1.4",
+                "phpunit/phpunit": "9.5.25",
+                "psalm/plugin-phpunit": "0.17.0",
+                "squizlabs/php_codesniffer": "3.7.1",
+                "symfony/cache": "^5.4|^6.0",
+                "symfony/console": "^4.4|^5.4|^6.0",
+                "vimeo/psalm": "4.29.0"
+            },
+            "suggest": {
+                "symfony/console": "For helpful console commands such as SQL execution and import of files."
+            },
+            "bin": [
+                "bin/doctrine-dbal"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\DBAL\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.",
+            "homepage": "https://www.doctrine-project.org/projects/dbal.html",
+            "keywords": [
+                "abstraction",
+                "database",
+                "db2",
+                "dbal",
+                "mariadb",
+                "mssql",
+                "mysql",
+                "oci8",
+                "oracle",
+                "pdo",
+                "pgsql",
+                "postgresql",
+                "queryobject",
+                "sasql",
+                "sql",
+                "sqlite",
+                "sqlserver",
+                "sqlsrv"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/dbal/issues",
+                "source": "https://github.com/doctrine/dbal/tree/3.5.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fdbal",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-10-24T07:26:18+00:00"
+        },
+        {
+            "name": "doctrine/deprecations",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/deprecations.git",
+                "reference": "0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de",
+                "reference": "0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9",
+                "phpunit/phpunit": "^7.5|^8.5|^9.5",
+                "psr/log": "^1|^2|^3"
+            },
+            "suggest": {
+                "psr/log": "Allows logging deprecations via PSR-3 logger implementation"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Deprecations\\": "lib/Doctrine/Deprecations"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A small layer on top of trigger_error(E_USER_DEPRECATED) or PSR-3 logging with options to disable all deprecations or selectively for packages.",
+            "homepage": "https://www.doctrine-project.org/",
+            "support": {
+                "issues": "https://github.com/doctrine/deprecations/issues",
+                "source": "https://github.com/doctrine/deprecations/tree/v1.0.0"
+            },
+            "time": "2022-05-02T15:47:09+00:00"
+        },
+        {
+            "name": "doctrine/event-manager",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/event-manager.git",
+                "reference": "95aa4cb529f1e96576f3fda9f5705ada4056a520"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/95aa4cb529f1e96576f3fda9f5705ada4056a520",
+                "reference": "95aa4cb529f1e96576f3fda9f5705ada4056a520",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/deprecations": "^0.5.3 || ^1",
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "doctrine/common": "<2.9"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9 || ^10",
+                "phpstan/phpstan": "~1.4.10 || ^1.8.8",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "vimeo/psalm": "^4.24"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "The Doctrine Event Manager is a simple PHP event system that was built to be used with the various Doctrine projects.",
+            "homepage": "https://www.doctrine-project.org/projects/event-manager.html",
+            "keywords": [
+                "event",
+                "event dispatcher",
+                "event manager",
+                "event system",
+                "events"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/event-manager/issues",
+                "source": "https://github.com/doctrine/event-manager/tree/1.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fevent-manager",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-10-12T20:51:15+00:00"
+        },
+        {
+            "name": "doctrine/inflector",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/inflector.git",
+                "reference": "d9d313a36c872fd6ee06d9a6cbcf713eaa40f024"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/d9d313a36c872fd6ee06d9a6cbcf713eaa40f024",
+                "reference": "d9d313a36c872fd6ee06d9a6cbcf713eaa40f024",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^10",
+                "phpstan/phpstan": "^1.8",
+                "phpstan/phpstan-phpunit": "^1.1",
+                "phpstan/phpstan-strict-rules": "^1.3",
+                "phpunit/phpunit": "^8.5 || ^9.5",
+                "vimeo/psalm": "^4.25"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Inflector\\": "lib/Doctrine/Inflector"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Inflector is a small library that can perform string manipulations with regard to upper/lowercase and singular/plural forms of words.",
+            "homepage": "https://www.doctrine-project.org/projects/inflector.html",
+            "keywords": [
+                "inflection",
+                "inflector",
+                "lowercase",
+                "manipulation",
+                "php",
+                "plural",
+                "singular",
+                "strings",
+                "uppercase",
+                "words"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/inflector/issues",
+                "source": "https://github.com/doctrine/inflector/tree/2.0.6"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Finflector",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-10-20T09:10:12+00:00"
+        },
+        {
+            "name": "doctrine/instantiator",
+            "version": "1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/instantiator.git",
+                "reference": "10dcfce151b967d20fde1b34ae6640712c3891bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/10dcfce151b967d20fde1b34ae6640712c3891bc",
+                "reference": "10dcfce151b967d20fde1b34ae6640712c3891bc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9",
+                "ext-pdo": "*",
+                "ext-phar": "*",
+                "phpbench/phpbench": "^0.16 || ^1",
+                "phpstan/phpstan": "^1.4",
+                "phpstan/phpstan-phpunit": "^1",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "vimeo/psalm": "^4.22"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com",
+                    "homepage": "https://ocramius.github.io/"
+                }
+            ],
+            "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
+            "homepage": "https://www.doctrine-project.org/projects/instantiator.html",
+            "keywords": [
+                "constructor",
+                "instantiate"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/instantiator/issues",
+                "source": "https://github.com/doctrine/instantiator/tree/1.4.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Finstantiator",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-03-03T08:28:38+00:00"
+        },
+        {
             "name": "doctrine/lexer",
             "version": "1.2.3",
             "source": {
@@ -435,6 +1096,206 @@
                 }
             ],
             "time": "2022-02-28T11:07:21+00:00"
+        },
+        {
+            "name": "doctrine/orm",
+            "version": "2.13.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/orm.git",
+                "reference": "a5a6cc6630ce497290396d5f206887227820a634"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/a5a6cc6630ce497290396d5f206887227820a634",
+                "reference": "a5a6cc6630ce497290396d5f206887227820a634",
+                "shasum": ""
+            },
+            "require": {
+                "composer-runtime-api": "^2",
+                "doctrine/cache": "^1.12.1 || ^2.1.1",
+                "doctrine/collections": "^1.5",
+                "doctrine/common": "^3.0.3",
+                "doctrine/dbal": "^2.13.1 || ^3.2",
+                "doctrine/deprecations": "^0.5.3 || ^1",
+                "doctrine/event-manager": "^1.1",
+                "doctrine/inflector": "^1.4 || ^2.0",
+                "doctrine/instantiator": "^1.3",
+                "doctrine/lexer": "^1.2.3",
+                "doctrine/persistence": "^2.4 || ^3",
+                "ext-ctype": "*",
+                "php": "^7.1 || ^8.0",
+                "psr/cache": "^1 || ^2 || ^3",
+                "symfony/console": "^3.0 || ^4.0 || ^5.0 || ^6.0",
+                "symfony/polyfill-php72": "^1.23",
+                "symfony/polyfill-php80": "^1.16"
+            },
+            "conflict": {
+                "doctrine/annotations": "<1.13 || >= 2.0"
+            },
+            "require-dev": {
+                "doctrine/annotations": "^1.13",
+                "doctrine/coding-standard": "^9.0.2 || ^10.0",
+                "phpbench/phpbench": "^0.16.10 || ^1.0",
+                "phpstan/phpstan": "~1.4.10 || 1.9.2",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "psr/log": "^1 || ^2 || ^3",
+                "squizlabs/php_codesniffer": "3.7.1",
+                "symfony/cache": "^4.4 || ^5.4 || ^6.0",
+                "symfony/yaml": "^3.4 || ^4.0 || ^5.0 || ^6.0",
+                "vimeo/psalm": "4.30.0"
+            },
+            "suggest": {
+                "ext-dom": "Provides support for XSD validation for XML mapping files",
+                "symfony/cache": "Provides cache support for Setup Tool with doctrine/cache 2.0",
+                "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
+            },
+            "bin": [
+                "bin/doctrine"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\ORM\\": "lib/Doctrine/ORM"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "Object-Relational-Mapper for PHP",
+            "homepage": "https://www.doctrine-project.org/projects/orm.html",
+            "keywords": [
+                "database",
+                "orm"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/orm/issues",
+                "source": "https://github.com/doctrine/orm/tree/2.13.4"
+            },
+            "time": "2022-11-20T18:53:31+00:00"
+        },
+        {
+            "name": "doctrine/persistence",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/persistence.git",
+                "reference": "2a9c70a5e21f8968c5a46b79f819ea52f322080b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/persistence/zipball/2a9c70a5e21f8968c5a46b79f819ea52f322080b",
+                "reference": "2a9c70a5e21f8968c5a46b79f819ea52f322080b",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/event-manager": "^1 || ^2",
+                "php": "^7.2 || ^8.0",
+                "psr/cache": "^1.0 || ^2.0 || ^3.0"
+            },
+            "conflict": {
+                "doctrine/annotations": "<1.7 || >=2.0",
+                "doctrine/common": "<2.10"
+            },
+            "require-dev": {
+                "composer/package-versions-deprecated": "^1.11",
+                "doctrine/annotations": "^1.7",
+                "doctrine/coding-standard": "^10",
+                "doctrine/common": "^3.0",
+                "phpstan/phpstan": "1.8.8",
+                "phpstan/phpstan-phpunit": "^1",
+                "phpstan/phpstan-strict-rules": "^1.1",
+                "phpunit/phpunit": "^8.5 || ^9.5",
+                "symfony/cache": "^4.4 || ^5.4 || ^6.0",
+                "vimeo/psalm": "4.29.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Persistence\\": "src/Persistence"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "The Doctrine Persistence project is a set of shared interfaces and functionality that the different Doctrine object mappers share.",
+            "homepage": "https://www.doctrine-project.org/projects/persistence.html",
+            "keywords": [
+                "mapper",
+                "object",
+                "odm",
+                "orm",
+                "persistence"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/persistence/issues",
+                "source": "https://github.com/doctrine/persistence/tree/3.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fpersistence",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-11-18T14:10:19+00:00"
         },
         {
             "name": "elastic/transport",
@@ -1473,6 +2334,46 @@
             "time": "2022-11-23T18:09:49+00:00"
         },
         {
+            "name": "micro/deprecation-supports",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/deprations-support.git",
+                "reference": "3343c9283dc24bf5c2bb036a95f28e524bdc2bb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/deprations-support/zipball/3343c9283dc24bf5c2bb036a95f28e524bdc2bb9",
+                "reference": "3343c9283dc24bf5c2bb036a95f28e524bdc2bb9",
+                "shasum": ""
+            },
+            "require": {
+                "micro/kernel": "^1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micro\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stanislau Komar",
+                    "email": "stanislau_komar@epam.com"
+                }
+            ],
+            "description": "Micro Framework: Deprecation supports for plugins",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/deprations-support/issues",
+                "source": "https://github.com/Micro-PHP/deprations-support/tree/v1.0"
+            },
+            "time": "2022-11-25T16:08:26+00:00"
+        },
+        {
             "name": "micro/dto",
             "version": "1.0.5",
             "source": {
@@ -1530,19 +2431,20 @@
         },
         {
             "name": "micro/event-emitter",
-            "version": "1.0",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Micro-PHP/lib-event-emitter.git",
-                "reference": "19c41010d550406ea1cb3c7792ebf55fefa88478"
+                "reference": "bf810553722a1697ada9cfc7271102212e6a34dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Micro-PHP/lib-event-emitter/zipball/19c41010d550406ea1cb3c7792ebf55fefa88478",
-                "reference": "19c41010d550406ea1cb3c7792ebf55fefa88478",
+                "url": "https://api.github.com/repos/Micro-PHP/lib-event-emitter/zipball/bf810553722a1697ada9cfc7271102212e6a34dd",
+                "reference": "bf810553722a1697ada9cfc7271102212e6a34dd",
                 "shasum": ""
             },
             "require": {
+                "micro/kernel": "^1",
                 "php": ">=8.0"
             },
             "type": "library",
@@ -1564,27 +2466,26 @@
             "description": "Micro Framework: Event emitter component",
             "support": {
                 "issues": "https://github.com/Micro-PHP/lib-event-emitter/issues",
-                "source": "https://github.com/Micro-PHP/lib-event-emitter/tree/v1.0"
+                "source": "https://github.com/Micro-PHP/lib-event-emitter/tree/v1.1"
             },
-            "time": "2022-11-23T18:27:57+00:00"
+            "time": "2022-11-25T16:11:36+00:00"
         },
         {
             "name": "micro/kernel",
-            "version": "1.0",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Micro-PHP/micro-kernel.git",
-                "reference": "2886962e32f7106b8722b81ecbdb0d83db0e4437"
+                "reference": "b3911f5d6d967932c18ef3e67e63d6df010341d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Micro-PHP/micro-kernel/zipball/2886962e32f7106b8722b81ecbdb0d83db0e4437",
-                "reference": "2886962e32f7106b8722b81ecbdb0d83db0e4437",
+                "url": "https://api.github.com/repos/Micro-PHP/micro-kernel/zipball/b3911f5d6d967932c18ef3e67e63d6df010341d9",
+                "reference": "b3911f5d6d967932c18ef3e67e63d6df010341d9",
                 "shasum": ""
             },
             "require": {
                 "micro/dependency-injection": "^1",
-                "micro/event-emitter": "^1",
                 "php": ">=8.0"
             },
             "type": "library",
@@ -1605,20 +2506,30 @@
             ],
             "support": {
                 "issues": "https://github.com/Micro-PHP/micro-kernel/issues",
-                "source": "https://github.com/Micro-PHP/micro-kernel/tree/v1.0"
+                "source": "https://github.com/Micro-PHP/micro-kernel/tree/v1.2"
             },
-            "time": "2022-11-23T18:24:59+00:00"
+            "time": "2022-11-25T16:16:16+00:00"
         },
         {
             "name": "micro/kernel-app",
-            "version": "1.0",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/micro-kernel-app.git",
+                "reference": "44049f8d7d4a8f1771979fbc13dbd0b678872b0e"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/KernelApp",
-                "reference": "5642cb5b9f367b1382b67c5730632823cc927b0b"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/micro-kernel-app/zipball/44049f8d7d4a8f1771979fbc13dbd0b678872b0e",
+                "reference": "44049f8d7d4a8f1771979fbc13dbd0b678872b0e",
+                "shasum": ""
             },
             "require": {
-                "micro/kernel": "^1"
+                "micro/deprecation-supports": "^1",
+                "micro/kernel": "^1",
+                "micro/kernel-boot-configuration": "^1",
+                "micro/kernel-boot-dependency": "^1",
+                "micro/plugin-event-emitter": "^1"
             },
             "type": "library",
             "autoload": {
@@ -1626,6 +2537,7 @@
                     "Micro\\Kernel\\App\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1636,18 +2548,115 @@
                 }
             ],
             "description": "Micro Framework: App Kernel component",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/micro-kernel-app/issues",
+                "source": "https://github.com/Micro-PHP/micro-kernel-app/tree/v1.2"
+            },
+            "time": "2022-11-25T16:20:07+00:00"
+        },
+        {
+            "name": "micro/kernel-boot-configuration",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/kernel-bootloader-configuration.git",
+                "reference": "4727eae6d4fedd5d4b404617fd335443abb9d99a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/kernel-bootloader-configuration/zipball/4727eae6d4fedd5d4b404617fd335443abb9d99a",
+                "reference": "4727eae6d4fedd5d4b404617fd335443abb9d99a",
+                "shasum": ""
+            },
+            "require": {
+                "micro/kernel": "^1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micro\\Framework\\Kernel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stanislau Komar",
+                    "email": "stanislau_komar@epam.com"
+                }
+            ],
+            "description": "Micro Framework: Kernel Boot loader - component to provide plugin configuration",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/kernel-bootloader-configuration/issues",
+                "source": "https://github.com/Micro-PHP/kernel-bootloader-configuration/tree/v1.1"
+            },
+            "time": "2022-11-25T16:26:10+00:00"
+        },
+        {
+            "name": "micro/kernel-boot-dependency",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/kernel-bootloader-dependency.git",
+                "reference": "324c519c4d0d95e973b1bce209e1c67d4b7360ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/kernel-bootloader-dependency/zipball/324c519c4d0d95e973b1bce209e1c67d4b7360ae",
+                "reference": "324c519c4d0d95e973b1bce209e1c67d4b7360ae",
+                "shasum": ""
+            },
+            "require": {
+                "micro/autowire": "^1",
+                "micro/kernel": "^1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micro\\Framework\\Kernel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stanislau Komar",
+                    "email": "stanislau_komar@epam.com"
+                }
+            ],
+            "description": "Micro Framework: Kernel Boot loader - component to provide dependencies",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/kernel-bootloader-dependency/issues",
+                "source": "https://github.com/Micro-PHP/kernel-bootloader-dependency/tree/v1.1"
+            },
+            "time": "2022-11-25T16:30:02+00:00"
         },
         {
             "name": "micro/plugin-configuration-helper",
-            "version": "0.1",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-configuration-helper.git",
+                "reference": "de3440b1dbc92383f70d1230149953bd724a04d1"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginConfigurationHelper",
-                "reference": "6a15e536f5c2797facd86651137d3dc04261bd2f"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-configuration-helper/zipball/de3440b1dbc92383f70d1230149953bd724a04d1",
+                "reference": "de3440b1dbc92383f70d1230149953bd724a04d1",
+                "shasum": ""
+            },
+            "require": {
+                "micro/kernel": "^1"
             },
             "type": "library",
             "autoload": {
@@ -1655,6 +2664,7 @@
                     "Micro\\Plugin\\Configuration\\Helper\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1665,20 +2675,29 @@
                 }
             ],
             "description": "Micro Framework: Configuration helper tool",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-configuration-helper/issues",
+                "source": "https://github.com/Micro-PHP/plugin-configuration-helper/tree/v1.2"
+            },
+            "time": "2022-11-25T16:33:14+00:00"
         },
         {
             "name": "micro/plugin-console",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-console.git",
+                "reference": "8c81475dd96a13d7eeb4c9b6f215f37dff88a543"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginConsole",
-                "reference": "9173c0613edb001b1e416e141681176a67fba9bf"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-console/zipball/8c81475dd96a13d7eeb4c9b6f215f37dff88a543",
+                "reference": "8c81475dd96a13d7eeb4c9b6f215f37dff88a543",
+                "shasum": ""
             },
             "require": {
+                "micro/kernel": "^1",
+                "micro/plugin-locator": "^1",
                 "php": ">=8.0",
                 "symfony/console": "^6.0"
             },
@@ -1688,6 +2707,7 @@
                     "Micro\\Plugin\\Console\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1698,21 +2718,75 @@
                 }
             ],
             "description": "Micro Framework: Console application component",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-console/issues",
+                "source": "https://github.com/Micro-PHP/plugin-console/tree/v1.0"
+            },
+            "time": "2022-11-25T16:40:07+00:00"
+        },
+        {
+            "name": "micro/plugin-doctrine",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-doctrine.git",
+                "reference": "f39887ab2b78cb0b58b609e7efb584c5fce6849a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-doctrine/zipball/f39887ab2b78cb0b58b609e7efb584c5fce6849a",
+                "reference": "f39887ab2b78cb0b58b609e7efb584c5fce6849a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "^1.13",
+                "doctrine/cache": "^2.1",
+                "doctrine/orm": "^2.11",
+                "micro/kernel": "^1",
+                "micro/plugin-console": "^1",
+                "php": ">=8.0",
+                "symfony/cache": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micro\\Plugin\\Doctrine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stanislau.Komar",
+                    "email": "stanislau_komar@epam.com"
+                }
+            ],
+            "description": "Micro Framework: Doctrine ORM Supports",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-doctrine/issues",
+                "source": "https://github.com/Micro-PHP/plugin-doctrine/tree/v1.0"
+            },
+            "time": "2022-11-25T16:50:21+00:00"
         },
         {
             "name": "micro/plugin-dto",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-dto.git",
+                "reference": "e32ba42589492acdbe36b260ab68ae89d3b44862"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginDTO",
-                "reference": "4049bb8dac698d55de18c8bf485300a2006cf676"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-dto/zipball/e32ba42589492acdbe36b260ab68ae89d3b44862",
+                "reference": "e32ba42589492acdbe36b260ab68ae89d3b44862",
+                "shasum": ""
             },
             "require": {
-                "micro/dto": "^1.0",
+                "micro/dto": "^1",
+                "micro/kernel": "^1",
                 "symfony/finder": "^5|^6"
             },
             "type": "library",
@@ -1721,6 +2795,7 @@
                     "Micro\\Plugin\\DTO\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1731,10 +2806,11 @@
                 }
             ],
             "description": "Micro Framework: Plugin for generating DTO classes. Based on micro/dto library.",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-dto/issues",
+                "source": "https://github.com/Micro-PHP/plugin-dto/tree/v1.0"
+            },
+            "time": "2022-11-25T16:53:30+00:00"
         },
         {
             "name": "micro/plugin-elastic",
@@ -1770,21 +2846,23 @@
         },
         {
             "name": "micro/plugin-event-emitter",
-            "version": "1.0",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Micro-PHP/plugin-event-emitter.git",
-                "reference": "ac870b08ed674cc56ef967ec335f12090b3f7fdd"
+                "reference": "aa99bc8094211dcc63c7f5fde2f63073b8e22741"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Micro-PHP/plugin-event-emitter/zipball/ac870b08ed674cc56ef967ec335f12090b3f7fdd",
-                "reference": "ac870b08ed674cc56ef967ec335f12090b3f7fdd",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-event-emitter/zipball/aa99bc8094211dcc63c7f5fde2f63073b8e22741",
+                "reference": "aa99bc8094211dcc63c7f5fde2f63073b8e22741",
                 "shasum": ""
             },
             "require": {
+                "micro/autowire": "^1",
                 "micro/event-emitter": "^1",
-                "micro/kernel": "^1"
+                "micro/kernel": "^1",
+                "micro/plugin-locator": "^1"
             },
             "type": "library",
             "autoload": {
@@ -1805,9 +2883,9 @@
             "description": "Micro Framework: Application plugin to provide an event emitter",
             "support": {
                 "issues": "https://github.com/Micro-PHP/plugin-event-emitter/issues",
-                "source": "https://github.com/Micro-PHP/plugin-event-emitter/tree/v1.0"
+                "source": "https://github.com/Micro-PHP/plugin-event-emitter/tree/v1.1"
             },
-            "time": "2022-11-23T20:17:17+00:00"
+            "time": "2022-11-25T16:57:56+00:00"
         },
         {
             "name": "micro/plugin-ffmpeg",
@@ -1909,14 +2987,22 @@
         },
         {
             "name": "micro/plugin-http",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-http.git",
+                "reference": "34b967325046e9529247e86fe6f6a5b33e87b1fb"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginHttp",
-                "reference": "ce409880670d0d0d7656a42e975c2528debf5752"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-http/zipball/34b967325046e9529247e86fe6f6a5b33e87b1fb",
+                "reference": "34b967325046e9529247e86fe6f6a5b33e87b1fb",
+                "shasum": ""
             },
             "require": {
-                "micro/plugin-configuration-helper": "0.1",
+                "micro/kernel": "^1",
+                "micro/plugin-configuration-helper": "^1",
+                "micro/plugin-logger-core": "^1",
                 "symfony/http-foundation": "^5|^6",
                 "symfony/routing": "^5|^6",
                 "symfony/yaml": "^5|^6"
@@ -1927,6 +3013,7 @@
                     "Micro\\Plugin\\Http\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1937,52 +3024,28 @@
                 }
             ],
             "description": "Micro Framework: Provides a component for building MVC aplication based on HTTP(s) protocol",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-http-security",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginHttpSecurity",
-                "reference": "ed3e9c0fd06ce5be79bed6c3bfb1a9422c82f981"
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-http/issues",
+                "source": "https://github.com/Micro-PHP/plugin-http/tree/v1.0"
             },
-            "require": {
-                "symfony/http-foundation": "^6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\Http\\Security\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: HTTP Security plugin",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "time": "2022-11-25T17:03:48+00:00"
         },
         {
             "name": "micro/plugin-locator",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-locator.git",
+                "reference": "35cf5b321936266174160466e81678642bda58d0"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginLocator",
-                "reference": "12bd41cbd06662a731a25194ea8867880bd7958c"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-locator/zipball/35cf5b321936266174160466e81678642bda58d0",
+                "reference": "35cf5b321936266174160466e81678642bda58d0",
+                "shasum": ""
             },
             "require": {
+                "micro/kernel": "^1",
                 "symfony/finder": "^6.1"
             },
             "type": "library",
@@ -1991,6 +3054,7 @@
                     "Micro\\Plugin\\Locator\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2001,20 +3065,28 @@
                 }
             ],
             "description": "Micro Framework plugin",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-locator/issues",
+                "source": "https://github.com/Micro-PHP/plugin-locator/tree/v1.0"
+            },
+            "time": "2022-11-25T17:10:31+00:00"
         },
         {
             "name": "micro/plugin-logger-core",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-logger.git",
+                "reference": "f07777a950097014a09eafec0a14040d57d3927e"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginLogger",
-                "reference": "c57bc3d8677c87d5cfa102fc6ec784acb2857af8"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-logger/zipball/f07777a950097014a09eafec0a14040d57d3927e",
+                "reference": "f07777a950097014a09eafec0a14040d57d3927e",
+                "shasum": ""
             },
             "require": {
+                "micro/kernel": "^1",
                 "php": ">=8.0",
                 "psr/log": "^1|^2|^3"
             },
@@ -2024,6 +3096,7 @@
                     "Micro\\Plugin\\Logger\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2034,21 +3107,28 @@
                 }
             ],
             "description": "Micro Framework: Logger plugin",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-logger/issues",
+                "source": "https://github.com/Micro-PHP/plugin-logger/tree/v1.0"
+            },
+            "time": "2022-11-25T17:17:56+00:00"
         },
         {
             "name": "micro/plugin-logger-monolog",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-logger-monolog.git",
+                "reference": "b7a0efce131b45e3392b1f32d07d2c640577cb53"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginLoggerMonolog",
-                "reference": "c2c0ad6a4e49532106e3049c33fe97c704afec77"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-logger-monolog/zipball/b7a0efce131b45e3392b1f32d07d2c640577cb53",
+                "reference": "b7a0efce131b45e3392b1f32d07d2c640577cb53",
+                "shasum": ""
             },
             "require": {
-                "micro/plugin-logger-core": "0.*",
+                "micro/plugin-logger-core": "^1",
                 "monolog/monolog": "2.3.*"
             },
             "type": "library",
@@ -2057,6 +3137,7 @@
                     "Micro\\Plugin\\Logger\\Monolog\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2066,11 +3147,12 @@
                     "email": "stanislau_komar@epam.com"
                 }
             ],
-            "description": "MIcro Framework: Implements \"micro/plugin-logger-core\" based on Monolog.",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "description": "Micro Framework: Implements \"micro/plugin-logger-core\" based on Monolog.",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-logger-monolog/issues",
+                "source": "https://github.com/Micro-PHP/plugin-logger-monolog/tree/v1.0"
+            },
+            "time": "2022-11-25T17:20:07+00:00"
         },
         {
             "name": "micro/plugin-redis",
@@ -2234,99 +3316,6 @@
                 }
             ],
             "description": "Micro Framework: TemporalIO plugin",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-user",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginUser",
-                "reference": "146a7d374a543041f10d30c51245d070f90932fd"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\User\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: User abstraction",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-user-manager-doctrine",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginUserManagerDoctrine",
-                "reference": "84ef5b6e2d6a5953dba0c3b27b3e5a5dd35241ab"
-            },
-            "require": {
-                "micro/plugin-user-model-doctrine": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\User\\Manager\\Doctrine\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: Adapter for the \"micro/plugin-user\" plugin based on doctrine",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-user-model-doctrine",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginUserModelDoctrine",
-                "reference": "907861a4fdc3b1ae29ed2f5a87eb9760ce83e914"
-            },
-            "require": {
-                "micro/plugin-user": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\User\\Model\\Doctrine\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: User model",
             "transport-options": {
                 "symlink": true,
                 "relative": true
@@ -4183,16 +5172,16 @@
         },
         {
             "name": "spiral/roadrunner",
-            "version": "v2.11.4",
+            "version": "v2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roadrunner-server/roadrunner.git",
-                "reference": "bee07c00a8954945156ca3e3de9c032b530abd01"
+                "reference": "33bebe596b6c920634ec9386d818b912939de94b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roadrunner-server/roadrunner/zipball/bee07c00a8954945156ca3e3de9c032b530abd01",
-                "reference": "bee07c00a8954945156ca3e3de9c032b530abd01",
+                "url": "https://api.github.com/repos/roadrunner-server/roadrunner/zipball/33bebe596b6c920634ec9386d818b912939de94b",
+                "reference": "33bebe596b6c920634ec9386d818b912939de94b",
                 "shasum": ""
             },
             "require": {
@@ -4218,9 +5207,9 @@
             "description": "RoadRunner: High-performance PHP application server and process manager written in Go and powered with plugins",
             "support": {
                 "issues": "https://github.com/roadrunner-server/roadrunner/issues",
-                "source": "https://github.com/roadrunner-server/roadrunner/tree/v2.11.4"
+                "source": "https://github.com/roadrunner-server/roadrunner/tree/v2.12.0"
             },
-            "time": "2022-10-06T14:25:16+00:00"
+            "time": "2022-11-24T14:32:20+00:00"
         },
         {
             "name": "spiral/roadrunner-cli",
@@ -5807,6 +6796,82 @@
             ],
             "support": {
                 "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.27.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-11-03T14:55:06+00:00"
+        },
+        {
+            "name": "symfony/polyfill-php72",
+            "version": "v1.27.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php72.git",
+                "reference": "869329b1e9894268a8a61dabb69153029b7a8c97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/869329b1e9894268a8a61dabb69153029b7a8c97",
+                "reference": "869329b1e9894268a8a61dabb69153029b7a8c97",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.27-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php72\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php72/tree/v1.27.0"
             },
             "funding": [
                 {

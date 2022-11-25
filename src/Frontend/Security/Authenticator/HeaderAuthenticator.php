@@ -7,6 +7,7 @@ use App\Frontend\Security\Token\Factory\AuthTokenFactoryInterface;
 use App\Frontend\Security\Token\Model\AuthTokenInterface;
 use Micro\Plugin\Http\Exception\HttpBadRequestException;
 use Micro\Plugin\Http\Exception\HttpAccessDeniedException;
+use Micro\Plugin\Security\Exception\TokenExpiredException;
 use Micro\Plugin\Security\Facade\SecurityFacadeInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -39,6 +40,8 @@ class HeaderAuthenticator implements AuthenticatorInterface
             $token = $this->securityFacade->decodeToken($tokenRaw);
         } catch (\UnexpectedValueException $exception) {
             throw new HttpBadRequestException('Invalid authentication token.', $exception);
+        } catch (TokenExpiredException $exception) {
+            throw new HttpAccessDeniedException('Authentication token was expired.');
         }
 
         return $this->authTokenFactory->create($token);

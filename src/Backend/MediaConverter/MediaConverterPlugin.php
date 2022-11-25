@@ -153,12 +153,4 @@ class MediaConverterPlugin extends AbstractPlugin
     {
         return new MetadataFromStreamExpanderFactory();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function name(): string
-    {
-        return 'VideoConverterPluginBackend';
-    }
 }
