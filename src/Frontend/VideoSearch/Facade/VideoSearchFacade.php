@@ -29,11 +29,11 @@ class VideoSearchFacade implements VideoSearchFacadeInterface
         $searchTransfer = new SearchTransfer();
         $searchTransfer
             ->setIndex($request->query->get('index', 'video'))
-            ->setLimit((int)$request->query->get('limit', 10))
-            ->setOffset((int)$request->query->get('offset', 0 ))
+            ->setLimit((int)$request->query->get('limit', 100))
+            ->setOffset((int)$request->query->get('offset'))
             ->setQuery([
                 'sort'  => [
-                    '_score'
+                    '_score',
                 ],
                 '_source' => false,
             ])

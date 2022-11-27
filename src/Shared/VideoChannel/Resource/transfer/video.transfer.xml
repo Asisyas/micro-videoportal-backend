@@ -24,6 +24,11 @@
         <property name="channel_id" type="string" />
     </class>
 
+    <class name="Video\VideoWatch">
+        <property name="channel_id" type="string" />
+        <property name="channel" type="Video\VideoChannel" />
+    </class>
+
     <class name="Video\VideoCreate">
         <property name="channel_id" type="string"/>
     </class>

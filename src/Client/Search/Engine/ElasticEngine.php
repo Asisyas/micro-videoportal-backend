@@ -33,7 +33,7 @@ class ElasticEngine implements SearchEngineInterface
         ];
 
         if($limit) {
-            $searchOpts['limit'] = $limit;
+            $searchOpts['size'] = $limit;
         }
 
         if($offset) {

@@ -21,6 +21,7 @@ class VideoSourceExpander implements VideoWatchExpanderInterface
         $videoTransfer = $this->videoFacade->lookupVideo($videoGetTransfer);
 
         $videoWatchTransfer
+            ->setChannelId($videoTransfer->getChannelId())
             ->setCreatedAt($videoTransfer->getCreatedAt())
             ->setSrc($videoTransfer->getSrc())
             ->setId($videoGetTransfer->getVideoId());

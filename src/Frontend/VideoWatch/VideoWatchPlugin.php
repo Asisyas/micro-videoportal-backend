@@ -3,6 +3,11 @@
 namespace App\Frontend\VideoWatch;
 
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
+use App\Client\VideoChannel\Client\VideoChannelClientInterface;
+use App\Frontend\VideoWatch\Exapnder\Impl\ChannelExpander;
+use App\Frontend\VideoWatch\Exapnder\Impl\SrcExpander;
+use App\Frontend\VideoWatch\Exapnder\VideoWatchExpanderFactory;
+use App\Frontend\VideoWatch\Exapnder\VideoWatchExpanderFactoryInterface;
 use App\Frontend\VideoWatch\Facade\VideoWatchFacade;
 use App\Frontend\VideoWatch\Facade\VideoWatchFacadeInterface;
 use Micro\Component\DependencyInjection\Container;
@@ -22,16 +27,23 @@ class VideoWatchPlugin extends AbstractPlugin
     private readonly FilesystemFacadeInterface $filesystemFacade;
 
     /**
+     * @var VideoChannelClientInterface
+     */
+    private readonly VideoChannelClientInterface $videoChannelClient;
+
+    /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
         $container->register(VideoWatchFacadeInterface::class, function (
-            ClientReaderFacadeInterface $clientReaderFacade,
-            FilesystemFacadeInterface $filesystemFacade
+            ClientReaderFacadeInterface     $clientReaderFacade,
+            FilesystemFacadeInterface       $filesystemFacade,
+            VideoChannelClientInterface     $videoChannelClient
         ) {
-            $this->clientReaderFacade = $clientReaderFacade;
-            $this->filesystemFacade = $filesystemFacade;
+            $this->clientReaderFacade =     $clientReaderFacade;
+            $this->filesystemFacade =       $filesystemFacade;
+            $this->videoChannelClient =     $videoChannelClient;
 
             return $this->createFacade();
         });
@@ -44,7 +56,18 @@ class VideoWatchPlugin extends AbstractPlugin
     {
         return new VideoWatchFacade(
             $this->clientReaderFacade,
-            $this->filesystemFacade
+            $this->createVideoWatchExpanderFactory()
+        );
+    }
+
+    /**
+     * @return VideoWatchExpanderFactoryInterface
+     */
+    protected function createVideoWatchExpanderFactory(): VideoWatchExpanderFactoryInterface
+    {
+        return new VideoWatchExpanderFactory(
+            new ChannelExpander($this->videoChannelClient),
+            new SrcExpander($this->filesystemFacade)
         );
     }
 
