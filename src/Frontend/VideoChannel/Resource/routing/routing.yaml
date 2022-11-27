@@ -1,0 +1,8 @@
+routes:
+  video_channel_create:
+    path: /{channel_id}
+    methods:
+      - POST
+    options:
+      action: createChannel
+      controller: 'App\Frontend\VideoChannel\Controller\VideoChannelController'

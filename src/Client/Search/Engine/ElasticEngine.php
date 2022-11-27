@@ -25,10 +25,20 @@ class ElasticEngine implements SearchEngineInterface
      */
     public function search(SearchTransfer $searchTransfer): SearchResultCollectionTransfer
     {
+        $limit = $searchTransfer->getLimit();
+        $offset = $searchTransfer->getOffset();
         $searchOpts = [
             'index' => $searchTransfer->getIndex(),
             'body'  => $searchTransfer->getQuery()
         ];
+
+        if($limit) {
+            $searchOpts['limit'] = $limit;
+        }
+
+        if($offset) {
+            $searchOpts['from'] = $offset;
+        }
 
         $searchResultsCollection  = new SearchResultCollectionTransfer();
 

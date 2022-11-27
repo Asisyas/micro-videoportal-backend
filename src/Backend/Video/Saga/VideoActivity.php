@@ -4,6 +4,7 @@ namespace App\Backend\Video\Saga;
 
 use App\Backend\Video\Facade\VideoFacadeInterface;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use App\Shared\Generated\DTO\Video\VideoSrcSetTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Saga\VideoActivityInterface;
@@ -22,9 +23,9 @@ class VideoActivity implements VideoActivityInterface
     /**
      * {@inheritDoc}
      */
-    public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer
+    public function createVideo(VideoPublishTransfer $videoPublishTransfer): VideoTransfer
     {
-        return $this->videoFacade->createVideo($videoCreateTransfer);
+        return $this->videoFacade->createVideo($videoPublishTransfer);
     }
 
     /**

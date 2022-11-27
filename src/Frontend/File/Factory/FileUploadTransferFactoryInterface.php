@@ -3,7 +3,7 @@
 namespace App\Frontend\File\Factory;
 
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
-use Micro\Plugin\Http\Exception\BadRequestException;
+use Micro\Plugin\Http\Exception\HttpBadRequestException;
 use Symfony\Component\HttpFoundation\Request;
 
 interface FileUploadTransferFactoryInterface
@@ -13,7 +13,7 @@ interface FileUploadTransferFactoryInterface
      *
      * @return FileUploadTransfer
      *
-     * @throws BadRequestException
+     * @throws HttpBadRequestException
      */
     public function createFromRequest(Request $request): FileUploadTransfer;
 }

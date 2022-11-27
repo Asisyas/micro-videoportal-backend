@@ -2,14 +2,14 @@
 
 namespace App\Client\Video\Publisher;
 
-use App\Shared\Generated\DTO\File\FileGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 
 interface VideoPublisherInterface
 {
     /**
-     * @param FileGetTransfer $fileGetTransfer
+     * @param VideoPublishTransfer $videoPublishTransfer
      *
      * @return void
      */
-    public function publish(FileGetTransfer $fileGetTransfer): void;
+    public function publish(VideoPublishTransfer $videoPublishTransfer): void;
 }

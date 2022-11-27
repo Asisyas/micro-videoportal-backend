@@ -2,12 +2,8 @@
 
 namespace App\Backend\Test\Command;
 
-use App\Backend\SearchStorage\Facade\SearchStorageFacadeInterface;
 use App\Client\Search\Client\SearchClientInterface;
-use App\Client\Video\Client\VideoClientInterface;
-use App\Shared\Generated\DTO\Search\IndexAddTransfer;
 use App\Shared\Generated\DTO\Search\SearchTransfer;
-use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -68,7 +64,7 @@ class TestVideoSearchCommand extends Command
 
         $result = $this->searchClient->search($searchTransfer);
 
-        dd($result['hits']);
+        dd($result);
 
         return self::SUCCESS;
     }

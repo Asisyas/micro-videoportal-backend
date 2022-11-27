@@ -3,7 +3,7 @@
 namespace App\Frontend\File\Facade;
 
 use App\Shared\Generated\DTO\File\FileTransfer;
-use Micro\Plugin\Http\Exception\BadRequestException;
+use Micro\Plugin\Http\Exception\HttpBadRequestException;
 use Symfony\Component\HttpFoundation\Request;
 
 interface FileFacadeInterface
@@ -13,7 +13,7 @@ interface FileFacadeInterface
      *
      * @return FileTransfer
      *
-     * @throws BadRequestException
+     * @throws HttpBadRequestException
      */
     public function handleFileUploadRequest(Request $request): FileTransfer;
 }

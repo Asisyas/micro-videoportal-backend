@@ -12,11 +12,24 @@ use DateTimeInterface;
 
 final class VideoCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
+    protected string|null $channel_id = null;
     protected string $video_id;
+
+    public function getChannelId(): string|null
+    {
+        return $this->channel_id;
+    }
 
     public function getVideoId(): string
     {
         return $this->video_id;
+    }
+
+    public function setChannelId(string|null $channel_id): self
+    {
+        $this->channel_id = $channel_id;
+
+        return $this;
     }
 
     public function setVideoId(string $video_id): self
@@ -29,6 +42,16 @@ final class VideoCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
     protected static function attributesMetadata(): array
     {
         return array (
+          'channel_id' =>
+          array (
+            'type' =>
+            array (
+              0 => 'string',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'channelId',
+          ),
           'video_id' =>
           array (
             'type' =>

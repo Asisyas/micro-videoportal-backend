@@ -28,7 +28,6 @@ class FileUploader implements FileUploaderInterface
         $fileTransfer = $this->fileClientStore->createFile($fileUploadTransfer);
         $stream = fopen($fileUploadTransfer->getSource(), 'r');
         $this->filesystemOperator->writeStream($fileTransfer->getId(), $stream);
-
         fclose($stream);
 
         return $fileTransfer;

@@ -2,7 +2,7 @@
 
 namespace App\Shared\Saga\VideoPublish;
 
-use App\Shared\Generated\DTO\File\FileGetTransfer;
+use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use Temporal\Workflow\WorkflowInterface;
 use Temporal\Workflow\WorkflowMethod;
 use Micro\Plugin\Temporal\Workflow\WorkflowInterface as MicroWorkflowInterface;
@@ -11,10 +11,10 @@ use Micro\Plugin\Temporal\Workflow\WorkflowInterface as MicroWorkflowInterface;
 interface VideoPublishWorkflowInterface extends MicroWorkflowInterface
 {
     /**
-     * @param FileGetTransfer $fileGetTransfer
+     * @param VideoPublishTransfer $videoPublishTransfer
      *
      * @return mixed
      */
     #[WorkflowMethod("Video_Publish")]
-    public function publish(FileGetTransfer $fileGetTransfer);
+    public function publish(VideoPublishTransfer $videoPublishTransfer);
 }

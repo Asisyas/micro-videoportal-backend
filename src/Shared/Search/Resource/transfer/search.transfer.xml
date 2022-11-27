@@ -4,6 +4,8 @@
      xsi:schemaLocation="micro:dto-01 https://raw.githubusercontent.com/Micro-PHP/dto/master/src/Resource/schema/dto-01.xsd">
 
     <class name="Search\Search">
+        <property name="limit" type="int" />
+        <property name="offset" type="int"/>
         <property name="index" type="string"/>
         <property name="query" type="array" />
     </class>

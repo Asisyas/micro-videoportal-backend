@@ -2,7 +2,8 @@
 
 namespace App\Shared\Video\Exception;
 
-class VideoNotFoundException extends \Exception
-{
+use App\Shared\Common\Exception\EntityNotFoundException;
 
+class VideoNotFoundException extends EntityNotFoundException
+{
 }

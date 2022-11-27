@@ -27,21 +27,7 @@
         },
         {
             "type": "path",
-            "url": "../Micro/PluginConfigurationHelper",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
             "url": "../Micro/PluginSecurity",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginHttpSecurity",
             "options": {
                 "symlink": true
             }
@@ -55,39 +41,12 @@
         },
         {
             "type": "path",
-            "url": "../Micro/PluginHttp",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginEavCore",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginEavDoctrine",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
             "url": "../Micro/PluginUuid",
             "options": {
                 "symlink": true
             }
         },
-        {
-            "type": "path",
-            "url": "../Micro/PluginDoctrine",
-            "options": {
-                "symlink": true
-            }
-        },
+
         {
             "type": "path",
             "url": "../Micro/PluginRedis",
@@ -109,48 +68,7 @@
                 "symlink": true
             }
         },
-        {
-            "type": "path",
-            "url": "../Micro/PluginConsole",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginLogger",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginLoggerMonolog",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/EventEmitter",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/KernelApp",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginEventEmitter",
-            "options": {
-                "symlink": true
-            }
-        },
+
         {
             "type": "path",
             "url": "../Micro/PluginStorage",
@@ -160,56 +78,7 @@
         },
         {
             "type": "path",
-            "url": "../Micro/Kernel",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginTwig",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginUser",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginUserModelDoctrine",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginUserManagerDoctrine",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginDTO",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
             "url": "../Micro/PluginTemporal",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginLocator",
             "options": {
                 "symlink": true
             }
@@ -232,27 +101,20 @@
     ],
     "require": {
         "php": " >= 8.1",
-        "micro/kernel-app": "*",
-        "micro/plugin-locator": "*",
-        "micro/plugin-configuration-helper": "*",
-        "micro/dependency-injection": "*",
-        "micro/plugin-event-emitter": "*",
+        "micro/kernel-app": "^1",
+        "micro/plugin-locator": "^1",
         "micro/plugin-serializer": "*",
+        "micro/plugin-logger-monolog": "^1",
         "micro/serializer-symfony-adapter": "*",
+        "micro/plugin-event-emitter": "^1",
         "micro/plugin-redis": "*",
-        "micro/plugin-http": "*",
-        "micro/plugin-console": "*",
+        "micro/plugin-http": "^1",
+        "micro/plugin-console": "^1",
         "micro/plugin-uuid": "*",
-        "micro/plugin-eav-doctrine": "*",
-        "micro/plugin-logger-monolog": "*",
         "micro/plugin-storage":  "*",
-        "micro/plugin-twig":  "*",
-        "micro/plugin-user": "*",
-        "micro/plugin-user-model-doctrine": "*",
-        "micro/plugin-user-manager-doctrine": "*",
+        "micro/plugin-doctrine": "^1",
         "micro/plugin-dto": "*",
         "micro/plugin-security": "*",
-        "micro/plugin-http-security": "*",
         "micro/plugin-temporal": "*",
         "micro/plugin-ffmpeg": "*",
         "micro/plugin-filesystem": "*",

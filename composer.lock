@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f915a813671b0b4548a3ed6a628a200a",
+    "content-hash": "9282ff2567c2026d88b812b542a92d73",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -58,16 +58,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.246.0",
+            "version": "3.247.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "90859d0b704d80a7f5b0743766562f956e43c79d"
+                "reference": "00542e760d8464e0ee635f916841fdfbd1ceb95c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/90859d0b704d80a7f5b0743766562f956e43c79d",
-                "reference": "90859d0b704d80a7f5b0743766562f956e43c79d",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/00542e760d8464e0ee635f916841fdfbd1ceb95c",
+                "reference": "00542e760d8464e0ee635f916841fdfbd1ceb95c",
                 "shasum": ""
             },
             "require": {
@@ -146,9 +146,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.246.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.247.2"
             },
-            "time": "2022-11-18T19:56:22+00:00"
+            "time": "2022-11-23T19:35:36+00:00"
         },
         {
             "name": "brick/math",
@@ -1099,16 +1099,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.13.3",
+            "version": "2.13.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/orm.git",
-                "reference": "e750360bd52b080c4cbaaee1b48b80f7dc873b36"
+                "reference": "a5a6cc6630ce497290396d5f206887227820a634"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/orm/zipball/e750360bd52b080c4cbaaee1b48b80f7dc873b36",
-                "reference": "e750360bd52b080c4cbaaee1b48b80f7dc873b36",
+                "url": "https://api.github.com/repos/doctrine/orm/zipball/a5a6cc6630ce497290396d5f206887227820a634",
+                "reference": "a5a6cc6630ce497290396d5f206887227820a634",
                 "shasum": ""
             },
             "require": {
@@ -1137,13 +1137,13 @@
                 "doctrine/annotations": "^1.13",
                 "doctrine/coding-standard": "^9.0.2 || ^10.0",
                 "phpbench/phpbench": "^0.16.10 || ^1.0",
-                "phpstan/phpstan": "~1.4.10 || 1.8.5",
+                "phpstan/phpstan": "~1.4.10 || 1.9.2",
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
                 "psr/log": "^1 || ^2 || ^3",
                 "squizlabs/php_codesniffer": "3.7.1",
                 "symfony/cache": "^4.4 || ^5.4 || ^6.0",
                 "symfony/yaml": "^3.4 || ^4.0 || ^5.0 || ^6.0",
-                "vimeo/psalm": "4.27.0"
+                "vimeo/psalm": "4.30.0"
             },
             "suggest": {
                 "ext-dom": "Provides support for XSD validation for XML mapping files",
@@ -1193,9 +1193,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/orm/issues",
-                "source": "https://github.com/doctrine/orm/tree/2.13.3"
+                "source": "https://github.com/doctrine/orm/tree/2.13.4"
             },
-            "time": "2022-10-07T06:37:17+00:00"
+            "time": "2022-11-20T18:53:31+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1350,16 +1350,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v8.5.1",
+            "version": "v8.5.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:elastic/elasticsearch-php.git",
-                "reference": "112298b8539b8df6bd67a6c9b2456039163c5911"
+                "reference": "8a6dbaad352247e3ab6ee720a4c45d67236864b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/112298b8539b8df6bd67a6c9b2456039163c5911",
-                "reference": "112298b8539b8df6bd67a6c9b2456039163c5911",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/8a6dbaad352247e3ab6ee720a4c45d67236864b2",
+                "reference": "8a6dbaad352247e3ab6ee720a4c45d67236864b2",
                 "shasum": ""
             },
             "require": {
@@ -1398,7 +1398,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2022-11-01T12:26:24+00:00"
+            "time": "2022-11-15T10:44:30+00:00"
         },
         {
             "name": "evenement/evenement",
@@ -2035,16 +2035,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.10.3",
+            "version": "3.10.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "8013fb046c6a244b2b1b75cc95d732ed6bcdeb8a"
+                "reference": "a7790f3dd1b27af81d380e6b2afa77c16ab7e181"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/8013fb046c6a244b2b1b75cc95d732ed6bcdeb8a",
-                "reference": "8013fb046c6a244b2b1b75cc95d732ed6bcdeb8a",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a7790f3dd1b27af81d380e6b2afa77c16ab7e181",
+                "reference": "a7790f3dd1b27af81d380e6b2afa77c16ab7e181",
                 "shasum": ""
             },
             "require": {
@@ -2106,7 +2106,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.10.3"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.10.4"
             },
             "funding": [
                 {
@@ -2122,7 +2122,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-14T10:42:43+00:00"
+            "time": "2022-11-26T19:48:01+00:00"
         },
         {
             "name": "league/flysystem-aws-s3-v3",
@@ -2252,21 +2252,21 @@
         },
         {
             "name": "micro/autowire",
-            "version": "0.1",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Micro-PHP/container-autowire.git",
-                "reference": "3ef63b7593508e533fb12761a065aeb5473f2c02"
+                "reference": "e50599e791f13079f24cae32b4207475b5c2112f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Micro-PHP/container-autowire/zipball/3ef63b7593508e533fb12761a065aeb5473f2c02",
-                "reference": "3ef63b7593508e533fb12761a065aeb5473f2c02",
+                "url": "https://api.github.com/repos/Micro-PHP/container-autowire/zipball/e50599e791f13079f24cae32b4207475b5c2112f",
+                "reference": "e50599e791f13079f24cae32b4207475b5c2112f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0",
-                "psr/container": "*"
+                "micro/dependency-injection": "^1",
+                "php": ">=8.0"
             },
             "type": "library",
             "autoload": {
@@ -2287,26 +2287,26 @@
             "description": "Micro Framework: Component for autoconfiguring services",
             "support": {
                 "issues": "https://github.com/Micro-PHP/container-autowire/issues",
-                "source": "https://github.com/Micro-PHP/container-autowire/tree/v0.1"
+                "source": "https://github.com/Micro-PHP/container-autowire/tree/v1.1"
             },
-            "time": "2022-11-09T20:47:12+00:00"
+            "time": "2022-11-23T18:18:59+00:00"
         },
         {
             "name": "micro/dependency-injection",
-            "version": "0.2",
+            "version": "1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Micro-PHP/lib-dependency-injection.git",
-                "reference": "931901d5783e2b0019c24a9fc6ef7d2affc2c85f"
+                "reference": "2b6d7b6e9e40e9d458e4da0584825c237bb69721"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Micro-PHP/lib-dependency-injection/zipball/931901d5783e2b0019c24a9fc6ef7d2affc2c85f",
-                "reference": "931901d5783e2b0019c24a9fc6ef7d2affc2c85f",
+                "url": "https://api.github.com/repos/Micro-PHP/lib-dependency-injection/zipball/2b6d7b6e9e40e9d458e4da0584825c237bb69721",
+                "reference": "2b6d7b6e9e40e9d458e4da0584825c237bb69721",
                 "shasum": ""
             },
             "require": {
-                "micro/autowire": "*",
+                "micro/autowire": "^1",
                 "php": ">=8.0",
                 "psr/container": "^2.0"
             },
@@ -2329,9 +2329,49 @@
             "description": "Dependency injection service container",
             "support": {
                 "issues": "https://github.com/Micro-PHP/lib-dependency-injection/issues",
-                "source": "https://github.com/Micro-PHP/lib-dependency-injection/tree/v0.2"
+                "source": "https://github.com/Micro-PHP/lib-dependency-injection/tree/v1.0"
             },
-            "time": "2022-11-17T17:44:38+00:00"
+            "time": "2022-11-23T18:09:49+00:00"
+        },
+        {
+            "name": "micro/deprecation-supports",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/deprations-support.git",
+                "reference": "3343c9283dc24bf5c2bb036a95f28e524bdc2bb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/deprations-support/zipball/3343c9283dc24bf5c2bb036a95f28e524bdc2bb9",
+                "reference": "3343c9283dc24bf5c2bb036a95f28e524bdc2bb9",
+                "shasum": ""
+            },
+            "require": {
+                "micro/kernel": "^1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micro\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stanislau Komar",
+                    "email": "stanislau_komar@epam.com"
+                }
+            ],
+            "description": "Micro Framework: Deprecation supports for plugins",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/deprations-support/issues",
+                "source": "https://github.com/Micro-PHP/deprations-support/tree/v1.0"
+            },
+            "time": "2022-11-25T16:08:26+00:00"
         },
         {
             "name": "micro/dto",
@@ -2391,13 +2431,20 @@
         },
         {
             "name": "micro/event-emitter",
-            "version": "0.1",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/lib-event-emitter.git",
+                "reference": "bf810553722a1697ada9cfc7271102212e6a34dd"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/EventEmitter",
-                "reference": "b719f3546a686a6bddc157104af532f25c450c70"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/lib-event-emitter/zipball/bf810553722a1697ada9cfc7271102212e6a34dd",
+                "reference": "bf810553722a1697ada9cfc7271102212e6a34dd",
+                "shasum": ""
             },
             "require": {
+                "micro/kernel": "^1",
                 "php": ">=8.0"
             },
             "type": "library",
@@ -2406,6 +2453,7 @@
                     "Micro\\Component\\EventEmitter\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2416,20 +2464,28 @@
                 }
             ],
             "description": "Micro Framework: Event emitter component",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/lib-event-emitter/issues",
+                "source": "https://github.com/Micro-PHP/lib-event-emitter/tree/v1.1"
+            },
+            "time": "2022-11-25T16:11:36+00:00"
         },
         {
             "name": "micro/kernel",
-            "version": "0.1",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/micro-kernel.git",
+                "reference": "b3911f5d6d967932c18ef3e67e63d6df010341d9"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/Kernel",
-                "reference": "e32423d27c8f25a27407e55363edd46b8eb5d71a"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/micro-kernel/zipball/b3911f5d6d967932c18ef3e67e63d6df010341d9",
+                "reference": "b3911f5d6d967932c18ef3e67e63d6df010341d9",
+                "shasum": ""
             },
             "require": {
+                "micro/dependency-injection": "^1",
                 "php": ">=8.0"
             },
             "type": "library",
@@ -2438,6 +2494,7 @@
                     "Micro\\Framework\\Kernel\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2447,22 +2504,32 @@
                     "email": "stanislau_komar@epam.com"
                 }
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/micro-kernel/issues",
+                "source": "https://github.com/Micro-PHP/micro-kernel/tree/v1.2"
+            },
+            "time": "2022-11-25T16:16:16+00:00"
         },
         {
             "name": "micro/kernel-app",
-            "version": "0.1",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/micro-kernel-app.git",
+                "reference": "44049f8d7d4a8f1771979fbc13dbd0b678872b0e"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/KernelApp",
-                "reference": "9899b4deae70c7d9a5ee91f93a5980b6197face5"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/micro-kernel-app/zipball/44049f8d7d4a8f1771979fbc13dbd0b678872b0e",
+                "reference": "44049f8d7d4a8f1771979fbc13dbd0b678872b0e",
+                "shasum": ""
             },
             "require": {
-                "micro/autowire": "^0.1",
-                "micro/kernel": "^0.1"
+                "micro/deprecation-supports": "^1",
+                "micro/kernel": "^1",
+                "micro/kernel-boot-configuration": "^1",
+                "micro/kernel-boot-dependency": "^1",
+                "micro/plugin-event-emitter": "^1"
             },
             "type": "library",
             "autoload": {
@@ -2470,6 +2537,7 @@
                     "Micro\\Kernel\\App\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2480,18 +2548,115 @@
                 }
             ],
             "description": "Micro Framework: App Kernel component",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/micro-kernel-app/issues",
+                "source": "https://github.com/Micro-PHP/micro-kernel-app/tree/v1.2"
+            },
+            "time": "2022-11-25T16:20:07+00:00"
+        },
+        {
+            "name": "micro/kernel-boot-configuration",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/kernel-bootloader-configuration.git",
+                "reference": "2b4ee41cc59a9d9d1a5193ab0bcf0a031e5436c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/kernel-bootloader-configuration/zipball/2b4ee41cc59a9d9d1a5193ab0bcf0a031e5436c3",
+                "reference": "2b4ee41cc59a9d9d1a5193ab0bcf0a031e5436c3",
+                "shasum": ""
+            },
+            "require": {
+                "micro/kernel": "^1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micro\\Framework\\Kernel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stanislau Komar",
+                    "email": "stanislau_komar@epam.com"
+                }
+            ],
+            "description": "Micro Framework: Kernel Boot loader - component to provide plugin configuration",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/kernel-bootloader-configuration/issues",
+                "source": "https://github.com/Micro-PHP/kernel-bootloader-configuration/tree/v1.3"
+            },
+            "time": "2022-11-25T20:24:50+00:00"
+        },
+        {
+            "name": "micro/kernel-boot-dependency",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/kernel-bootloader-dependency.git",
+                "reference": "324c519c4d0d95e973b1bce209e1c67d4b7360ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/kernel-bootloader-dependency/zipball/324c519c4d0d95e973b1bce209e1c67d4b7360ae",
+                "reference": "324c519c4d0d95e973b1bce209e1c67d4b7360ae",
+                "shasum": ""
+            },
+            "require": {
+                "micro/autowire": "^1",
+                "micro/kernel": "^1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micro\\Framework\\Kernel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stanislau Komar",
+                    "email": "stanislau_komar@epam.com"
+                }
+            ],
+            "description": "Micro Framework: Kernel Boot loader - component to provide dependencies",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/kernel-bootloader-dependency/issues",
+                "source": "https://github.com/Micro-PHP/kernel-bootloader-dependency/tree/v1.1"
+            },
+            "time": "2022-11-25T16:30:02+00:00"
         },
         {
             "name": "micro/plugin-configuration-helper",
-            "version": "0.1",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-configuration-helper.git",
+                "reference": "de3440b1dbc92383f70d1230149953bd724a04d1"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginConfigurationHelper",
-                "reference": "6a15e536f5c2797facd86651137d3dc04261bd2f"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-configuration-helper/zipball/de3440b1dbc92383f70d1230149953bd724a04d1",
+                "reference": "de3440b1dbc92383f70d1230149953bd724a04d1",
+                "shasum": ""
+            },
+            "require": {
+                "micro/kernel": "^1"
             },
             "type": "library",
             "autoload": {
@@ -2499,6 +2664,7 @@
                     "Micro\\Plugin\\Configuration\\Helper\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2509,20 +2675,29 @@
                 }
             ],
             "description": "Micro Framework: Configuration helper tool",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-configuration-helper/issues",
+                "source": "https://github.com/Micro-PHP/plugin-configuration-helper/tree/v1.2"
+            },
+            "time": "2022-11-25T16:33:14+00:00"
         },
         {
             "name": "micro/plugin-console",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-console.git",
+                "reference": "8c81475dd96a13d7eeb4c9b6f215f37dff88a543"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginConsole",
-                "reference": "9173c0613edb001b1e416e141681176a67fba9bf"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-console/zipball/8c81475dd96a13d7eeb4c9b6f215f37dff88a543",
+                "reference": "8c81475dd96a13d7eeb4c9b6f215f37dff88a543",
+                "shasum": ""
             },
             "require": {
+                "micro/kernel": "^1",
+                "micro/plugin-locator": "^1",
                 "php": ">=8.0",
                 "symfony/console": "^6.0"
             },
@@ -2532,6 +2707,7 @@
                     "Micro\\Plugin\\Console\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2542,23 +2718,32 @@
                 }
             ],
             "description": "Micro Framework: Console application component",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-console/issues",
+                "source": "https://github.com/Micro-PHP/plugin-console/tree/v1.0"
+            },
+            "time": "2022-11-25T16:40:07+00:00"
         },
         {
             "name": "micro/plugin-doctrine",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-doctrine.git",
+                "reference": "f39887ab2b78cb0b58b609e7efb584c5fce6849a"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginDoctrine",
-                "reference": "c79f40eb01962dacb618bf3e5124f034a7d0161f"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-doctrine/zipball/f39887ab2b78cb0b58b609e7efb584c5fce6849a",
+                "reference": "f39887ab2b78cb0b58b609e7efb584c5fce6849a",
+                "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "^1.13",
                 "doctrine/cache": "^2.1",
                 "doctrine/orm": "^2.11",
+                "micro/kernel": "^1",
+                "micro/plugin-console": "^1",
                 "php": ">=8.0",
                 "symfony/cache": "^6.0"
             },
@@ -2568,6 +2753,7 @@
                     "Micro\\Plugin\\Doctrine\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2578,21 +2764,29 @@
                 }
             ],
             "description": "Micro Framework: Doctrine ORM Supports",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-doctrine/issues",
+                "source": "https://github.com/Micro-PHP/plugin-doctrine/tree/v1.0"
+            },
+            "time": "2022-11-25T16:50:21+00:00"
         },
         {
             "name": "micro/plugin-dto",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-dto.git",
+                "reference": "e32ba42589492acdbe36b260ab68ae89d3b44862"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginDTO",
-                "reference": "4049bb8dac698d55de18c8bf485300a2006cf676"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-dto/zipball/e32ba42589492acdbe36b260ab68ae89d3b44862",
+                "reference": "e32ba42589492acdbe36b260ab68ae89d3b44862",
+                "shasum": ""
             },
             "require": {
-                "micro/dto": "^1.0",
+                "micro/dto": "^1",
+                "micro/kernel": "^1",
                 "symfony/finder": "^5|^6"
             },
             "type": "library",
@@ -2601,6 +2795,7 @@
                     "Micro\\Plugin\\DTO\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2611,76 +2806,11 @@
                 }
             ],
             "description": "Micro Framework: Plugin for generating DTO classes. Based on micro/dto library.",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-eav-core",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginEavCore",
-                "reference": "911781df3099fb0407d613fbc804b2799f15664d"
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-dto/issues",
+                "source": "https://github.com/Micro-PHP/plugin-dto/tree/v1.0"
             },
-            "require": {
-                "micro/plugin-event-emitter": "0.*",
-                "php": ">=8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\Eav\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau.Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: Entity/Attribute/Value entity support.",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-eav-doctrine",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginEavDoctrine",
-                "reference": "1445b9bd3910f695134ee9d7f2c7168dcaffc9ee"
-            },
-            "require": {
-                "micro/plugin-doctrine": "^0.1",
-                "micro/plugin-eav-core": "^0.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\Eav\\Doctrine\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau.Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: Adapter for micro/plugin-eav-core based on micro/plugin-doctrine",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "time": "2022-11-25T16:53:30+00:00"
         },
         {
             "name": "micro/plugin-elastic",
@@ -2716,14 +2846,23 @@
         },
         {
             "name": "micro/plugin-event-emitter",
-            "version": "0.1",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-event-emitter.git",
+                "reference": "aa99bc8094211dcc63c7f5fde2f63073b8e22741"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginEventEmitter",
-                "reference": "c1b88b2edd3efbb07c0b4519baa50b2e7d9a808e"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-event-emitter/zipball/aa99bc8094211dcc63c7f5fde2f63073b8e22741",
+                "reference": "aa99bc8094211dcc63c7f5fde2f63073b8e22741",
+                "shasum": ""
             },
             "require": {
-                "micro/event-emitter": "^0.1"
+                "micro/autowire": "^1",
+                "micro/event-emitter": "^1",
+                "micro/kernel": "^1",
+                "micro/plugin-locator": "^1"
             },
             "type": "library",
             "autoload": {
@@ -2731,6 +2870,7 @@
                     "Micro\\Plugin\\EventEmitter\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2740,11 +2880,12 @@
                     "email": "stanislau_komar@epam.com"
                 }
             ],
-            "description": "MIcro Framework: Application plugin for provide Event Emitter",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "description": "Micro Framework: Application plugin to provide an event emitter",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-event-emitter/issues",
+                "source": "https://github.com/Micro-PHP/plugin-event-emitter/tree/v1.1"
+            },
+            "time": "2022-11-25T16:57:56+00:00"
         },
         {
             "name": "micro/plugin-ffmpeg",
@@ -2846,14 +2987,22 @@
         },
         {
             "name": "micro/plugin-http",
-            "version": "0.1",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-http.git",
+                "reference": "c471f68b763f9308281d582a7d36a33feaa0b765"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginHttp",
-                "reference": "ce409880670d0d0d7656a42e975c2528debf5752"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-http/zipball/c471f68b763f9308281d582a7d36a33feaa0b765",
+                "reference": "c471f68b763f9308281d582a7d36a33feaa0b765",
+                "shasum": ""
             },
             "require": {
-                "micro/plugin-configuration-helper": "0.1",
+                "micro/kernel": "^1",
+                "micro/plugin-configuration-helper": "^1",
+                "micro/plugin-logger-core": "^1",
                 "symfony/http-foundation": "^5|^6",
                 "symfony/routing": "^5|^6",
                 "symfony/yaml": "^5|^6"
@@ -2864,6 +3013,7 @@
                     "Micro\\Plugin\\Http\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2874,52 +3024,28 @@
                 }
             ],
             "description": "Micro Framework: Provides a component for building MVC aplication based on HTTP(s) protocol",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-http-security",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginHttpSecurity",
-                "reference": "ed3e9c0fd06ce5be79bed6c3bfb1a9422c82f981"
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-http/issues",
+                "source": "https://github.com/Micro-PHP/plugin-http/tree/v1.2"
             },
-            "require": {
-                "symfony/http-foundation": "^6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\Http\\Security\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: HTTP Security plugin",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "time": "2022-11-25T20:12:36+00:00"
         },
         {
             "name": "micro/plugin-locator",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-locator.git",
+                "reference": "35cf5b321936266174160466e81678642bda58d0"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginLocator",
-                "reference": "12bd41cbd06662a731a25194ea8867880bd7958c"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-locator/zipball/35cf5b321936266174160466e81678642bda58d0",
+                "reference": "35cf5b321936266174160466e81678642bda58d0",
+                "shasum": ""
             },
             "require": {
+                "micro/kernel": "^1",
                 "symfony/finder": "^6.1"
             },
             "type": "library",
@@ -2928,6 +3054,7 @@
                     "Micro\\Plugin\\Locator\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2938,20 +3065,28 @@
                 }
             ],
             "description": "Micro Framework plugin",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-locator/issues",
+                "source": "https://github.com/Micro-PHP/plugin-locator/tree/v1.0"
+            },
+            "time": "2022-11-25T17:10:31+00:00"
         },
         {
             "name": "micro/plugin-logger-core",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-logger.git",
+                "reference": "f07777a950097014a09eafec0a14040d57d3927e"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginLogger",
-                "reference": "c57bc3d8677c87d5cfa102fc6ec784acb2857af8"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-logger/zipball/f07777a950097014a09eafec0a14040d57d3927e",
+                "reference": "f07777a950097014a09eafec0a14040d57d3927e",
+                "shasum": ""
             },
             "require": {
+                "micro/kernel": "^1",
                 "php": ">=8.0",
                 "psr/log": "^1|^2|^3"
             },
@@ -2961,6 +3096,7 @@
                     "Micro\\Plugin\\Logger\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2971,21 +3107,28 @@
                 }
             ],
             "description": "Micro Framework: Logger plugin",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-logger/issues",
+                "source": "https://github.com/Micro-PHP/plugin-logger/tree/v1.0"
+            },
+            "time": "2022-11-25T17:17:56+00:00"
         },
         {
             "name": "micro/plugin-logger-monolog",
-            "version": "0.1",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Micro-PHP/plugin-logger-monolog.git",
+                "reference": "b7a0efce131b45e3392b1f32d07d2c640577cb53"
+            },
             "dist": {
-                "type": "path",
-                "url": "../Micro/PluginLoggerMonolog",
-                "reference": "c2c0ad6a4e49532106e3049c33fe97c704afec77"
+                "type": "zip",
+                "url": "https://api.github.com/repos/Micro-PHP/plugin-logger-monolog/zipball/b7a0efce131b45e3392b1f32d07d2c640577cb53",
+                "reference": "b7a0efce131b45e3392b1f32d07d2c640577cb53",
+                "shasum": ""
             },
             "require": {
-                "micro/plugin-logger-core": "0.*",
+                "micro/plugin-logger-core": "^1",
                 "monolog/monolog": "2.3.*"
             },
             "type": "library",
@@ -2994,6 +3137,7 @@
                     "Micro\\Plugin\\Logger\\Monolog\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3003,11 +3147,12 @@
                     "email": "stanislau_komar@epam.com"
                 }
             ],
-            "description": "MIcro Framework: Implements \"micro/plugin-logger-core\" based on Monolog.",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "description": "Micro Framework: Implements \"micro/plugin-logger-core\" based on Monolog.",
+            "support": {
+                "issues": "https://github.com/Micro-PHP/plugin-logger-monolog/issues",
+                "source": "https://github.com/Micro-PHP/plugin-logger-monolog/tree/v1.0"
+            },
+            "time": "2022-11-25T17:20:07+00:00"
         },
         {
             "name": "micro/plugin-redis",
@@ -3171,132 +3316,6 @@
                 }
             ],
             "description": "Micro Framework: TemporalIO plugin",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-twig",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginTwig",
-                "reference": "84f9e442db5b2833a845cbf44b7134e0cc1f16f5"
-            },
-            "require": {
-                "micro/kernel-app": "^0.1",
-                "twig/twig": "^3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\Twig\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau.Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: Twig provider plugin",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-user",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginUser",
-                "reference": "146a7d374a543041f10d30c51245d070f90932fd"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\User\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: User abstraction",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-user-manager-doctrine",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginUserManagerDoctrine",
-                "reference": "84ef5b6e2d6a5953dba0c3b27b3e5a5dd35241ab"
-            },
-            "require": {
-                "micro/plugin-user-model-doctrine": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\User\\Manager\\Doctrine\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: Adapter for the \"micro/plugin-user\" plugin based on doctrine",
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
-        },
-        {
-            "name": "micro/plugin-user-model-doctrine",
-            "version": "0.1",
-            "dist": {
-                "type": "path",
-                "url": "../Micro/PluginUserModelDoctrine",
-                "reference": "907861a4fdc3b1ae29ed2f5a87eb9760ce83e914"
-            },
-            "require": {
-                "micro/plugin-user": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Micro\\Plugin\\User\\Model\\Doctrine\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Stanislau Komar",
-                    "email": "stanislau_komar@epam.com"
-                }
-            ],
-            "description": "Micro Framework: User model",
             "transport-options": {
                 "symlink": true,
                 "relative": true
@@ -5153,16 +5172,16 @@
         },
         {
             "name": "spiral/roadrunner",
-            "version": "v2.11.4",
+            "version": "v2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roadrunner-server/roadrunner.git",
-                "reference": "bee07c00a8954945156ca3e3de9c032b530abd01"
+                "reference": "33bebe596b6c920634ec9386d818b912939de94b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roadrunner-server/roadrunner/zipball/bee07c00a8954945156ca3e3de9c032b530abd01",
-                "reference": "bee07c00a8954945156ca3e3de9c032b530abd01",
+                "url": "https://api.github.com/repos/roadrunner-server/roadrunner/zipball/33bebe596b6c920634ec9386d818b912939de94b",
+                "reference": "33bebe596b6c920634ec9386d818b912939de94b",
                 "shasum": ""
             },
             "require": {
@@ -5188,9 +5207,9 @@
             "description": "RoadRunner: High-performance PHP application server and process manager written in Go and powered with plugins",
             "support": {
                 "issues": "https://github.com/roadrunner-server/roadrunner/issues",
-                "source": "https://github.com/roadrunner-server/roadrunner/tree/v2.11.4"
+                "source": "https://github.com/roadrunner-server/roadrunner/tree/v2.12.0"
             },
-            "time": "2022-10-06T14:25:16+00:00"
+            "time": "2022-11-24T14:32:20+00:00"
         },
         {
             "name": "spiral/roadrunner-cli",
@@ -8140,82 +8159,6 @@
                 "source": "https://github.com/temporalio/sdk-php"
             },
             "time": "2022-10-28T09:55:21+00:00"
-        },
-        {
-            "name": "twig/twig",
-            "version": "v3.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twigphp/Twig.git",
-                "reference": "c38fd6b0b7f370c198db91ffd02e23b517426b58"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c38fd6b0b7f370c198db91ffd02e23b517426b58",
-                "reference": "c38fd6b0b7f370c198db91ffd02e23b517426b58",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2.5",
-                "symfony/polyfill-ctype": "^1.8",
-                "symfony/polyfill-mbstring": "^1.3"
-            },
-            "require-dev": {
-                "psr/container": "^1.0",
-                "symfony/phpunit-bridge": "^4.4.9|^5.0.9|^6.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Twig\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Twig Team",
-                    "role": "Contributors"
-                },
-                {
-                    "name": "Armin Ronacher",
-                    "email": "armin.ronacher@active-4.com",
-                    "role": "Project Founder"
-                }
-            ],
-            "description": "Twig, the flexible, fast, and secure template language for PHP",
-            "homepage": "https://twig.symfony.com",
-            "keywords": [
-                "templating"
-            ],
-            "support": {
-                "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.4.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-09-28T08:42:51+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

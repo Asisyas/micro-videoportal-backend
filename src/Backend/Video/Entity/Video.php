@@ -19,13 +19,18 @@ class Video
     #[ORM\Column(type: 'string', length: 200, nullable: true)]
     private string|null $src;
 
+    #[ORM\Column(type: 'string', length: 200, nullable: false)]
+    private string $channelId;
+
     /**
      * @param string $id
+     * @param string $channelId
      */
-    public function __construct(string $id)
+    public function __construct(string $id, string $channelId)
     {
         $this->id =$id;
         $this->src = null;
+        $this->channelId = $channelId;
         $this->createdAt = new DateTime('now');
     }
 
@@ -63,5 +68,13 @@ class Video
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChannelId(): string
+    {
+        return $this->channelId;
     }
 }
