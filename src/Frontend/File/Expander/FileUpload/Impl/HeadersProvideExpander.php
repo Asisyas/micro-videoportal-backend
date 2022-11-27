@@ -21,7 +21,7 @@ class HeadersProvideExpander implements FileUploadTransferExpanderInterface
         }
 
         $fileUploadTransfer->setContentType($request->headers->get('content-type'));
-        $fileUploadTransfer->setName($filename);
+        $fileUploadTransfer->setName(urldecode($filename));
         $fileUploadTransfer->setSize((int) $request->headers->get('content-length'));
         $fileUploadTransfer->setSource('php://input');
     }

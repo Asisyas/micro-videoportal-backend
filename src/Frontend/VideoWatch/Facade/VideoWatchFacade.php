@@ -4,22 +4,24 @@ namespace App\Frontend\VideoWatch\Facade;
 
 use App\Client\ClientReader\Exception\NotFoundException;
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
+use App\Frontend\VideoWatch\Exapnder\VideoWatchExpanderFactoryInterface;
 use App\Shared\Generated\DTO\ClientReader\RequestTransfer;
 use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
 use App\Shared\Video\Configuration;
-use Carbon\Carbon;
-use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 use Micro\Plugin\Http\Exception\HttpNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 
 class VideoWatchFacade implements VideoWatchFacadeInterface
 {
+    /**
+     * @param ClientReaderFacadeInterface $clientReaderFacade
+     * @param VideoWatchExpanderFactoryInterface $videoWatchExpanderFactory
+     */
     public function __construct(
         private readonly ClientReaderFacadeInterface $clientReaderFacade,
-        private readonly FilesystemFacadeInterface $filesystemFacade
+        private readonly VideoWatchExpanderFactoryInterface $videoWatchExpanderFactory
     )
     {
-
     }
 
     /**
@@ -39,17 +41,7 @@ class VideoWatchFacade implements VideoWatchFacadeInterface
             throw new HttpNotFoundException();
         }
 
-        $src = $videoWatchTransfer->getSrc();
-        if($src) {
-            $fs = $this->filesystemFacade->createFsOperator();
-            $videoWatchTransfer->setSrc(
-                $fs->temporaryUrl(
-                    $src,
-                    (new \DateTime('now'))->modify('+30 seconds')
-                ),
-            );
-        }
-
+        $this->videoWatchExpanderFactory->create()->expand($videoWatchTransfer);
 
         return $videoWatchTransfer;
     }

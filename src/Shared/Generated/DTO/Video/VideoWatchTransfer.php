@@ -12,11 +12,23 @@ use DateTimeInterface;
 
 final class VideoWatchTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
+    protected string|null $channel_id = null;
+    protected VideoChannelTransfer|null $channel = null;
     protected string $id;
     protected string|null $src = null;
     protected DateTimeInterface|null $created_at = null;
     protected string $title;
     protected string|null $description = null;
+
+    public function getChannelId(): string|null
+    {
+        return $this->channel_id;
+    }
+
+    public function getChannel(): VideoChannelTransfer|null
+    {
+        return $this->channel;
+    }
 
     public function getId(): string
     {
@@ -41,6 +53,20 @@ final class VideoWatchTransfer extends \Micro\Library\DTO\Object\AbstractDto
     public function getDescription(): string|null
     {
         return $this->description;
+    }
+
+    public function setChannelId(string|null $channel_id): self
+    {
+        $this->channel_id = $channel_id;
+
+        return $this;
+    }
+
+    public function setChannel(VideoChannelTransfer|null $channel): self
+    {
+        $this->channel = $channel;
+
+        return $this;
     }
 
     public function setId(string $id): self
@@ -81,6 +107,26 @@ final class VideoWatchTransfer extends \Micro\Library\DTO\Object\AbstractDto
     protected static function attributesMetadata(): array
     {
         return array (
+          'channel_id' =>
+          array (
+            'type' =>
+            array (
+              0 => 'string',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'channelId',
+          ),
+          'channel' =>
+          array (
+            'type' =>
+            array (
+              0 => 'App\\Shared\\Generated\\DTO\\Video\\VideoChannelTransfer',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'channel',
+          ),
           'id' =>
           array (
             'type' =>
