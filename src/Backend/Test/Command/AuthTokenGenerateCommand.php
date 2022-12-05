@@ -26,12 +26,15 @@ class AuthTokenGenerateCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $token = $this->securityFacade->generateToken([
-            'uuid'  => 'test-user-uuid',
-            'roles' => [
-                'ROLE_USER'
+            'user'  => [
+                'uuid'  => 'test-user-uuid',
+                'roles' => [
+                    'ROLE_USER'
+                ],
+                'username'  => 'user@videoportal'
             ],
-            'username'  => 'user@videoportal'
-        ], null, 86400);
+            ''
+        ]);
 
         dump($token);
 

@@ -1,5 +1,0 @@
-routes:
-  action_status:
-    resource: ./status.yaml
-    prefix: /
-    format: yaml

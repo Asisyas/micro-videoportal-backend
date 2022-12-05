@@ -33,4 +33,10 @@
         <property name="channel_id" type="string"/>
     </class>
 
+    <class name="Video\VideoChannelVideosGet">
+        <property name="channel_id" type="string" />
+        <property name="limit" type="int" />
+        <property name="offset" type="int"/>
+    </class>
+
 </dto>

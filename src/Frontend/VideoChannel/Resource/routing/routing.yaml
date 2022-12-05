@@ -6,3 +6,10 @@ routes:
     options:
       action: createChannel
       controller: 'App\Frontend\VideoChannel\Controller\VideoChannelController'
+  video_channel_videos_get:
+    path: /{channel_id}/videos
+    methods:
+      - GET
+    options:
+      action: channelVideos
+      controller: 'App\Frontend\VideoChannel\Controller\VideoChannelController'

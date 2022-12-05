@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<dto xmlns="micro:dto-01"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="micro:dto-01 https://raw.githubusercontent.com/Micro-PHP/dto/master/src/Resource/schema/dto-01.xsd">
+
+    <class name="Security\AuthConfiguration">
+        <property name="provider" type="string"/>
+        <property name="url_auth" type="string" required="true" />
+    </class>
+
+    <class name="Security\User">
+        <property name="id" type="string"/>
+        <property name="name_first" type="string"/>
+        <property name="name_last" type="string"/>
+        <property name="email" type="string"/>
+        <property name="roles" type="array"/>
+    </class>
+
+    <class name="Security\AuthCodeRequest">
+        <property name="code" type="string" />
+        <property name="provider" type="string"/>
+    </class>
+
+    <class name="Security\Token">
+        <property name="token" type="string"/>
+        <property name="time_now" type="int"/>
+        <property name="expires_at_access" type="int"/>
+        <property name="expires_at_refresh" type="int"/>
+        <property name="user" type="Security\TokenOwner" />
+    </class>
+
+    <class name="Security\TokenOwner">
+        <property name="id" type="string"/>
+        <property name="email" type="string"/>
+        <property name="name_first" type="string"/>
+        <property name="name_last" type="string"/>
+    </class>
+
+</dto>

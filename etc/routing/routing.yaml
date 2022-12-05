@@ -10,3 +10,13 @@ routes:
           - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
           - App\Frontend\Common\ResponseTransformer\TemporalExceptionHandler
           - App\Frontend\Common\ResponseTransformer\ResponseExceptionHandler
+
+  security:
+    resource: '@SecurityPluginFrontend/Resource/routing/routing.yaml'
+    format: yaml
+    prefix: /api/security
+    options:
+      handler:
+        response:
+          - App\Frontend\Common\ResponseTransformer\ResponseTransformerHandler
+          - App\Frontend\Common\ResponseTransformer\ResponseExceptionHandler

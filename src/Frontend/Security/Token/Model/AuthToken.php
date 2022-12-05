@@ -2,14 +2,14 @@
 
 namespace App\Frontend\Security\Token\Model;
 
-use Micro\Plugin\Security\Token\TokenInterface;
+use App\Shared\Generated\DTO\Security\TokenTransfer;
 
 class AuthToken implements AuthTokenInterface
 {
     /**
-     * @param TokenInterface $token
+     * @param TokenTransfer $token
      */
-    public function __construct(private readonly TokenInterface $token)
+    public function __construct(private readonly TokenTransfer $token)
     {
     }
 
@@ -18,7 +18,7 @@ class AuthToken implements AuthTokenInterface
      */
     public function getUserId(): null|string
     {
-        return $this->getParameter(self::PARAM_USER_ID, null);
+        return $this->token->getUser()->getId();
     }
 
     /**
@@ -26,39 +26,15 @@ class AuthToken implements AuthTokenInterface
      */
     public function getRoles(): array
     {
-        return $this->getParameter(self::PARAM_ROLES, []);
+        return [];
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCreatedAt(): int
+    public function getExpired(): int
     {
-        return $this->token->getCreatedAt();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getLifetime(): int
-    {
-        return $this->token->getLifetime();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getParameters(): array
-    {
-        return $this->token->getParameters();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getParameter(string $parameterName, mixed $default): mixed
-    {
-        return $this->token->getParameter($parameterName, $default);
+        return $this->token->getExpiresAtAccess();
     }
 
     /**
@@ -66,6 +42,6 @@ class AuthToken implements AuthTokenInterface
      */
     public function getSource(): string
     {
-        return $this->token->getSource();
+        return $this->token->getToken();
     }
 }

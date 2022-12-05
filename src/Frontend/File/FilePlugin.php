@@ -3,6 +3,7 @@
 namespace App\Frontend\File;
 
 use App\Client\File\FileClientInterface;
+use App\Client\Security\Client\SecurityClientInterface;
 use App\Frontend\Common\Validator\ArrayObject\ArrayValidatorFactoryInterface;
 use App\Frontend\File\Expander\FileUpload\FileUploadTransferExpanderFactory;
 use App\Frontend\File\Expander\FileUpload\FileUploadTransferExpanderFactoryInterface;

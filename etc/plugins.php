@@ -13,6 +13,9 @@ $pluginsFront = [
     App\Frontend\VideoWatch\VideoWatchPlugin::class,
     App\Frontend\VideoSearch\VideoSearchPlugin::class,
     App\Frontend\VideoChannel\VideoChannelPlugin::class,
+
+    Micro\Plugin\OAuth2\Client\OAuth2ClientPlugin::class,
+    Micro\Plugin\OAuth2\Client\Keycloak\OAuth2KeycloakProviderPlugin::class,
 ];
 
 $pluginsBack = [
@@ -72,6 +75,7 @@ $pluginClients = [
     App\Client\File\FilePlugin::class,
     App\Client\Search\SearchClientPlugin::class,
     App\Client\VideoChannel\VideoChannelClientPlugin::class,
+    App\Client\Security\SecurityClientPlugin::class,
 ];
 
 return array_merge($pluginsCommon, $pluginClients, ($isCli ?  $pluginsBack: $pluginsFront));

@@ -2,13 +2,8 @@
 
 namespace App\Frontend\Security\Token\Model;
 
-use Micro\Plugin\Security\Token\TokenInterface;
-
-interface AuthTokenInterface extends TokenInterface
+interface AuthTokenInterface
 {
-    const PARAM_USER_ID = 'uuid';
-    const PARAM_ROLES = 'roles';
-
     /**
      * @return string|null
      */
@@ -18,4 +13,9 @@ interface AuthTokenInterface extends TokenInterface
      * @return array
      */
     public function getRoles(): array;
+
+    /**
+     * @return int
+     */
+    public function getExpired(): int;
 }
