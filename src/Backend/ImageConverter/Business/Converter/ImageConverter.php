@@ -22,12 +22,18 @@ use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
  */
 class ImageConverter implements ImageConverterInterface
 {
+    /**
+     * @param FilesystemOperator $filesystemOperator
+     */
     public function __construct(
         private readonly FilesystemOperator $filesystemOperator
     )
     {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function convert(FileGetTransfer $fileGetTransfer): void
     {
         $fileId = $fileGetTransfer->getId();

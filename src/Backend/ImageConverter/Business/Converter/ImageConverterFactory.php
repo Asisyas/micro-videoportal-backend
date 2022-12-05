@@ -20,6 +20,9 @@ use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
  */
 class ImageConverterFactory implements ImageConverterFactoryInterface
 {
+    /**
+     * @param FilesystemFacadeInterface $filesystemFacade
+     */
     public function __construct(
         private readonly FilesystemFacadeInterface $filesystemFacade
     )

@@ -20,5 +20,10 @@ use App\Shared\Generated\DTO\File\FileGetTransfer;
  */
 interface ImageConverterInterface
 {
+    /**
+     * @param FileGetTransfer $fileGetTransfer
+     *
+     * @return void
+     */
     public function convert(FileGetTransfer $fileGetTransfer): void;
 }
