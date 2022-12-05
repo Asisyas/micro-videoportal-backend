@@ -1,0 +1,22 @@
+routes:
+  security_configuration:
+    path: /configuration
+    methods:
+      - GET
+    options:
+      action: receiveConfiguration
+      controller: 'App\Frontend\Security\Controller\AuthConfigurationController'
+  security_auth_code:
+    path: /auth/code
+    methods:
+      - GET
+    options:
+      action: processCodeRequest
+      controller: 'App\Frontend\Security\Controller\AuthorizationController'
+  security_token_refresh:
+    path: /token/refresh
+    methods:
+      - GET
+    options:
+      action: refreshToken
+      controller: 'App\Frontend\Security\Controller\AuthorizationController'

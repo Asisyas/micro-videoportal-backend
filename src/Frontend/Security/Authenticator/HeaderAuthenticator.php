@@ -2,28 +2,30 @@
 
 namespace App\Frontend\Security\Authenticator;
 
+use App\Client\Security\Client\SecurityClientInterface;
 use App\Frontend\Security\Configuration\SecurityPluginConfigurationInterface;
 use App\Frontend\Security\Token\Factory\AuthTokenFactoryInterface;
 use App\Frontend\Security\Token\Model\AuthTokenInterface;
+use App\Shared\Generated\DTO\Security\TokenTransfer;
+use Firebase\JWT\ExpiredException;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Micro\Plugin\Http\Exception\HttpBadRequestException;
 use Micro\Plugin\Http\Exception\HttpAccessDeniedException;
 use Micro\Plugin\Security\Exception\TokenExpiredException;
-use Micro\Plugin\Security\Facade\SecurityFacadeInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class HeaderAuthenticator implements AuthenticatorInterface
 {
     const TOKEN_NOT_FOUND   = 'Authentication token was not found.';
     const TOKEN_INVALID     = 'Invalid authentication token';
-    const TOKEN_EXPIRED     = 'Authentication token was expired.';
 
     /**
-     * @param SecurityFacadeInterface               $securityFacade
-     * @param AuthTokenFactoryInterface             $authTokenFactory
-     * @param SecurityPluginConfigurationInterface  $pluginConfiguration
+     * @param SecurityClientInterface $securityClient
+     * @param AuthTokenFactoryInterface $authTokenFactory
+     * @param SecurityPluginConfigurationInterface $pluginConfiguration
      */
     public function __construct(
-        private readonly SecurityFacadeInterface                $securityFacade,
+        private readonly SecurityClientInterface                $securityClient,
         private readonly AuthTokenFactoryInterface              $authTokenFactory,
         private readonly SecurityPluginConfigurationInterface   $pluginConfiguration
     )
@@ -48,14 +50,19 @@ class HeaderAuthenticator implements AuthenticatorInterface
             throw new HttpBadRequestException(self::TOKEN_INVALID);
         }
 
+        $tokenTransfer = new TokenTransfer();
+        $tokenTransfer->setToken($tokenRaw);
+
         try {
-            $token = $this->securityFacade->decodeToken($tokenRaw);
-        } catch (\UnexpectedValueException $exception) {
+            $this->securityClient->decodeToken($tokenTransfer);
+        }
+        catch (TokenExpiredException $exception) {
+            throw new HttpAccessDeniedException($exception->getMessage(), $exception);
+        }
+        catch (\UnexpectedValueException $exception) {
             throw new HttpBadRequestException(self::TOKEN_INVALID, $exception);
-        } catch (TokenExpiredException $exception) {
-            throw new HttpAccessDeniedException(self::TOKEN_EXPIRED);
         }
 
-        return $this->authTokenFactory->create($token);
+        return $this->authTokenFactory->create($tokenTransfer);
     }
 }

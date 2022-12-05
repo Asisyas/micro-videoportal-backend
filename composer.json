@@ -82,6 +82,27 @@
             "options": {
                 "symlink": true
             }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginTemporal",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginOauth2Client",
+            "options": {
+                "symlink": true
+            }
+        },
+        {
+            "type": "path",
+            "url": "../Micro/PluginOauth2ClientKeycloak",
+            "options": {
+                "symlink": true
+            }
         }
     ],
     "require-dev": {
@@ -110,6 +131,8 @@
         "micro/plugin-redis": "*",
         "micro/plugin-http": "^1",
         "micro/plugin-console": "^1",
+
+        "micro/plugin-oauth2-client-keycloak": "^1",
         "micro/plugin-uuid": "*",
         "micro/plugin-storage":  "*",
         "micro/plugin-doctrine": "^1",

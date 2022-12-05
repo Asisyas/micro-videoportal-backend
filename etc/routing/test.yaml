@@ -1,9 +1,0 @@
-routes:
-  user_list:
-    path: /user/list
-    options:
-      controller: App\Frontend\Api\Controller\ApiController
-    methods:
-      - GET
-      - POST
-      - patch
