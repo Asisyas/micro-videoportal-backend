@@ -1,0 +1,130 @@
+version: "3.4"
+
+# Development environment override
+services:
+  php-front:
+    env_file:
+      - .env
+      - .env.dev
+    build:
+      target: php_front_dev
+    volumes:
+      - ./:/srv/app
+      - ./docker/php_front/conf.d/app.dev.ini:/usr/local/etc/php/conf.d/app.dev.ini:ro
+      - ./var:/srv/app/var:rwm
+      # If you develop on Mac or Windows you can remove the vendor/ directory
+      #  from the bind-mount for better performance by enabling the next line:
+      #- /srv/app/vendor
+    environment:
+      # See https://xdebug.org/docs/all_settings#mode 
+      XDEBUG_MODE: "${XDEBUG_MODE:-off}"
+    extra_hosts:
+      # Ensure that host.docker.internal is correctly defined on Linux
+      - host.docker.internal:host-gateway
+  php-back:
+    env_file:
+      - .env
+      - .env.dev
+    build:
+      target: php_back_dev
+    volumes:
+      - ./:/srv/app
+      - ./docker/php_back/conf.d/app.dev.ini:/usr/local/etc/php/conf.d/app.dev.ini:ro
+      - ./var:/srv/app/var:rwm
+      # If you develop on Mac or Windows you can remove the vendor/ directory
+      #  from the bind-mount for better performance by enabling the next line:
+      #- /srv/app/vendor
+    environment:
+      # See https://xdebug.org/docs/all_settings#mode 
+      XDEBUG_MODE: "${XDEBUG_MODE:-off}"
+    extra_hosts:
+      # Ensure that host.docker.internal is correctly defined on Linux
+      - host.docker.internal:host-gateway
+      
+  caddy:
+    volumes:
+      - ./public:/srv/app/public:ro
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+  redis:
+    volumes:
+      - ./docker/redis/data:/data:rw
+
+  adminer:
+    image: adminer
+    restart: on-failure
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+  
+  filestorage:
+    image: minio/minio:latest
+    restart: always
+    volumes:
+      - filestorage:/data
+    ports:
+      - '9000:9000'
+      - '9021:9021'
+    command: server /data --console-address ":9021"
+    environment:
+      - MINIO_ROOT_USER=rootuser
+      - MINIO_ROOT_PASSWORD=adminpassword
+  
+  elasticsearch:
+    image: elasticsearch:8.5.3
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+      - xpack.security.enabled=false
+    volumes:
+      - ./docker/elasticsearch/data:/usr/share/elasticsearch/data:rw
+  db:
+    image: mysql:8
+    restart: on-failure
+    environment:
+      MYSQL_DATABASE: 'keycloak'
+      MYSQL_ROOT_PASSWORD: 'root'
+    volumes:
+      - ./docker/db/:/var/lib/mysql/
+      
+  temporal:
+    env_file:
+      - .env
+      - .env.dev
+    depends_on:
+      - db
+    environment:
+      - DYNAMIC_CONFIG_FILE_PATH=/config/dynamicconfig/development.yaml
+    volumes:
+      - ./docker/temporal:/config
+    
+      
+  keycloak:
+    image: quay.io/keycloak/keycloak:19.0
+    restart: unless-stopped
+    environment:
+      KC_DB: mysql
+      KC_DB_URL: jdbc:mysql://db:3306/keycloak
+      KC_DB_USERNAME: root
+      KC_DB_PASSWORD: root
+      DB_VENDOR: MYSQL
+      DB_ADDR: db
+      DB_PORT: 3306
+      DB_DATABASE: keycloak
+      DB_USER: root
+      DB_PASSWORD: root1111
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the MySQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "connectTimeout=30000"
+    command:
+      - "start-dev"
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+volumes:
+  filestorage:
+    driver: 'local'
+    
+    

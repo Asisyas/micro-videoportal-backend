@@ -20,7 +20,6 @@ use Micro\Framework\Kernel\Plugin\ConfigurableInterface;
 use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
 use Micro\Framework\Kernel\Plugin\PluginConfigurationTrait;
 use Micro\Plugin\OAuth2\Client\Facade\Oauth2ClientFacadeInterface;
-use Micro\Plugin\Security\Facade\SecurityFacadeInterface as JWTSecurityFacadeInterface;
 
 /**
  * @method SecurityPluginConfigurationInterface configuration()

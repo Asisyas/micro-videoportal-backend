@@ -13,16 +13,50 @@ declare(strict_types=1);
 
 namespace App\Backend\ImageConverter;
 
+use App\Backend\ImageConverter\Business\Converter\ImageConverterFactory;
+use App\Backend\ImageConverter\Business\Converter\ImageConverterFactoryInterface;
+use App\Backend\ImageConverter\Facade\ImageConverterFacade;
+use App\Backend\ImageConverter\Facade\ImageConverterFacadeInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
+use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
 /**
  * @author Stanislau Komar <head.trackingsoft@gmail.com>
  */
 class ImageConverterPlugin implements DependencyProviderInterface
 {
+    /**
+     * @var FilesystemFacadeInterface
+     */
+    private readonly FilesystemFacadeInterface $filesystemFacade;
 
     public function provideDependencies(Container $container): void
     {
+        $container->register(ImageConverterFacadeInterface::class, function (
+            FilesystemFacadeInterface $filesystemFacade
+        ) {
+            $this->filesystemFacade = $filesystemFacade;
+
+            return $this->createFacade();
+        });
+    }
+
+    /**
+     * @return ImageConverterFacadeInterface
+     */
+    protected function createFacade(): ImageConverterFacadeInterface
+    {
+        return new ImageConverterFacade(
+            $this->createImageConverterFactory()
+        );
+    }
+
+    /**
+     * @return ImageConverterFactoryInterface
+     */
+    protected function createImageConverterFactory(): ImageConverterFactoryInterface
+    {
+        return new ImageConverterFactory($this->filesystemFacade);
     }
 }

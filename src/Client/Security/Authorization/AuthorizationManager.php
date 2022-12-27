@@ -17,6 +17,7 @@ use App\Client\Security\Authorization\Expander\SecurityTokenDataExpanderInterfac
 use App\Client\Security\Authorization\Expander\TokenTransferExpanderInterface;
 use App\Shared\Generated\DTO\Security\AuthCodeRequestTransfer;
 use App\Shared\Generated\DTO\Security\TokenTransfer;
+use Firebase\JWT\ExpiredException;
 use Micro\Plugin\OAuth2\Client\Facade\Oauth2ClientFacadeInterface;
 use Micro\Plugin\Security\Exception\TokenExpiredException;
 use Micro\Plugin\Security\Facade\SecurityFacadeInterface;
@@ -57,6 +58,7 @@ class AuthorizationManager implements AuthorizationManagerInterface
 
         $tokenTransfer  = new TokenTransfer();
         $this->securityTokenDataExpander->expand($tokenData, $accessToken, $provider);
+
         $tokenGenerated = $this->securityFacade->generateToken($tokenData);
         $this->tokenTransferExpander->expand($tokenTransfer, $tokenGenerated);
 
@@ -87,9 +89,15 @@ class AuthorizationManager implements AuthorizationManagerInterface
      */
     public function decodeToken(TokenTransfer $tokenTransfer): void
     {
-        $tokenData = $this->securityFacade->decodeToken($tokenTransfer->getToken());
+        try {
+            $tokenData = $this->securityFacade->decodeToken($tokenTransfer->getToken());
+        } catch (ExpiredException $exception) {
+            throw new TokenExpiredException($tokenTransfer->getToken(), $exception);
+        }
 
         $this->checkAccessTokenExpired($tokenData);
+
+        $this->tokenTransferExpander->expand($tokenTransfer, $tokenData);
     }
 
     /**

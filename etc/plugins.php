@@ -1,7 +1,5 @@
 <?php
 
-$isCli = php_sapi_name() == 'cli';
-
 $pluginsFront = [
     Micro\Plugin\Http\HttpPlugin::class,
 
@@ -20,10 +18,6 @@ $pluginsFront = [
 
 $pluginsBack = [
     Micro\Plugin\Doctrine\DoctrinePlugin::class,
-
-//    Micro\Plugin\User\Model\Doctrine\UserModelDoctrinePlugin::class,
-//    Micro\Plugin\User\Manager\Doctrine\UserManagerDoctrinePlugin::class,
-
     Micro\Plugin\Console\ConsolePlugin::class,
     /* Video converter FFMPEG */
     Micro\Plugin\Ffmpeg\FfmpegPlugin::class,
@@ -50,8 +44,6 @@ $pluginsCommon = [
     // Common
     Micro\Plugin\Uuid\UuidPlugin::class,
     Micro\Plugin\Logger\Monolog\MonologPlugin::class,
-    Micro\Plugin\Serializer\SerializerPlugin::class,
-    Micro\Plugin\Serializer\Adapter\Symfony\SerializerSymfonyAdapterPlugin::class,
     Micro\Plugin\Redis\RedisPlugin::class,
     Micro\Plugin\DTO\DTOPlugin::class,
     Micro\Plugin\Configuration\Helper\ConfigurationHelperPlugin::class,
@@ -78,4 +70,20 @@ $pluginClients = [
     App\Client\Security\SecurityClientPlugin::class,
 ];
 
-return array_merge($pluginsCommon, $pluginClients, ($isCli ?  $pluginsBack: $pluginsFront));
+
+const ENV_MODE_FRONT = 'frontend';
+const ENV_MODE_BACK = 'backend';
+
+$envs = explode(',', getenv('APP_MODE') ?: ENV_MODE_FRONT . ',' . ENV_MODE_BACK);
+
+$plugins = array_merge($pluginsCommon, $pluginClients);
+
+if(in_array(ENV_MODE_FRONT, $envs)) {
+    $plugins = array_merge($plugins,  $pluginsFront);
+}
+
+if(in_array(ENV_MODE_BACK, $envs)) {
+    $plugins = array_merge($plugins,  $pluginsBack);
+}
+
+return $plugins;
