@@ -44,7 +44,7 @@ class MediaConverterPlugin extends AbstractPlugin
      */
     public function provideDependencies(Container $container): void
     {
-        $container->register(MediaConverterFacadeInterface::class, function(
+        $container->register(MediaConverterFacadeInterface::class, function (
             FfmpegFacadeInterface $ffmpegFacade,
             FilesystemFacadeInterface $filesystemFacade
         ) {

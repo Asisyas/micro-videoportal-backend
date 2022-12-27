@@ -35,30 +35,30 @@ final class SearchResultCollectionTransfer extends \Micro\Library\DTO\Object\Abs
 
     public function setResults(iterable|null $results): self
     {
-        if(!$results) {
-                        $this->results = null;
+        if (!$results) {
+            $this->results = null;
 
-                        return $this;
-                    }
+            return $this;
+        }
 
-                    if(!$this->results) {
-                        $this->results = new Collection();
-                    }
+        if (!$this->results) {
+            $this->results = new Collection();
+        }
 
-                    foreach($results as $item) {
-                        $this->results->add($item);
-                    }
+        foreach ($results as $item) {
+            $this->results->add($item);
+        }
 
-                    return $this;
+        return $this;
     }
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'total' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -66,9 +66,9 @@ final class SearchResultCollectionTransfer extends \Micro\Library\DTO\Object\Abs
             'actionName' => 'total',
           ),
           'results' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'iterable',
               1 => 'null',
             ),

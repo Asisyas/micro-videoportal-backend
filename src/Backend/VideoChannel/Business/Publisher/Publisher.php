@@ -14,8 +14,7 @@ class Publisher implements PublisherInterface
     public function __construct(
         private readonly VideoChannelManagerInterface $videoChannelManager,
         private readonly iterable $publisherCollection,
-    )
-    {
+    ) {
     }
 
     /**

@@ -29,8 +29,7 @@ class ChannelExpander implements VideoWatchExpanderInterface
      */
     public function __construct(
         private readonly VideoChannelClientInterface $videoChannelClient
-    )
-    {
+    ) {
     }
 
     /**
@@ -41,7 +40,7 @@ class ChannelExpander implements VideoWatchExpanderInterface
     public function expand(VideoWatchTransfer $videoWatchTransfer): void
     {
         $channelId = $videoWatchTransfer->getChannelId();
-        if(!$channelId) {
+        if (!$channelId) {
             return;
         }
 

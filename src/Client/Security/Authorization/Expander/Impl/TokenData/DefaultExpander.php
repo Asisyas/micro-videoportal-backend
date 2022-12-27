@@ -15,7 +15,7 @@ namespace App\Client\Security\Authorization\Expander\Impl\TokenData;
 
 use App\Client\Security\Authorization\Expander\SecurityTokenDataExpanderInterface;
 use League\OAuth2\Client\Provider\AbstractProvider;
-use League\OAuth2\Client\Token\AccessToken;
+use League\OAuth2\Client\Token\AccessTokenInterface;
 
 /**
  * @author Stanislau Komar <head.trackingsoft@gmail.com>
@@ -25,10 +25,10 @@ class DefaultExpander implements SecurityTokenDataExpanderInterface
     /**
      * {@inheritDoc}
      */
-    public function expand(array &$tokenData, AccessToken $accessToken, AbstractProvider $provider): void
+    public function expand(array &$tokenData, AccessTokenInterface $accessToken, AbstractProvider $provider): void
     {
         $values                 = $accessToken->getValues();
-        $timeNow                = $accessToken->getTimeNow();
+        $timeNow                = $accessToken->getTimeNow(); //@phpstan-ignore-line
         $tokenData['rt']        = $accessToken->getRefreshToken();
         $tokenData['tn']        = $timeNow;
         $tokenData['exp']       = $timeNow + (int) $values['refresh_expires_in'];

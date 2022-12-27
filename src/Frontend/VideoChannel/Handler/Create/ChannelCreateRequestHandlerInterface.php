@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface ChannelCreateRequestHandlerInterface
 {
-
     /**
      * @param Request $request
      *

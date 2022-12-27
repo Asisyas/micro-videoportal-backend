@@ -55,20 +55,20 @@ final class VideoConvertTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'file' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\File\\FileTransfer',
             ),
             'required' => true,
             'actionName' => 'file',
           ),
           'meta' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'MediaConverter\\VideoMetadata',
               1 => 'null',
             ),
@@ -76,9 +76,9 @@ final class VideoConvertTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'meta',
           ),
           'resolution' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'MediaConverter\\Resolution',
             ),
             'required' => true,

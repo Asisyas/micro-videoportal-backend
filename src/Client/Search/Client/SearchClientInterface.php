@@ -10,7 +10,7 @@ interface SearchClientInterface
     /**
      * @param SearchTransfer $searchTransfer
      *
-     * @return mixed
+     * @return SearchResultCollectionTransfer
      */
     public function search(SearchTransfer $searchTransfer): SearchResultCollectionTransfer;
 }

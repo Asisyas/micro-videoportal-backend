@@ -26,8 +26,7 @@ class VideoWatchExpander implements VideoWatchExpanderInterface
      */
     public function __construct(
         private readonly iterable $expanderCollection
-    )
-    {
+    ) {
     }
 
     /**

@@ -15,8 +15,7 @@ class VideoDescriptionFacade implements VideoDescriptionFacadeInterface
      */
     public function __construct(
         private readonly VideoDescriptionManagerFactoryInterface $videoDescriptionManagerFactory
-    )
-    {
+    ) {
     }
 
     /**

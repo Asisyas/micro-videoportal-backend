@@ -17,8 +17,7 @@ class VideoChannelManagerFactory implements VideoChannelManagerFactoryInterface
         private readonly DoctrineFacadeInterface $doctrineFacade,
         private readonly VideoChannelEntityExpanderFactoryInterface $channelEntityExpanderFactory,
         private readonly VideoChannelTransferExpanderFactoryInterface $channelTransferExpanderFactory
-    )
-    {
+    ) {
     }
 
     /**

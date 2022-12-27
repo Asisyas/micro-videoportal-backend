@@ -28,11 +28,11 @@ final class VideoChannelGetTransfer extends \Micro\Library\DTO\Object\AbstractDt
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'channel_id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,

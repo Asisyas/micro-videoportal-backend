@@ -15,8 +15,7 @@ class FileClientReaderFactory implements FileClientReaderFactoryInterface
     public function __construct(
         private readonly ClientReaderFacadeInterface $clientReaderFacade,
         private readonly FileTransferExpanderFactoryInterface $fileTransferExpanderFactory
-    )
-    {
+    ) {
     }
 
     /**

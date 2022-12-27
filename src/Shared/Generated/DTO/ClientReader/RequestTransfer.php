@@ -41,20 +41,20 @@ final class RequestTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'uuid' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'uuid',
           ),
           'index' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,

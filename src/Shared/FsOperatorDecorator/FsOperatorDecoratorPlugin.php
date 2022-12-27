@@ -14,10 +14,10 @@ class FsOperatorDecoratorPlugin extends AbstractPlugin
      */
     public function provideDependencies(Container $container): void
     {
-        $container->decorate(FilesystemFacadeInterface::class, function(
+        $container->decorate(FilesystemFacadeInterface::class, function (
             FilesystemFacadeInterface $decorated
         ) {
-           return $this->createDecorator($decorated);
+            return $this->createDecorator($decorated);
         });
     }
 

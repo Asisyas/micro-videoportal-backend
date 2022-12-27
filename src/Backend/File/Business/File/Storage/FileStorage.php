@@ -16,8 +16,7 @@ class FileStorage implements FileStorageInterface
      */
     public function __construct(
         private readonly ClientStorageFacadeInterface     $clientStorageFacade,
-    )
-    {
+    ) {
     }
 
     /**

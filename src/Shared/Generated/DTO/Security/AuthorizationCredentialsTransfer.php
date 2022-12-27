@@ -54,29 +54,29 @@ final class AuthorizationCredentialsTransfer extends \Micro\Library\DTO\Object\A
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'token_refresh' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\Security\\TokenTransfer',
             ),
             'required' => true,
             'actionName' => 'tokenRefresh',
           ),
           'token_token_auth' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\Security\\TokenTransfer',
             ),
             'required' => true,
             'actionName' => 'tokenTokenAuth',
           ),
           'user' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\Security\\UserTransfer',
               1 => 'null',
             ),

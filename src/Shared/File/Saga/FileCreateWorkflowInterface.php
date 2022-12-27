@@ -6,7 +6,7 @@ use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
 use Temporal\Workflow\WorkflowInterface;
 use Micro\Plugin\Temporal\Workflow\WorkflowInterface as MicroWorkflowInterface;
-use \Generator;
+use Generator;
 use Temporal\Workflow\WorkflowMethod;
 
 #[WorkflowInterface]

@@ -23,7 +23,7 @@ class ResponseTransformerHandler implements ResponseHandlerInterface
     public function handle(ResponseHandlerContextInterface $responseHandlerContext): void
     {
         $responseData = $responseHandlerContext->getResponse();
-        if(!($responseData instanceof AbstractDto)) {
+        if (!($responseData instanceof AbstractDto)) {
             return;
         }
 

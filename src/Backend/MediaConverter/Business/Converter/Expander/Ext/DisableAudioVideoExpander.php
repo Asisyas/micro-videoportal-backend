@@ -17,11 +17,11 @@ class DisableAudioVideoExpander implements FilterExpanderInterface
         $isVideoDisable     = ($mediaTypeFlag & MediaConverterPluginConfiguration::FLAG_VIDEO) === 0;
         $isAudioDisable     = ($mediaTypeFlag & MediaConverterPluginConfiguration::FLAG_AUDIO) === 0;
 
-        if($isVideoDisable) {
+        if ($isVideoDisable) {
             $filters[] = '-vn';
         }
 
-        if($isAudioDisable){
+        if ($isAudioDisable) {
             $filters[] = '-an';
         }
     }

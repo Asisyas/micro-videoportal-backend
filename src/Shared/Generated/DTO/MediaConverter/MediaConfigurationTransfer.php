@@ -56,11 +56,11 @@ final class MediaConfigurationTransfer extends \Micro\Library\DTO\Object\Abstrac
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'file' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\File\\FileTransfer',
               1 => 'null',
             ),
@@ -68,9 +68,9 @@ final class MediaConfigurationTransfer extends \Micro\Library\DTO\Object\Abstrac
             'actionName' => 'file',
           ),
           'video' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\Video\\VideoTransfer',
               1 => 'null',
             ),
@@ -78,9 +78,9 @@ final class MediaConfigurationTransfer extends \Micro\Library\DTO\Object\Abstrac
             'actionName' => 'video',
           ),
           'resolution_configuration' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\MediaConverter\\MediaResolutionTransfer',
               1 => 'null',
             ),

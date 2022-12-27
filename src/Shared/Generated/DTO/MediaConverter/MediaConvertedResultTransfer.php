@@ -41,20 +41,20 @@ final class MediaConvertedResultTransfer extends \Micro\Library\DTO\Object\Abstr
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'src' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'src',
           ),
           'resolution' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\MediaConverter\\MediaResolutionTransfer',
             ),
             'required' => true,

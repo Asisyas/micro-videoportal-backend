@@ -17,8 +17,7 @@ class VideoChannelFacade implements VideoChannelFacadeInterface
     public function __construct(
         private readonly VideoChannelManagerFactoryInterface $videoChannelManagerFactory,
         private readonly PublisherFactoryInterface $publisherFactory
-    )
-    {
+    ) {
     }
 
     /**

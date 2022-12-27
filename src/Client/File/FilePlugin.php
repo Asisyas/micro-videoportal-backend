@@ -48,7 +48,6 @@ class FilePlugin extends AbstractPlugin
             TemporalFacadeInterface $temporalFacade,
             ClientReaderFacadeInterface $clientReaderFacade,
             FilesystemFacadeInterface $filesystemFacade
-
         ) {
             $this->temporalFacade           = $temporalFacade;
             $this->clientReaderFacade       = $clientReaderFacade;

@@ -22,30 +22,30 @@ final class MediaResolutionCollectionTransfer extends \Micro\Library\DTO\Object\
 
     public function setResolutions(iterable|null $resolutions): self
     {
-        if(!$resolutions) {
-                        $this->resolutions = null;
+        if (!$resolutions) {
+            $this->resolutions = null;
 
-                        return $this;
-                    }
+            return $this;
+        }
 
-                    if(!$this->resolutions) {
-                        $this->resolutions = new Collection();
-                    }
+        if (!$this->resolutions) {
+            $this->resolutions = new Collection();
+        }
 
-                    foreach($resolutions as $item) {
-                        $this->resolutions->add($item);
-                    }
+        foreach ($resolutions as $item) {
+            $this->resolutions->add($item);
+        }
 
-                    return $this;
+        return $this;
     }
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'resolutions' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'iterable',
               1 => 'null',
             ),

@@ -28,7 +28,8 @@ class FileUploadRequestValidator extends AbstractValidator
      */
     protected function createValidationSchema(): Constraint
     {
-        return new Assert\Collection([
+        return new Assert\Collection(
+            [
             'content-type'  => [
                 new Assert\NotBlank(),
                 new Assert\Type(['type' => 'string']),
@@ -45,7 +46,10 @@ class FileUploadRequestValidator extends AbstractValidator
                 new Assert\GreaterThan(1),
                 new Assert\Positive(),
             ],
-        ], null, null, true
+        ],
+            null,
+            null,
+            true
         );
     }
 }

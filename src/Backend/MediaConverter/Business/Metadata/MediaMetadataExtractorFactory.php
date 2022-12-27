@@ -17,8 +17,7 @@ class MediaMetadataExtractorFactory implements MediaMetadataExtractorFactoryInte
         private readonly FfmpegFacadeInterface            $ffmpegFacade,
         private readonly MetadataExpanderFactoryInterface $videoMetadataExpanderFactory,
         private readonly FilesystemFacadeInterface        $filesystemFacade
-    )
-    {
+    ) {
     }
 
     /**

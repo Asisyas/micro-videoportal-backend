@@ -27,8 +27,7 @@ class SecurityClient implements SecurityClientInterface
      */
     public function __construct(
         private readonly AuthorizationManagerFactoryInterface $authorizationManagerFactory
-    )
-    {
+    ) {
     }
 
     /**

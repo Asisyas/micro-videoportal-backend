@@ -12,8 +12,7 @@ class TemporaryExpander implements SearchResultsExpanderInterface
 {
     public function __construct(
         private readonly ClientReaderFacadeInterface $clientReaderFacade
-    )
-    {
+    ) {
     }
 
     /**
@@ -21,7 +20,7 @@ class TemporaryExpander implements SearchResultsExpanderInterface
      */
     public function expand(SearchResultCollectionTransfer $resultCollectionTransfer, array $elasticSource): void
     {
-        $resultCollectionTransfer->setTotal((int)$elasticSource['hits']['total']['value'] ?? 0);
+        $resultCollectionTransfer->setTotal((int)($elasticSource['hits']['total']['value'] ?? 0));
         $hits = $elasticSource['hits']['hits'] ?? [];
         foreach ($hits as $hit) {
             $id = $hit['_id'];

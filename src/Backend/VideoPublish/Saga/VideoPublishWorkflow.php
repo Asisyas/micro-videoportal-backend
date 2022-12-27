@@ -5,7 +5,6 @@ namespace App\Backend\VideoPublish\Saga;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
-use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
 use App\Shared\Generated\DTO\Video\VideoGetTransfer;
@@ -28,14 +27,9 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
 {
     private ActivityProxy $activity;
 
-    private readonly ChildWorkflowProxy $workflowVideoDescriptionCreate;
-
-    private readonly ChildWorkflowProxy $workflowVideoCreate;
-
-    private readonly ChildWorkflowProxy $workflowMediaConverter;
-
     public function __construct()
     {
+        // @phpstan-ignore-next-line
         $this->activity = Workflow::newActivityStub(
             VideoPublishActivityInterface::class,
             ActivityOptions::new()
@@ -44,36 +38,29 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
                 ->withRetryOptions(
                     RetryOptions::new()
                         ->withMaximumAttempts(10)
-
-            )
+                )
         );
     }
 
-    /**
-     * @return VideoDescriptionCreateWorkflowInterface
-     */
     protected function createVideoDescriptionWorkflow(): ChildWorkflowProxy
     {
+        // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
             VideoDescriptionCreateWorkflowInterface::class
         );
     }
 
-    /**
-     * @return VideoCreateWorkflowInterface
-     */
     protected function createVideoCreateWorkflow(): ChildWorkflowProxy
     {
+        // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
             VideoCreateWorkflowInterface::class
         );
     }
 
-    /**
-     * @return MediaConvertWorkflowInterface
-     */
     protected function createMediaConverterWorkflow(): ChildWorkflowProxy
     {
+        // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
             MediaConvertWorkflowInterface::class
         );
@@ -104,13 +91,14 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
 
             yield $this
                 ->createVideoDescriptionWorkflow()
-                ->create((new VideoDescriptionPutTransfer())
+                ->create(
+                    (new VideoDescriptionPutTransfer())
                     ->setVideoId($videoId)
                     ->setSource(
                         (new VideoDescriptionTransfer())
                             ->setTitle($fileTransfer->getName())
                     )
-            );
+                );
 
             yield $this->activity->propagateVideo($videoGetTransfer);
 
@@ -121,7 +109,6 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
             );
 
             return $videoConverted;
-
         } catch (\Throwable $exception) {
             $saga->compensate();
 

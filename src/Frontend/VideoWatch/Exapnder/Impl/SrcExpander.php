@@ -28,8 +28,7 @@ class SrcExpander implements VideoWatchExpanderInterface
      */
     public function __construct(
         private readonly FilesystemFacadeInterface $filesystemFacade
-    )
-    {
+    ) {
     }
 
     /**
@@ -38,7 +37,7 @@ class SrcExpander implements VideoWatchExpanderInterface
     public function expand(VideoWatchTransfer $videoWatchTransfer): void
     {
         $src = $videoWatchTransfer->getSrc();
-        if(!$src) {
+        if (!$src) {
             return;
         }
 

@@ -13,8 +13,7 @@ class VideoDescriptionUpdateActivity implements VideoDescriptionUpdateActivityIn
      */
     public function __construct(
         private readonly VideoDescriptionFacadeInterface $videoDescriptionFacade
-    )
-    {
+    ) {
     }
 
     /**

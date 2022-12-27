@@ -39,8 +39,7 @@ class AuthorizationManager implements AuthorizationManagerInterface
         private readonly SecurityFacadeInterface $securityFacade,
         private readonly SecurityTokenDataExpanderInterface $securityTokenDataExpander,
         private readonly TokenTransferExpanderInterface $tokenTransferExpander
-    )
-    {
+    ) {
     }
 
     /**
@@ -108,11 +107,11 @@ class AuthorizationManager implements AuthorizationManagerInterface
     protected function checkAccessTokenExpired(TokenInterface $token): void
     {
         $tokenExpTime = (int) $token->getParameter('exp_ta', null);
-        if(!$tokenExpTime) {
+        if (!$tokenExpTime) {
             return;
         }
 
-        if(time() >= $tokenExpTime) {
+        if (time() >= $tokenExpTime) {
             throw new TokenExpiredException($token->getSource());
         }
     }

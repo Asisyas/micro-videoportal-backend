@@ -22,30 +22,30 @@ final class VideoConvertCollectionTransfer extends \Micro\Library\DTO\Object\Abs
 
     public function setItems(iterable $items): self
     {
-        if(!$items) {
-                        $this->items = null;
+        if (!$items) {
+            $this->items = null;
 
-                        return $this;
-                    }
+            return $this;
+        }
 
-                    if(!$this->items) {
-                        $this->items = new Collection();
-                    }
+        if (!$this->items) {
+            $this->items = new Collection();
+        }
 
-                    foreach($items as $item) {
-                        $this->items->add($item);
-                    }
+        foreach ($items as $item) {
+            $this->items->add($item);
+        }
 
-                    return $this;
+        return $this;
     }
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'items' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'iterable',
             ),
             'required' => true,

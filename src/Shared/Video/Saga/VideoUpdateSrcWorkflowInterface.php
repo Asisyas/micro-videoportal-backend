@@ -17,6 +17,6 @@ interface VideoUpdateSrcWorkflowInterface extends WorkflowInterface
      *
      * @throws VideoNotFoundException
      */
-    #[WorkflowMethod(name: 'Video_Src_Update')]
+    #[WorkflowMethod(name: 'Video_Src_Update')] // @phpstan-ignore-line
     public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer);
 }

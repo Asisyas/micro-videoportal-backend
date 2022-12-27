@@ -16,8 +16,7 @@ class VideoActivity implements VideoActivityInterface
      */
     public function __construct(
         private readonly VideoFacadeInterface $videoFacade
-    )
-    {
+    ) {
     }
 
     /**

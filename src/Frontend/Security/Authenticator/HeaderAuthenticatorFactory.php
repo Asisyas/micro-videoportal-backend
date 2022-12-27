@@ -17,8 +17,7 @@ class HeaderAuthenticatorFactory implements AuthenticatorFactoryInterface
         private readonly SecurityClientInterface                $securityClient,
         private readonly AuthTokenFactoryInterface              $authTokenFactory,
         private readonly SecurityPluginConfigurationInterface   $pluginConfiguration
-    )
-    {
+    ) {
     }
 
     /**

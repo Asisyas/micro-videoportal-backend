@@ -13,8 +13,7 @@ class RequestHeaderAuthenticateHandler implements RequestHandlerInterface
      */
     public function __construct(
         private readonly SecurityFacadeInterface $securityFacade
-    )
-    {
+    ) {
     }
 
     /**

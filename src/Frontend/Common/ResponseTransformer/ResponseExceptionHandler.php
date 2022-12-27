@@ -16,58 +16,43 @@ class ResponseExceptionHandler implements ResponseHandlerInterface
 {
     public function handle(ResponseHandlerContextInterface $responseHandlerContext): void
     {
-       $exception = $responseHandlerContext->getException();
-       if(!$exception) {
-           return;
-       }
+        $exception = $responseHandlerContext->getException();
+        if (!$exception) {
+            return;
+        }
 
-       if($exception instanceof HttpException) {
-           $message = $exception->getMessage();
-           $response = new Response('', $exception->getCode());
+        if ($exception instanceof HttpException) {
+            $message = $exception->getMessage();
+            $response = new Response('', $exception->getCode());
 
-           if($exception instanceof HttpBadRequestException) {
-               $sourceConstraintsViolations = $exception->getSource();
+            $responseHandlerContext->setResponse(
+                $response->setContent($message)
+            );
 
-               if($sourceConstraintsViolations !== null) {
-                   $message = json_encode($this->buildMessage($sourceConstraintsViolations));
-                   $response->headers->set('Content-Type', 'application/json');
-               }
-           }
+            return;
+        }
 
-           $responseHandlerContext->setResponse(
-               $response->setContent($message)
-           );
-
-           return;
-       }
-
-       if($exception instanceof HttpBadRequestException) {
-           $sourceConstraintsViolations = $exception->getSource();
-           $message = $exception->getMessage();
-           $response = new Response('', 400);
-           if($sourceConstraintsViolations !== null) {
-                $message = json_encode($this->buildMessage($sourceConstraintsViolations));
+        if ($exception instanceof HttpBadRequestException) {
+            $sourceConstraintsViolations = $exception->getSource();
+            $message = $exception->getMessage();
+            $response = new Response('', 400);
+            if ($sourceConstraintsViolations !== null) {
+                $message = json_encode($this->buildMessage($sourceConstraintsViolations)) ?: '[]';
                 $response->headers->set('Content-Type', 'application/json');
-           }
+            }
 
-           $responseHandlerContext->setResponse(
-               $response->setContent($message)
-           );
+            $responseHandlerContext->setResponse(
+                $response->setContent($message)
+            );
 
-           return;
-       }
+            return;
+        }
 
-       if($exception instanceof ClientReaderNotFoundException) {
-           $responseHandlerContext->setException(
-               new HttpNotFoundException($exception->getMessage())
-           );
-       }
-
-       if($exception instanceof AMQPTimeoutException) {
-           $responseHandlerContext->setResponse(
-               new Response('Request timeout', 408)
-           );
-       }
+        if ($exception instanceof ClientReaderNotFoundException) {
+            $responseHandlerContext->setException(
+                new HttpNotFoundException($exception->getMessage())
+            );
+        }
     }
 
     public function buildMessage(ConstraintViolationListInterface $violations): array

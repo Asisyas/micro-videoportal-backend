@@ -12,8 +12,7 @@ class SearchStorageFacade implements SearchStorageFacadeInterface
      */
     public function __construct(
         private readonly StorageFactoryInterface $storageFactory
-    )
-    {
+    ) {
     }
 
     /**

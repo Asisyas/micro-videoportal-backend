@@ -132,11 +132,11 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'height' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -144,9 +144,9 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
             'actionName' => 'height',
           ),
           'width' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -154,9 +154,9 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
             'actionName' => 'width',
           ),
           'fps' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -164,9 +164,9 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
             'actionName' => 'fps',
           ),
           'bit_rate' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -174,9 +174,9 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
             'actionName' => 'bitRate',
           ),
           'frame_rate' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -184,9 +184,9 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
             'actionName' => 'frameRate',
           ),
           'keyint_min' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -194,9 +194,9 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
             'actionName' => 'keyintMin',
           ),
           'gop' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -204,9 +204,9 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
             'actionName' => 'gop',
           ),
           'media_type_flag' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -214,9 +214,9 @@ final class MediaResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDt
             'actionName' => 'mediaTypeFlag',
           ),
           'rotation' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),

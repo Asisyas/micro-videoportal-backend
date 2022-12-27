@@ -13,8 +13,7 @@ class FileFacade implements FileFacadeInterface
      */
     public function __construct(
         private readonly FileUploaderFactoryInterface $fileUploaderFactory
-    )
-    {
+    ) {
     }
 
     /**

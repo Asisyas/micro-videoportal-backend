@@ -37,8 +37,7 @@ class SecurityFacade implements SecurityFacadeInterface
     public function __construct(
         private readonly AuthenticatorFactoryInterface $authenticatorFactory,
         private readonly AuthConfigurationFactoryInterface $authConfigurationFactory
-    )
-    {
+    ) {
     }
 
     /**

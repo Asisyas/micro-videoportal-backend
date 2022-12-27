@@ -15,8 +15,7 @@ class FileClientStore implements FileClientStoreInterface
      */
     public function __construct(
         private readonly WorkflowClientInterface $workflowClient
-    )
-    {
+    ) {
     }
 
     /**
@@ -24,6 +23,7 @@ class FileClientStore implements FileClientStoreInterface
      */
     public function createFile(FileUploadTransfer $fileUploadTransfer): FileTransfer
     {
+        // @phpstan-ignore-next-line
         return $this->workflowClient
             ->newWorkflowStub(FileCreateWorkflowInterface::class)
             ->createFile($fileUploadTransfer);

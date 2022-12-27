@@ -19,7 +19,8 @@ class VideoCreateWorkflow implements VideoCreateWorkflowInterface
 
     public function __construct()
     {
-        $this->activity = Workflow::newActivityStub(VideoCreateActivityInterface::class,
+        $this->activity = Workflow::newActivityStub(
+            VideoCreateActivityInterface::class,
             ActivityOptions::new()
                 ->withStartToCloseTimeout(30)
                 ->withHeartbeatTimeout(30)

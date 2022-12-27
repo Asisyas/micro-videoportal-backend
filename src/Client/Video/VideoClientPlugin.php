@@ -33,7 +33,7 @@ class VideoClientPlugin extends AbstractPlugin
      */
     public function provideDependencies(Container $container): void
     {
-        $container->register(VideoClientInterface::class, function(
+        $container->register(VideoClientInterface::class, function (
             ClientReaderFacadeInterface $clientReaderFacade,
             TemporalFacadeInterface $temporalFacade
         ) {

@@ -7,7 +7,6 @@ use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
 
-
 interface FileClientInterface
 {
     /**

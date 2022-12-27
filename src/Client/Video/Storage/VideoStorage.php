@@ -15,8 +15,7 @@ class VideoStorage implements VideoStorageInterface
      */
     public function __construct(
         private readonly TemporalFacadeInterface $temporalFacade
-    )
-    {
+    ) {
     }
 
     /**

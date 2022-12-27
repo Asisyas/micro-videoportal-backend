@@ -55,29 +55,29 @@ final class PostTransfer extends AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'uuid' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'uuid',
           ),
           'index' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'index',
           ),
           'data' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'Micro\\Library\\DTO\\Object\\AbstractDto',
               1 => 'array',
               2 => 'string',

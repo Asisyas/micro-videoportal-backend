@@ -9,12 +9,10 @@ use Elastic\Elasticsearch\Client;
 
 class ElasticEngine implements SearchEngineInterface
 {
-
     public function __construct(
         private readonly Client $elasticClient,
         private readonly SearchResultsExpanderInterface $searchResultsExpander
-    )
-    {
+    ) {
     }
 
     /**
@@ -32,17 +30,18 @@ class ElasticEngine implements SearchEngineInterface
             'body'  => $searchTransfer->getQuery()
         ];
 
-        if($limit) {
+        if ($limit) {
             $searchOpts['size'] = $limit;
         }
 
-        if($offset) {
+        if ($offset) {
             $searchOpts['from'] = $offset;
         }
 
         $searchResultsCollection  = new SearchResultCollectionTransfer();
 
         $sourceResultsData = $this->elasticClient->search($searchOpts);
+        // @phpstan-ignore-next-line
         $this->searchResultsExpander->expand($searchResultsCollection, $sourceResultsData->asArray());
 
         return $searchResultsCollection;

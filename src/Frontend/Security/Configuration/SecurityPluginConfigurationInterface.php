@@ -4,7 +4,7 @@ namespace App\Frontend\Security\Configuration;
 
 interface SecurityPluginConfigurationInterface
 {
-    const HEADER_NAME_DEFAULT = 'Authorization';
+    public const HEADER_NAME_DEFAULT = 'Authorization';
 
     /**
      * @return string

@@ -2,15 +2,18 @@
 
 namespace App\Client\Video\Reader;
 
-use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
+use App\Client\ClientReader\Exception\NotFoundException;
+use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 
 interface VideoReaderInterface
 {
     /**
-     * @param VideoWatchTRansfer $videoGetTransfer
+     * @param VideoWatchTransfer $videoGetTransfer
      *
      * @return VideoTransfer
+     *
+     * @throws NotFoundException
      */
-    public function lookup(VideoWatchTRansfer $videoGetTransfer): VideoTransfer;
+    public function lookup(VideoWatchTransfer $videoGetTransfer): VideoTransfer;
 }

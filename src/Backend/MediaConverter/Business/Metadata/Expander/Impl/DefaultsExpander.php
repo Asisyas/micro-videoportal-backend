@@ -16,7 +16,7 @@ class DefaultsExpander extends AbstractStreamExpander
     public function expand(MediaMetadataTransfer $metadataTransfer, Stream $stream): void
     {
         $streamTransfer = $this->lookupStreamTransfer($metadataTransfer, $stream);
-        if(!$streamTransfer) {
+        if (!$streamTransfer) {
             return;
         }
 

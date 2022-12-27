@@ -17,7 +17,7 @@ abstract class AbstractStreamExpander implements MetadataExpanderInterface
      *
      * @return void
      */
-    public abstract function expand(MediaMetadataTransfer $metadataTransfer, Stream $stream): void;
+    abstract public function expand(MediaMetadataTransfer $metadataTransfer, Stream $stream): void;
 
     /**
      * @param MediaMetadataTransfer $metadataTransfer
@@ -30,30 +30,30 @@ abstract class AbstractStreamExpander implements MetadataExpanderInterface
         $streamTransfers = $metadataTransfer->getStreams() ?: [];
 
         $searchFlag = $stream->isVideo() ?
-            MediaConverterPluginConfiguration::FLAG_VIDEO: 0;
+            MediaConverterPluginConfiguration::FLAG_VIDEO : 0;
 
         $searchFlag = $stream->isAudio() ?
             MediaConverterPluginConfiguration::FLAG_AUDIO : $searchFlag;
 
-        if($searchFlag === 0) {
+        if ($searchFlag === 0) {
             return null;
         }
 
         /** @var StreamTransfer $streamTransfer */
         foreach ($streamTransfers as $streamTransfer) {
-            if(($streamTransfer->getMediaTypeFlag() & $searchFlag) === $searchFlag) {
+            if (($streamTransfer->getMediaTypeFlag() & $searchFlag) === $searchFlag) {
                 return $streamTransfer;
             }
         }
 
         $streamTransfer = $this->createStreamTransfer($stream);
-        if(!$streamTransfer) {
+        if (!$streamTransfer) {
             return null;
         }
 
-        /** @var Collection<StreamTransfer> $streams */
+        /** @var Collection<StreamTransfer>|null $streams */
         $streams = $metadataTransfer->getStreams();
-        if(!$streams) {
+        if (!$streams) {
             $metadataTransfer->setStreams([$streamTransfer]);
         } else {
             $streams->add($streamTransfer);
@@ -74,15 +74,15 @@ abstract class AbstractStreamExpander implements MetadataExpanderInterface
         $isVideo        = $stream->isVideo();
         $flag           = null;
 
-        if($isVideo) {
+        if ($isVideo) {
             $flag = MediaConverterPluginConfiguration::FLAG_VIDEO;
         }
 
-        if($isAudio) {
+        if ($isAudio) {
             $flag = MediaConverterPluginConfiguration::FLAG_AUDIO;
         }
 
-        if($flag === null) {
+        if ($flag === null) {
             return null;
         }
 

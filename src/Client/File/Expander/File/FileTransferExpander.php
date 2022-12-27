@@ -16,8 +16,7 @@ class FileTransferExpander implements FileTransferExpanderInterface
      */
     public function __construct(
         FileTransferExpanderInterface ...$transferExpanderCollection
-    )
-    {
+    ) {
         $this->transferExpanderCollection = $transferExpanderCollection;
     }
 

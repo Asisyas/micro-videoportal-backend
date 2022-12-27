@@ -31,8 +31,7 @@ class Stream implements StreamInterface
         int $fileSize,
         int $chunkSize,
         int $chunkCount,
-    )
-    {
+    ) {
         $this->id = $id;
         $this->fileId = $fileId;
         $this->fileSize = $fileSize;

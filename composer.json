@@ -7,7 +7,11 @@
     ],
     "require-dev": {
         "symfony/var-dumper": "^6.0",
-        "phpunit/phpunit": "^9"
+        "phpunit/phpunit": "^9",
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "phpstan/phpstan": "^1.9"
 
     },
     "autoload": {
@@ -47,7 +51,8 @@
         "symfony/config": "^6.0",
         "symfony/validator": "^6.1",
         "temporal/sdk": ">=2.0",
-        "spiral/tokenizer": ">=2.7"
+        "spiral/tokenizer": ">=2.7",
+        "symfony/http-kernel": "^6.2"
     },
     "scripts": {
         "auto-scripts": [

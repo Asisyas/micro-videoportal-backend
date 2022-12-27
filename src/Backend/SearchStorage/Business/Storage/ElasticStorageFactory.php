@@ -14,9 +14,7 @@ class ElasticStorageFactory implements StorageFactoryInterface
     public function __construct(
         private readonly ElasticFacadeInterface $elasticFacade,
         private readonly SerializerFacadeInterface $serializerFacade
-    )
-    {
-
+    ) {
     }
 
     /**

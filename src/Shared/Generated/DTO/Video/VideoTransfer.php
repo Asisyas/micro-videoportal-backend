@@ -67,11 +67,11 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'channel_id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -79,18 +79,18 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'channelId',
           ),
           'id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'id',
           ),
           'src' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -98,9 +98,9 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'src',
           ),
           'created_at' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'DateTimeInterface',
               1 => 'null',
             ),

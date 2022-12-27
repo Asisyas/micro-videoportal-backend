@@ -26,8 +26,7 @@ class ImageConverterFacade implements ImageConverterFacadeInterface
      */
     public function __construct(
         private readonly ImageConverterFactoryInterface $imageConverterFactory
-    )
-    {
+    ) {
     }
 
     /**

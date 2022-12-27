@@ -29,8 +29,7 @@ class AuthConfigTransferExpanderFactory implements AuthConfigTransferExpanderFac
      */
     public function __construct(
         AuthConfigTransferExpanderInterface ...$expanderCollection
-    )
-    {
+    ) {
         $this->expanderCollection = $expanderCollection;
     }
 

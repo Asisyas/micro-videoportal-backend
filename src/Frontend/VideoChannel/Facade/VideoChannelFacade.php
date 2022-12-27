@@ -13,8 +13,7 @@ class VideoChannelFacade implements VideoChannelFacadeInterface
      */
     public function __construct(
         private readonly ChannelCreateRequestHandlerFactoryInterface $channelCreateRequestHandlerFactory
-    )
-    {
+    ) {
     }
 
     /**

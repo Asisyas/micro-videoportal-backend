@@ -42,11 +42,11 @@ final class ResultTransfer extends AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'type' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -54,9 +54,9 @@ final class ResultTransfer extends AbstractDto
             'actionName' => 'type',
           ),
           'source' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'Micro\\Library\\DTO\\Object\\AbstractDto',
               1 => 'null',
             ),

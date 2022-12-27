@@ -11,8 +11,7 @@ class VideoManagerFactory implements VideoManagerFactoryInterface
      */
     public function __construct(
         private readonly DoctrineFacadeInterface $doctrineFacade
-    )
-    {
+    ) {
     }
 
     /**

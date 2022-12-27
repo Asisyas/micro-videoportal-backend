@@ -16,7 +16,7 @@ class TemporalExceptionHandler implements ResponseHandlerInterface
     public function handle(ResponseHandlerContextInterface $responseHandlerContext): void
     {
         $exception = $responseHandlerContext->getException();
-        if(!$exception || !($exception instanceof WorkflowFailedException)) {
+        if (!($exception instanceof WorkflowFailedException)) {
             return;
         }
 
@@ -26,11 +26,11 @@ class TemporalExceptionHandler implements ResponseHandlerInterface
         $appFailed = $activityFailure->getPrevious();
 
         $exceptionClass = $appFailed->getType();
-        if(!class_exists($exceptionClass)) {
+        if (!class_exists($exceptionClass)) {
             return;
         }
 
-        $responseHandlerContext->setException(
+        $responseHandlerContext->setException( // @phpstan-ignore-next-line
             new $exceptionClass(
                 $appFailed->getOriginalMessage()
             )

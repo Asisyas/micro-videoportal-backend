@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Client\Security\Authorization\Expander;
 
 use League\OAuth2\Client\Provider\AbstractProvider;
-use League\OAuth2\Client\Token\AccessToken;
+use League\OAuth2\Client\Token\AccessTokenInterface;
 
 /**
  * @author Stanislau Komar <head.trackingsoft@gmail.com>
@@ -23,10 +23,10 @@ interface SecurityTokenDataExpanderInterface
 {
     /**
      * @param array $tokenData
-     * @param AccessToken $accessToken
+     * @param AccessTokenInterface $accessToken
      * @param AbstractProvider $provider
      *
      * @return void
      */
-    public function expand(array &$tokenData, AccessToken $accessToken, AbstractProvider $provider): void;
+    public function expand(array &$tokenData, AccessTokenInterface $accessToken, AbstractProvider $provider): void;
 }

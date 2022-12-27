@@ -67,11 +67,11 @@ final class TokenOwnerTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -79,9 +79,9 @@ final class TokenOwnerTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'id',
           ),
           'email' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -89,9 +89,9 @@ final class TokenOwnerTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'email',
           ),
           'name_first' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -99,9 +99,9 @@ final class TokenOwnerTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'nameFirst',
           ),
           'name_last' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),

@@ -17,8 +17,7 @@ class MetadataFromStreamExpander implements MetadataExpanderInterface
      */
     public function __construct(
         MetadataExpanderInterface ...$videoMetadataExpanderCollection
-    )
-    {
+    ) {
         $this->videoMetadataExpanderCollection = $videoMetadataExpanderCollection;
     }
 

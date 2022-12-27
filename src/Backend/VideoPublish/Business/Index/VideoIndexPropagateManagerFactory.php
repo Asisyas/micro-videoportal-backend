@@ -14,9 +14,7 @@ class VideoIndexPropagateManagerFactory implements VideoIndexPropagateManagerFac
     public function __construct(
         private readonly IndexPropagatorFactoryInterface $indexPropagatorFactory,
         private readonly VideoWatchTransferFactoryInterface $videoWatchTransferFactory
-    )
-    {
-
+    ) {
     }
 
     /**

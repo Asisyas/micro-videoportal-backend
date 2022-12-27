@@ -15,9 +15,7 @@ class VideoDescriptionExpander implements VideoWatchExpanderInterface
      */
     public function __construct(
         private readonly VideoDescriptionFacadeInterface $videoDescriptionFacade
-    )
-    {
-
+    ) {
     }
 
     /**

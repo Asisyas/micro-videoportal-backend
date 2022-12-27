@@ -18,7 +18,8 @@ class VideoCreateWorkflow implements VideoCreateWorkflowInterface
      */
     public function publishVideo(VideoPublishTransfer $videoPublishTransfer): Generator
     {
-        return yield Workflow::newActivityStub(VideoActivityInterface::class,
+        return yield Workflow::newActivityStub(
+            VideoActivityInterface::class,
             ActivityOptions::new()
                 ->withScheduleToCloseTimeout(CarbonInterval::minute())
         )

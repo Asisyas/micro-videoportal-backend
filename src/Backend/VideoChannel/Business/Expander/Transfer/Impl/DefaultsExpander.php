@@ -14,8 +14,7 @@ class DefaultsExpander implements VideoChannelTransferExpanderInterface
      */
     public function __construct(
         private readonly EntityManagerInterface $entityManager
-    )
-    {
+    ) {
     }
 
     public function expand(VideoChannelTransfer $videoChannelTransfer): void

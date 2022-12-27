@@ -27,8 +27,7 @@ class ImageConverter implements ImageConverterInterface
      */
     public function __construct(
         private readonly FilesystemOperator $filesystemOperator
-    )
-    {
+    ) {
     }
 
     /**
@@ -40,13 +39,16 @@ class ImageConverter implements ImageConverterInterface
         $filePublicUrl = $this->filesystemOperator->publicUrl($fileId);
 
         $resource = imagecreatefromgd($filePublicUrl);
-        if($resource === false) {
+        if ($resource === false) {
             throw new \RuntimeException('File is not valid image.');
         }
 
         $tmpResource = tmpfile();
+        if (!$tmpResource) {
+            throw new \RuntimeException('Can not create temp file');
+        }
 
-        if(!imagewebp($resource, $tmpResource)) {
+        if (!imagewebp($resource, $tmpResource)) {
             fclose($tmpResource);
             throw new \RuntimeException('File is not valid image.');
         }

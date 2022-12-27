@@ -14,8 +14,7 @@ class FilesystemFacadeDecorator implements FilesystemFacadeInterface
      */
     public function __construct(
         private readonly FilesystemFacadeInterface $decorated
-    )
-    {
+    ) {
     }
 
     /**

@@ -11,8 +11,7 @@ class VideoChannelTransferExpander implements VideoChannelTransferExpanderInterf
      */
     public function __construct(
         private readonly iterable $channelExpanderCollection
-    )
-    {
+    ) {
     }
 
     /**

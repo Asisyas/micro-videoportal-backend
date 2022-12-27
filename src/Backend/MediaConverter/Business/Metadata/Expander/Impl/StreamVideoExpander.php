@@ -13,7 +13,7 @@ class StreamVideoExpander extends AbstractStreamExpander
      */
     public function expand(MediaMetadataTransfer $metadataTransfer, Stream $stream): void
     {
-        if(!$stream->isVideo()) {
+        if (!$stream->isVideo()) {
             return;
         }
 
@@ -28,7 +28,7 @@ class StreamVideoExpander extends AbstractStreamExpander
             ->setDuration($stream->get('duration'))
         ;
 
-        if($this->isHdr($stream)) {
+        if ($this->isHdr($stream)) {
             $streamTransfer->setMediaTypeFlag(MediaConverterPluginConfiguration::FLAG_HDR);
         }
 
@@ -38,7 +38,7 @@ class StreamVideoExpander extends AbstractStreamExpander
     protected function getRotation(Stream $stream): int
     {
         $tags = $stream->get('tags');
-        if(!$tags) {
+        if (!$tags) {
             return 0;
         }
 

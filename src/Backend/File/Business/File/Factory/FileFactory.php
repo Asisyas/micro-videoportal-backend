@@ -22,8 +22,7 @@ class FileFactory implements FileFactoryInterface
         private readonly UuidFacadeInterface $uuidFacade,
         private readonly DoctrineFacadeInterface $doctrineFacade,
         private readonly FileStorageFactoryInterface $fileStorageFactory
-    )
-    {
+    ) {
     }
 
     /**
@@ -57,7 +56,6 @@ class FileFactory implements FileFactoryInterface
             $fileStorage->put($fileTransfer);
 
             $em->commit();
-
         } catch (\Throwable $exception) {
             $em->rollback();
 

@@ -13,14 +13,8 @@ class AuthTokenGenerateCommand extends Command
 {
     public function __construct(
         private readonly SecurityFacadeInterface $securityFacade
-    )
-    {
+    ) {
         parent::__construct('test:token:generate');
-    }
-
-    public function configure()
-    {
-        parent::configure();
     }
 
     public function execute(InputInterface $input, OutputInterface $output)

@@ -27,8 +27,7 @@ class AuthConfigurationFactory implements AuthConfigurationFactoryInterface
      */
     public function __construct(
         private readonly AuthConfigTransferExpanderFactoryInterface $authConfigTransferExpanderFactory
-    )
-    {
+    ) {
     }
 
     /**

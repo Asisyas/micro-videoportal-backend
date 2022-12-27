@@ -7,21 +7,21 @@ use App\Shared\Generated\DTO\MediaConverter\DashManifestTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaResolutionTransfer;
+use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
 use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
+use RuntimeException;
 
-class DashManifestGenerator implements DashManifestGeneratorInterface
+readonly class DashManifestGenerator implements DashManifestGeneratorInterface
 {
     /**
      * @param FilesystemOperator $filesystemOperator
      * @param FfmpegFacadeInterface $ffmpegFacade
      */
     public function __construct(
-        private readonly FilesystemOperator $filesystemOperator,
-        private readonly FfmpegFacadeInterface $ffmpegFacade
-    )
-    {
-
+        private FilesystemOperator    $filesystemOperator,
+        private FfmpegFacadeInterface $ffmpegFacade
+    ) {
     }
 
     /**
@@ -32,14 +32,12 @@ class DashManifestGenerator implements DashManifestGeneratorInterface
         $additionalParameters = ['-f', 'webm_dash_manifest'];
         $copyMaps = ['-c', 'copy'];
 
-        /** @var MediaConvertedResultTransfer $converterResultTransfer */
-        $sources = [];
         $mapCount = 0;
         $audioStreams = [];
         $videoStreams = [];
+        /** @var MediaConvertedResultTransfer $converterResultTransfer */
         foreach ($convertedResultCollectionTransfer->getResults() as $converterResultTransfer) {
             $fullSource = $this->filesystemOperator->publicUrl($converterResultTransfer->getSrc());
-            $sources[] = $fullSource;
             $copyMaps[] = '-map';
             $copyMaps[] = $mapCount;
 
@@ -50,11 +48,11 @@ class DashManifestGenerator implements DashManifestGeneratorInterface
 
             $resolution = $converterResultTransfer->getResolution();
 
-            if($this->isAudio($resolution)) {
+            if ($this->isAudio($resolution)) {
                 $audioStreams[] = $mapCount;
             }
 
-            if($this->isVideo($resolution)) {
+            if ($this->isVideo($resolution)) {
                 $videoStreams[] = $mapCount;
             }
 
@@ -67,10 +65,11 @@ class DashManifestGenerator implements DashManifestGeneratorInterface
         array_push($additionalParameters, ...$copyMaps);
         $additionalParameters[] = '-adaptation_sets';
         $adaptationSetString = sprintf(
-            'id=0,streams=%s', implode(',', array_reverse($videoStreams))
+            'id=0,streams=%s',
+            implode(',', array_reverse($videoStreams))
         );
 
-        if($audioStreams) {
+        if ($audioStreams) {
             $adaptationSetString .= sprintf(' id=1,streams=%s', implode(',', $audioStreams));
         }
 
@@ -90,23 +89,26 @@ class DashManifestGenerator implements DashManifestGeneratorInterface
      *
      * @return void
      *
-     * @throws \League\Flysystem\FilesystemException
+     * @throws FilesystemException
+     * @throws RuntimeException
      */
-    protected function save(array $additionalParameters, string $destination)
+    protected function save(array $additionalParameters, string $destination): void
     {
         $tmpfile = tmpfile();
+        if (!$tmpfile) {
+            throw new RuntimeException('Can not create temporary file');
+        }
+
         $filesource = stream_get_meta_data($tmpfile)['uri'];
         $additionalParameters[] = $filesource;
         try {
             $advancedMedia = $this->ffmpegFacade->ffmpeg()->openAdvanced([]);
             $advancedMedia->setAdditionalParameters($additionalParameters);
             $advancedMedia->save();
-            $this->filesystemOperator->write($destination, file_get_contents($filesource));
-
+            $this->filesystemOperator->writeStream($destination, $tmpfile);
         } finally {
             fclose($tmpfile);
         }
-
     }
 
     /**

@@ -28,11 +28,11 @@ final class DashManifestTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'src' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),

@@ -14,12 +14,11 @@ class VideoChannelPropagateCommand extends Command
 {
     public function __construct(
         private readonly TemporalFacadeInterface $temporalFacade
-    )
-    {
+    ) {
         parent::__construct('test:channel:propagate');
     }
 
-    public function configure()
+    public function configure(): void
     {
         $this->addArgument('channel-id', InputArgument::REQUIRED);
     }
@@ -39,5 +38,4 @@ class VideoChannelPropagateCommand extends Command
 
         return self::SUCCESS;
     }
-
 }

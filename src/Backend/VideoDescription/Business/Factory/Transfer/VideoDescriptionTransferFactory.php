@@ -15,6 +15,6 @@ class VideoDescriptionTransferFactory implements VideoDescriptionTransferFactory
         return (new VideoDescriptionTransfer())
             ->setTitle($videoDescription->getTitle())
             ->setDescription($videoDescription->getDescription())
-            ;
+        ;
     }
 }

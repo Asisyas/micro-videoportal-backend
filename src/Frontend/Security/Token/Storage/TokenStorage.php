@@ -11,8 +11,7 @@ class TokenStorage implements TokenStorageInterface
      */
     public function __construct(
         private readonly AuthTokenInterface $authToken
-    )
-    {
+    ) {
     }
 
     /**

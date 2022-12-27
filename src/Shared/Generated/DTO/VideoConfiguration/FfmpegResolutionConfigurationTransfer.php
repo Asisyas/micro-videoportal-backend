@@ -106,65 +106,65 @@ final class FfmpegResolutionConfigurationTransfer extends \Micro\Library\DTO\Obj
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'minrate' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,
             'actionName' => 'minrate',
           ),
           'maxrate' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,
             'actionName' => 'maxrate',
           ),
           'tile_columns' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,
             'actionName' => 'tileColumns',
           ),
           'threads' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,
             'actionName' => 'threads',
           ),
           'crf' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,
             'actionName' => 'crf',
           ),
           'hwaccel' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'hwaccel',
           ),
           'speed' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,

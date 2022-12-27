@@ -6,7 +6,7 @@ use App\Client\ClientReader\Exception\NotFoundException;
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
 use App\Frontend\VideoWatch\Exapnder\VideoWatchExpanderFactoryInterface;
 use App\Shared\Generated\DTO\ClientReader\RequestTransfer;
-use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
+use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use App\Shared\Video\Configuration;
 use Micro\Plugin\Http\Exception\HttpNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,8 +20,7 @@ class VideoWatchFacade implements VideoWatchFacadeInterface
     public function __construct(
         private readonly ClientReaderFacadeInterface $clientReaderFacade,
         private readonly VideoWatchExpanderFactoryInterface $videoWatchExpanderFactory
-    )
-    {
+    ) {
     }
 
     /**

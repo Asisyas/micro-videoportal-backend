@@ -15,12 +15,11 @@ class VideoPropagateCommand extends Command
 {
     public function __construct(
         private readonly TemporalFacadeInterface $temporalFacade
-    )
-    {
+    ) {
         parent::__construct('test:video:propagate');
     }
 
-    public function configure()
+    public function configure(): void
     {
         $this->addArgument('video-id', InputArgument::REQUIRED);
     }

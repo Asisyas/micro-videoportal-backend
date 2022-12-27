@@ -41,20 +41,20 @@ final class VideoDescriptionTransfer extends \Micro\Library\DTO\Object\AbstractD
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'title' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'title',
           ),
           'description' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),

@@ -2,7 +2,6 @@
 
 namespace App\Backend\MediaConverter\Business\Converter;
 
-use App\Backend\MediaConverter\Business\Converter\Expander\FilterExpanderFactoryInterface;
 use App\Backend\MediaConverter\Business\Converter\Expander\FilterExpanderInterface;
 use App\Backend\MediaConverter\MediaConverterPluginConfiguration;
 use App\Shared\Generated\DTO\File\FileTransfer;
@@ -10,7 +9,6 @@ use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
 use FFMpeg\Coordinate\FrameRate;
 use FFMpeg\Filters\Audio\SimpleFilter;
-use FFMpeg\Format\ProgressableInterface;
 use FFMpeg\Format\Video\DefaultVideo;
 use FFMpeg\Format\Video\WebM;
 use FFMpeg\Media\Audio;
@@ -21,7 +19,7 @@ use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
 /**
  * TODO: PoC solution. Should be expanded as composition
  */
-class MediaConverter implements ConverterInterface
+readonly class MediaConverter implements ConverterInterface
 {
     /**
      * @param FfmpegFacadeInterface $ffmpegFacade
@@ -30,12 +28,11 @@ class MediaConverter implements ConverterInterface
      * @param MediaConverterPluginConfiguration $pluginConfiguration
      */
     public function __construct(
-        private readonly FfmpegFacadeInterface $ffmpegFacade,
-        private readonly FilesystemOperator $filesystemOperator,
-        private readonly FilterExpanderInterface $filterExpander,
-        private readonly MediaConverterPluginConfiguration $pluginConfiguration
-    )
-    {
+        private FfmpegFacadeInterface             $ffmpegFacade,
+        private FilesystemOperator                $filesystemOperator,
+        private FilterExpanderInterface           $filterExpander,
+        private MediaConverterPluginConfiguration $pluginConfiguration
+    ) {
     }
 
     public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer, callable $progressListener = null): MediaConvertedResultTransfer
@@ -51,12 +48,12 @@ class MediaConverter implements ConverterInterface
         $this->updateFormatDefaults($format);
 
         $kbRate = $resolutionTransfer->getBitRate();
-        if($kbRate) {
+        if ($kbRate) {
             $format->setKiloBitrate($kbRate);
         }
 
-        if($progressListener !== null) {
-            $format->on('progress', function($video, $format, float $percentage) use ($progressListener) {
+        if ($progressListener !== null) {
+            $format->on('progress', function ($video, $format, float $percentage) use ($progressListener) {
                 $progressListener($percentage);
             });
         }
@@ -67,18 +64,19 @@ class MediaConverter implements ConverterInterface
         $isAudioDisable = ($mediaSourceType & MediaConverterPluginConfiguration::FLAG_AUDIO)
             !== MediaConverterPluginConfiguration::FLAG_AUDIO;
 
-        if($isAudioDisable && $isVideoDisable) {
+        if ($isAudioDisable && $isVideoDisable) {
             throw new \RuntimeException(sprintf(
-                'Wrong configuration: nothing to convert. File ID "%s"', $fileTransfer->getId()
+                'Wrong configuration: nothing to convert. File ID "%s"',
+                $fileTransfer->getId()
             ));
         }
 
         $pathSuffix = '';
-        if(!$isAudioDisable) {
+        if (!$isAudioDisable) {
             $pathSuffix .= sprintf('_audio-%dKb', $kbRate);
         }
 
-        if(!$isVideoDisable) {
+        if (!$isVideoDisable) {
             $pathSuffix .= sprintf(
                 '_video-%dx%d-%dKb',
                 $resolutionTransfer->getWidth(),
@@ -87,9 +85,11 @@ class MediaConverter implements ConverterInterface
             );
         }
 
-        if(!$isVideoDisable && $resolutionTransfer->getFrameRate()) {
+        if (!$isVideoDisable && $resolutionTransfer->getFrameRate()) {
+            // @phpstan-ignore-next-line
             $ffmpegFilters->framerate(
-                new FrameRate($resolutionTransfer->getFrameRate()), $resolutionTransfer->getGop()
+                new FrameRate($resolutionTransfer->getFrameRate()),
+                $resolutionTransfer->getGop()
             );
         }
 
@@ -124,7 +124,7 @@ class MediaConverter implements ConverterInterface
     protected function addSourceFiltersDefault(Audio|Video $convertSource, MediaConfigurationTransfer $mediaConfigurationTransfer): void
     {
         $filters = [];
-        $this->filterExpander->expand($filters, $mediaConfigurationTransfer->getResolutionConfiguration());
+        $this->filterExpander->expand($filters, $mediaConfigurationTransfer->getResolutionConfiguration()); //@phpstan-ignore-lines
 
         $convertSource->addFilter(
             new SimpleFilter(
@@ -167,6 +167,10 @@ class MediaConverter implements ConverterInterface
     protected function save(Video|Audio $convertSource, DefaultVideo $format, string $path)
     {
         $tmpFileResource = tmpfile();
+        if (!$tmpFileResource) {
+            throw new \RuntimeException('Can not create temp file');
+        }
+
         $tempPointer = stream_get_meta_data($tmpFileResource);
         $tempFileDest = $tempPointer['uri'];
         try {

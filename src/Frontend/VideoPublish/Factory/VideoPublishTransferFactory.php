@@ -17,8 +17,8 @@ class VideoPublishTransferFactory implements VideoPublishTransferFactoryInterfac
      */
     public function createFromRequest(Request $request): VideoPublishTransfer
     {
-        $channelId = $request->query->get('channel_id');
-        $fileId = $request->query->get('file_id');
+        $channelId = (string) $request->query->get('channel_id');
+        $fileId = (string) $request->query->get('file_id');
 
         $videoPublishTransfer = new VideoPublishTransfer();
 

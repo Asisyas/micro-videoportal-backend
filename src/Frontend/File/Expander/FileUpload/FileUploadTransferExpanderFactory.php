@@ -11,8 +11,8 @@ class FileUploadTransferExpanderFactory implements FileUploadTransferExpanderFac
      */
     public function create(): FileUploadTransferExpanderInterface
     {
-       return new FileUploadTransferExpander(
-           new HeadersProvideExpander()
-       );
+        return new FileUploadTransferExpander(
+            new HeadersProvideExpander()
+        );
     }
 }

@@ -14,8 +14,7 @@ class FileUploadController
      */
     public function __construct(
         private readonly FileFacadeInterface $fileFacade
-    )
-    {
+    ) {
     }
 
     /**

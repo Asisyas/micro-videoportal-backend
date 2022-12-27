@@ -47,8 +47,7 @@ class ClientStoragePlugin extends AbstractPlugin
     protected function createClientFactory(
         RedisFacadeInterface $redisFacade,
         SerializerFacadeInterface $serializerFacade
-    ): ClientFactoryInterface
-    {
+    ): ClientFactoryInterface {
         return new RedisClientFactory($redisFacade, $serializerFacade);
     }
 }

@@ -16,9 +16,7 @@ class MediaResolutionsCalculatorFactory implements MediaResolutionsCalculatorFac
      */
     public function __construct(
         ResolutionVideoOptionsInterface ...$options
-    )
-    {
-
+    ) {
         $this->options = $options;
     }
 

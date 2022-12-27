@@ -23,9 +23,7 @@ class VideoChannelManager implements VideoChannelManagerInterface
         private readonly EntityManagerInterface $entityManager,
         private readonly VideoChannelEntityExpanderFactoryInterface $channelEntityExpanderFactory,
         private readonly VideoChannelTransferExpanderFactoryInterface $channelTransferExpanderFactory
-    )
-    {
-
+    ) {
     }
 
     /**
@@ -64,7 +62,7 @@ class VideoChannelManager implements VideoChannelManagerInterface
         } catch (UniqueConstraintViolationException $exception) {
             throw new ChannelIdAlreadyExistsException(
                 sprintf('Channel with id "%s" already exists.', $videoChannelCreateTransfer->getId()),
-                null,
+                0,
                 $exception
             );
         }

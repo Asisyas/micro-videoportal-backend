@@ -18,8 +18,7 @@ class VideoPublishActivity implements VideoPublishActivityInterface
     public function __construct(
         private readonly FileClientInterface $fileClient,
         private readonly VideoPublishFacadeInterface $videoPublishFacade
-    )
-    {
+    ) {
     }
     /**
      * {@inheritDoc}

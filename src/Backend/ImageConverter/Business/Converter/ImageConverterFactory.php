@@ -25,8 +25,7 @@ class ImageConverterFactory implements ImageConverterFactoryInterface
      */
     public function __construct(
         private readonly FilesystemFacadeInterface $filesystemFacade
-    )
-    {
+    ) {
     }
 
     /**

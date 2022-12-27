@@ -18,8 +18,7 @@ class VideoChannelController
     public function __construct(
         private readonly VideoChannelFacadeInterface $videoChannelFacade,
         private readonly VideoChannelClientInterface $videoChannelClient
-    )
-    {
+    ) {
     }
 
     /**

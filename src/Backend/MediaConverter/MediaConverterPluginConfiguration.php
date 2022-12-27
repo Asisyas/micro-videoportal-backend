@@ -6,10 +6,9 @@ use Micro\Framework\Kernel\Configuration\PluginConfiguration;
 
 class MediaConverterPluginConfiguration extends PluginConfiguration
 {
-
-    const FLAG_AUDIO    = 0x1;
-    const FLAG_VIDEO    = 0x2;
-    const FLAG_HDR      = self::FLAG_VIDEO | 0x4;
+    public const FLAG_AUDIO    = 0x1;
+    public const FLAG_VIDEO    = 0x2;
+    public const FLAG_HDR      = self::FLAG_VIDEO | 0x4;
 
     /**
      * Height, width, bit rate, frame rate

@@ -11,5 +11,6 @@ class VideoDescriptionUpdateWorkflow implements VideoDescriptionUpdateWorkflowIn
     #[WorkflowMethod(name: 'update')]
     public function update(VideoDescriptionPutTransfer $videoDescriptionPutTransfer): bool
     {
+        return true;
     }
 }
