@@ -15,7 +15,6 @@ use Generator;
 
 class VideoUpdateSrcWorkflow implements VideoUpdateSrcWorkflowInterface
 {
-
     private readonly ActivityProxy $videoActivity;
     private readonly ActivityProxy $videoPropagateActivity;
 
@@ -41,7 +40,7 @@ class VideoUpdateSrcWorkflow implements VideoUpdateSrcWorkflowInterface
     /**
      * {@inheritDoc}
      */
-    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer)
+    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer) //@phpstan-ignore-line
     {
         yield $this->videoActivity->updateVideoSrc($videoSrcSetTransfer);
         $isTrue = yield $this->videoPropagateActivity->propagateVideo(

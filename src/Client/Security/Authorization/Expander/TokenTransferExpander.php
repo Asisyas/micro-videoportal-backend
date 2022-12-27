@@ -26,8 +26,7 @@ class TokenTransferExpander implements TokenTransferExpanderInterface
      */
     public function __construct(
         private readonly iterable $expanderCollection
-    )
-    {
+    ) {
     }
 
     /**

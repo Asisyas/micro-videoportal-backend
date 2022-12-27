@@ -22,7 +22,6 @@ use Symfony\Component\Validator\Constraint;
  */
 class AuthorizationCompleteRequestValidator extends AbstractValidator
 {
-
     /**
      * {@inheritDoc}
      */

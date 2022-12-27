@@ -16,7 +16,6 @@ use App\Shared\VideoChannel\Constants;
 use App\Shared\VideoChannel\Saga\VideoChannelCreateWorkflowInterface;
 use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 
-
 /**
  * TODO: Simple PoC solution
  */
@@ -31,8 +30,7 @@ class VideoChannelClient implements VideoChannelClientInterface
         private readonly TemporalFacadeInterface $temporalFacade,
         private readonly ClientReaderFacadeInterface $clientReaderFacade,
         private readonly SearchClientInterface $searchClient
-    )
-    {
+    ) {
     }
 
     /**

@@ -10,7 +10,7 @@ use Temporal\Activity\ActivityOptions;
 use Temporal\Common\RetryOptions;
 use Temporal\Internal\Workflow\ActivityProxy;
 use Temporal\Workflow;
-use \Generator;
+use Generator;
 
 class FileCreateWorkflow implements FileCreateWorkflowInterface
 {
@@ -24,11 +24,9 @@ class FileCreateWorkflow implements FileCreateWorkflowInterface
             ->createFile($fileUploadTransfer);
     }
 
-    /**
-     * @return ActivityProxy<FileActivityInterface>
-     */
     protected function createFileActivity(): ActivityProxy
     {
+        // @phpstan-ignore-next-line
         return Workflow::newActivityStub(
             FileActivityInterface::class,
             ActivityOptions::new()

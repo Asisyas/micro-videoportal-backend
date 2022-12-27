@@ -15,8 +15,7 @@ class SearchResultsExpanderFactory implements SearchResultsExpanderFactoryInterf
      */
     public function __construct(
         SearchResultsExpanderInterface ...$searchResultsExpander
-    )
-    {
+    ) {
         $this->searchResultsExpanderCollection = $searchResultsExpander;
     }
 

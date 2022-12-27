@@ -11,8 +11,7 @@ class SagaExecuteCommand extends Command
 {
     public function __construct(
         private readonly TemporalFacadeInterface $temporalFacade
-    )
-    {
+    ) {
         parent::__construct('test:saga:execute');
     }
 

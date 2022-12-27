@@ -20,9 +20,7 @@ class VideoDescriptionManagerFactory implements VideoDescriptionManagerFactoryIn
         private readonly VideoDescriptionEntityFactoryInterface             $videoDescriptionEntityFactory,
         private readonly VideoDescriptionTransferFactoryInterface           $videoDescriptionTransferFactory,
         private readonly VideoDescriptionEntityExpanderFactoryInterface     $videoDescriptionEntityExpander
-    )
-    {
-
+    ) {
     }
 
     /**

@@ -12,7 +12,7 @@ use App\Shared\Generated\DTO\MediaConverter\StreamTransfer;
 /**
  * TODO: PoC solution. Should be expanded as Composition
  */
-class MediaResolutionsCalculator implements MediaResolutionsCalculatorInterface
+readonly class MediaResolutionsCalculator implements MediaResolutionsCalculatorInterface
 {
     /**
      * @param iterable<ResolutionVideoOptionsInterface> $options
@@ -28,24 +28,30 @@ class MediaResolutionsCalculator implements MediaResolutionsCalculatorInterface
     {
         $resultKeys = [];
         $result = [];
+        $streamsIterator = $metadataTransfer->getStreams();
+        $resultResponse = new  MediaResolutionCollectionTransfer();
+        if (!$streamsIterator) {
+            return $resultResponse;
+        }
+
         /** @var StreamTransfer $streamMetadata */
-        foreach ($metadataTransfer->getStreams() as $streamMetadata) {
+        foreach ($streamsIterator as $streamMetadata) {
             $heightOriginal     = $streamMetadata->getHeight();
             $frameRateOriginal  = $streamMetadata->getFrameRate();
             $widthOriginal      = $streamMetadata->getWidth();
             $bitRateOriginal    = $streamMetadata->getBitRate();
 
             foreach ($this->options as $option) {
-                if(($option->getMediaTypeFlag() & $streamMetadata->getMediaTypeFlag()) !== $option->getMediaTypeFlag()) {
+                if (($option->getMediaTypeFlag() & $streamMetadata->getMediaTypeFlag()) !== $option->getMediaTypeFlag()) {
                     continue;
                 }
 
 
-                if($option->getHeight() > $heightOriginal && $heightOriginal !== null) {
+                if ($option->getHeight() > $heightOriginal && $heightOriginal !== null) {
                     continue;
                 }
 
-                if($heightOriginal) {
+                if ($heightOriginal) {
                     $heightMeasure =  $heightOriginal / $widthOriginal;
                 }
 
@@ -53,25 +59,26 @@ class MediaResolutionsCalculator implements MediaResolutionsCalculatorInterface
                 $tmpBitRateMax = $option->getBitRateMax();
                 $tmpFrameRate = $option->getFrameRate();
 
-                if($bitRateOriginal < $tmpBitRateMin) {
+                if ($bitRateOriginal < $tmpBitRateMin) {
                     $tmpBitRateMin = $bitRateOriginal;
                 }
 
-                if($bitRateOriginal < $tmpBitRateMax) {
+                if ($bitRateOriginal < $tmpBitRateMax) {
                     $tmpBitRateMax = $bitRateOriginal;
                 }
 
-                if($frameRateOriginal < $tmpFrameRate) {
+                if ($frameRateOriginal < $tmpFrameRate) {
                     $tmpFrameRate = $frameRateOriginal;
                 }
 
-                $resultKey = sprintf('%d-%d-%d',
+                $resultKey = sprintf(
+                    '%d-%d-%d',
                     $option->getHeight() ?: 0,
-                    $widthOriginal  ?: 0,
-                    $tmpFrameRate  ?: $tmpBitRateMax ?: $tmpBitRateMin
+                    $widthOriginal ?: 0,
+                    $tmpFrameRate ?: $tmpBitRateMax ?: $tmpBitRateMin
                 );
 
-                if(in_array($resultKey, $resultKeys)) {
+                if (in_array($resultKey, $resultKeys)) {
                     continue;
                 }
 
@@ -82,13 +89,12 @@ class MediaResolutionsCalculator implements MediaResolutionsCalculatorInterface
                     ->setMediaTypeFlag($option->getMediaTypeFlag())
                 ;
 
-                if(
+                if (
                     ($streamMetadata->getMediaTypeFlag() & MediaConverterPluginConfiguration::FLAG_VIDEO) ===
-                    MediaConverterPluginConfiguration::FLAG_VIDEO)
-                {
+                    MediaConverterPluginConfiguration::FLAG_VIDEO) {
                     $mediaResolutionTransfer
                         ->setHeight($option->getHeight())
-                        ->setWidth($option->getHeight() / $heightMeasure)
+                        ->setWidth($option->getHeight() / $heightMeasure) // @phpstan-ignore-line
                         ->setFrameRate($tmpFrameRate)
                         ->setGop($option->getGopSize())
                         ->setKeyintMin($option->getKeyIntMin())
@@ -100,14 +106,12 @@ class MediaResolutionsCalculator implements MediaResolutionsCalculatorInterface
                 $result[] = $mediaResolutionTransfer;
             }
         }
-
         usort(
             $result,
-            fn (MediaResolutionTransfer $left, MediaResolutionTransfer $right): bool =>
+            fn (MediaResolutionTransfer $left, MediaResolutionTransfer $right): bool => //@phpstan-ignore-line
                 $left->getMediaTypeFlag() > $right->getMediaTypeFlag()
         );
 
-        return (new  MediaResolutionCollectionTransfer())
-            ->setResolutions($result);
+        return $resultResponse->setResolutions($result);
     }
 }

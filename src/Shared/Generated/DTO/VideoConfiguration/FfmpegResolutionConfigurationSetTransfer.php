@@ -41,20 +41,20 @@ final class FfmpegResolutionConfigurationSetTransfer extends \Micro\Library\DTO\
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'resolution' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\VideoConfiguration\\ResolutionTransfer',
             ),
             'required' => true,
             'actionName' => 'resolution',
           ),
           'configuration' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\VideoConfiguration\\FfmpegResolutionConfigurationTransfer',
             ),
             'required' => true,

@@ -16,8 +16,7 @@ class VideoPublishFacade implements VideoPublishFacadeInterface
     public function __construct(
         private readonly VideoPublishTransferFactoryInterface $videoPublishTransferFactory,
         private readonly VideoClientInterface $videoClient
-    )
-    {
+    ) {
     }
 
     /**

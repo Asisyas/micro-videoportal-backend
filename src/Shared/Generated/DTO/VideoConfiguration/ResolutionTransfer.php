@@ -54,29 +54,29 @@ final class ResolutionTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'height' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,
             'actionName' => 'height',
           ),
           'width' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,
             'actionName' => 'width',
           ),
           'fps' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,

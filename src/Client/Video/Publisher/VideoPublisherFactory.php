@@ -11,8 +11,7 @@ class VideoPublisherFactory implements VideoPublisherFactoryInterface
      */
     public function __construct(
         private readonly TemporalFacadeInterface $temporalFacade
-    )
-    {
+    ) {
     }
 
     /**
@@ -20,6 +19,6 @@ class VideoPublisherFactory implements VideoPublisherFactoryInterface
      */
     public function create(): VideoPublisherInterface
     {
-       return new VideoPublisher($this->temporalFacade->workflowClient());
+        return new VideoPublisher($this->temporalFacade->workflowClient());
     }
 }

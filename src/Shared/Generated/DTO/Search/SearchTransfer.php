@@ -67,11 +67,11 @@ final class SearchTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'limit' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -79,9 +79,9 @@ final class SearchTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'limit',
           ),
           'offset' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -89,9 +89,9 @@ final class SearchTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'offset',
           ),
           'index' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -99,9 +99,9 @@ final class SearchTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'index',
           ),
           'query' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'array',
               1 => 'null',
             ),

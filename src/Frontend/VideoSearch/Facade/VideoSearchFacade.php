@@ -16,9 +16,7 @@ class VideoSearchFacade implements VideoSearchFacadeInterface
      */
     public function __construct(
         private readonly SearchClientInterface $searchClient
-    )
-    {
-
+    ) {
     }
 
     /**
@@ -28,9 +26,9 @@ class VideoSearchFacade implements VideoSearchFacadeInterface
     {
         $searchTransfer = new SearchTransfer();
         $searchTransfer
-            ->setIndex($request->query->get('index', 'video'))
-            ->setLimit((int)$request->query->get('limit', 100))
-            ->setOffset((int)$request->query->get('offset'))
+            ->setIndex((string) $request->query->get('index', 'video'))
+            ->setLimit((int) $request->query->get('limit', 100))
+            ->setOffset((int) $request->query->get('offset'))
             ->setQuery([
                 'sort'  => [
                     '_score',

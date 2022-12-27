@@ -41,11 +41,11 @@ final class VideoCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'channel_id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -53,9 +53,9 @@ final class VideoCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'channelId',
           ),
           'video_id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,

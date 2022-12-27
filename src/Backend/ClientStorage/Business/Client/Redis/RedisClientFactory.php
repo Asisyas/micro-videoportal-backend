@@ -16,8 +16,7 @@ class RedisClientFactory implements ClientFactoryInterface
     public function __construct(
         private readonly RedisFacadeInterface $redisFacade,
         private readonly SerializerFacadeInterface $serializerFacade
-    )
-    {
+    ) {
     }
 
     /**

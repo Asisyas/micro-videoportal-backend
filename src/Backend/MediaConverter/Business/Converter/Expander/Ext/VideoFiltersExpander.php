@@ -16,7 +16,7 @@ class VideoFiltersExpander implements FilterExpanderInterface
     public function expand(array &$filters, MediaResolutionTransfer $resolutionTransfer): void
     {
         $isVideoDisable     = ($resolutionTransfer->getMediaTypeFlag() & MediaConverterPluginConfiguration::FLAG_VIDEO) === 0;
-        if($isVideoDisable) {
+        if ($isVideoDisable) {
             return;
         }
         $keyIntMin          = $resolutionTransfer->getKeyintMin();
@@ -28,7 +28,7 @@ class VideoFiltersExpander implements FilterExpanderInterface
             $resolutionTransfer->getHeight()
         );
 
-        if($keyIntMin) {
+        if ($keyIntMin) {
             $filters[] = '-keyint_min';
             $filters[] = $resolutionTransfer->getKeyintMin();
         }

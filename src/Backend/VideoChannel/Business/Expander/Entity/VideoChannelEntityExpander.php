@@ -12,8 +12,7 @@ class VideoChannelEntityExpander implements VideoChannelEntityExpanderInterface
      */
     public function __construct(
         private readonly iterable $expanderCollection
-    )
-    {
+    ) {
     }
 
     /**

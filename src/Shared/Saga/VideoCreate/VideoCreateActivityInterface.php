@@ -2,7 +2,7 @@
 
 namespace App\Shared\Saga\VideoCreate;
 
-use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use Micro\Plugin\Temporal\Activity\ActivityInterface;
 
@@ -10,9 +10,9 @@ use Micro\Plugin\Temporal\Activity\ActivityInterface;
 interface VideoCreateActivityInterface extends ActivityInterface
 {
     /**
-     * @param VideoCreateTransfer $videoCreateTransfer
+     * @param VideoPublishTransfer $videoPublishTransfer
      *
      * @return VideoTransfer
      */
-    public function createVideo(VideoCreateTransfer $videoCreateTransfer): VideoTransfer;
+    public function createVideo(VideoPublishTransfer $videoPublishTransfer): VideoTransfer;
 }

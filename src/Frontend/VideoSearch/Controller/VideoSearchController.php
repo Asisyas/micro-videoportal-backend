@@ -14,14 +14,13 @@ class VideoSearchController
      */
     public function __construct(
         private readonly VideoSearchFacadeInterface $videoSearchFacade
-    )
-    {
+    ) {
     }
 
     /**
      * @param Request $request
      *
-     * @return JsonResponse
+     * @return SearchResultCollectionTransfer
      */
     public function search(Request $request): SearchResultCollectionTransfer
     {

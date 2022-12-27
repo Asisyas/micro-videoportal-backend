@@ -4,7 +4,7 @@ namespace App\Client\Video\Reader;
 
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
 use App\Shared\Generated\DTO\ClientReader\RequestTransfer;
-use App\Shared\Generated\DTO\Video\VideoWatchTRansfer;
+use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Configuration;
 
@@ -15,23 +15,22 @@ class VideoReader implements VideoReaderInterface
      */
     public function __construct(
         private readonly ClientReaderFacadeInterface $clientReaderFacade,
-    )
-    {
+    ) {
     }
 
     /**
-     * @param VideoWatchTRansfer $videoGetTransfer
-     *
-     * @return VideoTransfer
+     * @inheritDoc
      */
-    public function lookup(VideoWatchTRansfer $videoGetTransfer): VideoTransfer
+    public function lookup(VideoWatchTransfer $videoGetTransfer): VideoTransfer
     {
         $request = new RequestTransfer();
         $request->setIndex(Configuration::STORAGE_INDEX_KEY);
-        $request->setUuid($videoGetTransfer->getVideoId());
+        $request->setUuid($videoGetTransfer->getId());
 
         $response = $this->clientReaderFacade->lookup($request);
+        /** @var VideoTransfer $videoTransfer */
+        $videoTransfer = $response->getData();
 
-        return $response->getData();
+        return $videoTransfer;
     }
 }

@@ -41,11 +41,11 @@ final class AuthConfigurationTransfer extends \Micro\Library\DTO\Object\Abstract
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'provider' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -53,9 +53,9 @@ final class AuthConfigurationTransfer extends \Micro\Library\DTO\Object\Abstract
             'actionName' => 'provider',
           ),
           'url_auth' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,

@@ -13,8 +13,7 @@ class SearchClient implements SearchClientInterface
      */
     public function __construct(
         private readonly SearchEngineFactoryInterface $searchEngineFactory
-    )
-    {
+    ) {
     }
 
     /**

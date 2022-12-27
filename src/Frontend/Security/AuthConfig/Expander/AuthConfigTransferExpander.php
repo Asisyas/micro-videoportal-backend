@@ -26,8 +26,7 @@ class AuthConfigTransferExpander implements AuthConfigTransferExpanderInterface
      */
     public function __construct(
         private readonly iterable $expanderCollection
-    )
-    {
+    ) {
     }
 
     /**

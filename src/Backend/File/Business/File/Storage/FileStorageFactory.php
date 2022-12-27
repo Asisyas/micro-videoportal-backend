@@ -11,8 +11,7 @@ class FileStorageFactory implements FileStorageFactoryInterface
      */
     public function __construct(
         private readonly ClientStorageFacadeInterface $clientStorageFacade
-    )
-    {
+    ) {
     }
 
     /**

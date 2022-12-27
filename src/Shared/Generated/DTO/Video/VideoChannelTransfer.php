@@ -67,38 +67,38 @@ final class VideoChannelTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'id',
           ),
           'owner_id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'ownerId',
           ),
           'created_at' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'DateTimeInterface',
             ),
             'required' => true,
             'actionName' => 'createdAt',
           ),
           'title' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),

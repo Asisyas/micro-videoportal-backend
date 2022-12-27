@@ -20,7 +20,7 @@ abstract class AbstractValidator implements ValidatorInterface
             $this->createValidationSchema(),
         );
 
-        if($result->count() === 0) {
+        if ($result->count() === 0) {
             return;
         }
 
@@ -32,5 +32,5 @@ abstract class AbstractValidator implements ValidatorInterface
     /**
      * @return Constraint
      */
-    protected abstract function createValidationSchema(): Constraint;
+    abstract protected function createValidationSchema(): Constraint;
 }

@@ -27,8 +27,7 @@ class OAuth2Expander implements AuthConfigTransferExpanderInterface
      */
     public function __construct(
         private readonly Oauth2ClientFacadeInterface $oauth2ClientFacade
-    )
-    {
+    ) {
     }
 
     /**

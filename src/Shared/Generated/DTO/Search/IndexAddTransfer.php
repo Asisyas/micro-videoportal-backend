@@ -55,11 +55,11 @@ final class IndexAddTransfer extends AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'index' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -67,9 +67,9 @@ final class IndexAddTransfer extends AbstractDto
             'actionName' => 'index',
           ),
           'body' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'Micro\\Library\\DTO\\Object\\AbstractDto',
               1 => 'null',
             ),
@@ -77,9 +77,9 @@ final class IndexAddTransfer extends AbstractDto
             'actionName' => 'body',
           ),
           'id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),

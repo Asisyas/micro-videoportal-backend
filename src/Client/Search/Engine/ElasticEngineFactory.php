@@ -14,8 +14,7 @@ class ElasticEngineFactory implements SearchEngineFactoryInterface
     public function __construct(
         private readonly ElasticFacadeInterface $elasticFacade,
         private readonly SearchResultsExpanderFactoryInterface $resultsExpanderFactory
-    )
-    {
+    ) {
     }
 
     /**

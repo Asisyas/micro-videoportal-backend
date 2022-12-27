@@ -80,47 +80,47 @@ final class FileTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'id',
           ),
           'name' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'name',
           ),
           'size' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
             ),
             'required' => true,
             'actionName' => 'size',
           ),
           'content_type' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'contentType',
           ),
           'created_at' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'DateTimeInterface',
             ),
             'required' => true,

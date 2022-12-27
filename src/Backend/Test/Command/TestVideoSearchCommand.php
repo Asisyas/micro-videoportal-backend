@@ -13,12 +13,11 @@ class TestVideoSearchCommand extends Command
 {
     public function __construct(
         private readonly SearchClientInterface $searchClient
-    )
-    {
+    ) {
         parent::__construct('test:video:search');
     }
 
-    public function configure()
+    public function configure(): void
     {
         $this->addArgument('search-string', InputArgument::REQUIRED);
     }
@@ -64,9 +63,8 @@ class TestVideoSearchCommand extends Command
 
         $result = $this->searchClient->search($searchTransfer);
 
-        dd($result);
+        dump($result);
 
         return self::SUCCESS;
     }
-
 }

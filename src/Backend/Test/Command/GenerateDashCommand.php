@@ -15,19 +15,12 @@ class GenerateDashCommand extends Command
 {
     public function __construct(
         private readonly MediaConverterFacadeInterface $videoConverterFacade,
-    )
-    {
+    ) {
         parent::__construct('test:video:dash');
-    }
-
-    public function configure()
-    {
-        parent::configure();
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-
         $mediaConverterResultCollection = new MediaConvertedResultCollectionTransfer();
         $mediaConverterResultCollection->setVideoId('0726a98b-3d0e-4610-b51f-7ec1415fce40');
         $mcrtc = [];
@@ -44,12 +37,13 @@ class GenerateDashCommand extends Command
             $mediaConverterResult
                 ->setSrc($file[0])
                 ->setResolution(
-                (new MediaResolutionTransfer())
-                    ->setMediaTypeFlag($file[1] ?
-                        MediaConverterPluginConfiguration::FLAG_VIDEO :
-                        MediaConverterPluginConfiguration::FLAG_AUDIO
-                    )
-            );
+                    (new MediaResolutionTransfer())
+                        ->setMediaTypeFlag(
+                            $file[1] ?
+                            MediaConverterPluginConfiguration::FLAG_VIDEO :
+                            MediaConverterPluginConfiguration::FLAG_AUDIO
+                        )
+                );
             $mcrtc[] = $mediaConverterResult;
         }
 

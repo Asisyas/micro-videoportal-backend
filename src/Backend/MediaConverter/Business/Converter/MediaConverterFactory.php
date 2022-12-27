@@ -20,8 +20,7 @@ class MediaConverterFactory implements ConverterFactoryInterface
         private readonly FilesystemFacadeInterface $filesystemFacade,
         private readonly FilterExpanderFactoryInterface $filterExpanderFactory,
         private readonly MediaConverterPluginConfiguration $pluginConfiguration
-    )
-    {
+    ) {
     }
 
     /**

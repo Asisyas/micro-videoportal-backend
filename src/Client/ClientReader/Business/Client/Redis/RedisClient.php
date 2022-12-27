@@ -18,8 +18,7 @@ class RedisClient implements ClientInterface
     public function __construct(
         private readonly RedisInterface $redis,
         private readonly SerializerFacadeInterface $serializerFacade
-    )
-    {
+    ) {
     }
 
     /**
@@ -27,13 +26,16 @@ class RedisClient implements ClientInterface
      */
     public function lookup(RequestTransfer $requestTransfer): ResponseTransfer
     {
+        // @phpstan-ignore-next-line
         $result = $this->redis->get(
             $requestTransfer->getIndex() . '_' . $requestTransfer->getUuid()
         );
 
-        if(!$result) {
+        if (!$result) {
             throw new NotFoundException(sprintf(
-                'Data in the index "%s" with id "%s" is not found', $requestTransfer->getIndex(), $requestTransfer->getUuid()
+                'Data in the index "%s" with id "%s" is not found',
+                $requestTransfer->getIndex(),
+                $requestTransfer->getUuid()
             ));
         }
 

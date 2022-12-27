@@ -13,8 +13,7 @@ class VideoDescriptionCreateActivity implements VideoDescriptionCreateActivityIn
      */
     public function __construct(
         private readonly VideoDescriptionFacadeInterface $videoDescriptionFacade
-    )
-    {
+    ) {
     }
 
     /**

@@ -15,8 +15,7 @@ class ClientReaderPublisher implements TransferPublisherInterface
      */
     public function __construct(
         private readonly ClientStorageFacadeInterface $clientStorageFacade
-    )
-    {
+    ) {
     }
 
     /**

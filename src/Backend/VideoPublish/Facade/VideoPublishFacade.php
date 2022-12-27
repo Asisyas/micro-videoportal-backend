@@ -13,8 +13,7 @@ class VideoPublishFacade implements VideoPublishFacadeInterface
      */
     public function __construct(
         private readonly VideoIndexPropagateManagerFactoryInterface $videoIndexPropagateManagerFactory
-    )
-    {
+    ) {
     }
 
     /**

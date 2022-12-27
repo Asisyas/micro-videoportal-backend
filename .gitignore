@@ -5,6 +5,7 @@
 .env.dev
 .env.prod
 .phpunit.result.cache
+.php-cs-fixer.cache
 /docker/db/*
 /docker/elasticsearch/*
 /docker/redis/*

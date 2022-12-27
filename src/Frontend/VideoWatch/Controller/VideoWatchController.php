@@ -14,8 +14,7 @@ class VideoWatchController
      */
     public function __construct(
         private readonly VideoWatchFacadeInterface $videoWatchFacade
-    )
-    {
+    ) {
     }
 
     /**

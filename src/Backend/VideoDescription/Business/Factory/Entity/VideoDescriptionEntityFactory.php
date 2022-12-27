@@ -13,8 +13,7 @@ class VideoDescriptionEntityFactory implements VideoDescriptionEntityFactoryInte
      */
     public function __construct(
         private readonly VideoDescriptionEntityExpanderFactoryInterface $videoDescriptionEntityExpanderFactory
-    )
-    {
+    ) {
     }
 
     /**

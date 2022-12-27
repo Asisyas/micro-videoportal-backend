@@ -21,9 +21,7 @@ class ChannelCreateRequestHandler implements ChannelCreateRequestHandlerInterfac
     public function __construct(
         private readonly VideoChannelClientInterface $videoChannelClient,
         private readonly SecurityFacadeInterface $securityFacade
-    )
-    {
-
+    ) {
     }
 
     /**
@@ -32,7 +30,7 @@ class ChannelCreateRequestHandler implements ChannelCreateRequestHandlerInterfac
     public function handleChannelCreateFromRequest(Request $request): VideoChannelTransfer
     {
         $ownerToken = $this->securityFacade->getAuthToken();
-        $channelId = $request->query->get('channel_id');
+        $channelId = (string) $request->query->get('channel_id');
 
         $channelCreateTransfer = new VideoChannelCreateTransfer();
         $channelCreateTransfer
@@ -44,9 +42,14 @@ class ChannelCreateRequestHandler implements ChannelCreateRequestHandlerInterfac
         try {
             return $this->videoChannelClient->createChannel($channelCreateTransfer);
         } catch (\Throwable $exception) {
-            /** @var ApplicationFailure $applicationFaillure */
+            /**
+             * @phpstan-ignore-next-line
+             * @var ApplicationFailure $applicationFaillure
+             */
             $applicationFailure = $exception->getPrevious()->getPrevious();
-            if($applicationFailure->getType() === ChannelIdAlreadyExistsException::class) {
+            //@phpstan-ignore-next-line
+            if ($applicationFailure->getType() === ChannelIdAlreadyExistsException::class) {
+                // @phpstan-ignore-next-line
                 throw new HttpUnprocessableEntityException($applicationFailure->getOriginalMessage());
             }
 

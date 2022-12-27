@@ -41,11 +41,11 @@ final class AuthCodeRequestTransfer extends \Micro\Library\DTO\Object\AbstractDt
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'code' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -53,9 +53,9 @@ final class AuthCodeRequestTransfer extends \Micro\Library\DTO\Object\AbstractDt
             'actionName' => 'code',
           ),
           'provider' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),

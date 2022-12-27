@@ -15,8 +15,7 @@ class FileUploaderFactory implements FileUploaderFactoryInterface
     public function __construct(
         private readonly FileUploadTransferFactoryInterface $fileUploadTransferFactory,
         private readonly FileClientInterface $fileClient
-    )
-    {
+    ) {
     }
 
     /**

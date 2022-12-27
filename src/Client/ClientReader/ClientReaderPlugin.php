@@ -31,7 +31,6 @@ class ClientReaderPlugin extends AbstractPlugin
         $container->register(ClientReaderFacadeInterface::class, function (
             RedisFacadeInterface $redisFacade,
             SerializerFacadeInterface $serializerFacade
-
         ) {
             $this->redisFacade = $redisFacade;
             $this->serializerFacade = $serializerFacade;

@@ -22,8 +22,7 @@ class FileClient implements FileClientInterface
         private readonly FileClientStoreFactoryInterface $fileClientStoreFactory,
         private readonly FileClientReaderFactoryInterface $fileClientReaderFactory,
         private readonly FileUploaderFactoryInterface $fileUploaderFactory
-    )
-    {
+    ) {
     }
 
     public function deleteFile(FileRemoveTransfer $fileRemoveTransfer): void

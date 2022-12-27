@@ -15,8 +15,7 @@ class ElasticStorage implements StorageInterface
     public function __construct(
         private readonly Client $client,
         private readonly SerializerFacadeInterface $serializerFacade
-    )
-    {
+    ) {
     }
 
     /**

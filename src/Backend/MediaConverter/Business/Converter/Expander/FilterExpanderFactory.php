@@ -14,7 +14,6 @@ class FilterExpanderFactory implements FilterExpanderFactoryInterface
      */
     public function __construct(FilterExpanderInterface ...$filterExpanderCollection)
     {
-
         $this->filterExpanderCollection = $filterExpanderCollection;
     }
 

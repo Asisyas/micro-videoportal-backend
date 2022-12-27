@@ -20,8 +20,7 @@ class MediaConverterActivity implements MediaConvertActivityInterface
      */
     public function __construct(
         private readonly MediaConverterFacadeInterface $mediaConverterFacade
-    )
-    {
+    ) {
     }
 
     /**

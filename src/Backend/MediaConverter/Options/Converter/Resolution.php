@@ -21,8 +21,7 @@ class Resolution implements ResolutionVideoOptionsInterface
         private readonly int|null $frameRate,
         private readonly int|null $gopSize,
         private readonly int|null $keyIntMin,
-    )
-    {
+    ) {
     }
 
     /**

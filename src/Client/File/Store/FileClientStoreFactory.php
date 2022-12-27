@@ -11,8 +11,7 @@ class FileClientStoreFactory implements FileClientStoreFactoryInterface
      */
     public function __construct(
         private readonly TemporalFacadeInterface $temporalFacade
-    )
-    {
+    ) {
     }
 
     /**

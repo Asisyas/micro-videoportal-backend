@@ -41,8 +41,7 @@ class File
         string $fileName,
         int $fileSize,
         string $contentType
-    )
-    {
+    ) {
         $this->contentType = $contentType;
         $this->id = $id;
         $this->fileName = $fileName;

@@ -158,11 +158,11 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'codec' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -170,9 +170,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'codec',
           ),
           'rate' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -180,9 +180,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'rate',
           ),
           'channel_count' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -190,9 +190,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'channelCount',
           ),
           'channel_layout' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -200,9 +200,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'channelLayout',
           ),
           'height' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -210,9 +210,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'height',
           ),
           'width' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -220,9 +220,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'width',
           ),
           'bitRate' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -230,9 +230,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'bitRate',
           ),
           'frame_rate' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -240,9 +240,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'frameRate',
           ),
           'duration' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'float',
               1 => 'null',
             ),
@@ -250,9 +250,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'duration',
           ),
           'media_type_flag' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -260,9 +260,9 @@ final class StreamTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'mediaTypeFlag',
           ),
           'rotation' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),

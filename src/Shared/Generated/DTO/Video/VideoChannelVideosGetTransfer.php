@@ -54,11 +54,11 @@ final class VideoChannelVideosGetTransfer extends \Micro\Library\DTO\Object\Abst
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'channel_id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -66,9 +66,9 @@ final class VideoChannelVideosGetTransfer extends \Micro\Library\DTO\Object\Abst
             'actionName' => 'channelId',
           ),
           'limit' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -76,9 +76,9 @@ final class VideoChannelVideosGetTransfer extends \Micro\Library\DTO\Object\Abst
             'actionName' => 'limit',
           ),
           'offset' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),

@@ -41,20 +41,20 @@ final class UserCreateTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'username' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'username',
           ),
           'roles' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'array',
             ),
             'required' => true,

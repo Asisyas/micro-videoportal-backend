@@ -7,7 +7,6 @@ use App\Shared\Generated\DTO\MediaConverter\MediaResolutionTransfer;
 
 class VideoVerticalExpander implements FilterExpanderInterface
 {
-
     /**
      * {@inheritDoc}
      */
@@ -15,7 +14,7 @@ class VideoVerticalExpander implements FilterExpanderInterface
     {
         $rotation = $resolutionTransfer->getRotation();
 
-        if(!$rotation) {
+        if (!$rotation) {
             return;
         }
 

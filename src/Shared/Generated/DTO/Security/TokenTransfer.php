@@ -80,11 +80,11 @@ final class TokenTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'token' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -92,9 +92,9 @@ final class TokenTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'token',
           ),
           'time_now' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -102,9 +102,9 @@ final class TokenTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'timeNow',
           ),
           'expires_at_access' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -112,9 +112,9 @@ final class TokenTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'expiresAtAccess',
           ),
           'expires_at_refresh' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),
@@ -122,9 +122,9 @@ final class TokenTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'expiresAtRefresh',
           ),
           'user' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\Security\\TokenOwnerTransfer',
               1 => 'null',
             ),

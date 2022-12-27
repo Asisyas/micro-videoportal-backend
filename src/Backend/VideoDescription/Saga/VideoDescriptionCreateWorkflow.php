@@ -2,9 +2,7 @@
 
 namespace App\Backend\VideoDescription\Saga;
 
-use App\Shared\Generated\DTO\Video\VideoDescriptionGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
-use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
 use App\Shared\VideoDescription\Saga\VideoDescriptionCreateActivityInterface;
 use App\Shared\VideoDescription\Saga\VideoDescriptionCreateWorkflowInterface;
 use Doctrine\ORM\Exception\ORMException;
@@ -29,7 +27,6 @@ class VideoDescriptionCreateWorkflow implements VideoDescriptionCreateWorkflowIn
                             ORMException::class
                         ])
                 )
-
         );
     }
 

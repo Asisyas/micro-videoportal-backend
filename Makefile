@@ -18,14 +18,23 @@ help:
 build: ## Pull and make docker images and compile application components
 	@$(DOCKER_COMP) build --pull --no-cache
 
-db-create:
+db-create: ## Create database
 	@$(PHP_CONT_FRONT) php bin/console orm:schema-tool:create
 
-db-update:
+db-update: ## Update database
 	@$(PHP_CONT_FRONT) php bin/console orm:schema-tool:update --force
 
-test: ## Run all tests from `phpunit.xml`
+test-cs-fix: ## Fix php codestyle
+	@$(PHP_CONT_BACK) php vendor/bin/php-cs-fixer fix src/
+
+test-cs:
+	@$(PHP_CONT_BACK) vendor/bin/phpcs -p ./src --standard=vendor/phpcompatibility/php-compatibility/PHPCompatibility --runtime-set testVersion 8.2
+test-phpstan:
+	@$(PHP_CONT_BACK) vendor/bin/phpstan analyse -c phpstan.neon
+test-unit:
 	@$(PHP_CONT_BACK) php vendor/bin/phpunit --verbose
+test: ## Run all application tests ( php-cs, phpunit, phpstan )
+test: test-cs test-phpstan test-unit
 
 up: ## Run made application
 	@$(DOCKER_COMP) up --detach
@@ -38,7 +47,7 @@ down: ## Shutdown all containers
 logs: ## Listen to logs in php container
 	@$(DOCKER_COMP) logs --tail=0 --follow
 
-shd: ## Open bash terminal in the "php-back" node.
+shb: ## Open bash terminal in the "php-back" node.
 
 	@$(PHP_CONT_BACK) sh
 shf: ## Open bash terminal in the "php-front" node.
@@ -52,10 +61,6 @@ vendor: ## composer install dependencies
 vendor: c=install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction
 vendor: composer
 
-micro-back: ## List all Micro commands or pass the parameter "c=" to run a given command, example: make sf c=about in the "php-back" node
+micro: ## List all Micro commands or pass the parameter "c=" to run a given command, example: make sf c=about in the "php-back" node
 	@$(eval c ?=)
-	@$(COMPOSER_BACK) $(c)
-
-micro-front: ## List all Micro commands or pass the parameter "c=" to run a given command, example: make sf c=about in the "php-back" node
-	@$(eval c ?=)
-	@$(COMPOSER_FRONT) $(c)
+	@$(PHP_CONT_BACK) bin/console $(c)

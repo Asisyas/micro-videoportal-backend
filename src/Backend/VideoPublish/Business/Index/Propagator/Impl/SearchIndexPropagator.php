@@ -15,8 +15,7 @@ class SearchIndexPropagator implements IndexPropagatorInterface
      */
     public function __construct(
         private readonly SearchStorageFacadeInterface $searchStorageFacade
-    )
-    {
+    ) {
     }
 
     /**

@@ -13,12 +13,16 @@ class RequestValidator extends AbstractValidator
      */
     protected function createValidationSchema(): Constraint
     {
-        return new Assert\Collection([
+        return new Assert\Collection(
+            [
             'file_id'  => [
                 new Assert\NotBlank(),
                 new Assert\Type(['type' => 'string']),
             ],
-        ], null, null, true
+        ],
+            null,
+            null,
+            true
         );
     }
 }

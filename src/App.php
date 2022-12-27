@@ -8,13 +8,15 @@ use Micro\Framework\Kernel\Configuration\DefaultApplicationConfiguration;
 use Dotenv\Dotenv;
 
 $basedir = realpath(__DIR__ . '/../');
+if (!$basedir) {
+    throw new RuntimeException('Can not resolve base path for application.');
+}
 
 require_once $basedir . '/vendor/autoload.php';
 
 return function () use ($basedir) {
     /** @var ApplicationConfigurationInterface $applicationConfiguration */
-    $applicationConfiguration = new class($basedir) extends DefaultApplicationConfiguration {
-
+    $applicationConfiguration = new class ($basedir) extends DefaultApplicationConfiguration {
         private readonly Dotenv $dotenv;
 
         public function __construct(string $basePath)
@@ -25,7 +27,7 @@ return function () use ($basedir) {
             $env = getenv('APP_ENV') ?: 'dev';
 
             $envFileCompiled = $basePath . '/' .  '.env.' .$env . '.php';
-            if(file_exists($envFileCompiled)) {
+            if (file_exists($envFileCompiled)) {
                 $content = include $envFileCompiled;
                 parent::__construct($content);
 
@@ -34,9 +36,10 @@ return function () use ($basedir) {
 
             $names[] = '.env';
             $names[] = '.env.' . $env;
-
+            // @codingStandardsIgnoreStart
             $this->dotenv = Dotenv::createMutable($basePath, $names, false);
             $this->dotenv->load();
+            // @codingStandardsIgnoreEnd
 
             parent::__construct($_ENV);
         }

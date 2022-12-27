@@ -64,8 +64,8 @@ class VideoDescriptionPlugin extends AbstractPlugin
      * @return VideoDescriptionEntityFactoryInterface
      */
     protected function createVideoDescriptionEntityFactory(
-        VideoDescriptionEntityExpanderFactoryInterface $expanderFactory): VideoDescriptionEntityFactoryInterface
-    {
+        VideoDescriptionEntityExpanderFactoryInterface $expanderFactory
+    ): VideoDescriptionEntityFactoryInterface {
         return new VideoDescriptionEntityFactory($expanderFactory);
     }
 

@@ -13,10 +13,9 @@ class FilesystemOperatorDecorator implements FilesystemOperator
      */
     public function __construct(
         private readonly FilesystemOperator $fsOperator
-    )
-    {
+    ) {
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -187,7 +186,7 @@ class FilesystemOperatorDecorator implements FilesystemOperator
         $separator = '.';
         $exploded = explode($separator, $source);
         $prefix = $source;
-        if(count($exploded) > 1) {
+        if (count($exploded) > 1) {
             $prefix = $exploded[0];
         }
 
@@ -197,9 +196,9 @@ class FilesystemOperatorDecorator implements FilesystemOperator
     /**
      * {@inheritDoc}
      */
-    public function __call(string $name, array $arguments)
+    public function __call(string $name, array $arguments) // @phpstan-ignore-line
     {
-        return $this->fsOperator->__call($name, $arguments);
+        return $this->fsOperator->{$name}(...$arguments);
     }
 
     /**

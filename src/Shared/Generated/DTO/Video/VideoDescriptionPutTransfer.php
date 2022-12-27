@@ -41,20 +41,20 @@ final class VideoDescriptionPutTransfer extends \Micro\Library\DTO\Object\Abstra
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'video_id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,
             'actionName' => 'videoId',
           ),
           'source' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'App\\Shared\\Generated\\DTO\\Video\\VideoDescriptionTransfer',
               1 => 'null',
             ),

@@ -18,15 +18,12 @@ class VideoConvertCommand extends Command
     public function __construct(
         private readonly MediaConverterFacadeInterface $videoConverterFacade,
         private readonly FileClientInterface           $fileClient
-    )
-    {
+    ) {
         parent::__construct('test:video:convert');
     }
 
-    public function configure()
+    public function configure(): void
     {
-        parent::configure();
-
         $this->addArgument('video_id', InputOption::VALUE_REQUIRED);
     }
 

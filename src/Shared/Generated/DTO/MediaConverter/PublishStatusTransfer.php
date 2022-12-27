@@ -42,21 +42,21 @@ final class PublishStatusTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     public function setResolutions(iterable|null $resolutions): self
     {
-        if(!$resolutions) {
-                        $this->resolutions = null;
+        if (!$resolutions) {
+            $this->resolutions = null;
 
-                        return $this;
-                    }
+            return $this;
+        }
 
-                    if(!$this->resolutions) {
-                        $this->resolutions = new Collection();
-                    }
+        if (!$this->resolutions) {
+            $this->resolutions = new Collection();
+        }
 
-                    foreach($resolutions as $item) {
-                        $this->resolutions->add($item);
-                    }
+        foreach ($resolutions as $item) {
+            $this->resolutions->add($item);
+        }
 
-                    return $this;
+        return $this;
     }
 
     public function setStatus(int|null $status): self
@@ -68,11 +68,11 @@ final class PublishStatusTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -80,9 +80,9 @@ final class PublishStatusTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'id',
           ),
           'resolutions' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'iterable',
               1 => 'null',
             ),
@@ -90,9 +90,9 @@ final class PublishStatusTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'resolutions',
           ),
           'status' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'int',
               1 => 'null',
             ),

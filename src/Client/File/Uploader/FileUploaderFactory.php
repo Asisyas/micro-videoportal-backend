@@ -7,13 +7,10 @@ use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
 
 class FileUploaderFactory implements FileUploaderFactoryInterface
 {
-
     public function __construct(
         private readonly FileClientStoreFactoryInterface $fileClientStoreFactory,
         private readonly FilesystemFacadeInterface $filesystemFacade
-    )
-    {
-
+    ) {
     }
 
     public function create(): FileUploaderInterface

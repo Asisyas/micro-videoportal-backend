@@ -1,0 +1,18 @@
+parameters:
+	level: 7
+	ignoreErrors:
+	    - '#Class [a-zA-Z0-9\\_]+(Plugin|Facade) has an uninitialized readonly property \$[a-zA-Z0-9\\_]+. Assign it in the constructor.#'
+	    - '#Readonly property [a-zA-Z0-9\\_]+(Plugin|Facade)\:\:\$[a-zA-Z0-9\\_]+ is assigned outside of the constructor.#'
+	    - '#Call to an undefined method Temporal\\Internal\\Workflow\\ChildWorkflowProxy\:\:[a-zA-Z0-9\\_]+\(\)+.#'
+	    - '#Call to an undefined method Temporal\\Internal\\Workflow\\ActivityProxy\:\:[a-zA-Z0-9\\_]+\(\)+.#'
+	    - '#Call to an undefined method Temporal\\Internal\\Workflow\\ActivityProxy<[a-zA-Z0-9\\_]+ActivityInterface>\:\:[a-zA-Z0-9\\_]+\(\).#'
+	    - '#Property [a-zA-Z0-9\\_]+\:\:\$[a-zA-Z0-9\\_]+ \(Temporal\\Internal\\Workflow\\ActivityProxy\) does not accept [a-zA-Z0-9\\_]+ActivityInterface.#'
+	    - '#Property [a-zA-Z0-9\\_]+\:\:\$[a-zA-Z0-9\\_]+ \(Temporal\\Internal\\Workflow\\ActivityProxy<[a-zA-Z0-9\\_]+ActivityInterface>\) does not accept [a-zA-Z0-9\\_]+ActivityInterface.#'
+	    - '#Temporal\\Internal\\Workflow\\ActivityProxy<[a-zA-Z0-9\\_]+ActivityInterface> but class Temporal\\Internal\\Workflow\\ActivityProxy is not generic.#'
+	excludePaths:
+	    - src/Shared/Generated/*
+	paths:
+		- src
+	checkMissingIterableValueType: false
+	reportUnmatchedIgnoredErrors: false
+	checkGenericClassInNonGenericObjectType: false

@@ -35,30 +35,30 @@ final class MediaMetadataTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     public function setStreams(iterable|null $streams): self
     {
-        if(!$streams) {
-                        $this->streams = null;
+        if (!$streams) {
+            $this->streams = null;
 
-                        return $this;
-                    }
+            return $this;
+        }
 
-                    if(!$this->streams) {
-                        $this->streams = new Collection();
-                    }
+        if (!$this->streams) {
+            $this->streams = new Collection();
+        }
 
-                    foreach($streams as $item) {
-                        $this->streams->add($item);
-                    }
+        foreach ($streams as $item) {
+            $this->streams->add($item);
+        }
 
-                    return $this;
+        return $this;
     }
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'format' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -66,9 +66,9 @@ final class MediaMetadataTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'format',
           ),
           'streams' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'iterable',
               1 => 'null',
             ),

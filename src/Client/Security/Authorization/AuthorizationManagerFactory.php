@@ -34,8 +34,7 @@ class AuthorizationManagerFactory implements AuthorizationManagerFactoryInterfac
         private readonly SecurityFacadeInterface $securityFacade,
         private readonly SecurityTokenDataExpanderFactoryInterface $securityTokenDataExpanderFactory,
         private readonly TokenTransferExpanderFactoryInterface $tokenTransferExpanderFactory
-    )
-    {
+    ) {
     }
 
     /**

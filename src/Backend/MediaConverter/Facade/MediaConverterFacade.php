@@ -3,6 +3,7 @@
 namespace App\Backend\MediaConverter\Facade;
 
 use App\Backend\MediaConverter\Business\Configuration\Media\MediaResolutionsCalculatorFactory;
+use App\Backend\MediaConverter\Business\Configuration\Media\MediaResolutionsCalculatorFactoryInterface;
 use App\Backend\MediaConverter\Business\Converter\ConverterFactoryInterface;
 use App\Backend\MediaConverter\Business\Dash\DashManifestGeneratorFactoryInterface;
 use App\Backend\MediaConverter\Business\Metadata\MediaMetadataExtractorFactoryInterface;
@@ -19,16 +20,15 @@ class MediaConverterFacade implements MediaConverterFacadeInterface
     /**
      * @param MediaMetadataExtractorFactoryInterface $mediaMetadataExtractorFactory
      * @param ConverterFactoryInterface $mediaConverterFactory
-     * @param MediaResolutionsCalculatorFactory $mediaResolutionsCalculatorFactory
+     * @param MediaResolutionsCalculatorFactoryInterface $mediaResolutionsCalculatorFactory
      * @param DashManifestGeneratorFactoryInterface $dashGeneratorFactory
      */
     public function __construct(
         private readonly MediaMetadataExtractorFactoryInterface $mediaMetadataExtractorFactory,
         private readonly ConverterFactoryInterface              $mediaConverterFactory,
-        private readonly MediaResolutionsCalculatorFactory      $mediaResolutionsCalculatorFactory,
+        private readonly MediaResolutionsCalculatorFactoryInterface      $mediaResolutionsCalculatorFactory,
         private readonly DashManifestGeneratorFactoryInterface $dashGeneratorFactory
-    )
-    {
+    ) {
     }
 
     /**

@@ -14,12 +14,11 @@ class VideoChannelCreateCommand extends Command
 {
     public function __construct(
         private readonly VideoChannelClientInterface $channelClient
-    )
-    {
+    ) {
         parent::__construct('test:video:channel-create');
     }
 
-    public function configure()
+    public function configure(): void
     {
         $this->addArgument('channel-id', InputArgument::REQUIRED);
     }
@@ -36,10 +35,9 @@ class VideoChannelCreateCommand extends Command
 
             dump($channel);
         } catch (\Throwable $exception) {
-            dump($exception->getPrevious()->getPrevious()->getOr());
+            dump($exception);
         }
 
         return self::SUCCESS;
     }
-
 }

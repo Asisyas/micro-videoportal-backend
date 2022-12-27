@@ -49,8 +49,7 @@ class FilePlugin extends AbstractPlugin
         UuidFacadeInterface $uuidFacade,
         DoctrineFacadeInterface $doctrineFacade,
         ClientStorageFacadeInterface $clientStorageFacade
-    ): FileFacadeInterface
-    {
+    ): FileFacadeInterface {
         $fileStorageFactory = $this->createFileStorageFactory($clientStorageFacade);
 
         $fileFactory = $this->createFileFactory(
@@ -83,8 +82,7 @@ class FilePlugin extends AbstractPlugin
         UuidFacadeInterface $uuidFacade,
         DoctrineFacadeInterface $doctrineFacade,
         FileStorageFactoryInterface $fileStorageFactory
-    ): FileFactoryInterface
-    {
+    ): FileFactoryInterface {
         return new FileFactory(
             $uuidFacade,
             $doctrineFacade,

@@ -14,8 +14,7 @@ class VideoChannelTransferExpanderFactory implements VideoChannelTransferExpande
      */
     public function __construct(
         VideoChannelTransferExpanderInterface ...$expanderCollection
-    )
-    {
+    ) {
         $this->expanderCollection = $expanderCollection;
     }
 

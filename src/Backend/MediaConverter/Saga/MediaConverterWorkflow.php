@@ -33,14 +33,11 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
                 )
                 ->withStartToCloseTimeout(CarbonInterval::hour(24))
         );
-
     }
 
-    /**
-     * @return VideoUpdateSrcWorkflowInterface
-     */
     protected function createUpdateSrcWorkflow(): ChildWorkflowProxy
     {
+        // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
             VideoUpdateSrcWorkflowInterface::class,
             Workflow\ChildWorkflowOptions::new()
@@ -61,6 +58,7 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
         $resolutionsCollection  = yield $this->mediaConvertActivity->calculateMediaResolutions($mediaMetadataTransfer);
 
         $convertedCollection->setVideoId($fileTransfer->getId());
+        $i = 0;
         foreach ($resolutionsCollection->getResolutions() as $resolutionTransfer) {
             $mediaConfigurationTransfer->setResolutionConfiguration($resolutionTransfer);
 
@@ -68,7 +66,7 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
             $videoConvertedTransfer = yield $this->mediaConvertActivity->convert($mediaConfigurationTransfer);
             $convertedCollection->setResults([$videoConvertedTransfer]);
 
-            if(1 > $i++) {
+            if (1 > $i++) {
                 continue;
             }
 
@@ -81,7 +79,7 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
                     (new VideoSrcSetTransfer())
                         ->setVideoId($mediaConfigurationTransfer->getVideo()->getId())
                         ->setSrc($dashManifest->getSrc())
-            );
+                );
         }
 
         return $mediaConfigurationTransfer;

@@ -16,6 +16,7 @@ namespace App\Client\Security\Authorization\Expander\Impl\TokenData;
 use App\Client\Security\Authorization\Expander\SecurityTokenDataExpanderInterface;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Token\AccessToken;
+use League\OAuth2\Client\Token\AccessTokenInterface;
 
 /**
  * @author Stanislau Komar <head.trackingsoft@gmail.com>
@@ -25,9 +26,9 @@ class OwnerExpander implements SecurityTokenDataExpanderInterface
     /**
      * {@inheritDoc}
      */
-    public function expand(array &$tokenData, AccessToken $accessToken, AbstractProvider $provider): void
+    public function expand(array &$tokenData, AccessTokenInterface $accessToken, AbstractProvider $provider): void
     {
-        $owner = $provider->getResourceOwner($accessToken);
+        $owner = $provider->getResourceOwner($accessToken); //@phpstan-ignore-line
         $ownerData = $owner->toArray();
         $id = $owner->getId();
         $ownerData['id'] = $id;

@@ -28,11 +28,11 @@ final class VideoDescriptionDeleteTransfer extends \Micro\Library\DTO\Object\Abs
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'video_id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
             ),
             'required' => true,

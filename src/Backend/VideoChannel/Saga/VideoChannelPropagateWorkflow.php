@@ -31,7 +31,8 @@ class VideoChannelPropagateWorkflow implements VideoChannelPropagateWorkflowInte
 
     public function __construct()
     {
-        $this->activity = Workflow::newActivityStub(VideoChannelActivityInterface::class,
+        $this->activity = Workflow::newActivityStub(
+            VideoChannelActivityInterface::class,
             ActivityOptions::new()
                 ->withScheduleToCloseTimeout(
                     CarbonInterval::minute()
@@ -46,7 +47,7 @@ class VideoChannelPropagateWorkflow implements VideoChannelPropagateWorkflowInte
     /**
      * {@inheritDoc}
      */
-    public function propagate(VideoChannelGetTransfer $videoChannelGetTransfer)
+    public function propagate(VideoChannelGetTransfer $videoChannelGetTransfer) //@phpstan-ignore-line
     {
         yield $this->activity->publishChannel($videoChannelGetTransfer);
     }

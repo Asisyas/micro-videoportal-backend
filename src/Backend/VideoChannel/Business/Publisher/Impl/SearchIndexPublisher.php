@@ -15,8 +15,7 @@ class SearchIndexPublisher implements TransferPublisherInterface
      */
     public function __construct(
         private readonly SearchStorageFacadeInterface $searchStorageFacade
-    )
-    {
+    ) {
     }
 
     /**

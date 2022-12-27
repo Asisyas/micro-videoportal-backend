@@ -28,8 +28,7 @@ class AuthConfigurationController
      */
     public function __construct(
         private readonly SecurityFacadeInterface $securityFacade
-    )
-    {
+    ) {
     }
 
     /**

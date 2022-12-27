@@ -16,8 +16,7 @@ class VideoPublisher implements VideoPublisherInterface
      */
     public function __construct(
         private readonly WorkflowClientInterface $workflowClient
-    )
-    {
+    ) {
     }
 
     /**

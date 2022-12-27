@@ -35,30 +35,30 @@ final class MediaConvertedResultCollectionTransfer extends \Micro\Library\DTO\Ob
 
     public function setResults(iterable|null $results): self
     {
-        if(!$results) {
-                        $this->results = null;
+        if (!$results) {
+            $this->results = null;
 
-                        return $this;
-                    }
+            return $this;
+        }
 
-                    if(!$this->results) {
-                        $this->results = new Collection();
-                    }
+        if (!$this->results) {
+            $this->results = new Collection();
+        }
 
-                    foreach($results as $item) {
-                        $this->results->add($item);
-                    }
+        foreach ($results as $item) {
+            $this->results->add($item);
+        }
 
-                    return $this;
+        return $this;
     }
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'video_id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -66,9 +66,9 @@ final class MediaConvertedResultCollectionTransfer extends \Micro\Library\DTO\Ob
             'actionName' => 'videoId',
           ),
           'results' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'iterable',
               1 => 'null',
             ),

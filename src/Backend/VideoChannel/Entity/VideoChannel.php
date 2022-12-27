@@ -3,7 +3,7 @@
 namespace App\Backend\VideoChannel\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use \DateTime;
+use DateTime;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'video_channel')]
@@ -31,8 +31,7 @@ class VideoChannel
         string $id,
         string $ownerId,
         string $title
-    )
-    {
+    ) {
         $this->id = $id;
         $this->ownerId = $ownerId;
         $this->title = $title ?: $id;

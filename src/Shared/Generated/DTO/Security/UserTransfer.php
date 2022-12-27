@@ -80,11 +80,11 @@ final class UserTransfer extends \Micro\Library\DTO\Object\AbstractDto
 
     protected static function attributesMetadata(): array
     {
-        return array (
+        return array(
           'id' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -92,9 +92,9 @@ final class UserTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'id',
           ),
           'name_first' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -102,9 +102,9 @@ final class UserTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'nameFirst',
           ),
           'name_last' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -112,9 +112,9 @@ final class UserTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'nameLast',
           ),
           'email' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'string',
               1 => 'null',
             ),
@@ -122,9 +122,9 @@ final class UserTransfer extends \Micro\Library\DTO\Object\AbstractDto
             'actionName' => 'email',
           ),
           'roles' =>
-          array (
+          array(
             'type' =>
-            array (
+            array(
               0 => 'array',
               1 => 'null',
             ),

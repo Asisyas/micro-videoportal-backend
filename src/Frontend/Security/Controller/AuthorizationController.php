@@ -31,9 +31,7 @@ class AuthorizationController
      */
     public function __construct(
         private readonly SecurityClientInterface $securityClient
-    )
-    {
-
+    ) {
     }
 
     /**
@@ -45,12 +43,12 @@ class AuthorizationController
     public function processCodeRequest(Request $request): TokenTransfer
     {
         $codeParameter = 'code';
-        if(!$request->query->has($codeParameter)) {
+        if (!$request->query->has($codeParameter)) {
             $this->throwInvalidParameterException('code');
         }
 
-        $code = $request->query->get($codeParameter);
-        if($code === null || !strlen($code)) {
+        $code = (string) $request->query->get($codeParameter);
+        if (empty($code)) {
             $this->throwInvalidParameterException('code');
         }
 
@@ -70,19 +68,18 @@ class AuthorizationController
 
     public function refreshToken(Request $request): TokenTransfer
     {
-        if(!$request->query->has('token')) {
+        if (!$request->query->has('token')) {
             $this->throwInvalidParameterException('token');
         }
 
-        $tokenRaw = $request->query->get('token');
+        $tokenRaw = (string) $request->query->get('token');
         $tokenTransfer = new TokenTransfer();
         $tokenTransfer->setToken($tokenRaw);
         try {
             $this->securityClient->refreshToken($tokenTransfer);
 
             return $tokenTransfer;
-        }
-        catch (IdentityProviderException $exception) {
+        } catch (IdentityProviderException $exception) {
             throw new HttpAccessDeniedException($exception->getMessage(), $exception);
         }
     }

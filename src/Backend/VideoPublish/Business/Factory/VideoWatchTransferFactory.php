@@ -13,8 +13,7 @@ class VideoWatchTransferFactory implements VideoWatchTransferFactoryInterface
      */
     public function __construct(
         private readonly VideoWatchExpanderFactoryInterface $videoWatchExpanderFactory
-    )
-    {
+    ) {
     }
 
     /**

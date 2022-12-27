@@ -14,8 +14,7 @@ class ChannelCreateRequestHandlerFactory implements ChannelCreateRequestHandlerF
     public function __construct(
         private readonly VideoChannelClientInterface $videoChannelClient,
         private readonly SecurityFacadeInterface $securityFacade
-    )
-    {
+    ) {
     }
 
     /**

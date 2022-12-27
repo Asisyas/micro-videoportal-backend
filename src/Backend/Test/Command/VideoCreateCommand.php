@@ -3,7 +3,6 @@
 namespace App\Backend\Test\Command;
 
 use App\Client\Video\Client\VideoClientInterface;
-use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,12 +13,11 @@ class VideoCreateCommand extends Command
 {
     public function __construct(
         private readonly VideoClientInterface $videoClient
-    )
-    {
+    ) {
         parent::__construct('test:video:create');
     }
 
-    public function configure()
+    public function configure(): void
     {
         $this->addArgument('file_id', InputOption::VALUE_REQUIRED);
     }
@@ -27,7 +25,7 @@ class VideoCreateCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $videoCreateTransfer = new VideoCreateTransfer();
-        $videoCreateTransfer->setFileId($input->getArgument('file_id'));
+        $videoCreateTransfer->setVideoId($input->getArgument('file_id'));
 
         $result = $this->videoClient->createVideo($videoCreateTransfer);
 
@@ -35,5 +33,4 @@ class VideoCreateCommand extends Command
 
         return self::SUCCESS;
     }
-
 }

@@ -18,8 +18,7 @@ class PublisherFactory implements PublisherFactoryInterface
     public function __construct(
         private readonly VideoChannelManagerFactoryInterface $videoChannelManagerFactory,
         TransferPublisherInterface ...$publisherCollection
-    )
-    {
+    ) {
         $this->publisherCollection = $publisherCollection;
     }
 

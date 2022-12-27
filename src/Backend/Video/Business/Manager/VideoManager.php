@@ -3,7 +3,6 @@
 namespace App\Backend\Video\Business\Manager;
 
 use App\Backend\Video\Entity\Video;
-use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
 use App\Shared\Generated\DTO\Video\VideoSrcSetTransfer;
@@ -21,8 +20,7 @@ class VideoManager implements VideoManagerInterface
      */
     public function __construct(
         private readonly EntityManagerInterface $entityManager
-    )
-    {
+    ) {
     }
 
     /**
@@ -32,10 +30,6 @@ class VideoManager implements VideoManagerInterface
     {
         $videoId        = $videoSrcSetTransfer->getVideoId();
         $videoEntity    = $this->lookupVideoEntity($videoId);
-
-        if(!$videoEntity) {
-            throw new VideoNotFoundException(sprintf('No video found with id "%s"', $videoId));
-        }
 
         $videoEntity->setSrc($videoSrcSetTransfer->getSrc());
         $this->entityManager->persist($videoEntity);
@@ -79,7 +73,7 @@ class VideoManager implements VideoManagerInterface
             ->setSrc($videoEntity->getSrc())
             ->setCreatedAt($videoEntity->getCreatedAt())
             ->setChannelId($videoEntity->getChannelId())
-            ;
+        ;
     }
 
     /**
@@ -91,12 +85,12 @@ class VideoManager implements VideoManagerInterface
      */
     protected function lookupVideoEntity(string $videoId): Video
     {
-        /** @var Video $videoEntity */
+        /** @var Video|null $videoEntity */
         $videoEntity = $this->entityManager->getRepository(Video::class)->findOneBy([
             'id'    => $videoId,
         ]);
 
-        if(!$videoEntity) {
+        if (!$videoEntity) {
             throw new VideoNotFoundException(sprintf('No video found with id "%s"', $videoId));
         }
 

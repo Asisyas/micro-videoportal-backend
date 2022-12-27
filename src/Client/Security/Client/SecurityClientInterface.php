@@ -20,5 +20,4 @@ use App\Client\Security\Authorization\AuthorizationManagerInterface;
  */
 interface SecurityClientInterface extends AuthorizationManagerInterface
 {
-
 }

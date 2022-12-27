@@ -11,8 +11,7 @@ class VideoReaderFactory implements VideoReaderFactoryInterface
      */
     public function __construct(
         private readonly ClientReaderFacadeInterface $clientReaderFacade
-    )
-    {
+    ) {
     }
 
     /**

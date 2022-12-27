@@ -7,17 +7,16 @@ use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
 use League\Flysystem\FilesystemOperator;
 
-class FileUploader implements FileUploaderInterface
+readonly class FileUploader implements FileUploaderInterface
 {
     /**
      * @param FileClientStoreInterface $fileClientStore
      * @param FilesystemOperator $filesystemOperator
      */
     public function __construct(
-        private readonly FileClientStoreInterface $fileClientStore,
-        private readonly FilesystemOperator       $filesystemOperator
-    )
-    {
+        private FileClientStoreInterface $fileClientStore,
+        private FilesystemOperator       $filesystemOperator
+    ) {
     }
 
     /**
@@ -27,6 +26,9 @@ class FileUploader implements FileUploaderInterface
     {
         $fileTransfer = $this->fileClientStore->createFile($fileUploadTransfer);
         $stream = fopen($fileUploadTransfer->getSource(), 'r');
+        if (!$stream) {
+            throw new \InvalidArgumentException(sprintf('Can not open file %s', $fileUploadTransfer->getSource()));
+        }
         $this->filesystemOperator->writeStream($fileTransfer->getId(), $stream);
         fclose($stream);
 

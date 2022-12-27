@@ -10,13 +10,12 @@ use Micro\Library\DTO\Object\AbstractDto;
 use Micro\Library\DTO\SerializerFacadeInterface;
 use Micro\Plugin\Redis\Redis\RedisInterface;
 
-class RedisClient implements ClientInterface
+readonly class RedisClient implements ClientInterface
 {
     public function __construct(
-        private readonly RedisInterface $redis,
-        private readonly SerializerFacadeInterface $serializerFacade
-    )
-    {
+        private RedisInterface            $redis,
+        private SerializerFacadeInterface $serializerFacade
+    ) {
     }
 
     /**
@@ -61,13 +60,17 @@ class RedisClient implements ClientInterface
     }
 
     /**
-     * @param AbstractDto $source
+     * @param mixed $source
      * @return string
      *
      * @throws \Micro\Library\DTO\Exception\SerializeException
      */
-    protected function createData(AbstractDto $source): string
+    protected function createData(mixed $source): string
     {
+        if (!($source instanceof AbstractDto)) {
+            return $source;
+        }
+
         return $this->serializerFacade->toJsonTransfer($source);
     }
 
