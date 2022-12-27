@@ -1,0 +1,19 @@
+version: "3.4"
+
+# Production environment override
+services:
+  php-front:
+    env_file:
+      - .env
+      - .env.prod
+    environment:
+      APP_SECRET: ${APP_SECRET}
+      MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET}
+
+  caddy:
+    env_file:
+      - .env
+      - .env.prod
+    environment:
+      MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET}
+      MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET}

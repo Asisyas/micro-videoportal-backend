@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "dc3c174b-39e7-4707-ac8a-1a7372762431",
+		"name": "VideoPortal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19628428"
+	},
+	"item": [
+		{
+			"name": "File: Upload",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-File-Name",
+						"value": "Stas wingsuit yeah!",
+						"type": "text"
+					},
+					{
+						"key": "Content-Range",
+						"value": "bytes=0-543879/543879",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/home/kost/Videos/16:9/URYR6700.MP4"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/file/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"file",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Video: Publish",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/video/publish",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"video",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VIdeo: Get",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkIjp7InV1aWQiOiJ0ZXN0LXVzZXItdXVpZCIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InVzZXJAdmlkZW9wb3J0YWwifSwibCI6ODY0MDAsInQiOjE2NjkxMjU2OTh9.ytSv6b63R5I5nW4fJZ1YpR3T3-8LJCfCfb9k4MSxJAk",
+						"type": "text"
+					},
+					{
+						"key": "Content-Range",
+						"value": "bytes=0-543879/543879",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/video/2623b949-1b6c-4909-b66e-d1393a77e05a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"video",
+						"2623b949-1b6c-4909-b66e-d1393a77e05a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Channel: Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "referer",
+						"value": "http://localhost:4200",
+						"type": "text"
+					},
+					{
+						"key": "X-Auth-Token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkIjp7InV1aWQiOiJ0ZXN0LXVzZXItdXVpZCIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InVzZXJAdmlkZW9wb3J0YWwifSwibCI6ODY0MDAsInQiOjE2NjkxNTk0MzJ9.utlw1uJR4ffl8n-qcApzWEHREU8YbLH6SgYeGQrTQpE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "video-portal",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "asisyas",
+							"type": "text"
+						},
+						{
+							"key": "password:",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/channel/kost",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"channel",
+						"kost"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "asisyas",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"disabled": true
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Channel: Get channel videos",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Security - get access token by code",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Security - get auth url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/api/security/configuration",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"security",
+						"configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Security - token refresh",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJydCI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSWdPaUFpU2xkVUlpd2lhMmxrSWlBNklDSmpPR05oWkdZMU5pMWpOMlEzTFRSbVlURXRZamRtWXkweFlqa3hNRGswTWpGak4yWWlmUS5leUpsZUhBaU9qRTJOekl4TXpreE5qWXNJbWxoZENJNk1UWTNNakV6TnpNMk5pd2lhblJwSWpvaU1qYzBaVEV5TVRrdE1HTXdZeTAwWldJNExUazVaall0T1dJM04ySXdNRFEyWVRrd0lpd2lhWE56SWpvaWFIUjBjRG92TDJ0bGVXTnNiMkZyT2pnd09EQXZjbVZoYkcxekwwMXBZM0p2SWl3aVlYVmtJam9pYUhSMGNEb3ZMMnRsZVdOc2IyRnJPamd3T0RBdmNtVmhiRzF6TDAxcFkzSnZJaXdpYzNWaUlqb2lZVFpsTm1WaE9UY3RaRFl6TmkwME1UYzRMV0kyTXpndE5XTXdORE15TnpCaVpqUXlJaXdpZEhsd0lqb2lVbVZtY21WemFDSXNJbUY2Y0NJNkluWnBaR1Z2Y0c5eWRHRnNJaXdpYzJWemMybHZibDl6ZEdGMFpTSTZJbVkzTkdaak56RXdMV1U1TmprdE5ETmhPUzA0TTJKa0xXWTNZemMxT1RRME9EWTRNeUlzSW5OamIzQmxJam9pY0hKdlptbHNaU0JsYldGcGJDSXNJbk5wWkNJNkltWTNOR1pqTnpFd0xXVTVOamt0TkROaE9TMDRNMkprTFdZM1l6YzFPVFEwT0RZNE15SjkuNWgwYjY3cV9oLVVzQzB1RHQ5VFYxZzhZZGUyWUlBWEN2NWphOERQU3FUayIsInRuIjoxNjcyMTM3MzY2LCJleHAiOjE2NzIxMzkxNjYsImV4cF90YSI6MTY3MjE3MzM1NSwidSI6eyJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJLb21hciBTdGFuaXNsYXUiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0ZXN0QHZpZGVvcG9ydGFsLmxvY2FsIiwiZ2l2ZW5fbmFtZSI6IktvbWFyIiwiZmFtaWx5X25hbWUiOiJTdGFuaXNsYXUiLCJlbWFpbCI6InRlc3RAdmlkZW9wb3J0YWwubG9jYWwiLCJpZCI6ImE2ZTZlYTk3LWQ2MzYtNDE3OC1iNjM4LTVjMDQzMjcwYmY0MiJ9fQ.T4u58hASBX-WX0bg8H-nlpeBtNz8pnlhMn4mc7yBJ80",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseurl",
+			"value": "https://localhost",
+			"type": "string"
+		}
+	]
+}

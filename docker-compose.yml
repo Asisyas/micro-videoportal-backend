@@ -1,0 +1,112 @@
+version: "3.4"
+
+services:
+  php-front:
+    build:
+      context: .
+      target: php_front
+      args:
+        MICRO_VERSION: ${MICRO_VERSION:-}
+        STABILITY: ${STABILITY:-stable}
+    restart: unless-stopped
+    volumes:
+      - php_socket:/var/run/php
+    healthcheck:
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+    environment:
+      MERCURE_URL: ${CADDY_MERCURE_URL:-http://caddy/.well-known/mercure}
+      MERCURE_PUBLIC_URL: https://${SERVER_NAME:-localhost}/.well-known/mercure
+      MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      APP_MODE: "frontend"
+
+  php-back:
+    build:
+      context: .
+      target: php_back
+      args:
+        MICRO_VERSION: ${MICRO_VERSION:-}
+        STABILITY: ${STABILITY:-stable}
+    restart: unless-stopped
+    command: [ "/srv/wait-for-temporal.sh", "temporal", "rr", "serve"]
+    environment:
+      MERCURE_URL: ${CADDY_MERCURE_URL:-http://caddy/.well-known/mercure}
+      MERCURE_PUBLIC_URL: https://${SERVER_NAME:-localhost}/.well-known/mercure
+      MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      TEMPORAL_CLI_ADDRESS: "temporal:7233"
+      APP_MODE: "backend"
+   
+  caddy:
+    build:
+      context: .
+      target: app_caddy
+    depends_on:
+      - php-front
+    environment:
+      SERVER_NAME: ${SERVER_NAME:-localhost, caddy:80}
+      MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+    restart: unless-stopped
+    volumes:
+      - php_socket:/var/run/php
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      # HTTP
+      - target: 80
+        published: ${HTTP_PORT:-80}
+        protocol: tcp
+      # HTTPS
+      - target: 443
+        published: ${HTTPS_PORT:-443}
+        protocol: tcp
+      # HTTP/3
+      - target: 443
+        published: ${HTTP3_PORT:-443}
+        protocol: udp
+        
+  redis:
+    image: redis:6.2.6-alpine
+    restart: on-failure
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redis:/data/
+  temporal:
+    env_file:
+      - .env
+    image: temporalio/auto-setup:1.18.5
+    volumes:
+      - temporal:/config
+
+  temporal-admin-tools:
+    image: temporalio/admin-tools:1.18.5
+    depends_on:
+      - temporal
+    environment:
+      - TEMPORAL_CLI_ADDRESS=temporal:7233
+    stdin_open: true
+    tty: true
+
+  temporal-web:
+    image: temporalio/web:1.15.0
+    depends_on:
+      - temporal
+    environment:
+      - TEMPORAL_GRPC_ENDPOINT=temporal:7233
+      - TEMPORAL_PERMIT_WRITE_API=true
+    ports:
+      - 8088:8088
+  
+# Mercure is installed as a Caddy module, prevent the Flex recipe from installing another service
+volumes:
+  php_socket:
+  caddy_data:
+  caddy_config:
+  elastic:
+  redis:
+  filestorage:
+  temporal:
+  
+

@@ -1,4 +1,11 @@
 .idea/
-docker/
-vendor/
-var/
+/vendor/
+/var/
+.env.local
+.env.dev
+.env.prod
+.phpunit.result.cache
+/docker/db/*
+/docker/elasticsearch/*
+/docker/redis/*
+/docker/temporal/*

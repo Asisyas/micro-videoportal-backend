@@ -14,7 +14,7 @@ class DotEnvConfiguration extends DefaultApplicationConfiguration
      *
      * @param string $basePath
      */
-    public function __construct(string $configFilePath, string $basePath)
+    public function __construct(string $configFilePath, string $basePath, array $fileNames = [])
     {
         $_ENV['BASE_PATH'] = $basePath;
 

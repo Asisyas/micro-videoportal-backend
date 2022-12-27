@@ -1,109 +1,9 @@
 {
-    "name": "vaderlab/demo-app",
-    "description": "ProxyPort: Universal proxy server",
+    "name": "vaderlab/video-portal",
+    "description": "Video portal based on Micro Framework",
     "type": "project",
-    "license": "Propietary",
+    "license": "GPLv3",
     "repositories": [
-        {
-            "type": "path",
-            "url": "../Micro/PluginFilesystem",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginElastic",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginFilesystemS3Adapter",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginSecurity",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginFfmpeg",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginUuid",
-            "options": {
-                "symlink": true
-            }
-        },
-
-        {
-            "type": "path",
-            "url": "../Micro/PluginRedis",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginSerializer",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginSerializerSymfomyAdapter",
-            "options": {
-                "symlink": true
-            }
-        },
-
-        {
-            "type": "path",
-            "url": "../Micro/PluginStorage",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginTemporal",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginTemporal",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginOauth2Client",
-            "options": {
-                "symlink": true
-            }
-        },
-        {
-            "type": "path",
-            "url": "../Micro/PluginOauth2ClientKeycloak",
-            "options": {
-                "symlink": true
-            }
-        }
     ],
     "require-dev": {
         "symfony/var-dumper": "^6.0"
@@ -124,31 +24,38 @@
         "php": " >= 8.1",
         "micro/kernel-app": "^1",
         "micro/plugin-locator": "^1",
-        "micro/plugin-serializer": "*",
         "micro/plugin-logger-monolog": "^1",
-        "micro/serializer-symfony-adapter": "*",
         "micro/plugin-event-emitter": "^1",
-        "micro/plugin-redis": "*",
+        "micro/plugin-redis": "^1",
         "micro/plugin-http": "^1",
         "micro/plugin-console": "^1",
-
         "micro/plugin-oauth2-client-keycloak": "^1",
-        "micro/plugin-uuid": "*",
-        "micro/plugin-storage":  "*",
+        "micro/plugin-uuid": "^1",
         "micro/plugin-doctrine": "^1",
         "micro/plugin-dto": "*",
         "micro/plugin-security": "*",
         "micro/plugin-temporal": "*",
-        "micro/plugin-ffmpeg": "*",
-        "micro/plugin-filesystem": "*",
+        "micro/plugin-ffmpeg": "^1",
         "micro/plugin-filesystem-s3": "*",
-        "micro/plugin-elastic": "*",
+        "micro/plugin-elastic": "^1",
         "vlucas/phpdotenv": "^5.4",
         "symfony/cache": "^6.0",
         "doctrine/annotations": "^1.13",
         "symfony/event-dispatcher": "^6.0",
         "symfony/yaml": "^6.0",
         "symfony/config": "^6.0",
-        "symfony/validator": "^6.1"
+        "symfony/validator": "^6.1",
+        "temporal/sdk": ">=2.0",
+        "spiral/tokenizer": ">=2.7"
+    },
+    "scripts": {
+        "auto-scripts": [
+        ],
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
     }
 }

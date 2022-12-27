@@ -43,7 +43,7 @@ class VideoUpdateSrcWorkflow implements VideoUpdateSrcWorkflowInterface
      */
     public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer)
     {
-        $isTrue = yield $this->videoActivity->updateVideoSrc($videoSrcSetTransfer);
+        yield $this->videoActivity->updateVideoSrc($videoSrcSetTransfer);
         $isTrue = yield $this->videoPropagateActivity->propagateVideo(
             (new VideoGetTransfer())->setVideoId($videoSrcSetTransfer->getVideoId())
         );

@@ -31,7 +31,7 @@ class OwnerExpander implements TokenTransferExpanderInterface
      */
     public function expand(TokenTransfer $tokenTransfer, TokenInterface $token): void
     {
-        $userData = $token->getParameter('u', []);
+        $userData = (array) $token->getParameter('u', []);
 
         $tokenOwner = new TokenOwnerTransfer();
         $tokenOwner

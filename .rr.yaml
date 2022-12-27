@@ -1,0 +1,17 @@
+version: "2.7"
+
+rpc:
+    listen: tcp://127.0.0.1:6001
+
+server:
+    command: "php /srv/app/bin/console test:saga:execute"
+    relay: unix:///var/run/rr.sock
+
+temporal:
+    address: "${TEMPORAL_CLIENT_DEFAULT_HOST}:${TEMPORAL_CLIENT_DEFAULT_PORT}"
+    activities:
+        num_workers: 16
+
+logs:
+    level: debug
+    mode: development
