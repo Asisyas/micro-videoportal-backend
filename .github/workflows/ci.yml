@@ -1,0 +1,35 @@
+name: CI
+
+on:
+    push:
+    pull_request:
+
+jobs:
+    build:
+        name: Build Application
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Pull images
+              run: make build
+            - name: Copy config
+              run: cp .env.dev.dist .env.dev
+            - name: Start services
+              run: make start
+            - name: Wait for services
+              run: |
+                  while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php-front)")"; do
+                    case $status in
+                      starting) sleep 1;;
+                      healthy) exit 0;;
+                      unhealthy) exit 1;;
+                    esac
+                  done
+                  exit 1
+            - name: Run application tests
+              run: make test
+            - name: Check HTTP reachability
+              run: curl http://localhost
+            - name: Check HTTPS reachability
+              run: curl -k https://localhost/api/security/configuration
