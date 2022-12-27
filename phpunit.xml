@@ -17,7 +17,7 @@
   </coverage>
   <testsuites>
     <testsuite name="Video Portal Unit tests">
-      <directory>tests/Unit</directory>
+      <directory>tests/unit</directory>
     </testsuite>
   </testsuites>
   <php>
