@@ -19,7 +19,7 @@ jobs:
               run: make start
             - name: Wait for services
               run: |
-                  while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php)")"; do
+                  while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php-back)")"; do
                     case $status in
                       starting) sleep 1;;
                       healthy) exit 0;;
