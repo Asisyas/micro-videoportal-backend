@@ -14,7 +14,7 @@ jobs:
             - name: Pull images
               run: make build
             - name: Copy config
-              run: cp .env.dev.dist > .env.dev
+              run: cp .env.dev.dist .env.dev
             - name: Start services
               run: make start
             - name: Wait for services
