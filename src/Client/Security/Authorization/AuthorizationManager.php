@@ -70,7 +70,12 @@ class AuthorizationManager implements AuthorizationManagerInterface
     public function refreshToken(TokenTransfer $tokenTransfer): void
     {
         $encoded    = $tokenTransfer->getToken();
-        $decoded    = $this->securityFacade->decodeToken($encoded);
+        try {
+            $decoded = $this->securityFacade->decodeToken($encoded);
+        } catch (ExpiredException $exception) {
+            throw new TokenExpiredException($encoded, $exception);
+        }
+
         $provider   = $this->oauth2ClientFacade->getProvider('default');
         $tokenData  = [];
 

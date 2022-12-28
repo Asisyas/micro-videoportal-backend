@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+error_reporting(E_ERROR | E_PARSE);
+
 use Micro\Kernel\App\AppKernel;
 use Micro\Framework\Kernel\Configuration\ApplicationConfigurationInterface;
 use Micro\Framework\Kernel\Configuration\DefaultApplicationConfiguration;
@@ -9,13 +11,12 @@ use Dotenv\Dotenv;
 
 $basedir = realpath(__DIR__ . '/../');
 if (!$basedir) {
-    throw new RuntimeException('Can not resolve base path for application.');
+    throw new \RuntimeException('Can not resolve base path for application.');
 }
 
 require_once $basedir . '/vendor/autoload.php';
 
-return function () use ($basedir) {
-    /** @var ApplicationConfigurationInterface $applicationConfiguration */
+return function () use ($basedir): AppKernel {
     $applicationConfiguration = new class ($basedir) extends DefaultApplicationConfiguration {
         private readonly Dotenv $dotenv;
 
@@ -28,7 +29,7 @@ return function () use ($basedir) {
 
             $envFileCompiled = $basePath . '/' .  '.env.' .$env . '.php';
             if (file_exists($envFileCompiled)) {
-                $content = include $envFileCompiled;
+                $content = include_once $envFileCompiled;
                 parent::__construct($content);
 
                 return;
@@ -47,7 +48,7 @@ return function () use ($basedir) {
 
     return new AppKernel(
         $applicationConfiguration,
-        include $basedir . '/etc/plugins.php',
+        include_once $basedir . '/etc/plugins.php',
         $applicationConfiguration->get('APP_ENV', 'dev')
     );
 };

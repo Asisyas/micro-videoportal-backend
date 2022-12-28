@@ -19,6 +19,7 @@ use App\Shared\Generated\DTO\Security\TokenTransfer;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use Micro\Plugin\Http\Exception\HttpAccessDeniedException;
 use Micro\Plugin\Http\Exception\HttpBadRequestException;
+use Micro\Plugin\Security\Exception\TokenExpiredException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -66,6 +67,13 @@ class AuthorizationController
         }
     }
 
+    /**
+     * @param Request $request
+     * @return TokenTransfer
+     * @throws HttpAccessDeniedException
+     *
+     * @throws HttpBadRequestException
+     */
     public function refreshToken(Request $request): TokenTransfer
     {
         if (!$request->query->has('token')) {
@@ -79,7 +87,7 @@ class AuthorizationController
             $this->securityClient->refreshToken($tokenTransfer);
 
             return $tokenTransfer;
-        } catch (IdentityProviderException $exception) {
+        } catch (IdentityProviderException|TokenExpiredException $exception) {
             throw new HttpAccessDeniedException($exception->getMessage(), $exception);
         }
     }

@@ -16,27 +16,24 @@ namespace App\Frontend\Security\Controller;
 
 use App\Frontend\Security\Facade\SecurityFacadeInterface;
 use App\Shared\Generated\DTO\Security\AuthConfigurationTransfer;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @author Stanislau Komar <head.trackingsoft@gmail.com>
  */
-class AuthConfigurationController
+readonly class AuthConfigurationController
 {
     /**
      * @param SecurityFacadeInterface $securityFacade
      */
     public function __construct(
-        private readonly SecurityFacadeInterface $securityFacade
+        private SecurityFacadeInterface $securityFacade
     ) {
     }
 
     /**
-     * @param Request $request
-     *
      * @return AuthConfigurationTransfer
      */
-    public function receiveConfiguration(Request $request): AuthConfigurationTransfer
+    public function receiveConfiguration(): AuthConfigurationTransfer
     {
         return $this->securityFacade->getAuthConfiguration();
     }
