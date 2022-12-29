@@ -53,6 +53,7 @@ readonly class MediaConverter implements ConverterInterface
         }
 
         if ($progressListener !== null) {
+            /** @psalm-suppress UnusedClosureParam **/
             $format->on('progress', function ($video, $format, float $percentage) use ($progressListener) {
                 $progressListener($percentage);
             });
@@ -133,7 +134,10 @@ readonly class MediaConverter implements ConverterInterface
         );
     }
 
-    protected function createFormat(): WebM
+    /**
+     * @return DefaultVideo
+     */
+    protected function createFormat(): DefaultVideo
     {
         return new WebM(
             $this->pluginConfiguration->getCodecAudio(),
@@ -157,7 +161,7 @@ readonly class MediaConverter implements ConverterInterface
      * @param DefaultVideo $format
      * @param string $path
      *
-     * @return null
+     * @return void
      *
      * @throws \League\Flysystem\FilesystemException
      */

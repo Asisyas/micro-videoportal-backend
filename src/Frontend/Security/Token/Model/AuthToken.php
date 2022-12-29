@@ -36,4 +36,14 @@ class AuthToken implements AuthTokenInterface
     {
         return $this->token->getExpiresAtAccess();
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @return null|string
+     */
+    public function getSource(): string|null
+    {
+        return $this->token->getToken();
+    }
 }

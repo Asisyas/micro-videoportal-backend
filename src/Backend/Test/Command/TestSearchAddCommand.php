@@ -25,9 +25,6 @@ class TestSearchAddCommand extends Command
         $this->addArgument('video-id', InputArgument::REQUIRED);
     }
 
-    /**
-     * @return int
-     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $videoGetTransfer = new VideoWatchTransfer();

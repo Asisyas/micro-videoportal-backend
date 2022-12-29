@@ -13,9 +13,6 @@ class FileUploaderFactory implements FileUploaderFactoryInterface
     ) {
     }
 
-    /**
-     * @return FileUploader
-     */
     public function create(): FileUploaderInterface
     {
         return new FileUploader(

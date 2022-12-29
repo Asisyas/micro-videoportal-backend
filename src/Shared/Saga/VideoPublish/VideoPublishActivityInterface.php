@@ -11,7 +11,12 @@ use Micro\Plugin\Temporal\Activity\ActivityInterface as MicroActivityInterface;
 #[ActivityInterface]
 interface VideoPublishActivityInterface extends MicroActivityInterface
 {
-
+    /**
+     * @param FileGetTransfer $fileGetTransfer
+     *
+     * @return FileTransfer
+     */
+    public function lookupSourceFile(FileGetTransfer $fileGetTransfer): FileTransfer;
 
     /**
      * @param VideoGetTransfer $videoGetTransfer

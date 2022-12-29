@@ -24,9 +24,6 @@ class VideoExtractMetadataCommand extends Command
         $this->addArgument('video_id', InputOption::VALUE_REQUIRED);
     }
 
-    /**
-     * @return int
-     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $videoFile = $input->getArgument('video_id');

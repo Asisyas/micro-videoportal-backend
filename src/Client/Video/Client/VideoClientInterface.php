@@ -32,4 +32,11 @@ interface VideoClientInterface
      * @throws NotFoundException
      */
     public function lookupVideo(VideoWatchTransfer $videoGetTransfer): VideoTransfer;
+
+    /**
+     * @param VideoTransfer $videoTransfer
+     *
+     * @return VideoTransfer
+     */
+    public function updateVideo(VideoTransfer $videoTransfer): VideoTransfer;
 }

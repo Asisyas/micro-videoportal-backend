@@ -34,7 +34,10 @@ class FilePlugin extends AbstractPlugin
         });
     }
 
-    protected function createFacade(): FileFacade
+    /**
+     * @return FileFacadeInterface
+     */
+    protected function createFacade(): FileFacadeInterface
     {
         return new FileFacade(
             $this->createFileUploaderFactory(),
@@ -52,7 +55,10 @@ class FilePlugin extends AbstractPlugin
         );
     }
 
-    public function createFileUploaderFactory(): FileUploaderFactory
+    /**
+     * @return FileUploaderFactoryInterface
+     */
+    public function createFileUploaderFactory(): FileUploaderFactoryInterface
     {
         return new FileUploaderFactory(
             $this->createFileUploadTransferFactory(),
@@ -60,12 +66,18 @@ class FilePlugin extends AbstractPlugin
         );
     }
 
-    protected function createFileUploadTransferExpanderFactory(): FileUploadTransferExpanderFactory
+    /**
+     * @return FileUploadTransferExpanderFactoryInterface
+     */
+    protected function createFileUploadTransferExpanderFactory(): FileUploadTransferExpanderFactoryInterface
     {
         return new FileUploadTransferExpanderFactory();
     }
 
-    protected function createUploadRequestValidatorFactory(): FileUploadRequestValidatorFactory
+    /**
+     * @return ArrayValidatorFactoryInterface
+     */
+    protected function createUploadRequestValidatorFactory(): ArrayValidatorFactoryInterface
     {
         return new FileUploadRequestValidatorFactory();
     }

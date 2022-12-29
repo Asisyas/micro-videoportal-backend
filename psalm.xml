@@ -16,4 +16,11 @@
             <directory name="src/Shared/Generated" />
         </ignoreFiles>
     </projectFiles>
+
+    <issueHandlers>
+        <InaccessibleProperty>
+            <errorLevel type="suppress">
+            </errorLevel>
+        </InaccessibleProperty>
+    </issueHandlers>
 </psalm>

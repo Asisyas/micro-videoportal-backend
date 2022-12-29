@@ -37,14 +37,17 @@ class VideoDescriptionPlugin extends AbstractPlugin
         });
     }
 
-    public function createFacade(): VideoDescriptionFacade
+    /**
+     * @return VideoDescriptionFacadeInterface
+     */
+    public function createFacade(): VideoDescriptionFacadeInterface
     {
         return new VideoDescriptionFacade(
             $this->createVideoDescriptionManagerFactory(),
         );
     }
 
-    protected function createVideoDescriptionManagerFactory(): VideoDescriptionManagerFactory
+    protected function createVideoDescriptionManagerFactory(): VideoDescriptionManagerFactoryInterface
     {
         $expanderFactory = $this->createVideoDescriptionEntityExpanderFactory();
 
@@ -58,19 +61,26 @@ class VideoDescriptionPlugin extends AbstractPlugin
 
     /**
      * @param VideoDescriptionEntityExpanderFactoryInterface $expanderFactory
+     * @return VideoDescriptionEntityFactoryInterface
      */
     protected function createVideoDescriptionEntityFactory(
         VideoDescriptionEntityExpanderFactoryInterface $expanderFactory
-    ): VideoDescriptionEntityFactory {
+    ): VideoDescriptionEntityFactoryInterface {
         return new VideoDescriptionEntityFactory($expanderFactory);
     }
 
-    protected function createVideoDescriptionTransferFactory(): VideoDescriptionTransferFactory
+    /**
+     * @return VideoDescriptionTransferFactoryInterface
+     */
+    protected function createVideoDescriptionTransferFactory(): VideoDescriptionTransferFactoryInterface
     {
         return new VideoDescriptionTransferFactory();
     }
 
-    protected function createVideoDescriptionEntityExpanderFactory(): VideoDescriptionEntityExpanderFactory
+    /**
+     * @return VideoDescriptionEntityExpanderFactoryInterface
+     */
+    protected function createVideoDescriptionEntityExpanderFactory(): VideoDescriptionEntityExpanderFactoryInterface
     {
         return new VideoDescriptionEntityExpanderFactory();
     }

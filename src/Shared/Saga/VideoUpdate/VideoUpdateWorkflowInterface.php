@@ -9,5 +9,11 @@ use Temporal\Workflow\WorkflowMethod;
 #[\Temporal\Workflow\WorkflowInterface]
 interface VideoUpdateWorkflowInterface extends WorkflowInterface
 {
-
+    /**
+     * @param VideoTransfer $videoTransfer
+     *
+     * @return VideoTransfer
+     */
+    #[WorkflowMethod("VideoUpdate")]
+    public function updateVideo(VideoTransfer $videoTransfer);
 }

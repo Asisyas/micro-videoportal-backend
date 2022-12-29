@@ -19,9 +19,6 @@ class GenerateDashCommand extends Command
         parent::__construct('test:video:dash');
     }
 
-    /**
-     * @return int
-     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $mediaConverterResultCollection = new MediaConvertedResultCollectionTransfer();

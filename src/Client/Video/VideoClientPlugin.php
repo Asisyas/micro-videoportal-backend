@@ -44,7 +44,10 @@ class VideoClientPlugin extends AbstractPlugin
         });
     }
 
-    protected function createClient(): VideoClient
+    /**
+     * @return VideoClientInterface
+     */
+    protected function createClient(): VideoClientInterface
     {
         return new VideoClient(
             $this->createVideoReaderFactory(),
@@ -53,17 +56,26 @@ class VideoClientPlugin extends AbstractPlugin
         );
     }
 
-    protected function createVideoPublisherFactory(): VideoPublisherFactory
+    /**
+     * @return VideoPublisherFactoryInterface
+     */
+    protected function createVideoPublisherFactory(): VideoPublisherFactoryInterface
     {
         return new VideoPublisherFactory($this->temporalFacade);
     }
 
-    protected function createVideoStorageFactory(): VideoStorageFactory
+    /**
+     * @return VideoStorageFactoryInterface
+     */
+    protected function createVideoStorageFactory(): VideoStorageFactoryInterface
     {
         return new VideoStorageFactory($this->temporalFacade);
     }
 
-    protected function createVideoReaderFactory(): VideoReaderFactory
+    /**
+     * @return VideoReaderFactoryInterface
+     */
+    protected function createVideoReaderFactory(): VideoReaderFactoryInterface
     {
         return new VideoReaderFactory(
             $this->clientReaderFacade

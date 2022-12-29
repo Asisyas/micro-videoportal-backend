@@ -49,7 +49,10 @@ class VideoWatchPlugin extends AbstractPlugin
         });
     }
 
-    protected function createFacade(): VideoWatchFacade
+    /**
+     * @return VideoWatchFacadeInterface
+     */
+    protected function createFacade(): VideoWatchFacadeInterface
     {
         return new VideoWatchFacade(
             $this->clientReaderFacade,
@@ -57,7 +60,10 @@ class VideoWatchPlugin extends AbstractPlugin
         );
     }
 
-    protected function createVideoWatchExpanderFactory(): VideoWatchExpanderFactory
+    /**
+     * @return VideoWatchExpanderFactoryInterface
+     */
+    protected function createVideoWatchExpanderFactory(): VideoWatchExpanderFactoryInterface
     {
         return new VideoWatchExpanderFactory(
             new ChannelExpander($this->videoChannelClient),

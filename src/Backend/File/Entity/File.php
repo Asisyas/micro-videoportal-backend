@@ -50,11 +50,55 @@ class File
     }
 
     /**
+     * @return bool
+     */
+    public function isReady(): bool
+    {
+        return $this->isReady;
+    }
+
+    /**
+     * @param bool $ready
+     *
+     * @return $this
+     */
+    public function setIsReady(bool $ready): self
+    {
+        $this->isReady = $ready;
+
+        return $this;
+    }
+
+    /**
      * @return \DateTimeInterface
      */
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @param string $fileName
+     *
+     * @return $this
+     */
+    public function setFileName(string $fileName): self
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * @param int $size
+     *
+     * @return $this
+     */
+    public function setSize(int $size): self
+    {
+        $this->size = $size;
+
+        return $this;
     }
 
     /**
@@ -79,6 +123,14 @@ class File
     public function getFileName(): string
     {
         return $this->fileName;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCrc32(): string
+    {
+        return $this->crc32;
     }
 
     /**

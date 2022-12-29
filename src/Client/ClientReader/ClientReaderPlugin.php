@@ -39,12 +39,18 @@ class ClientReaderPlugin extends AbstractPlugin
         });
     }
 
-    protected function createFacade(): ClientReaderFacade
+    /**
+     * @return ClientReaderFacadeInterface
+     */
+    protected function createFacade(): ClientReaderFacadeInterface
     {
         return new ClientReaderFacade($this->createClientFactory());
     }
 
-    protected function createClientFactory(): RedisClientFactory
+    /**
+     * @return ClientFactoryInterface
+     */
+    protected function createClientFactory(): ClientFactoryInterface
     {
         return new RedisClientFactory(
             $this->redisFacade,

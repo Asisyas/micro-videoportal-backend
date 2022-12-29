@@ -18,4 +18,13 @@ interface VideoActivityInterface extends ActivityInterface
      * @return VideoTransfer
      */
     public function createVideo(VideoPublishTransfer $videoPublishTransfer): VideoTransfer;
+
+    /**
+     * @param VideoSrcSetTransfer $videoSrcSetTransfer
+     *
+     * @return bool
+     *
+     * @throws VideoNotFoundException
+     */
+    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer): bool;
 }

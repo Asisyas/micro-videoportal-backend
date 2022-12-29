@@ -17,9 +17,6 @@ class AuthTokenGenerateCommand extends Command
         parent::__construct('test:token:generate');
     }
 
-    /**
-     * @return int
-     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $token = $this->securityFacade->generateToken([

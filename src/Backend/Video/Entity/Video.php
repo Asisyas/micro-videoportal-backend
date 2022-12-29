@@ -52,8 +52,10 @@ class Video
 
     /**
      * @param string|null $src
+     *
+     * @return self
      */
-    public function setSrc(string|null $src): static
+    public function setSrc(string|null $src): self
     {
         $this->src = $src;
 

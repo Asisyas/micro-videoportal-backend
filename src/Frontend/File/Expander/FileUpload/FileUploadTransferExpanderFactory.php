@@ -7,7 +7,7 @@ use App\Frontend\File\Expander\FileUpload\Impl\HeadersProvideExpander;
 class FileUploadTransferExpanderFactory implements FileUploadTransferExpanderFactoryInterface
 {
     /**
-     * @return FileUploadTransferExpander
+     * @return FileUploadTransferExpanderInterface
      */
     public function create(): FileUploadTransferExpanderInterface
     {

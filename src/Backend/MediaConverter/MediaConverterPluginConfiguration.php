@@ -48,8 +48,6 @@ class MediaConverterPluginConfiguration extends PluginConfiguration
 
     /**
      * @return string
-     *
-     * @psalm-return 'libvorbis'
      */
     public function getCodecAudio(): string
     {
@@ -58,8 +56,6 @@ class MediaConverterPluginConfiguration extends PluginConfiguration
 
     /**
      * @return string
-     *
-     * @psalm-return 'libvpx-vp9'
      */
     public function getCodecVideo(): string
     {
@@ -68,8 +64,6 @@ class MediaConverterPluginConfiguration extends PluginConfiguration
 
     /**
      * @return string
-     *
-     * @psalm-return 'auto'
      */
     public function getHwAcceleration(): string
     {

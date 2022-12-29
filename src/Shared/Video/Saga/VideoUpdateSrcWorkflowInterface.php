@@ -12,5 +12,11 @@ use Temporal\Workflow\WorkflowMethod;
 #[TemporalWorkflow]
 interface VideoUpdateSrcWorkflowInterface extends WorkflowInterface
 {
-
+    /**
+     * @param VideoSrcSetTransfer $videoSrcSetTransfer
+     *
+     * @throws VideoNotFoundException
+     */
+    #[WorkflowMethod(name: 'Video_Src_Update')] // @phpstan-ignore-line
+    public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer);
 }

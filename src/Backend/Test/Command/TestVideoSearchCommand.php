@@ -22,9 +22,6 @@ class TestVideoSearchCommand extends Command
         $this->addArgument('search-string', InputArgument::REQUIRED);
     }
 
-    /**
-     * @return int
-     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $searchTransfer = new SearchTransfer();

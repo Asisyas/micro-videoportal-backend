@@ -15,9 +15,6 @@ class SagaExecuteCommand extends Command
         parent::__construct('test:saga:execute');
     }
 
-    /**
-     * @return int
-     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $wf = $this->temporalFacade

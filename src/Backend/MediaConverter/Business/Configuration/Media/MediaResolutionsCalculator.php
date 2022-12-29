@@ -35,7 +35,6 @@ readonly class MediaResolutionsCalculator implements MediaResolutionsCalculatorI
         }
 
         /** @var StreamTransfer $streamMetadata */
-        $heightMeasure = null;
         foreach ($streamsIterator as $streamMetadata) {
             $heightOriginal     = $streamMetadata->getHeight();
             $frameRateOriginal  = $streamMetadata->getFrameRate();
@@ -53,6 +52,7 @@ readonly class MediaResolutionsCalculator implements MediaResolutionsCalculatorI
                 }
 
                 if ($heightOriginal) {
+                    $heightMeasure =  $heightOriginal / $widthOriginal;
                 }
 
                 $tmpBitRateMin = $option->getBitRateMin();

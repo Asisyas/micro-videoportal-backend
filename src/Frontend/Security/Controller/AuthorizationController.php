@@ -95,11 +95,11 @@ class AuthorizationController
     /**
      * @param string $parameter
      *
-     * @return never
+     * @return void
      *
      * @throws HttpBadRequestException
      */
-    protected function throwInvalidParameterException(string $parameter)
+    protected function throwInvalidParameterException(string $parameter): void
     {
         throw new HttpBadRequestException(sprintf('The "%s" parameter is missing or invalid in the request.', $parameter));
     }

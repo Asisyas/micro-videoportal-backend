@@ -23,8 +23,10 @@ class FsOperatorDecoratorPlugin extends AbstractPlugin
 
     /**
      * @param FilesystemFacadeInterface $filesystemFacade
+     *
+     * @return FilesystemFacadeInterface
      */
-    protected function createDecorator(FilesystemFacadeInterface $filesystemFacade): FilesystemFacadeDecorator
+    protected function createDecorator(FilesystemFacadeInterface $filesystemFacade): FilesystemFacadeInterface
     {
         return new FilesystemFacadeDecorator($filesystemFacade);
     }

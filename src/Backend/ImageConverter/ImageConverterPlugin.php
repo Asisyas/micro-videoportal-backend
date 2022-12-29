@@ -42,14 +42,20 @@ class ImageConverterPlugin implements DependencyProviderInterface
         });
     }
 
-    protected function createFacade(): ImageConverterFacade
+    /**
+     * @return ImageConverterFacadeInterface
+     */
+    protected function createFacade(): ImageConverterFacadeInterface
     {
         return new ImageConverterFacade(
             $this->createImageConverterFactory()
         );
     }
 
-    protected function createImageConverterFactory(): ImageConverterFactory
+    /**
+     * @return ImageConverterFactoryInterface
+     */
+    protected function createImageConverterFactory(): ImageConverterFactoryInterface
     {
         return new ImageConverterFactory($this->filesystemFacade);
     }

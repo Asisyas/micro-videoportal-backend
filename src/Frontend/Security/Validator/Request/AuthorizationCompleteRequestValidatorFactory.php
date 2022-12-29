@@ -22,7 +22,7 @@ use App\Frontend\Common\Validator\ValidatorInterface;
 class AuthorizationCompleteRequestValidatorFactory implements ArrayValidatorFactoryInterface
 {
     /**
-     * @return AuthorizationCompleteRequestValidator
+     * @return ValidatorInterface
      */
     public function create(): ValidatorInterface
     {

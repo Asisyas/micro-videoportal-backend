@@ -58,19 +58,28 @@ class FilePlugin extends AbstractPlugin
         });
     }
 
-    protected function createFileTransferExpanderFactory(): FileTransferExpanderFactory
+    /**
+     * @return FileTransferExpanderFactoryInterface
+     */
+    protected function createFileTransferExpanderFactory(): FileTransferExpanderFactoryInterface
     {
         return new FileTransferExpanderFactory();
     }
 
-    protected function createFileClientStoreFactory(): FileClientStoreFactory
+    /**
+     * @return FileClientStoreFactoryInterface
+     */
+    protected function createFileClientStoreFactory(): FileClientStoreFactoryInterface
     {
         return new FileClientStoreFactory(
             $this->temporalFacade
         );
     }
 
-    protected function createFileClientReaderFactory(): FileClientReaderFactory
+    /**
+     * @return FileClientReaderFactoryInterface
+     */
+    protected function createFileClientReaderFactory(): FileClientReaderFactoryInterface
     {
         return new FileClientReaderFactory(
             $this->clientReaderFacade,
@@ -78,7 +87,10 @@ class FilePlugin extends AbstractPlugin
         );
     }
 
-    protected function createFileUploaderFactory(): FileUploaderFactory
+    /**
+     * @return FileUploaderFactoryInterface
+     */
+    protected function createFileUploaderFactory(): FileUploaderFactoryInterface
     {
         return new FileUploaderFactory(
             $this->fileClientStoreFactory,
@@ -86,7 +98,10 @@ class FilePlugin extends AbstractPlugin
         );
     }
 
-    protected function createClient(): FileClient
+    /**
+     * @return FileClientInterface
+     */
+    protected function createClient(): FileClientInterface
     {
         return new FileClient(
             $this->fileClientStoreFactory,

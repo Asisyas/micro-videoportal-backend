@@ -31,7 +31,10 @@ class VideoPublishPlugin extends AbstractPlugin
         });
     }
 
-    protected function createFacade(): VideoPublishFacade
+    /**
+     * @return VideoPublishFacadeInterface
+     */
+    protected function createFacade(): VideoPublishFacadeInterface
     {
         return new VideoPublishFacade(
             $this->createVideoPublishTransferFactory(),
@@ -39,7 +42,10 @@ class VideoPublishPlugin extends AbstractPlugin
         );
     }
 
-    public function createVideoPublishTransferFactory(): VideoPublishTransferFactory
+    /**
+     * @return VideoPublishTransferFactoryInterface
+     */
+    public function createVideoPublishTransferFactory(): VideoPublishTransferFactoryInterface
     {
         return new VideoPublishTransferFactory();
     }

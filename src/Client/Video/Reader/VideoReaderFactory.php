@@ -15,7 +15,7 @@ class VideoReaderFactory implements VideoReaderFactoryInterface
     }
 
     /**
-     * @return VideoReader
+     * @return VideoReaderInterface
      */
     public function create(): VideoReaderInterface
     {

@@ -55,11 +55,6 @@ class ResponseExceptionHandler implements ResponseHandlerInterface
         }
     }
 
-    /**
-     * @return (\Stringable|string)[]
-     *
-     * @psalm-return array<string, \Stringable|string>
-     */
     public function buildMessage(ConstraintViolationListInterface $violations): array
     {
         $errors = [];

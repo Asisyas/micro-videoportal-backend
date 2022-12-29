@@ -24,7 +24,7 @@ class FileUploadRequestValidator extends AbstractValidator
     }
 
     /**
-     * @return Assert\Collection
+     * @return Constraint
      */
     protected function createValidationSchema(): Constraint
     {
