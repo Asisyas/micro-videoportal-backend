@@ -40,11 +40,7 @@ return function () use ($basedir): AppKernel {
             $names[] = '.env.' . $env;
             // @codingStandardsIgnoreStart
             $this->dotenv = Dotenv::createMutable($basePath, $names, false);
-            $configCompiled = $this->dotenv->load();
-            if($env === 'prod') {
-                file_put_contents($envFileCompiled, '<?php return '. var_export($configCompiled) . ';');
-            }
-
+            $this->dotenv->load();
             // @codingStandardsIgnoreEnd
             parent::__construct($_ENV);
         }

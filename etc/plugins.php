@@ -60,6 +60,7 @@ $pluginsCommon = [
 
     App\Backend\Saga\SagaPlugin::class,
     App\Client\Video\VideoClientPlugin::class,
+    App\Shared\Config\ConfigPlugin::class,
 ];
 
 $pluginClients = [
