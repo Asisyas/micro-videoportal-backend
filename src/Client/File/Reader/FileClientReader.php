@@ -23,9 +23,7 @@ class FileClientReader implements FileClientReaderInterface
     }
 
     /**
-     * @param FileGetTransfer $fileGetTransfer
-     *
-     * @return FileTransfer
+     * {@inheritDoc}
      */
     public function lookup(FileGetTransfer $fileGetTransfer): FileTransfer
     {
