@@ -33,8 +33,10 @@ test-phpstan:
 	@$(PHP_CONT_BACK) vendor/bin/phpstan analyse -c phpstan.neon
 test-unit:
 	@$(PHP_CONT_BACK) php vendor/bin/phpunit --verbose
+test-psalm:
+	@$(PHP_CONT_BACK) php vendor/bin/psalm
 test: ## Run all application tests ( php-cs, phpunit, phpstan )
-test: test-cs test-phpstan test-unit
+test: test-cs test-phpstan test-psalm test-unit
 
 up: ## Run made application
 	@$(DOCKER_COMP) up --detach
