@@ -3,6 +3,7 @@
 namespace App\Client\File\Store;
 
 use App\Shared\File\Saga\FileCreateWorkflowInterface;
+use App\Shared\File\Saga\FileDeleteWorkflowInterface;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
@@ -32,8 +33,10 @@ class FileClientStore implements FileClientStoreInterface
     /**
      * {@inheritDoc}
      */
-    public function deleteFile(FileRemoveTransfer $fileRemoveTransfer): bool
+    public function deleteFile(FileRemoveTransfer $fileRemoveTransfer): void
     {
-        return true;
+        $this->workflowClient->newWorkflowStub(
+            FileDeleteWorkflowInterface::class
+        )->deleteFile($fileRemoveTransfer);
     }
 }

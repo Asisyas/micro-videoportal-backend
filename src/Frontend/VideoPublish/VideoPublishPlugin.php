@@ -2,6 +2,7 @@
 
 namespace App\Frontend\VideoPublish;
 
+use App\Client\File\FileClientInterface;
 use App\Client\Video\Client\VideoClientInterface;
 use App\Frontend\VideoPublish\Facade\VideoPublishFacade;
 use App\Frontend\VideoPublish\Facade\VideoPublishFacadeInterface;
@@ -17,15 +18,19 @@ class VideoPublishPlugin extends AbstractPlugin
      */
     private readonly VideoClientInterface $videoClient;
 
+    private readonly FileClientInterface $fileClient;
+
     /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
         $container->register(VideoPublishFacadeInterface::class, function (
-            VideoClientInterface $videoClient
+            VideoClientInterface $videoClient,
+            FileClientInterface $fileClient
         ) {
             $this->videoClient = $videoClient;
+            $this->fileClient = $fileClient;
 
             return $this->createFacade();
         });
@@ -38,7 +43,8 @@ class VideoPublishPlugin extends AbstractPlugin
     {
         return new VideoPublishFacade(
             $this->createVideoPublishTransferFactory(),
-            $this->videoClient
+            $this->videoClient,
+            $this->fileClient
         );
     }
 

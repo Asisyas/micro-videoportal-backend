@@ -2,6 +2,7 @@
 
 namespace App\Client\File;
 
+use App\Client\ClientReader\Exception\NotFoundException;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
@@ -20,6 +21,8 @@ interface FileClientInterface
      * @param FileGetTransfer $fileGetTransfer
      *
      * @return FileTransfer
+     *
+     * @throws NotFoundException
      */
     public function lookupFile(FileGetTransfer $fileGetTransfer): FileTransfer;
 

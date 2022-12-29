@@ -2,7 +2,10 @@
 
 namespace App\Backend\VideoPublish\Saga;
 
+use App\Client\ClientReader\Exception\NotFoundException;
+use App\Shared\File\Saga\FileDeleteWorkflowInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
+use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
@@ -16,6 +19,8 @@ use App\Shared\Saga\VideoPublish\VideoPublishWorkflowInterface;
 use App\Shared\Video\Saga\VideoCreateWorkflowInterface;
 use App\Shared\VideoDescription\Saga\VideoDescriptionCreateWorkflowInterface;
 use Carbon\CarbonInterval;
+use Generator;
+use React\Promise\Promise;
 use Temporal\Activity\ActivityOptions;
 use Temporal\Common\RetryOptions;
 use Temporal\Internal\Workflow\ActivityProxy;
@@ -38,6 +43,9 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
                 ->withRetryOptions(
                     RetryOptions::new()
                         ->withMaximumAttempts(10)
+                        ->withNonRetryableExceptions([
+                            NotFoundException::class
+                        ])
                 )
         );
     }
@@ -66,6 +74,22 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         );
     }
 
+    protected function createFileDeleteWorkflow(): ChildWorkflowProxy
+    {
+        // @phpstan-ignore-next-line
+        return Workflow::newChildWorkflowStub(
+            FileDeleteWorkflowInterface::class,
+        );
+    }
+
+    protected function removeSourceFile(FileGetTransfer $fileGetTransfer): Promise
+    {
+        $fileRemoveTransfer = new FileRemoveTransfer();
+        $fileRemoveTransfer->setId($fileGetTransfer->getId());
+
+        return $this->createFileDeleteWorkflow()->deleteFile($fileRemoveTransfer);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -84,6 +108,9 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         try {
             /** @var FileTransfer $fileTransfer */
             $fileTransfer = yield $this->activity->lookupSourceFile($fileGetTransfer);
+
+            $saga->addCompensation(fn () => $this->removeSourceFile($fileGetTransfer));
+
             /** @var VideoTransfer $videoTransfer */
             $videoTransfer = yield $this
                 ->createVideoCreateWorkflow()
@@ -108,9 +135,11 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
                     ->setVideo($videoTransfer)
             );
 
+            yield $this->removeSourceFile($fileGetTransfer);
+
             return $videoConverted;
         } catch (\Throwable $exception) {
-            $saga->compensate();
+            yield $saga->compensate();
 
             throw $exception;
         }

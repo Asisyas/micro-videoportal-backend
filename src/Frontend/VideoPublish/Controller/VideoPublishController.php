@@ -3,8 +3,10 @@
 namespace App\Frontend\VideoPublish\Controller;
 
 use App\Frontend\VideoPublish\Facade\VideoPublishFacadeInterface;
+use Micro\Plugin\Http\Exception\HttpUnprocessableEntityException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Temporal\Exception\Client\WorkflowExecutionAlreadyStartedException;
 
 class VideoPublishController
 {
@@ -20,9 +22,15 @@ class VideoPublishController
      * @param Request $request
      *
      * @return Response
+     *
+     * @throws HttpUnprocessableEntityException
      */
     public function publish(Request $request): Response
     {
-        return $this->videoPublishFacade->handleVideoPublishRequest($request);
+        try {
+            return $this->videoPublishFacade->handleVideoPublishRequest($request);
+        } catch (WorkflowExecutionAlreadyStartedException $exception) {
+            throw new HttpUnprocessableEntityException('Unprocessable entity', $exception);
+        }
     }
 }

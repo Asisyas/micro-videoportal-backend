@@ -2,16 +2,17 @@
 
 namespace App\Backend\File\Facade;
 
-use App\Backend\File\Business\File\Factory\FileFactoryInterface;
+use App\Backend\File\Business\File\Manager\FileManagerFactoryInterface;
+use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\File\FileUploadTransfer;
 
 class FileFacade implements FileFacadeInterface
 {
     /**
-     * @param FileFactoryInterface $fileFactory]
+     * @param FileManagerFactoryInterface $fileManagerFactory
      */
-    public function __construct(private readonly FileFactoryInterface $fileFactory)
+    public function __construct(private readonly FileManagerFactoryInterface $fileManagerFactory)
     {
     }
 
@@ -20,6 +21,16 @@ class FileFacade implements FileFacadeInterface
      */
     public function createFile(FileUploadTransfer $fileUploadTransfer): FileTransfer
     {
-        return $this->fileFactory->create($fileUploadTransfer);
+        return $this->fileManagerFactory
+            ->create()
+            ->createFile($fileUploadTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeFile(FileRemoveTransfer $fileRemoveTransfer): void
+    {
+        $this->fileManagerFactory->create()->deleteFile($fileRemoveTransfer);
     }
 }

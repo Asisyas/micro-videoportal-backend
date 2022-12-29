@@ -11,7 +11,7 @@ use App\Shared\Generated\DTO\File\FileUploadTransfer;
 use Micro\Plugin\Doctrine\DoctrineFacadeInterface;
 use Micro\Plugin\Uuid\UuidFacadeInterface;
 
-class FileFactory implements FileFactoryInterface
+readonly class FileFactory implements FileFactoryInterface
 {
     /**
      * @param UuidFacadeInterface $uuidFacade
@@ -19,9 +19,9 @@ class FileFactory implements FileFactoryInterface
      * @param FileStorageFactoryInterface $fileStorageFactory
      */
     public function __construct(
-        private readonly UuidFacadeInterface $uuidFacade,
-        private readonly DoctrineFacadeInterface $doctrineFacade,
-        private readonly FileStorageFactoryInterface $fileStorageFactory
+        private UuidFacadeInterface $uuidFacade,
+        private DoctrineFacadeInterface $doctrineFacade,
+        private FileStorageFactoryInterface $fileStorageFactory,
     ) {
     }
 

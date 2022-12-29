@@ -36,4 +36,9 @@ class VideoActivity implements VideoActivityInterface
 
         return true;
     }
+
+    public function compensate(VideoTransfer $videoTransfer): bool
+    {
+        return true;
+    }
 }
