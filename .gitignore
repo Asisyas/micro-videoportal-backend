@@ -4,6 +4,7 @@
 .env.local
 .env.dev
 .env.prod
+.env.*.php
 .phpunit.result.cache
 .php-cs-fixer.cache
 /docker/db/*
