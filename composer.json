@@ -11,7 +11,8 @@
         "friendsofphp/php-cs-fixer": "^3.13",
         "squizlabs/php_codesniffer": "^3.7",
         "phpcompatibility/php-compatibility": "^9.3",
-        "phpstan/phpstan": "^1.9"
+        "phpstan/phpstan": "^1.9",
+        "vimeo/psalm": "^5.4"
 
     },
     "autoload": {
@@ -26,7 +27,7 @@
         }
     ],
     "require": {
-        "php": " >= 8.1",
+        "php": " >= 8.2",
         "micro/kernel-app": "^1",
         "micro/plugin-locator": "^1",
         "micro/plugin-logger-monolog": "^1",
