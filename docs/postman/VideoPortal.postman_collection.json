@@ -224,8 +224,29 @@
 		{
 			"name": "Security - token refresh",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/api/security/token/refresh?token={{bearer}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"security",
+						"token",
+						"refresh"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{bearer}}"
+						}
+					]
+				}
 			},
 			"response": []
 		}
@@ -235,7 +256,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJydCI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSWdPaUFpU2xkVUlpd2lhMmxrSWlBNklDSmpPR05oWkdZMU5pMWpOMlEzTFRSbVlURXRZamRtWXkweFlqa3hNRGswTWpGak4yWWlmUS5leUpsZUhBaU9qRTJOekl4TXpreE5qWXNJbWxoZENJNk1UWTNNakV6TnpNMk5pd2lhblJwSWpvaU1qYzBaVEV5TVRrdE1HTXdZeTAwWldJNExUazVaall0T1dJM04ySXdNRFEyWVRrd0lpd2lhWE56SWpvaWFIUjBjRG92TDJ0bGVXTnNiMkZyT2pnd09EQXZjbVZoYkcxekwwMXBZM0p2SWl3aVlYVmtJam9pYUhSMGNEb3ZMMnRsZVdOc2IyRnJPamd3T0RBdmNtVmhiRzF6TDAxcFkzSnZJaXdpYzNWaUlqb2lZVFpsTm1WaE9UY3RaRFl6TmkwME1UYzRMV0kyTXpndE5XTXdORE15TnpCaVpqUXlJaXdpZEhsd0lqb2lVbVZtY21WemFDSXNJbUY2Y0NJNkluWnBaR1Z2Y0c5eWRHRnNJaXdpYzJWemMybHZibDl6ZEdGMFpTSTZJbVkzTkdaak56RXdMV1U1TmprdE5ETmhPUzA0TTJKa0xXWTNZemMxT1RRME9EWTRNeUlzSW5OamIzQmxJam9pY0hKdlptbHNaU0JsYldGcGJDSXNJbk5wWkNJNkltWTNOR1pqTnpFd0xXVTVOamt0TkROaE9TMDRNMkprTFdZM1l6YzFPVFEwT0RZNE15SjkuNWgwYjY3cV9oLVVzQzB1RHQ5VFYxZzhZZGUyWUlBWEN2NWphOERQU3FUayIsInRuIjoxNjcyMTM3MzY2LCJleHAiOjE2NzIxMzkxNjYsImV4cF90YSI6MTY3MjE3MzM1NSwidSI6eyJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJLb21hciBTdGFuaXNsYXUiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0ZXN0QHZpZGVvcG9ydGFsLmxvY2FsIiwiZ2l2ZW5fbmFtZSI6IktvbWFyIiwiZmFtaWx5X25hbWUiOiJTdGFuaXNsYXUiLCJlbWFpbCI6InRlc3RAdmlkZW9wb3J0YWwubG9jYWwiLCJpZCI6ImE2ZTZlYTk3LWQ2MzYtNDE3OC1iNjM4LTVjMDQzMjcwYmY0MiJ9fQ.T4u58hASBX-WX0bg8H-nlpeBtNz8pnlhMn4mc7yBJ80",
+				"value": "{{bearer}}",
 				"type": "string"
 			}
 		]
@@ -263,8 +284,25 @@
 	"variable": [
 		{
 			"key": "baseurl",
-			"value": "https://localhost",
+			"value": "",
 			"type": "string"
+		},
+		{
+			"key": "bearer",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "videoid",
+			"value": "6adaa9f8-1952-4750-9acf-d55b21a0397b"
+		},
+		{
+			"key": "channelid",
+			"value": "kost"
+		},
+		{
+			"key": "accesscode",
+			"value": " "
 		}
 	]
 }
