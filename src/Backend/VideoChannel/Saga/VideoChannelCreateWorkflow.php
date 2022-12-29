@@ -45,10 +45,8 @@ class VideoChannelCreateWorkflow implements VideoChannelCreateWorkflowInterface
 
     /**
      * {@inheritDoc}
-     *
-     * @psalm-return \Generator<int, \Temporal\Internal\Transport\CompletableResultInterface, mixed, true>
      */
-    public function create(VideoChannelCreateTransfer $videoChannelCreateTransfer): \Generator
+    public function create(VideoChannelCreateTransfer $videoChannelCreateTransfer)
     {
         yield $this->videoChannelActivity->createChannel($videoChannelCreateTransfer);
         yield $this->videoChannelActivity->publishChannel(

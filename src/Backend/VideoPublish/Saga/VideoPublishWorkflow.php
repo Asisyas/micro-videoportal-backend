@@ -42,7 +42,7 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         );
     }
 
-    protected function createVideoDescriptionWorkflow(): VideoDescriptionCreateWorkflowInterface
+    protected function createVideoDescriptionWorkflow(): ChildWorkflowProxy
     {
         // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
@@ -50,7 +50,7 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         );
     }
 
-    protected function createVideoCreateWorkflow(): VideoCreateWorkflowInterface
+    protected function createVideoCreateWorkflow(): ChildWorkflowProxy
     {
         // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
@@ -58,7 +58,7 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         );
     }
 
-    protected function createMediaConverterWorkflow(): MediaConvertWorkflowInterface
+    protected function createMediaConverterWorkflow(): ChildWorkflowProxy
     {
         // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(

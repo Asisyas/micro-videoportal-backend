@@ -18,8 +18,32 @@
     </projectFiles>
 
     <issueHandlers>
+        <UnnecessaryVarAnnotation>
+            <errorLevel type="suppress">
+                <directory name="src/"/>
+            </errorLevel>
+        </UnnecessaryVarAnnotation>
         <InaccessibleProperty>
             <errorLevel type="suppress">
+                <file name="src/Frontend/VideoWatch/VideoWatchPlugin.php"/>
+                <file name="src/Frontend/VideoSearch/VideoSearchPlugin.php"/>
+                <file name="src/Frontend/VideoPublish/VideoPublishPlugin.php"/>
+                <file name="src/Frontend/VideoChannel/VideoChannelPlugin.php"/>
+                <file name="src/Frontend/Security/SecurityPlugin.php"/>
+                <file name="src/Frontend/Security/Facade/SecurityFacade.php"/>
+                <file name="src/Client/VideoChannel/VideoChannelClientPlugin.php"/>
+                <file name="src/Client/Video/VideoClientPlugin.php"/>
+                <file name="src/Client/Security/SecurityClientPlugin.php"/>
+                <file name="src/Client/Search/SearchClientPlugin.php"/>
+                <file name="src/Client/File/FilePlugin.php"/>
+                <file name="src/Client/ClientReader/ClientReaderPlugin.php"/>
+                <file name="src/Backend/VideoPublish/VideoPublishPlugin.php"/>
+                <file name="src/Backend/VideoDescription/VideoDescriptionPlugin.php"/>
+                <file name="src/Backend/VideoChannel/VideoChannelPlugin.php"/>
+                <file name="src/Backend/Video/VideoPlugin.php"/>
+                <file name="src/Backend/SearchStorage/SearchStoragePlugin.php"/>
+                <file name="src/Backend/MediaConverter/MediaConverterPlugin.php"/>
+                <file name="src/Backend/ImageConverter/ImageConverterPlugin.php"/>
             </errorLevel>
         </InaccessibleProperty>
     </issueHandlers>

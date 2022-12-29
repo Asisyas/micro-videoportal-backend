@@ -85,6 +85,7 @@ class VideoManager implements VideoManagerInterface
      */
     protected function lookupVideoEntity(string $videoId): Video
     {
+        /** @var Video|null $videoEntity */
         $videoEntity = $this->entityManager->getRepository(Video::class)->findOneBy([
             'id'    => $videoId,
         ]);

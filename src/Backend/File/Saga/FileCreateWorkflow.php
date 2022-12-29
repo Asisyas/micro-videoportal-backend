@@ -16,8 +16,6 @@ class FileCreateWorkflow implements FileCreateWorkflowInterface
 {
     /**
      * {@inheritDoc}
-     *
-     * @psalm-return Generator<int, \Temporal\Internal\Transport\CompletableResultInterface, mixed, \Temporal\Internal\Transport\CompletableResultInterface|mixed>
      */
     public function createFile(FileUploadTransfer $fileUploadTransfer): Generator
     {
@@ -26,7 +24,7 @@ class FileCreateWorkflow implements FileCreateWorkflowInterface
             ->createFile($fileUploadTransfer);
     }
 
-    protected function createFileActivity(): FileActivityInterface
+    protected function createFileActivity(): ActivityProxy
     {
         // @phpstan-ignore-next-line
         return Workflow::newActivityStub(

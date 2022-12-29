@@ -53,7 +53,7 @@ readonly class MediaConverter implements ConverterInterface
         }
 
         if ($progressListener !== null) {
-            /** @psalm-suppress UnusedClosureParam **/
+            /** @psalm-suppress UnusedClosureParam */
             $format->on('progress', function ($video, $format, float $percentage) use ($progressListener) {
                 $progressListener($percentage);
             });

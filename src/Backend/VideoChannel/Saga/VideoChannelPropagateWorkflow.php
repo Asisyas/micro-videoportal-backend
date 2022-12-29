@@ -46,10 +46,6 @@ class VideoChannelPropagateWorkflow implements VideoChannelPropagateWorkflowInte
 
     /**
      * {@inheritDoc}
-     *
-     * @return \Generator
-     *
-     * @psalm-return \Generator<int, \Temporal\Internal\Transport\CompletableResultInterface, mixed, void>
      */
     public function propagate(VideoChannelGetTransfer $videoChannelGetTransfer) //@phpstan-ignore-line
     {

@@ -39,8 +39,6 @@ class VideoCreateWorkflow implements VideoCreateWorkflowInterface
 
     /**
      * {@inheritDoc}
-     *
-     * @psalm-return \Generator<int, \Temporal\Internal\Transport\CompletableResultInterface, mixed, VideoTransfer>
      */
     #[Workflow\WorkflowMethod("VideoCreate")]
     public function createVideo(VideoCreateTransfer $videoCreateTransfer): \Generator
