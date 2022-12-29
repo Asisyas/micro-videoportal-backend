@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace App\Shared\Config\Command;
 
-use Micro\Framework\Kernel\KernelInterface;
 use Micro\Kernel\App\AppKernelInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
