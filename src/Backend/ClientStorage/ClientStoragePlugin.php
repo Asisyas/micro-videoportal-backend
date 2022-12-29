@@ -31,7 +31,7 @@ class ClientStoragePlugin extends AbstractPlugin
         });
     }
 
-    protected function createFacade(ClientFactoryInterface $clientFactory): ClientStorageFacadeInterface
+    protected function createFacade(ClientFactoryInterface $clientFactory): ClientStorageFacade
     {
         return new ClientStorageFacade(
             clientFactory: $clientFactory,
@@ -41,13 +41,11 @@ class ClientStoragePlugin extends AbstractPlugin
     /**
      * @param RedisFacadeInterface $redisFacade
      * @param SerializerFacadeInterface $serializerFacade
-     *
-     * @return ClientFactoryInterface
      */
     protected function createClientFactory(
         RedisFacadeInterface $redisFacade,
         SerializerFacadeInterface $serializerFacade
-    ): ClientFactoryInterface {
+    ): RedisClientFactory {
         return new RedisClientFactory($redisFacade, $serializerFacade);
     }
 }

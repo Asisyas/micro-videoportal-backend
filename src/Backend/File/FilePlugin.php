@@ -42,14 +42,12 @@ class FilePlugin extends AbstractPlugin
      * @param UuidFacadeInterface $uuidFacade
      * @param DoctrineFacadeInterface $doctrineFacade
      * @param ClientStorageFacadeInterface $clientStorageFacade
-     *
-     * @return FileFacadeInterface
      */
     protected function createFacade(
         UuidFacadeInterface $uuidFacade,
         DoctrineFacadeInterface $doctrineFacade,
         ClientStorageFacadeInterface $clientStorageFacade
-    ): FileFacadeInterface {
+    ): FileFacade {
         $fileStorageFactory = $this->createFileStorageFactory($clientStorageFacade);
 
         $fileFactory = $this->createFileFactory(
@@ -63,10 +61,8 @@ class FilePlugin extends AbstractPlugin
 
     /**
      * @param ClientStorageFacadeInterface $clientStorageFacade
-     *
-     * @return FileStorageFactoryInterface
      */
-    protected function createFileStorageFactory(ClientStorageFacadeInterface $clientStorageFacade): FileStorageFactoryInterface
+    protected function createFileStorageFactory(ClientStorageFacadeInterface $clientStorageFacade): FileStorageFactory
     {
         return new FileStorageFactory($clientStorageFacade);
     }
@@ -75,14 +71,12 @@ class FilePlugin extends AbstractPlugin
      * @param UuidFacadeInterface $uuidFacade
      * @param DoctrineFacadeInterface $doctrineFacade
      * @param FileStorageFactoryInterface $fileStorageFactory
-     *
-     * @return FileFactoryInterface
      */
     protected function createFileFactory(
         UuidFacadeInterface $uuidFacade,
         DoctrineFacadeInterface $doctrineFacade,
         FileStorageFactoryInterface $fileStorageFactory
-    ): FileFactoryInterface {
+    ): FileFactory {
         return new FileFactory(
             $uuidFacade,
             $doctrineFacade,

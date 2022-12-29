@@ -65,20 +65,14 @@ class VideoPublishPlugin extends AbstractPlugin
         });
     }
 
-    /**
-     * @return VideoPublishFacadeInterface
-     */
-    public function createFacade(): VideoPublishFacadeInterface
+    public function createFacade(): VideoPublishFacade
     {
         return new VideoPublishFacade(
             $this->createVideoIndexPropagateManagerFactory(),
         );
     }
 
-    /**
-     * @return VideoWatchExpanderFactoryInterface
-     */
-    public function createVideoWatchExpanderFactory(): VideoWatchExpanderFactoryInterface
+    public function createVideoWatchExpanderFactory(): VideoWatchExpanderFactory
     {
         return new VideoWatchExpanderFactory(
             new VideoSourceExpander($this->videoFacade),
@@ -86,20 +80,14 @@ class VideoPublishPlugin extends AbstractPlugin
         );
     }
 
-    /**
-     * @return VideoWatchTransferFactoryInterface
-     */
-    public function createVideoWatchTransferFactory(): VideoWatchTransferFactoryInterface
+    public function createVideoWatchTransferFactory(): VideoWatchTransferFactory
     {
         return new VideoWatchTransferFactory(
             $this->createVideoWatchExpanderFactory()
         );
     }
 
-    /**
-     * @return VideoIndexPropagateManagerFactoryInterface
-     */
-    public function createVideoIndexPropagateManagerFactory(): VideoIndexPropagateManagerFactoryInterface
+    public function createVideoIndexPropagateManagerFactory(): VideoIndexPropagateManagerFactory
     {
         return new VideoIndexPropagateManagerFactory(
             $this->createIndexPropagatorFactory(),
@@ -107,10 +95,7 @@ class VideoPublishPlugin extends AbstractPlugin
         );
     }
 
-    /**
-     * @return IndexPropagatorFactoryInterface
-     */
-    public function createIndexPropagatorFactory(): IndexPropagatorFactoryInterface
+    public function createIndexPropagatorFactory(): IndexPropagatorFactory
     {
         return new IndexPropagatorFactory(
             new ClientReaderPropagator($this->clientStorageFacade),

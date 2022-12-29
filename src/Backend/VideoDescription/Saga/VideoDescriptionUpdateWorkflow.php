@@ -8,6 +8,9 @@ use Temporal\Workflow\WorkflowMethod;
 
 class VideoDescriptionUpdateWorkflow implements VideoDescriptionUpdateWorkflowInterface
 {
+    /**
+     * @return true
+     */
     #[WorkflowMethod(name: 'update')]
     public function update(VideoDescriptionPutTransfer $videoDescriptionPutTransfer): bool
     {

@@ -9,11 +9,5 @@ use Temporal\Workflow\WorkflowMethod;
 #[\Temporal\Workflow\WorkflowInterface]
 interface VideoDescriptionUpdateWorkflowInterface extends WorkflowInterface
 {
-    /**
-     * @param VideoDescriptionPutTransfer $videoDescriptionPutTransfer
-     *
-     * @return bool
-     */
-    #[WorkflowMethod(name: 'update')]
-    public function update(VideoDescriptionPutTransfer $videoDescriptionPutTransfer): bool;
+
 }

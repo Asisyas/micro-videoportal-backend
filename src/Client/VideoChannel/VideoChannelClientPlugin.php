@@ -44,10 +44,7 @@ class VideoChannelClientPlugin extends AbstractPlugin
         });
     }
 
-    /**
-     * @return VideoChannelClientInterface
-     */
-    protected function createClient(): VideoChannelClientInterface
+    protected function createClient(): VideoChannelClient
     {
         return new VideoChannelClient(
             $this->temporalFacade,

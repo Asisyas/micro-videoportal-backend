@@ -107,7 +107,7 @@ class AuthorizationManager implements AuthorizationManagerInterface
     /**
      * @param TokenInterface $token
      *
-     * @return void
+     * @return null
      */
     protected function checkAccessTokenExpired(TokenInterface $token): void
     {

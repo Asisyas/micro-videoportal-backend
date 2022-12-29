@@ -9,12 +9,7 @@ use App\Shared\Generated\DTO\File\FileUploadTransfer;
 
 interface FileClientInterface
 {
-    /**
-     * @param FileRemoveTransfer $fileRemoveTransfer
-     *
-     * @return void
-     */
-    public function deleteFile(FileRemoveTransfer $fileRemoveTransfer): void;
+
 
     /**
      * @param FileGetTransfer $fileGetTransfer

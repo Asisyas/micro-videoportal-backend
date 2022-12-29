@@ -29,11 +29,4 @@ interface VideoDescriptionFacadeInterface
      * @return bool
      */
     public function create(VideoDescriptionPutTransfer $descriptionPutTransfer): bool;
-
-    /**
-     * @param VideoDescriptionDeleteTransfer $videoDescriptionDeleteTransfer
-     *
-     * @return bool
-     */
-    public function delete(VideoDescriptionDeleteTransfer $videoDescriptionDeleteTransfer): bool;
 }

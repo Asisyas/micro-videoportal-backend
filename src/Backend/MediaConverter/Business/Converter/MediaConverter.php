@@ -133,10 +133,7 @@ readonly class MediaConverter implements ConverterInterface
         );
     }
 
-    /**
-     * @return DefaultVideo
-     */
-    protected function createFormat(): DefaultVideo
+    protected function createFormat(): WebM
     {
         return new WebM(
             $this->pluginConfiguration->getCodecAudio(),
@@ -160,7 +157,7 @@ readonly class MediaConverter implements ConverterInterface
      * @param DefaultVideo $format
      * @param string $path
      *
-     * @return void
+     * @return null
      *
      * @throws \League\Flysystem\FilesystemException
      */

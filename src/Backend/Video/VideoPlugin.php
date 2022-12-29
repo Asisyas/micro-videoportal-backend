@@ -31,20 +31,14 @@ class VideoPlugin extends AbstractPlugin
         });
     }
 
-    /**
-     * @return VideoFacadeInterface
-     */
-    protected function createFacade(): VideoFacadeInterface
+    protected function createFacade(): VideoFacade
     {
         return new VideoFacade(
             $this->createVideoManagerFactory(),
         );
     }
 
-    /**
-     * @return VideoManagerFactoryInterface
-     */
-    protected function createVideoManagerFactory(): VideoManagerFactoryInterface
+    protected function createVideoManagerFactory(): VideoManagerFactory
     {
         return new VideoManagerFactory(
             $this->doctrineFacade

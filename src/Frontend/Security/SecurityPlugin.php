@@ -54,10 +54,7 @@ class SecurityPlugin implements ConfigurableInterface, DependencyProviderInterfa
         });
     }
 
-    /**
-     * @return SecurityFacadeInterface
-     */
-    protected function createFacade(): SecurityFacadeInterface
+    protected function createFacade(): SecurityFacade
     {
         return new SecurityFacade(
             $this->createAuthenticatorFactory(),
@@ -65,30 +62,21 @@ class SecurityPlugin implements ConfigurableInterface, DependencyProviderInterfa
         );
     }
 
-    /**
-     * @return AuthConfigurationFactoryInterface
-     */
-    protected function createAuthConfigurationFactory(): AuthConfigurationFactoryInterface
+    protected function createAuthConfigurationFactory(): AuthConfigurationFactory
     {
         return new AuthConfigurationFactory(
             $this->createAuthConfigExpanderFactory()
         );
     }
 
-    /**
-     * @return AuthConfigTransferExpanderFactoryInterface
-     */
-    protected function createAuthConfigExpanderFactory(): AuthConfigTransferExpanderFactoryInterface
+    protected function createAuthConfigExpanderFactory(): AuthConfigTransferExpanderFactory
     {
         return new AuthConfigTransferExpanderFactory(
             new OAuth2Expander($this->oauth2ClientFacade)
         );
     }
 
-    /**
-     * @return AuthenticatorFactoryInterface
-     */
-    protected function createAuthenticatorFactory(): AuthenticatorFactoryInterface
+    protected function createAuthenticatorFactory(): HeaderAuthenticatorFactory
     {
         return new HeaderAuthenticatorFactory(
             $this->securityClient,
@@ -97,10 +85,7 @@ class SecurityPlugin implements ConfigurableInterface, DependencyProviderInterfa
         );
     }
 
-    /**
-     * @return AuthTokenFactoryInterface
-     */
-    protected function createAuthTokenFactory(): AuthTokenFactoryInterface
+    protected function createAuthTokenFactory(): AuthTokenFactory
     {
         return new AuthTokenFactory();
     }

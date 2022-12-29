@@ -23,6 +23,9 @@ class VideoChannelPropagateCommand extends Command
         $this->addArgument('channel-id', InputArgument::REQUIRED);
     }
 
+    /**
+     * @return int
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $channelGetTransfer = new VideoChannelGetTransfer();

@@ -10,11 +10,5 @@ use Temporal\Workflow\WorkflowMethod;
 #[\Temporal\Workflow\WorkflowInterface]
 interface MediaConvertWorkflowInterface extends WorkflowInterface
 {
-    /**
-     * @param MediaConfigurationTransfer $mediaConfigurationTransfer
-     *
-     * @return MediaConvertedResultTransfer
-     */
-    #[WorkflowMethod("MediaConvert")]
-    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer);
+
 }

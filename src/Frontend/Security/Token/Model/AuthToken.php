@@ -32,16 +32,8 @@ class AuthToken implements AuthTokenInterface
     /**
      * {@inheritDoc}
      */
-    public function getExpired(): int
+    public function getExpired(): int|null
     {
         return $this->token->getExpiresAtAccess();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSource(): string
-    {
-        return $this->token->getToken();
     }
 }

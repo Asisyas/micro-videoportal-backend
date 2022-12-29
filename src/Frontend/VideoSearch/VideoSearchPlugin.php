@@ -23,7 +23,7 @@ class VideoSearchPlugin extends AbstractPlugin
         });
     }
 
-    protected function createFacade(): VideoSearchFacadeInterface
+    protected function createFacade(): VideoSearchFacade
     {
         return new VideoSearchFacade(
             $this->searchClient

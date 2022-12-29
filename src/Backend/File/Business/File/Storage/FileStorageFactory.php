@@ -15,7 +15,7 @@ class FileStorageFactory implements FileStorageFactoryInterface
     }
 
     /**
-     * @return FileStorageInterface
+     * @return FileStorage
      */
     public function create(): FileStorageInterface
     {

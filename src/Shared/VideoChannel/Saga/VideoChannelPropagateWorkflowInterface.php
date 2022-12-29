@@ -23,6 +23,5 @@ use Temporal\Workflow\WorkflowMethod;
 #[\Temporal\Workflow\WorkflowInterface]
 interface VideoChannelPropagateWorkflowInterface extends WorkflowInterface
 {
-    #[WorkflowMethod(name: 'Video_Channel_Propagate')] // @phpstan-ignore-line
-    public function propagate(VideoChannelGetTransfer $videoChannelGetTransfer);
+
 }

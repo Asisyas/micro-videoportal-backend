@@ -39,20 +39,14 @@ class VideoChannelPlugin extends AbstractPlugin
         });
     }
 
-    /**
-     * @return VideoChannelFacadeInterface
-     */
-    protected function createFacade(): VideoChannelFacadeInterface
+    protected function createFacade(): VideoChannelFacade
     {
         return new VideoChannelFacade(
             $this->createChannelCreateRequestHandlerFactory()
         );
     }
 
-    /**
-     * @return ChannelCreateRequestHandlerFactoryInterface
-     */
-    protected function createChannelCreateRequestHandlerFactory(): ChannelCreateRequestHandlerFactoryInterface
+    protected function createChannelCreateRequestHandlerFactory(): ChannelCreateRequestHandlerFactory
     {
         return new ChannelCreateRequestHandlerFactory(
             $this->videoChannelClient,

@@ -42,14 +42,6 @@ class VideoChannel
     /**
      * @return string
      */
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return string
-     */
     public function getOwnerId(): string
     {
         return $this->ownerId;

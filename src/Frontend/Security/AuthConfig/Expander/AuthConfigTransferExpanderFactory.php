@@ -34,7 +34,7 @@ class AuthConfigTransferExpanderFactory implements AuthConfigTransferExpanderFac
     }
 
     /**
-     * @return AuthConfigTransferExpanderInterface
+     * @return AuthConfigTransferExpander
      */
     public function create(): AuthConfigTransferExpanderInterface
     {

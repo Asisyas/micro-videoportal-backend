@@ -20,8 +20,10 @@ class FileClientStore implements FileClientStoreInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @psalm-return \Generator<mixed, FileTransfer, mixed, mixed>
      */
-    public function createFile(FileUploadTransfer $fileUploadTransfer): FileTransfer
+    public function createFile(FileUploadTransfer $fileUploadTransfer): \Generator
     {
         // @phpstan-ignore-next-line
         return $this->workflowClient

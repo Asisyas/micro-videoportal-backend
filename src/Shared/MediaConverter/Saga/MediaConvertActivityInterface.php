@@ -14,31 +14,5 @@ use Micro\Plugin\Temporal\Activity\ActivityInterface;
 #[\Temporal\Activity\ActivityInterface(prefix: 'Media_converter.')]
 interface MediaConvertActivityInterface extends ActivityInterface
 {
-    /**
-     * @param MediaConfigurationTransfer $mediaConfigurationTransfer
-     *
-     * @return MediaConvertedResultTransfer
-     */
-    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer): MediaConvertedResultTransfer;
 
-    /**
-     * @param FileTransfer $fileTransfer
-     *
-     * @return MediaMetadataTransfer
-     */
-    public function extractMediaMetadata(FileTransfer $fileTransfer): MediaMetadataTransfer;
-
-    /**
-     * @param MediaMetadataTransfer $videoMetadataTransfer
-     *
-     * @return MediaResolutionCollectionTransfer
-     */
-    public function calculateMediaResolutions(MediaMetadataTransfer $videoMetadataTransfer): MediaResolutionCollectionTransfer;
-
-    /**
-     * @param MediaConvertedResultCollectionTransfer $convertedResultCollectionTransfer
-     *
-     * @return DashManifestTransfer
-     */
-    public function generateDashManifest(MediaConvertedResultCollectionTransfer $convertedResultCollectionTransfer): DashManifestTransfer;
 }

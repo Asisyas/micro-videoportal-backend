@@ -12,11 +12,5 @@ use Temporal\Workflow\WorkflowMethod;
 #[TemporalWorkflow]
 interface VideoCreateWorkflowInterface extends WorkflowInterface
 {
-    /**
-     * @param VideoPublishTransfer $videoPublishTransfer
-     *
-     * @return Generator<VideoTransfer>
-     */
-    #[WorkflowMethod(name: 'Video_Create')]
-    public function publishVideo(VideoPublishTransfer $videoPublishTransfer): Generator;
+
 }

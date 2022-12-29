@@ -64,10 +64,7 @@ class VideoChannelPlugin extends AbstractPlugin
         });
     }
 
-    /**
-     * @return VideoChannelFacadeInterface
-     */
-    public function createFacade(): VideoChannelFacadeInterface
+    public function createFacade(): VideoChannelFacade
     {
         return new VideoChannelFacade(
             $this->videoChannelManagerFactory,
@@ -75,30 +72,21 @@ class VideoChannelPlugin extends AbstractPlugin
         );
     }
 
-    /**
-     * @return VideoChannelTransferExpanderFactoryInterface
-     */
-    protected function createVideoChannelTransferExpanderFactory(): VideoChannelTransferExpanderFactoryInterface
+    protected function createVideoChannelTransferExpanderFactory(): VideoChannelTransferExpanderFactory
     {
         return new VideoChannelTransferExpanderFactory(
             new TransferDefaultsExpander($this->doctrineFacade->getManager())
         );
     }
 
-    /**
-     * @return VideoChannelEntityExpanderFactoryInterface
-     */
-    protected function createVideoChannelEntityExpanderFactory(): VideoChannelEntityExpanderFactoryInterface
+    protected function createVideoChannelEntityExpanderFactory(): VideoChannelEntityExpanderFactory
     {
         return new VideoChannelEntityExpanderFactory(
             new EntityDefaultsExpander()
         );
     }
 
-    /**
-     * @return VideoChannelManagerFactoryInterface
-     */
-    protected function createVideoChannelManagerFactory(): VideoChannelManagerFactoryInterface
+    protected function createVideoChannelManagerFactory(): VideoChannelManagerFactory
     {
         return new VideoChannelManagerFactory(
             $this->doctrineFacade,
@@ -107,10 +95,7 @@ class VideoChannelPlugin extends AbstractPlugin
         );
     }
 
-    /**
-     * @return PublisherFactoryInterface
-     */
-    protected function createPublisherFactory(): PublisherFactoryInterface
+    protected function createPublisherFactory(): PublisherFactory
     {
         return new PublisherFactory(
             $this->videoChannelManagerFactory,
@@ -119,9 +104,11 @@ class VideoChannelPlugin extends AbstractPlugin
     }
 
     /**
-     * @return iterable<TransferPublisherInterface>
+     * @return (ClientReaderPublisher|SearchIndexPublisher)[]
+     *
+     * @psalm-return list{ClientReaderPublisher, SearchIndexPublisher}
      */
-    protected function createPublisherCollection(): iterable
+    protected function createPublisherCollection(): array
     {
         return [
             new ClientReaderPublisher($this->clientStorageFacade),

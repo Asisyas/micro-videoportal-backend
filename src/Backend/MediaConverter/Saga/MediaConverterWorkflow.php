@@ -35,7 +35,7 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
         );
     }
 
-    protected function createUpdateSrcWorkflow(): ChildWorkflowProxy
+    protected function createUpdateSrcWorkflow(): VideoUpdateSrcWorkflowInterface
     {
         // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
@@ -49,8 +49,10 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @psalm-return \Generator<int, \Temporal\Internal\Transport\CompletableResultInterface, mixed, MediaConfigurationTransfer>
      */
-    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer)
+    public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer): \Generator
     {
         $convertedCollection    = new MediaConvertedResultCollectionTransfer();
         $fileTransfer           = $mediaConfigurationTransfer->getFile();

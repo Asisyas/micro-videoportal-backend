@@ -61,20 +61,14 @@ class SecurityClientPlugin implements DependencyProviderInterface
         });
     }
 
-    /**
-     * @return SecurityClientInterface
-     */
-    protected function createClient(): SecurityClientInterface
+    protected function createClient(): SecurityClient
     {
         return new SecurityClient(
             $this->createAuthorizationManagerFactory()
         );
     }
 
-    /**
-     * @return AuthorizationManagerFactoryInterface
-     */
-    protected function createAuthorizationManagerFactory(): AuthorizationManagerFactoryInterface
+    protected function createAuthorizationManagerFactory(): AuthorizationManagerFactory
     {
         return new AuthorizationManagerFactory(
             $this->oauth2ClientFacade,
@@ -84,10 +78,7 @@ class SecurityClientPlugin implements DependencyProviderInterface
         );
     }
 
-    /**
-     * @return TokenTransferExpanderFactoryInterface
-     */
-    protected function createTokenTransferExpanderFactory(): TokenTransferExpanderFactoryInterface
+    protected function createTokenTransferExpanderFactory(): TokenTransferExpanderFactory
     {
         return new TokenTransferExpanderFactory(
             new TokenTransferExpanderDefault(),
@@ -95,10 +86,7 @@ class SecurityClientPlugin implements DependencyProviderInterface
         );
     }
 
-    /**
-     * @return SecurityTokenDataExpanderFactoryInterface
-     */
-    protected function createSecurityTokenDataExpanderFactory(): SecurityTokenDataExpanderFactoryInterface
+    protected function createSecurityTokenDataExpanderFactory(): SecurityTokenDataExpanderFactory
     {
         return new SecurityTokenDataExpanderFactory(
             new TokenDataExpanderDefault(),

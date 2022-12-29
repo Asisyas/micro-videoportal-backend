@@ -87,12 +87,12 @@ readonly class DashManifestGenerator implements DashManifestGeneratorInterface
      * @param array $additionalParameters
      * @param string $destination
      *
-     * @return void
+     * @return never
      *
      * @throws FilesystemException
      * @throws RuntimeException
      */
-    protected function save(array $additionalParameters, string $destination): void
+    protected function save(array $additionalParameters, string $destination)
     {
         $tmpfile = tmpfile();
         if (!$tmpfile) {

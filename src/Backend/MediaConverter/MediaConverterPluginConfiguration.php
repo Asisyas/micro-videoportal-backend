@@ -13,7 +13,9 @@ class MediaConverterPluginConfiguration extends PluginConfiguration
     /**
      * Height, width, bit rate, frame rate
      *
-     * @return int[][]
+     * @return (int|null)[][]
+     *
+     * @psalm-return list{list{240, 250, 250, 24, 150, 150, 2}, list{360, 500, 500, 24, 150, 150, 2}, list{480, 1000, 1000, 30, 150, 150, 2}, list{720, 5000, 6500, 30, 150, 150, 2}, list{720, 7500, 7500, 60, 150, 150, 2}, list{1080, 10000, 10000, 30, 150, 150, 6}, list{1080, 15000, 15000, 60, 150, 150, 6}, list{1080, 8000, 8000, 30, 150, 150, 2}, list{1080, 12000, 12000, 60, 150, 150, 2}, list{1440, 20000, 20000, 30, 150, 150, 6}, list{1440, 30000, 30000, 60, 150, 150, 6}, list{1440, 16000, 16000, 30, 150, 150, 2}, list{1440, 24000, 24000, 60, 150, 150, 2}, list{null, 1, 128, null, null, null, 1}}
      */
     public function getResolutionsList(): array
     {
@@ -46,6 +48,8 @@ class MediaConverterPluginConfiguration extends PluginConfiguration
 
     /**
      * @return string
+     *
+     * @psalm-return 'libvorbis'
      */
     public function getCodecAudio(): string
     {
@@ -54,6 +58,8 @@ class MediaConverterPluginConfiguration extends PluginConfiguration
 
     /**
      * @return string
+     *
+     * @psalm-return 'libvpx-vp9'
      */
     public function getCodecVideo(): string
     {
@@ -62,6 +68,8 @@ class MediaConverterPluginConfiguration extends PluginConfiguration
 
     /**
      * @return string
+     *
+     * @psalm-return 'auto'
      */
     public function getHwAcceleration(): string
     {

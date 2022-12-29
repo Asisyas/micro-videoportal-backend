@@ -22,6 +22,9 @@ class VideoCreateCommand extends Command
         $this->addArgument('file_id', InputOption::VALUE_REQUIRED);
     }
 
+    /**
+     * @return int
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $videoCreateTransfer = new VideoCreateTransfer();

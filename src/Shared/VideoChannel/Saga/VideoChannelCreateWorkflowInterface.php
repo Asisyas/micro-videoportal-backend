@@ -10,11 +10,5 @@ use Temporal\Workflow\WorkflowMethod;
 #[\Temporal\Workflow\WorkflowInterface]
 interface VideoChannelCreateWorkflowInterface extends WorkflowInterface
 {
-    /**
-     * @param VideoChannelCreateTransfer $videoChannelCreateTransfer
-     *
-     * @return VideoChannelTransfer
-     */
-    #[WorkflowMethod(name: 'Video_Channel_Create')]
-    public function create(VideoChannelCreateTransfer $videoChannelCreateTransfer);
+
 }

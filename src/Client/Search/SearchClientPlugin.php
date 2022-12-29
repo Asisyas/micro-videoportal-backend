@@ -42,20 +42,14 @@ class SearchClientPlugin extends AbstractPlugin
         });
     }
 
-    /**
-     * @return SearchClientInterface
-     */
-    public function createClient(): SearchClientInterface
+    public function createClient(): SearchClient
     {
         return new SearchClient(
             $this->createSearchEngineFactory()
         );
     }
 
-    /**
-     * @return SearchEngineFactoryInterface
-     */
-    public function createSearchEngineFactory(): SearchEngineFactoryInterface
+    public function createSearchEngineFactory(): ElasticEngineFactory
     {
         return new ElasticEngineFactory(
             $this->elasticFacade,
@@ -63,10 +57,7 @@ class SearchClientPlugin extends AbstractPlugin
         );
     }
 
-    /**
-     * @return SearchResultsExpanderFactoryInterface
-     */
-    public function createSearchResultsExpanderFactory(): SearchResultsExpanderFactoryInterface
+    public function createSearchResultsExpanderFactory(): SearchResultsExpanderFactory
     {
         return new SearchResultsExpanderFactory(
             new TemporaryExpander($this->clientReaderFacade)

@@ -39,20 +39,14 @@ class SearchStoragePlugin extends AbstractPlugin
         });
     }
 
-    /**
-     * @return SearchStorageFacadeInterface
-     */
-    protected function createFacade(): SearchStorageFacadeInterface
+    protected function createFacade(): SearchStorageFacade
     {
         return new SearchStorageFacade(
             $this->createStorageFactory()
         );
     }
 
-    /**
-     * @return StorageFactoryInterface
-     */
-    protected function createStorageFactory(): StorageFactoryInterface
+    protected function createStorageFactory(): ElasticStorageFactory
     {
         return new ElasticStorageFactory(
             $this->elasticFacade,

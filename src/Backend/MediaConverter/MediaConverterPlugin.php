@@ -55,20 +55,14 @@ class MediaConverterPlugin extends AbstractPlugin
         });
     }
 
-    /**
-     * @return MediaResolutionsCalculatorFactoryInterface
-     */
-    protected function createVideoResolutionsCalculatorFactory(): MediaResolutionsCalculatorFactoryInterface
+    protected function createVideoResolutionsCalculatorFactory(): MediaResolutionsCalculatorFactory
     {
         return new MediaResolutionsCalculatorFactory(
             ...$this->createResolutionsAvailableCollection()
         );
     }
 
-    /**
-     * @return MediaConverterFacadeInterface
-     */
-    protected function createFacade(): MediaConverterFacadeInterface
+    protected function createFacade(): MediaConverterFacade
     {
         return new MediaConverterFacade(
             $this->createVideoMetadataExtractorFactory(),
@@ -79,9 +73,11 @@ class MediaConverterPlugin extends AbstractPlugin
     }
 
     /**
-     * @return iterable<ResolutionVideoOptionsInterface>
+     * @return Resolution[]
+     *
+     * @psalm-return list{0?: Resolution,...}
      */
-    protected function createResolutionsAvailableCollection(): iterable
+    protected function createResolutionsAvailableCollection(): array
     {
         $result = [];
 
@@ -100,10 +96,7 @@ class MediaConverterPlugin extends AbstractPlugin
         return $result;
     }
 
-    /**
-     * @return MediaMetadataExtractorFactoryInterface
-     */
-    protected function createVideoMetadataExtractorFactory(): MediaMetadataExtractorFactoryInterface
+    protected function createVideoMetadataExtractorFactory(): MediaMetadataExtractorFactory
     {
         return new MediaMetadataExtractorFactory(
             $this->ffmpegFacade,
@@ -112,10 +105,7 @@ class MediaConverterPlugin extends AbstractPlugin
         );
     }
 
-    /**
-     * @return DashManifestGeneratorFactoryInterface
-     */
-    protected function createDashManifestGeneratorFactory(): DashManifestGeneratorFactoryInterface
+    protected function createDashManifestGeneratorFactory(): DashManifestGeneratorFactory
     {
         return new DashManifestGeneratorFactory(
             $this->filesystemFacade,
@@ -123,10 +113,7 @@ class MediaConverterPlugin extends AbstractPlugin
         );
     }
 
-    /**
-     * @return ConverterFactoryInterface
-     */
-    protected function createMediaConverterFactory(): ConverterFactoryInterface
+    protected function createMediaConverterFactory(): MediaConverterFactory
     {
         return new MediaConverterFactory(
             $this->ffmpegFacade,
@@ -136,7 +123,7 @@ class MediaConverterPlugin extends AbstractPlugin
         );
     }
 
-    protected function createFilterExpanderFactory(): FilterExpanderFactoryInterface
+    protected function createFilterExpanderFactory(): FilterExpanderFactory
     {
         return new FilterExpanderFactory(
             new DefaultsExpander(),
@@ -146,10 +133,7 @@ class MediaConverterPlugin extends AbstractPlugin
         );
     }
 
-    /**
-     * @return MetadataExpanderFactoryInterface
-     */
-    protected function createVideoMetadataFromStreamExpanderFactory(): MetadataExpanderFactoryInterface
+    protected function createVideoMetadataFromStreamExpanderFactory(): MetadataFromStreamExpanderFactory
     {
         return new MetadataFromStreamExpanderFactory();
     }

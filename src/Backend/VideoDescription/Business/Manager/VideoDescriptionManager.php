@@ -85,10 +85,8 @@ class VideoDescriptionManager implements VideoDescriptionManagerInterface
 
     /**
      * @param string $id
-     *
-     * @return VideoDescription
      */
-    protected function lookupEntity(string $id): VideoDescription
+    protected function lookupEntity(string $id): VideoDescription|null
     {
         return $this->entityManager
             ->getRepository(VideoDescription::class)

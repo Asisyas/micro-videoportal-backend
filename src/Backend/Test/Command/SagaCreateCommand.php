@@ -16,6 +16,9 @@ class SagaCreateCommand extends Command
         parent::__construct('test:saga:create');
     }
 
+    /**
+     * @return int
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $fileGetTransfer = new FileGetTransfer();

@@ -10,11 +10,5 @@ use Micro\Plugin\Temporal\Workflow\WorkflowInterface as MicroWorkflowInterface;
 #[WorkflowInterface]
 interface VideoPublishWorkflowInterface extends MicroWorkflowInterface
 {
-    /**
-     * @param VideoPublishTransfer $videoPublishTransfer
-     *
-     * @return mixed
-     */
-    #[WorkflowMethod("Video_Publish")]
-    public function publish(VideoPublishTransfer $videoPublishTransfer);
+
 }

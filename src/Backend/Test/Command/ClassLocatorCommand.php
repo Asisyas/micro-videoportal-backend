@@ -14,6 +14,9 @@ class ClassLocatorCommand extends Command
         parent::__construct('test:class:locate');
     }
 
+    /**
+     * @return int
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $iterator = $this->locatorFacade->lookup(Command::class);

@@ -39,6 +39,10 @@ class VideoUpdateSrcWorkflow implements VideoUpdateSrcWorkflowInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @return Generator
+     *
+     * @psalm-return Generator<int, \Temporal\Internal\Transport\CompletableResultInterface, mixed, \Temporal\Internal\Transport\CompletableResultInterface>
      */
     public function updateVideoSrc(VideoSrcSetTransfer $videoSrcSetTransfer) //@phpstan-ignore-line
     {
