@@ -29,7 +29,8 @@ return function () use ($basedir): AppKernel {
 
             $envFileCompiled = $basePath . '/' .  '.env.' .$env . '.php';
             if (file_exists($envFileCompiled)) {
-                $content = include_once $envFileCompiled;
+                $content = include $envFileCompiled;
+
                 parent::__construct($content);
 
                 return;
@@ -39,9 +40,12 @@ return function () use ($basedir): AppKernel {
             $names[] = '.env.' . $env;
             // @codingStandardsIgnoreStart
             $this->dotenv = Dotenv::createMutable($basePath, $names, false);
-            $this->dotenv->load();
-            // @codingStandardsIgnoreEnd
+            $configCompiled = $this->dotenv->load();
+            if($env === 'prod') {
+                file_put_contents($envFileCompiled, '<?php return '. var_export($configCompiled) . ';');
+            }
 
+            // @codingStandardsIgnoreEnd
             parent::__construct($_ENV);
         }
     };
