@@ -2,7 +2,7 @@
 
 namespace App\Frontend\VideoSearch;
 
-use App\Client\Search\Client\SearchClientInterface;
+use App\Client\Search\Client\ClientSearchInterface;
 use App\Frontend\VideoSearch\Facade\VideoSearchFacade;
 use App\Frontend\VideoSearch\Facade\VideoSearchFacadeInterface;
 use Micro\Component\DependencyInjection\Container;
@@ -10,12 +10,12 @@ use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 
 class VideoSearchPlugin extends AbstractPlugin
 {
-    private readonly SearchClientInterface $searchClient;
+    private readonly ClientSearchInterface $searchClient;
 
     public function provideDependencies(Container $container): void
     {
         $container->register(VideoSearchFacadeInterface::class, function (
-            SearchClientInterface $searchClient
+            ClientSearchInterface $searchClient
         ) {
             $this->searchClient = $searchClient;
 

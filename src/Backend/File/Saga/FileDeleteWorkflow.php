@@ -17,9 +17,9 @@ class FileDeleteWorkflow implements FileDeleteWorkflowInterface
     /**
      * {@inheritDoc}
      */
-    public function deleteFile(FileRemoveTransfer $fileRemoveTransfer): Generator
+    public function deleteFile(FileRemoveTransfer $fileRemoveTransfer)
     {
-        return yield $this
+        yield $this
             ->createFileActivity()
             ->removeFile($fileRemoveTransfer);
     }

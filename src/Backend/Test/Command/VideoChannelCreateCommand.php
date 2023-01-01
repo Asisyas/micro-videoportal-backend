@@ -2,9 +2,8 @@
 
 namespace App\Backend\Test\Command;
 
-use App\Client\VideoChannel\Client\VideoChannelClientInterface;
+use App\Client\VideoChannel\Client\ClientVideoChannelInterface;
 use App\Shared\Generated\DTO\Video\VideoChannelCreateTransfer;
-use App\Shared\Saga\VideoPublish\VideoPropagateWorkflowInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class VideoChannelCreateCommand extends Command
 {
     public function __construct(
-        private readonly VideoChannelClientInterface $channelClient
+        private readonly ClientVideoChannelInterface $channelClient
     ) {
         parent::__construct('test:video:channel-create');
     }

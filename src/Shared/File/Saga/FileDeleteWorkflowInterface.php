@@ -3,7 +3,6 @@
 namespace App\Shared\File\Saga;
 
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
-use Generator;
 use Temporal\Workflow\WorkflowInterface;
 use Micro\Plugin\Temporal\Workflow\WorkflowInterface as MicroWorkflowInterface;
 use Temporal\Workflow\WorkflowMethod;
@@ -14,8 +13,8 @@ interface FileDeleteWorkflowInterface extends MicroWorkflowInterface
     /**
      * @param FileRemoveTransfer $fileRemoveTransfer
      *
-     * @return Generator
+     * @return mixed
      */
     #[WorkflowMethod(name: 'file_delete')]
-    public function deleteFile(FileRemoveTransfer $fileRemoveTransfer): Generator;
+    public function deleteFile(FileRemoveTransfer $fileRemoveTransfer);
 }

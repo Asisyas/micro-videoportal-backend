@@ -2,7 +2,7 @@
 
 namespace App\Frontend\VideoChannel\Controller;
 
-use App\Client\VideoChannel\Client\VideoChannelClientInterface;
+use App\Client\VideoChannel\Client\ClientVideoChannelInterface;
 use App\Frontend\VideoChannel\Facade\VideoChannelFacadeInterface;
 use App\Shared\Generated\DTO\Search\SearchResultCollectionTransfer;
 use App\Shared\Generated\DTO\Video\VideoChannelTransfer;
@@ -13,11 +13,11 @@ class VideoChannelController
 {
     /**
      * @param VideoChannelFacadeInterface $videoChannelFacade
-     * @param VideoChannelClientInterface $videoChannelClient
+     * @param ClientVideoChannelInterface $videoChannelClient
      */
     public function __construct(
         private readonly VideoChannelFacadeInterface $videoChannelFacade,
-        private readonly VideoChannelClientInterface $videoChannelClient
+        private readonly ClientVideoChannelInterface $videoChannelClient
     ) {
     }
 

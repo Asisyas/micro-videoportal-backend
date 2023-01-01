@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Frontend\VideoChannel\Handler\Lookup;
 
-use App\Client\VideoChannel\Client\VideoChannelClientInterface;
+use App\Client\VideoChannel\Client\ClientVideoChannelInterface;
 use App\Frontend\Security\Facade\SecurityFacadeInterface;
 
 /**
@@ -22,11 +22,11 @@ use App\Frontend\Security\Facade\SecurityFacadeInterface;
 class ChannelLookupRequestHandlerFactory implements ChannelLookupRequestHandlerFactoryInterface
 {
     /**
-     * @param VideoChannelClientInterface $videoChannelClient
+     * @param ClientVideoChannelInterface $videoChannelClient
      * @param SecurityFacadeInterface $securityFacade
      */
     public function __construct(
-        private readonly VideoChannelClientInterface $videoChannelClient,
+        private readonly ClientVideoChannelInterface $videoChannelClient,
         private readonly SecurityFacadeInterface $securityFacade
     ) {
     }

@@ -2,9 +2,8 @@
 
 namespace App\Backend\Test\Command;
 
-use App\Backend\VideoPublish\Facade\VideoPublishFacade;
 use App\Shared\Generated\DTO\Video\VideoGetTransfer;
-use App\Shared\Saga\VideoPublish\VideoPropagateWorkflowInterface;
+use App\Shared\Video\VideoPropagateWorkflowInterface;
 use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Frontend\VideoChannel\Handler\Lookup;
 
-use App\Client\VideoChannel\Client\VideoChannelClientInterface;
+use App\Client\VideoChannel\Client\ClientVideoChannelInterface;
 use App\Frontend\Security\Facade\SecurityFacadeInterface;
 use App\Shared\Generated\DTO\Video\VideoChannelGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoChannelTransfer;
@@ -25,12 +25,12 @@ use Symfony\Component\HttpFoundation\Request;
 class ChannelLookupRequestHandler implements ChannelLookupRequestHandlerInterface
 {
     /**
-     * @param VideoChannelClientInterface $videoChannelClient
+     * @param ClientVideoChannelInterface $clientVideoChannel
      * @param SecurityFacadeInterface $securityFacade
      */
     public function __construct(
-        private readonly VideoChannelClientInterface $videoChannelClient,
-        private readonly SecurityFacadeInterface $securityFacade
+        private readonly ClientVideoChannelInterface $clientVideoChannel,
+        private readonly SecurityFacadeInterface     $securityFacade
     ) {
     }
 
@@ -47,9 +47,9 @@ class ChannelLookupRequestHandler implements ChannelLookupRequestHandlerInterfac
             ->setOwnerId($ownerId);
 
         if (!$channelId) {
-            return $this->videoChannelClient->lookupUserChannel($videoChannelGetTransfer);
+            return $this->clientVideoChannel->lookupUserChannel($videoChannelGetTransfer);
         }
 
-        return $this->videoChannelClient->lookupChannel($videoChannelGetTransfer);
+        return $this->clientVideoChannel->lookupChannel($videoChannelGetTransfer);
     }
 }

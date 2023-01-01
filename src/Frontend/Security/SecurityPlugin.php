@@ -2,7 +2,7 @@
 
 namespace App\Frontend\Security;
 
-use App\Client\Security\Client\SecurityClientInterface;
+use App\Client\Security\Client\ClientSecurityInterface;
 use App\Frontend\Security\AuthConfig\AuthConfigurationFactory;
 use App\Frontend\Security\AuthConfig\AuthConfigurationFactoryInterface;
 use App\Frontend\Security\AuthConfig\Expander\AuthConfigTransferExpanderFactory;
@@ -29,9 +29,9 @@ class SecurityPlugin implements ConfigurableInterface, DependencyProviderInterfa
     use PluginConfigurationTrait;
 
     /**
-     * @var SecurityClientInterface
+     * @var ClientSecurityInterface
      */
-    private readonly SecurityClientInterface $securityClient;
+    private readonly ClientSecurityInterface $securityClient;
 
     /**
      * @var Oauth2ClientFacadeInterface
@@ -44,7 +44,7 @@ class SecurityPlugin implements ConfigurableInterface, DependencyProviderInterfa
     public function provideDependencies(Container $container): void
     {
         $container->register(SecurityFacadeInterface::class, function (
-            SecurityClientInterface     $securityClient,
+            ClientSecurityInterface     $securityClient,
             Oauth2ClientFacadeInterface $oauth2ClientFacade
         ) {
             $this->securityClient       = $securityClient;

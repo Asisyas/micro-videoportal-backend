@@ -2,7 +2,7 @@
 
 namespace App\Frontend\VideoSearch\Facade;
 
-use App\Client\Search\Client\SearchClientInterface;
+use App\Client\Search\Client\ClientSearchInterface;
 use App\Shared\Generated\DTO\Search\SearchResultCollectionTransfer;
 use App\Shared\Generated\DTO\Search\SearchTransfer;
 use Elastic\Elasticsearch\Exception\ClientResponseException;
@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 class VideoSearchFacade implements VideoSearchFacadeInterface
 {
     /**
-     * @param SearchClientInterface $searchClient
+     * @param ClientSearchInterface $searchClient
      */
     public function __construct(
-        private readonly SearchClientInterface $searchClient
+        private readonly ClientSearchInterface $searchClient
     ) {
     }
 

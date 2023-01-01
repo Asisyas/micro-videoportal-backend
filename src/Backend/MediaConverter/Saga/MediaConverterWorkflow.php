@@ -6,10 +6,12 @@ use App\Shared\Generated\DTO\MediaConverter\DashManifestTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaResolutionCollectionTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaResolutionTransfer;
 use App\Shared\Generated\DTO\Video\VideoSrcSetTransfer;
 use App\Shared\MediaConverter\Saga\MediaConvertActivityInterface;
 use App\Shared\MediaConverter\Saga\MediaConvertWorkflowInterface;
-use App\Shared\Video\Saga\VideoUpdateSrcWorkflowInterface;
+use App\Shared\Video\VideoUpdateSrcWorkflowInterface;
 use Carbon\CarbonInterval;
 use Temporal\Activity\ActivityOptions;
 use Temporal\Common\RetryOptions;
@@ -55,18 +57,23 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
         $convertedCollection    = new MediaConvertedResultCollectionTransfer();
         $fileTransfer           = $mediaConfigurationTransfer->getFile();
         $mediaMetadataTransfer  = yield $this->mediaConvertActivity->extractMediaMetadata($fileTransfer);
+        /** @var MediaResolutionCollectionTransfer $resolutionsCollection */
         $resolutionsCollection  = yield $this->mediaConvertActivity->calculateMediaResolutions($mediaMetadataTransfer);
 
         $convertedCollection->setVideoId($fileTransfer->getId());
-        $i = 0;
-        foreach ($resolutionsCollection->getResolutions() as $resolutionTransfer) {
+        /** @var MediaResolutionTransfer[] $resolutionsArray */
+        $resolutionsArray = $resolutionsCollection->getResolutions();
+        $updateSource = count($resolutionsArray) === 1;
+        foreach ($resolutionsArray as $resolutionTransfer) {
             $mediaConfigurationTransfer->setResolutionConfiguration($resolutionTransfer);
 
             /** @var MediaConvertedResultTransfer $videoConvertedTransfer */
             $videoConvertedTransfer = yield $this->mediaConvertActivity->convert($mediaConfigurationTransfer);
             $convertedCollection->setResults([$videoConvertedTransfer]);
 
-            if (1 > $i++) {
+            if (!$updateSource) {
+                $updateSource = true;
+
                 continue;
             }
 

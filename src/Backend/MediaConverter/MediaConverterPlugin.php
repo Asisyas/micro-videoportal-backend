@@ -23,15 +23,21 @@ use App\Backend\MediaConverter\Facade\MediaConverterFacadeInterface;
 use App\Backend\MediaConverter\Options\Converter\Resolution;
 use App\Backend\MediaConverter\Options\Converter\ResolutionVideoOptionsInterface;
 use Micro\Component\DependencyInjection\Container;
-use Micro\Framework\Kernel\Plugin\AbstractPlugin;
+use Micro\Framework\Kernel\Plugin\ConfigurableInterface;
+use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
+use Micro\Framework\Kernel\Plugin\PluginConfigurationTrait;
+use Micro\Framework\Kernel\Plugin\PluginDependedInterface;
 use Micro\Plugin\Ffmpeg\Facade\FfmpegFacadeInterface;
+use Micro\Plugin\Ffmpeg\FfmpegPlugin;
 use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
+use Micro\Plugin\Filesystem\FilesystemPlugin;
 
 /**
  * @method MediaConverterPluginConfiguration configuration()
  */
-class MediaConverterPlugin extends AbstractPlugin
+class MediaConverterPlugin implements DependencyProviderInterface, ConfigurableInterface, PluginDependedInterface
 {
+    use PluginConfigurationTrait;
     /**
      * @var FfmpegFacadeInterface
      */
@@ -152,5 +158,16 @@ class MediaConverterPlugin extends AbstractPlugin
     protected function createVideoMetadataFromStreamExpanderFactory(): MetadataExpanderFactoryInterface
     {
         return new MetadataFromStreamExpanderFactory();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDependedPlugins(): iterable
+    {
+        return [
+            FfmpegPlugin::class,
+            FilesystemPlugin::class,
+        ];
     }
 }
