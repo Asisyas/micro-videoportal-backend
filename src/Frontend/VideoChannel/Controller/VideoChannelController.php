@@ -34,6 +34,16 @@ class VideoChannelController
     /**
      * @param Request $request
      *
+     * @return VideoChannelTransfer
+     */
+    public function lookupChannel(Request $request): VideoChannelTransfer
+    {
+        return $this->videoChannelFacade->handleLookupChannel($request);
+    }
+
+    /**
+     * @param Request $request
+     *
      * @return SearchResultCollectionTransfer
      */
     public function channelVideos(Request $request): SearchResultCollectionTransfer

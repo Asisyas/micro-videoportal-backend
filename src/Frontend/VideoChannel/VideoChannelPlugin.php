@@ -8,6 +8,9 @@ use App\Frontend\VideoChannel\Facade\VideoChannelFacade;
 use App\Frontend\VideoChannel\Facade\VideoChannelFacadeInterface;
 use App\Frontend\VideoChannel\Handler\Create\ChannelCreateRequestHandlerFactory;
 use App\Frontend\VideoChannel\Handler\Create\ChannelCreateRequestHandlerFactoryInterface;
+use App\Frontend\VideoChannel\Handler\Lookup\ChannelLookupRequestHandler;
+use App\Frontend\VideoChannel\Handler\Lookup\ChannelLookupRequestHandlerFactory;
+use App\Frontend\VideoChannel\Handler\Lookup\ChannelLookupRequestHandlerFactoryInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 
@@ -45,7 +48,19 @@ class VideoChannelPlugin extends AbstractPlugin
     protected function createFacade(): VideoChannelFacadeInterface
     {
         return new VideoChannelFacade(
-            $this->createChannelCreateRequestHandlerFactory()
+            $this->createChannelCreateRequestHandlerFactory(),
+            $this->createChannelLookupRequestHandlerFactory(),
+        );
+    }
+
+    /**
+     * @return ChannelLookupRequestHandlerFactoryInterface
+     */
+    protected function createChannelLookupRequestHandlerFactory(): ChannelLookupRequestHandlerFactoryInterface
+    {
+        return new ChannelLookupRequestHandlerFactory(
+            $this->videoChannelClient,
+            $this->securityFacade
         );
     }
 
