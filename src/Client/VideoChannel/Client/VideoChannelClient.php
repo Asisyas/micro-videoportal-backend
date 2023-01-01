@@ -91,4 +91,21 @@ class VideoChannelClient implements VideoChannelClientInterface
 
         return $this->searchClient->search($searchTransfer);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function lookupUserChannel(VideoChannelGetTransfer $videoChannelGetTransfer): VideoChannelTransfer
+    {
+        $request = (new RequestTransfer())
+            ->setIndex(Constants::STORAGE_IDX_CHANNEL_BY_USER)
+            ->setUuid($videoChannelGetTransfer->getOwnerId());
+
+        /** @var VideoChannelGetTransfer $videoChannelGetTransfer */
+        $videoChannelGetTransfer = $this->clientReaderFacade
+            ->lookup($request)
+            ->getData();
+
+        return $this->lookupChannel($videoChannelGetTransfer);
+    }
 }

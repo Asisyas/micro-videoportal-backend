@@ -1,15 +1,31 @@
 routes:
-  video_channel_create:
-    path: /{channel_id}
-    methods:
-      - POST
-    options:
-      action: createChannel
-      controller: 'App\Frontend\VideoChannel\Controller\VideoChannelController'
-  video_channel_videos_get:
-    path: /{channel_id}/videos
-    methods:
-      - GET
-    options:
-      action: channelVideos
-      controller: 'App\Frontend\VideoChannel\Controller\VideoChannelController'
+    video_channel_owned:
+        path: /
+        methods:
+            - GET
+        options:
+            action: lookupChannel
+            controller: 'App\Frontend\VideoChannel\Controller\VideoChannelController'
+            
+    video_channel_lookup:
+        path: /{channel_id}
+        methods:
+            - GET
+        options:
+            action: lookupChannel
+            controller: 'App\Frontend\VideoChannel\Controller\VideoChannelController'
+            
+    video_channel_create:
+        path: /{channel_id}
+        methods:
+            - POST
+        options:
+            action: createChannel
+            controller: 'App\Frontend\VideoChannel\Controller\VideoChannelController'
+    video_channel_videos_get:
+        path: /{channel_id}/videos
+        methods:
+            - GET
+        options:
+            action: channelVideos
+            controller: 'App\Frontend\VideoChannel\Controller\VideoChannelController'

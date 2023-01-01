@@ -17,7 +17,8 @@
     </class>
 
     <class name="Video\VideoChannelGet">
-        <property name="channel_id" type="string" required="true" />
+        <property name="channel_id" type="string"/>
+        <property name="owner_id" type="string" />
     </class>
 
     <class name="Video\Video">

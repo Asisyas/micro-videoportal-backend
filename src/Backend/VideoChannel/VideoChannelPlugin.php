@@ -12,6 +12,7 @@ use App\Backend\VideoChannel\Business\Expander\Transfer\VideoChannelTransferExpa
 use App\Backend\VideoChannel\Business\Expander\Transfer\VideoChannelTransferExpanderFactoryInterface;
 use App\Backend\VideoChannel\Business\Manager\VideoChannelManagerFactory;
 use App\Backend\VideoChannel\Business\Manager\VideoChannelManagerFactoryInterface;
+use App\Backend\VideoChannel\Business\Publisher\Impl\ChannelRelationReaderPublisher;
 use App\Backend\VideoChannel\Business\Publisher\Impl\ClientReaderPublisher;
 use App\Backend\VideoChannel\Business\Publisher\Impl\SearchIndexPublisher;
 use App\Backend\VideoChannel\Business\Publisher\PublisherFactory;
@@ -126,6 +127,7 @@ class VideoChannelPlugin extends AbstractPlugin
         return [
             new ClientReaderPublisher($this->clientStorageFacade),
             new SearchIndexPublisher($this->searchStorageFacade),
+            new ChannelRelationReaderPublisher($this->clientStorageFacade)
         ];
     }
 }
