@@ -2,7 +2,7 @@
 
 namespace App\Backend\Test\Command;
 
-use App\Client\Search\Client\SearchClientInterface;
+use App\Client\Search\Client\ClientSearchInterface;
 use App\Shared\Generated\DTO\Search\SearchTransfer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class TestVideoSearchCommand extends Command
 {
     public function __construct(
-        private readonly SearchClientInterface $searchClient
+        private readonly ClientSearchInterface $searchClient
     ) {
         parent::__construct('test:video:search');
     }

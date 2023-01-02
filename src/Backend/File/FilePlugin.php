@@ -2,6 +2,7 @@
 
 namespace App\Backend\File;
 
+use App\Backend\ClientStorage\ClientStoragePlugin;
 use App\Backend\ClientStorage\Facade\ClientStorageFacadeInterface;
 use App\Backend\File\Business\File\Factory\FileFactory;
 use App\Backend\File\Business\File\Factory\FileFactoryInterface;
@@ -16,14 +17,19 @@ use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\ConfigurableInterface;
 use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
 use Micro\Framework\Kernel\Plugin\PluginConfigurationTrait;
+use Micro\Framework\Kernel\Plugin\PluginDependedInterface;
 use Micro\Plugin\Doctrine\DoctrineFacadeInterface;
+use Micro\Plugin\Doctrine\DoctrinePlugin;
 use Micro\Plugin\Filesystem\Facade\FilesystemFacadeInterface;
+use Micro\Plugin\Filesystem\FilesystemPlugin;
+use Micro\Plugin\Temporal\TemporalPlugin;
 use Micro\Plugin\Uuid\UuidFacadeInterface;
+use Micro\Plugin\Uuid\UuidPlugin;
 
 /**
  * @method FilePluginConfigurationInterface configuration()
  */
-class FilePlugin implements DependencyProviderInterface, ConfigurableInterface
+class FilePlugin implements DependencyProviderInterface, ConfigurableInterface, PluginDependedInterface
 {
     use PluginConfigurationTrait;
 
@@ -136,5 +142,19 @@ class FilePlugin implements DependencyProviderInterface, ConfigurableInterface
     public function name(): string
     {
         return 'FilePluginBackend';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDependedPlugins(): iterable
+    {
+        return [
+            UuidPlugin::class,
+            DoctrinePlugin::class,
+            ClientStoragePlugin::class,
+            FilesystemPlugin::class,
+            TemporalPlugin::class,
+        ];
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Backend\Test\Command;
 
 use App\Shared\Generated\DTO\File\FileGetTransfer;
-use App\Shared\Saga\VideoPublish\VideoPublishWorkflowInterface;
+use App\Shared\Video\VideoPublishWorkflowInterface;
 use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

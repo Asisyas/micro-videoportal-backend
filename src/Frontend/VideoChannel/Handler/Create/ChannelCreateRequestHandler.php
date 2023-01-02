@@ -2,7 +2,7 @@
 
 namespace App\Frontend\VideoChannel\Handler\Create;
 
-use App\Client\VideoChannel\Client\VideoChannelClientInterface;
+use App\Client\VideoChannel\Client\ClientVideoChannelInterface;
 use App\Frontend\Security\Facade\SecurityFacadeInterface;
 use App\Shared\Generated\DTO\Video\VideoChannelCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoChannelTransfer;
@@ -15,12 +15,12 @@ use Temporal\Exception\Failure\ApplicationFailure;
 class ChannelCreateRequestHandler implements ChannelCreateRequestHandlerInterface
 {
     /**
-     * @param VideoChannelClientInterface $videoChannelClient
+     * @param ClientVideoChannelInterface $videoChannelClient
      * @param SecurityFacadeInterface $securityFacade
      */
     public function __construct(
-        private readonly VideoChannelClientInterface $videoChannelClient,
-        private readonly SecurityFacadeInterface $securityFacade
+        private readonly ClientVideoChannelInterface $videoChannelClient,
+        private readonly SecurityFacadeInterface     $securityFacade
     ) {
     }
 

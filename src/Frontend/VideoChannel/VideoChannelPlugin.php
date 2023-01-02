@@ -2,24 +2,23 @@
 
 namespace App\Frontend\VideoChannel;
 
-use App\Client\VideoChannel\Client\VideoChannelClientInterface;
+use App\Client\VideoChannel\Client\ClientVideoChannelInterface;
 use App\Frontend\Security\Facade\SecurityFacadeInterface;
 use App\Frontend\VideoChannel\Facade\VideoChannelFacade;
 use App\Frontend\VideoChannel\Facade\VideoChannelFacadeInterface;
 use App\Frontend\VideoChannel\Handler\Create\ChannelCreateRequestHandlerFactory;
 use App\Frontend\VideoChannel\Handler\Create\ChannelCreateRequestHandlerFactoryInterface;
-use App\Frontend\VideoChannel\Handler\Lookup\ChannelLookupRequestHandler;
 use App\Frontend\VideoChannel\Handler\Lookup\ChannelLookupRequestHandlerFactory;
 use App\Frontend\VideoChannel\Handler\Lookup\ChannelLookupRequestHandlerFactoryInterface;
 use Micro\Component\DependencyInjection\Container;
-use Micro\Framework\Kernel\Plugin\AbstractPlugin;
+use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
 
-class VideoChannelPlugin extends AbstractPlugin
+class VideoChannelPlugin implements DependencyProviderInterface
 {
     /**
-     * @var VideoChannelClientInterface
+     * @var ClientVideoChannelInterface
      */
-    private readonly VideoChannelClientInterface $videoChannelClient;
+    private readonly ClientVideoChannelInterface $videoChannelClient;
 
     /**
      * @var SecurityFacadeInterface
@@ -32,8 +31,8 @@ class VideoChannelPlugin extends AbstractPlugin
     public function provideDependencies(Container $container): void
     {
         $container->register(VideoChannelFacadeInterface::class, function (
-            VideoChannelClientInterface $videoChannelClient,
-            SecurityFacadeInterface $securityFacade
+            ClientVideoChannelInterface $videoChannelClient,
+            SecurityFacadeInterface     $securityFacade
         ) {
             $this->videoChannelClient = $videoChannelClient;
             $this->securityFacade = $securityFacade;

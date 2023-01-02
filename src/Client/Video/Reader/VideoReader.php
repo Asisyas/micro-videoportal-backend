@@ -4,8 +4,8 @@ namespace App\Client\Video\Reader;
 
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
 use App\Shared\Generated\DTO\ClientReader\RequestTransfer;
-use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
+use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use App\Shared\Video\Configuration;
 
 class VideoReader implements VideoReaderInterface

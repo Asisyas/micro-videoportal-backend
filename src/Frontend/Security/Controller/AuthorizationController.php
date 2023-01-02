@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Frontend\Security\Controller;
 
-use App\Client\Security\Client\SecurityClientInterface;
+use App\Client\Security\Client\ClientSecurityInterface;
 use App\Shared\Generated\DTO\Security\AuthCodeRequestTransfer;
 use App\Shared\Generated\DTO\Security\TokenTransfer;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
@@ -28,10 +28,10 @@ use Symfony\Component\HttpFoundation\Request;
 class AuthorizationController
 {
     /**
-     * @param SecurityClientInterface $securityClient
+     * @param ClientSecurityInterface $securityClient
      */
     public function __construct(
-        private readonly SecurityClientInterface $securityClient
+        private readonly ClientSecurityInterface $securityClient
     ) {
     }
 

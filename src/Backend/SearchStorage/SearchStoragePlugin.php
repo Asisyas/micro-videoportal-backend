@@ -7,12 +7,19 @@ use App\Backend\SearchStorage\Business\Storage\StorageFactoryInterface;
 use App\Backend\SearchStorage\Facade\SearchStorageFacade;
 use App\Backend\SearchStorage\Facade\SearchStorageFacadeInterface;
 use Micro\Component\DependencyInjection\Container;
-use Micro\Framework\Kernel\Plugin\AbstractPlugin;
+use Micro\Framework\Kernel\Plugin\ConfigurableInterface;
+use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
+use Micro\Framework\Kernel\Plugin\PluginConfigurationTrait;
+use Micro\Framework\Kernel\Plugin\PluginDependedInterface;
 use Micro\Library\DTO\SerializerFacadeInterface;
+use Micro\Plugin\DTO\DTOPlugin;
+use Micro\Plugin\Elastic\ElasticPlugin;
 use Micro\Plugin\Elastic\Facade\ElasticFacadeInterface;
 
-class SearchStoragePlugin extends AbstractPlugin
+class SearchStoragePlugin implements DependencyProviderInterface, PluginDependedInterface, ConfigurableInterface
 {
+    use PluginConfigurationTrait;
+
     /**
      * @var ElasticFacadeInterface
      */
@@ -58,5 +65,13 @@ class SearchStoragePlugin extends AbstractPlugin
             $this->elasticFacade,
             $this->serializerFacade
         );
+    }
+
+    public function getDependedPlugins(): iterable
+    {
+        return [
+            ElasticPlugin::class,
+            DTOPlugin::class,
+        ];
     }
 }

@@ -2,10 +2,8 @@
 
 namespace App\Client\Video\Publisher;
 
-use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
-use App\Shared\Saga\VideoPublish\VideoPublishWorkflowInterface;
-use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
+use App\Shared\Video\VideoPublishWorkflowInterface;
 use Temporal\Client\WorkflowClientInterface;
 use Temporal\Client\WorkflowOptions;
 

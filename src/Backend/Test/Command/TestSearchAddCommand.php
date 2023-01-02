@@ -3,7 +3,7 @@
 namespace App\Backend\Test\Command;
 
 use App\Backend\SearchStorage\Facade\SearchStorageFacadeInterface;
-use App\Client\Video\Client\VideoClientInterface;
+use App\Client\Video\Client\ClientVideoInterface;
 use App\Shared\Generated\DTO\Search\IndexAddTransfer;
 use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use Symfony\Component\Console\Command\Command;
@@ -15,7 +15,7 @@ class TestSearchAddCommand extends Command
 {
     public function __construct(
         private readonly SearchStorageFacadeInterface $searchStorageFacade,
-        private readonly VideoClientInterface $videoClient
+        private readonly ClientVideoInterface $videoClient
     ) {
         parent::__construct('test:video:index');
     }

@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace App\Frontend\VideoWatch\Exapnder\Impl;
 
-use App\Client\VideoChannel\Client\VideoChannelClientInterface;
+use App\Client\VideoChannel\Client\ClientVideoChannelInterface;
 use App\Frontend\VideoWatch\Exapnder\VideoWatchExpanderInterface;
 use App\Shared\Generated\DTO\Video\VideoChannelGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
@@ -25,10 +25,10 @@ use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 class ChannelExpander implements VideoWatchExpanderInterface
 {
     /**
-     * @param VideoChannelClientInterface $videoChannelClient
+     * @param ClientVideoChannelInterface $videoChannelClient
      */
     public function __construct(
-        private readonly VideoChannelClientInterface $videoChannelClient
+        private readonly ClientVideoChannelInterface $videoChannelClient
     ) {
     }
 

@@ -2,8 +2,7 @@
 
 namespace App\Frontend\File;
 
-use App\Client\File\FileClientInterface;
-use App\Client\Security\Client\SecurityClientInterface;
+use App\Client\File\Client\ClientFileInterface;
 use App\Frontend\Common\Validator\ArrayObject\ArrayValidatorFactoryInterface;
 use App\Frontend\File\Expander\FileUpload\FileUploadTransferExpanderFactory;
 use App\Frontend\File\Expander\FileUpload\FileUploadTransferExpanderFactoryInterface;
@@ -18,7 +17,7 @@ use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 
 class FilePlugin extends AbstractPlugin
 {
-    private FileClientInterface $fileClient;
+    private ClientFileInterface $fileClient;
 
     /**
      * {@inheritDoc}
@@ -26,7 +25,7 @@ class FilePlugin extends AbstractPlugin
     public function provideDependencies(Container $container): void
     {
         $container->register(FileFacadeInterface::class, function (
-            FileClientInterface $fileClient
+            ClientFileInterface $fileClient
         ) {
             $this->fileClient = $fileClient;
 

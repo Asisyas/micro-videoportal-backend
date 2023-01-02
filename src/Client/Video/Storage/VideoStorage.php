@@ -4,8 +4,8 @@ namespace App\Client\Video\Storage;
 
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
-use App\Shared\Saga\VideoCreate\VideoCreateWorkflowInterface;
 use App\Shared\Saga\VideoUpdate\VideoUpdateWorkflowInterface;
+use App\Shared\Video\VideoCreateWorkflowInterface;
 use Micro\Plugin\Temporal\Facade\TemporalFacadeInterface;
 
 class VideoStorage implements VideoStorageInterface

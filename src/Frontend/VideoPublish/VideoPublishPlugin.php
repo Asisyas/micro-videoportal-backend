@@ -2,8 +2,8 @@
 
 namespace App\Frontend\VideoPublish;
 
-use App\Client\File\FileClientInterface;
-use App\Client\Video\Client\VideoClientInterface;
+use App\Client\File\Client\ClientFileInterface;
+use App\Client\Video\Client\ClientVideoInterface;
 use App\Frontend\VideoPublish\Facade\VideoPublishFacade;
 use App\Frontend\VideoPublish\Facade\VideoPublishFacadeInterface;
 use App\Frontend\VideoPublish\Factory\VideoPublishTransferFactory;
@@ -14,11 +14,11 @@ use Micro\Framework\Kernel\Plugin\AbstractPlugin;
 class VideoPublishPlugin extends AbstractPlugin
 {
     /**
-     * @var VideoClientInterface
+     * @var ClientVideoInterface
      */
-    private readonly VideoClientInterface $videoClient;
+    private readonly ClientVideoInterface $videoClient;
 
-    private readonly FileClientInterface $fileClient;
+    private readonly ClientFileInterface $fileClient;
 
     /**
      * {@inheritDoc}
@@ -26,8 +26,8 @@ class VideoPublishPlugin extends AbstractPlugin
     public function provideDependencies(Container $container): void
     {
         $container->register(VideoPublishFacadeInterface::class, function (
-            VideoClientInterface $videoClient,
-            FileClientInterface $fileClient
+            ClientVideoInterface $videoClient,
+            ClientFileInterface $fileClient
         ) {
             $this->videoClient = $videoClient;
             $this->fileClient = $fileClient;

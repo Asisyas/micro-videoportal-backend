@@ -3,8 +3,8 @@
 namespace App\Frontend\VideoPublish\Facade;
 
 use App\Client\ClientReader\Exception\NotFoundException;
-use App\Client\File\FileClientInterface;
-use App\Client\Video\Client\VideoClientInterface;
+use App\Client\File\Client\ClientFileInterface;
+use App\Client\Video\Client\ClientVideoInterface;
 use App\Frontend\VideoPublish\Factory\VideoPublishTransferFactoryInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use Micro\Plugin\Http\Exception\HttpUnprocessableEntityException;
@@ -15,13 +15,13 @@ class VideoPublishFacade implements VideoPublishFacadeInterface
 {
     /**
      * @param VideoPublishTransferFactoryInterface $videoPublishTransferFactory
-     * @param VideoClientInterface $videoClient
-     * @param FileClientInterface $fileClient
+     * @param ClientVideoInterface $videoClient
+     * @param ClientFileInterface $fileClient
      */
     public function __construct(
         private readonly VideoPublishTransferFactoryInterface $videoPublishTransferFactory,
-        private readonly VideoClientInterface $videoClient,
-        private readonly FileClientInterface $fileClient
+        private readonly ClientVideoInterface                 $videoClient,
+        private readonly ClientFileInterface $fileClient
     ) {
     }
 

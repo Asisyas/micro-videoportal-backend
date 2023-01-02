@@ -3,16 +3,23 @@
 namespace App\Backend\ClientStorage;
 
 use Micro\Component\DependencyInjection\Container;
-use Micro\Framework\Kernel\Plugin\AbstractPlugin;
+use Micro\Framework\Kernel\Plugin\ConfigurableInterface;
+use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
+use Micro\Framework\Kernel\Plugin\PluginConfigurationTrait;
+use Micro\Framework\Kernel\Plugin\PluginDependedInterface;
 use Micro\Library\DTO\SerializerFacadeInterface;
+use Micro\Plugin\DTO\DTOPlugin;
 use Micro\Plugin\Redis\RedisFacadeInterface;
 use App\Backend\ClientStorage\Business\Client\ClientFactoryInterface;
 use App\Backend\ClientStorage\Business\Client\Redis\RedisClientFactory;
 use App\Backend\ClientStorage\Facade\ClientStorageFacade;
 use App\Backend\ClientStorage\Facade\ClientStorageFacadeInterface;
+use Micro\Plugin\Redis\RedisPlugin;
 
-class ClientStoragePlugin extends AbstractPlugin
+class ClientStoragePlugin implements DependencyProviderInterface, PluginDependedInterface, ConfigurableInterface
 {
+    use PluginConfigurationTrait;
+
     /**
      * {@inheritDoc}
      */
@@ -49,5 +56,13 @@ class ClientStoragePlugin extends AbstractPlugin
         SerializerFacadeInterface $serializerFacade
     ): ClientFactoryInterface {
         return new RedisClientFactory($redisFacade, $serializerFacade);
+    }
+
+    public function getDependedPlugins(): iterable
+    {
+        return [
+            RedisPlugin::class,
+            DTOPlugin::class,
+        ];
     }
 }

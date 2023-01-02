@@ -3,11 +3,10 @@
 namespace App\Backend\Test\Command;
 
 use App\Backend\MediaConverter\Facade\MediaConverterFacadeInterface;
-use App\Client\File\FileClientInterface;
+use App\Client\File\Client\ClientFileInterface;
 use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
 use App\Shared\Generated\DTO\MediaConverter\ResolutionTransfer;
-use App\Shared\Generated\DTO\MediaConverter\VideoConvertTransfer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -17,7 +16,7 @@ class VideoConvertCommand extends Command
 {
     public function __construct(
         private readonly MediaConverterFacadeInterface $videoConverterFacade,
-        private readonly FileClientInterface           $fileClient
+        private readonly ClientFileInterface $fileClient
     ) {
         parent::__construct('test:video:convert');
     }

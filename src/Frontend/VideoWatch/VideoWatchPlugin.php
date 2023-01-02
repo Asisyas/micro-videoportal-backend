@@ -3,7 +3,7 @@
 namespace App\Frontend\VideoWatch;
 
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
-use App\Client\VideoChannel\Client\VideoChannelClientInterface;
+use App\Client\VideoChannel\Client\ClientVideoChannelInterface;
 use App\Frontend\VideoWatch\Exapnder\Impl\ChannelExpander;
 use App\Frontend\VideoWatch\Exapnder\Impl\SrcExpander;
 use App\Frontend\VideoWatch\Exapnder\VideoWatchExpanderFactory;
@@ -27,9 +27,9 @@ class VideoWatchPlugin extends AbstractPlugin
     private readonly FilesystemFacadeInterface $filesystemFacade;
 
     /**
-     * @var VideoChannelClientInterface
+     * @var ClientVideoChannelInterface
      */
-    private readonly VideoChannelClientInterface $videoChannelClient;
+    private readonly ClientVideoChannelInterface $videoChannelClient;
 
     /**
      * {@inheritDoc}
@@ -39,7 +39,7 @@ class VideoWatchPlugin extends AbstractPlugin
         $container->register(VideoWatchFacadeInterface::class, function (
             ClientReaderFacadeInterface     $clientReaderFacade,
             FilesystemFacadeInterface       $filesystemFacade,
-            VideoChannelClientInterface     $videoChannelClient
+            ClientVideoChannelInterface $videoChannelClient
         ) {
             $this->clientReaderFacade =     $clientReaderFacade;
             $this->filesystemFacade =       $filesystemFacade;
