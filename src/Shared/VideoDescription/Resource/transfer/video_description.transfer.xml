@@ -21,8 +21,8 @@
         <property name="video_id" type="string" required="true"/>
     </class>
 
-    <class name="Video\VideoWatch">
-        <property name="title" type="string" required="true" />
+    <class name="Video\Video">
+        <property name="title" type="string" />
         <property name="description" type="string" />
     </class>
 </dto>

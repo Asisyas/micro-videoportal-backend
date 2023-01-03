@@ -6,6 +6,7 @@ use App\Shared\Generated\DTO\Video\VideoDescriptionDeleteTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 
 interface VideoDescriptionManagerInterface
 {
@@ -36,4 +37,11 @@ interface VideoDescriptionManagerInterface
      * @return bool
      */
     public function delete(VideoDescriptionDeleteTransfer $videoDescriptionDeleteTransfer): bool;
+
+    /**
+     * @param VideoGetTransfer $videoGetTransfer
+     *
+     * @return void
+     */
+    public function propagate(VideoGetTransfer $videoGetTransfer): void;
 }

@@ -1,6 +1,6 @@
 routes:
   video_publish:
-    path: /{channel_id}/{file_id}
+    path: /{file_id}
     methods:
       - POST
     options:

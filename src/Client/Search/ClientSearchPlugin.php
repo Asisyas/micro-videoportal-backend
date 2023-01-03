@@ -11,6 +11,7 @@ use App\Client\Search\Engine\SearchEngineFactoryInterface;
 use App\Client\Search\Expander\SearchResults\SearchResultsExpanderFactory;
 use App\Client\Search\Expander\SearchResults\SearchResultsExpanderFactoryInterface;
 use App\Client\Search\Expander\SearchResults\Video\TemporaryExpander;
+use App\Frontend\Common\Video\ClientExpander\VideoTransferExpander\Facade\VideoTransferExpanderFacadeInterface;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
 use Micro\Framework\Kernel\Plugin\PluginDependedInterface;
@@ -30,16 +31,23 @@ class ClientSearchPlugin implements DependencyProviderInterface, PluginDependedI
     private readonly ClientReaderFacadeInterface $clientReaderFacade;
 
     /**
+     * @var VideoTransferExpanderFacadeInterface
+     */
+    private readonly VideoTransferExpanderFacadeInterface $videoTransferExpanderFacade;
+
+    /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
         $container->register(ClientSearchInterface::class, function (
             ElasticFacadeInterface $elasticFacade,
-            ClientReaderFacadeInterface $clientReaderFacade
+            ClientReaderFacadeInterface $clientReaderFacade,
+            VideoTransferExpanderFacadeInterface $videoTransferExpanderFacade
         ) {
             $this->elasticFacade = $elasticFacade;
             $this->clientReaderFacade = $clientReaderFacade;
+            $this->videoTransferExpanderFacade = $videoTransferExpanderFacade;
 
             return $this->createClient();
         });
@@ -72,7 +80,10 @@ class ClientSearchPlugin implements DependencyProviderInterface, PluginDependedI
     public function createSearchResultsExpanderFactory(): SearchResultsExpanderFactoryInterface
     {
         return new SearchResultsExpanderFactory(
-            new TemporaryExpander($this->clientReaderFacade)
+            new TemporaryExpander(
+                $this->clientReaderFacade,
+                $this->videoTransferExpanderFacade
+            )
         );
     }
 

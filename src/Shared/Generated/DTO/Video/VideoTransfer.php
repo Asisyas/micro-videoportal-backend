@@ -12,14 +12,28 @@ use DateTimeInterface;
 
 final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
 {
+    protected string|null $thumbnail = null;
     protected string|null $channel_id = null;
+    protected VideoChannelTransfer|null $channel = null;
     protected string $id;
     protected string|null $src = null;
     protected DateTimeInterface|null $created_at = null;
+    protected string|null $title = null;
+    protected string|null $description = null;
+
+    public function getThumbnail(): string|null
+    {
+        return $this->thumbnail;
+    }
 
     public function getChannelId(): string|null
     {
         return $this->channel_id;
+    }
+
+    public function getChannel(): VideoChannelTransfer|null
+    {
+        return $this->channel;
     }
 
     public function getId(): string
@@ -37,9 +51,33 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this->created_at;
     }
 
+    public function getTitle(): string|null
+    {
+        return $this->title;
+    }
+
+    public function getDescription(): string|null
+    {
+        return $this->description;
+    }
+
+    public function setThumbnail(string|null $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
     public function setChannelId(string|null $channel_id): self
     {
         $this->channel_id = $channel_id;
+
+        return $this;
+    }
+
+    public function setChannel(VideoChannelTransfer|null $channel): self
+    {
+        $this->channel = $channel;
 
         return $this;
     }
@@ -65,9 +103,33 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
         return $this;
     }
 
+    public function setTitle(string|null $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function setDescription(string|null $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
     protected static function attributesMetadata(): array
     {
         return array(
+          'thumbnail' =>
+          array(
+            'type' =>
+            array(
+              0 => 'string',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'thumbnail',
+          ),
           'channel_id' =>
           array(
             'type' =>
@@ -77,6 +139,16 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
             ),
             'required' => false,
             'actionName' => 'channelId',
+          ),
+          'channel' =>
+          array(
+            'type' =>
+            array(
+              0 => 'App\\Shared\\Generated\\DTO\\Video\\VideoChannelTransfer',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'channel',
           ),
           'id' =>
           array(
@@ -106,6 +178,26 @@ final class VideoTransfer extends \Micro\Library\DTO\Object\AbstractDto
             ),
             'required' => false,
             'actionName' => 'createdAt',
+          ),
+          'title' =>
+          array(
+            'type' =>
+            array(
+              0 => 'string',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'title',
+          ),
+          'description' =>
+          array(
+            'type' =>
+            array(
+              0 => 'string',
+              1 => 'null',
+            ),
+            'required' => false,
+            'actionName' => 'description',
           ),
         );
     }

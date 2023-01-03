@@ -39,6 +39,8 @@ $pluginsCommon = [
     App\Shared\Config\ConfigPlugin::class,
 
     Micro\Plugin\Console\ConsolePlugin::class,
+
+    App\Frontend\Common\Video\ClientExpander\VideoTransferExpander\VideoTransferExpanderPlugin::class,
 ];
 
 $pluginClients = [

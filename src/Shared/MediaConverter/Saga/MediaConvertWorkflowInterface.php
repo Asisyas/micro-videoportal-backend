@@ -3,6 +3,7 @@
 namespace App\Shared\MediaConverter\Saga;
 
 use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultTransfer;
 use Micro\Plugin\Temporal\Workflow\WorkflowInterface;
 use Temporal\Workflow\WorkflowMethod;
@@ -13,7 +14,7 @@ interface MediaConvertWorkflowInterface extends WorkflowInterface
     /**
      * @param MediaConfigurationTransfer $mediaConfigurationTransfer
      *
-     * @return MediaConvertedResultTransfer
+     * @return MediaConvertedResultCollectionTransfer
      */
     #[WorkflowMethod("MediaConvert")]
     public function convert(MediaConfigurationTransfer $mediaConfigurationTransfer);

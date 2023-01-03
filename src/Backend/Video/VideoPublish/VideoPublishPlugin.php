@@ -13,10 +13,9 @@ use App\Backend\Video\VideoPublish\Business\Expander\Impl\VideoDescriptionExpand
 use App\Backend\Video\VideoPublish\Business\Expander\Impl\VideoSourceExpander;
 use App\Backend\Video\VideoPublish\Business\Expander\VideoWatchExpanderFactory;
 use App\Backend\Video\VideoPublish\Business\Expander\VideoWatchExpanderFactoryInterface;
-use App\Backend\Video\VideoPublish\Business\Factory\VideoWatchTransferFactory;
-use App\Backend\Video\VideoPublish\Business\Factory\VideoWatchTransferFactoryInterface;
 use App\Backend\Video\VideoPublish\Business\Index\Propagator\Impl\ClientReaderPropagator;
 use App\Backend\Video\VideoPublish\Business\Index\Propagator\Impl\SearchIndexPropagator;
+use App\Backend\Video\VideoPublish\Business\Index\Propagator\Impl\VideoDescriptionPropagator;
 use App\Backend\Video\VideoPublish\Business\Index\Propagator\IndexPropagatorFactory;
 use App\Backend\Video\VideoPublish\Business\Index\Propagator\IndexPropagatorFactoryInterface;
 use App\Backend\Video\VideoPublish\Business\Index\VideoIndexPropagateManagerFactory;
@@ -63,7 +62,7 @@ class VideoPublishPlugin implements ConfigurableInterface, DependencyProviderInt
             VideoFacadeInterface $videoFacade,
             VideoDescriptionFacadeInterface $videoDescriptionFacade,
             SearchStorageFacadeInterface $searchStorageFacade,
-            ClientStorageFacadeInterface $clientStorageFacade
+            ClientStorageFacadeInterface $clientStorageFacade,
         ) {
             $this->clientStorageFacade      = $clientStorageFacade;
             $this->searchStorageFacade      = $searchStorageFacade;
@@ -85,34 +84,13 @@ class VideoPublishPlugin implements ConfigurableInterface, DependencyProviderInt
     }
 
     /**
-     * @return VideoWatchExpanderFactoryInterface
-     */
-    public function createVideoWatchExpanderFactory(): VideoWatchExpanderFactoryInterface
-    {
-        return new VideoWatchExpanderFactory(
-            new VideoSourceExpander($this->videoFacade),
-            new VideoDescriptionExpander($this->videoDescriptionFacade)
-        );
-    }
-
-    /**
-     * @return VideoWatchTransferFactoryInterface
-     */
-    public function createVideoWatchTransferFactory(): VideoWatchTransferFactoryInterface
-    {
-        return new VideoWatchTransferFactory(
-            $this->createVideoWatchExpanderFactory()
-        );
-    }
-
-    /**
      * @return VideoIndexPropagateManagerFactoryInterface
      */
     public function createVideoIndexPropagateManagerFactory(): VideoIndexPropagateManagerFactoryInterface
     {
         return new VideoIndexPropagateManagerFactory(
             $this->createIndexPropagatorFactory(),
-            $this->createVideoWatchTransferFactory()
+            $this->videoFacade
         );
     }
 
@@ -123,7 +101,8 @@ class VideoPublishPlugin implements ConfigurableInterface, DependencyProviderInt
     {
         return new IndexPropagatorFactory(
             new ClientReaderPropagator($this->clientStorageFacade),
-            new SearchIndexPropagator($this->searchStorageFacade)
+            new SearchIndexPropagator($this->searchStorageFacade),
+            new VideoDescriptionPropagator($this->videoDescriptionFacade),
         );
     }
 

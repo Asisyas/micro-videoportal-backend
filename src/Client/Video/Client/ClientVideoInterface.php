@@ -4,8 +4,8 @@ namespace App\Client\Video\Client;
 
 use App\Client\ClientReader\Exception\NotFoundException;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
-use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 
 interface ClientVideoInterface
@@ -25,13 +25,13 @@ interface ClientVideoInterface
     public function videoPublish(VideoPublishTransfer $videoPublishTransfer): void;
 
     /**
-     * @param VideoWatchTransfer $videoGetTransfer
+     * @param VideoGetTransfer $videoGetTransfer
      *
      * @return VideoTransfer
      *
      * @throws NotFoundException
      */
-    public function lookupVideo(VideoWatchTransfer $videoGetTransfer): VideoTransfer;
+    public function lookupVideo(VideoGetTransfer $videoGetTransfer): VideoTransfer;
 
     /**
      * @param VideoTransfer $videoTransfer

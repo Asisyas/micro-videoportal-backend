@@ -2,6 +2,7 @@
 
 namespace App\Backend\Video\VideoPublish\Business\Index;
 
+use App\Backend\Video\Video\Facade\VideoFacadeInterface;
 use App\Backend\Video\VideoPublish\Business\Factory\VideoWatchTransferFactoryInterface;
 use App\Backend\Video\VideoPublish\Business\Index\Propagator\IndexPropagatorFactoryInterface;
 
@@ -9,11 +10,11 @@ class VideoIndexPropagateManagerFactory implements VideoIndexPropagateManagerFac
 {
     /**
      * @param IndexPropagatorFactoryInterface $indexPropagatorFactory
-     * @param VideoWatchTransferFactoryInterface $videoWatchTransferFactory
+     * @param VideoFacadeInterface $videoFacade
      */
     public function __construct(
         private readonly IndexPropagatorFactoryInterface $indexPropagatorFactory,
-        private readonly VideoWatchTransferFactoryInterface $videoWatchTransferFactory
+        private readonly VideoFacadeInterface $videoFacade
     ) {
     }
 
@@ -23,7 +24,7 @@ class VideoIndexPropagateManagerFactory implements VideoIndexPropagateManagerFac
     public function create(): VideoIndexPropagateManagerInterface
     {
         return new VideoIndexPropagateManager(
-            $this->videoWatchTransferFactory,
+            $this->videoFacade,
             $this->indexPropagatorFactory->create(),
         );
     }

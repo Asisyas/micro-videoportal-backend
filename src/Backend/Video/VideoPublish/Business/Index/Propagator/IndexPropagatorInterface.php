@@ -2,14 +2,14 @@
 
 namespace App\Backend\Video\VideoPublish\Business\Index\Propagator;
 
-use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
+use App\Shared\Generated\DTO\Video\VideoTransfer;
 
 interface IndexPropagatorInterface
 {
     /**
-     * @param VideoWatchTransfer $videoWatchTransfer
+     * @param VideoTransfer $videoTransfer
      *
      * @return void
      */
-    public function propagate(VideoWatchTransfer $videoWatchTransfer): void;
+    public function propagate(VideoTransfer $videoTransfer): void;
 }

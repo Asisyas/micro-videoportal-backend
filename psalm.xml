@@ -44,6 +44,12 @@
                 <file name="src/Backend/SearchStorage/SearchStoragePlugin.php"/>
                 <file name="src/Backend/MediaConverter/MediaConverterPlugin.php"/>
                 <file name="src/Backend/ImageConverter/ImageConverterPlugin.php"/>
+                <file name="src/Backend/Video/VideoThumbnail/VideoThumbnailPlugin.php"/>
+                <file name="src/Frontend/Common/Video/ClientExpander/VideoTransferExpander/VideoTransferExpanderPlugin.php"/>
+                <file name="src/Frontend/Common/Video/ClientExpander/VideoTransferExpanderChannel/VideoTransferExpanderChannelPlugin.php"/>
+                <file name="src/Frontend/Common/Video/ClientExpander/VideoTransferExpanderDescription/VideoTransferExpanderDescriptionPlugin.php"/>
+                <file name="src/Frontend/Common/Video/ClientExpander/VideoTransferExpanderSrc/VideoTransferExpanderSourcePlugin.php"/>
+                <file name="src/Frontend/Common/Video/ClientExpander/VideoTransferExpanderThumbnail/VideoTransferExpanderThumbnailPlugin.php"/>
             </errorLevel>
         </InaccessibleProperty>
     </issueHandlers>

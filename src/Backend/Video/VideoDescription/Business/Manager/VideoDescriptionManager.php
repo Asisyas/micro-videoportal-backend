@@ -2,14 +2,18 @@
 
 namespace App\Backend\Video\VideoDescription\Business\Manager;
 
+use App\Backend\ClientStorage\Facade\ClientStorageFacadeInterface;
 use App\Backend\Video\VideoDescription\Business\Expander\Entity\VideoDescriptionEntityExpanderInterface;
 use App\Backend\Video\VideoDescription\Business\Factory\Entity\VideoDescriptionEntityFactoryInterface;
 use App\Backend\Video\VideoDescription\Business\Factory\Transfer\VideoDescriptionTransferFactoryInterface;
 use App\Backend\Video\VideoDescription\Entity\VideoDescription;
+use App\Shared\Generated\DTO\ClientStorage\PutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionDeleteTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
+use App\Shared\VideoDescription\Constants;
 use Doctrine\ORM\EntityManagerInterface;
 
 class VideoDescriptionManager implements VideoDescriptionManagerInterface
@@ -19,12 +23,14 @@ class VideoDescriptionManager implements VideoDescriptionManagerInterface
      * @param VideoDescriptionEntityFactoryInterface $videoDescriptionEntityFactory
      * @param VideoDescriptionTransferFactoryInterface $videoDescriptionTransferFactory
      * @param VideoDescriptionEntityExpanderInterface $videoDescriptionEntityExpander
+     * @param ClientStorageFacadeInterface $clientStorageFacade
      */
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly VideoDescriptionEntityFactoryInterface $videoDescriptionEntityFactory,
         private readonly VideoDescriptionTransferFactoryInterface $videoDescriptionTransferFactory,
-        private readonly VideoDescriptionEntityExpanderInterface $videoDescriptionEntityExpander
+        private readonly VideoDescriptionEntityExpanderInterface $videoDescriptionEntityExpander,
+        private readonly ClientStorageFacadeInterface $clientStorageFacade
     ) {
     }
 
@@ -54,6 +60,8 @@ class VideoDescriptionManager implements VideoDescriptionManagerInterface
         $this->entityManager->persist($videoDescription);
         $this->entityManager->flush();
 
+        $this->propagateStorage($videoDescription);
+
         return true;
     }
 
@@ -62,9 +70,8 @@ class VideoDescriptionManager implements VideoDescriptionManagerInterface
      */
     public function create(VideoDescriptionPutTransfer $videoDescriptionPutTransfer): bool
     {
-        $this->entityManager->persist(
-            $this->videoDescriptionEntityFactory->create($videoDescriptionPutTransfer)
-        );
+        $videoDescriptionEntity = $this->videoDescriptionEntityFactory->create($videoDescriptionPutTransfer);
+        $this->entityManager->persist($videoDescriptionEntity);
 
         $this->entityManager->flush();
 
@@ -81,6 +88,29 @@ class VideoDescriptionManager implements VideoDescriptionManagerInterface
         $this->entityManager->flush();
 
         return true;
+    }
+
+    public function propagate(VideoGetTransfer $videoGetTransfer): void
+    {
+        $videoDescriptionEntity = $this->lookupEntity($videoGetTransfer->getVideoId());
+
+        $this->propagateStorage($videoDescriptionEntity);
+    }
+
+    /**
+     * @param VideoDescription $videoDescriptionEntity
+     *
+     * @return void
+     */
+    protected function propagateStorage(VideoDescription $videoDescriptionEntity): void
+    {
+        $putTransfer = new PutTransfer();
+        $putTransfer
+            ->setIndex(Constants::STORAGE_IDX)
+            ->setUuid($videoDescriptionEntity->getId())
+            ->setData($this->videoDescriptionTransferFactory->create($videoDescriptionEntity));
+
+        $this->clientStorageFacade->put($putTransfer);
     }
 
     /**

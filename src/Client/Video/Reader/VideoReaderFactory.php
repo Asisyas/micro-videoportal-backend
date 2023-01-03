@@ -3,6 +3,7 @@
 namespace App\Client\Video\Reader;
 
 use App\Client\ClientReader\Facade\ClientReaderFacadeInterface;
+use App\Frontend\Common\Video\ClientExpander\VideoTransferExpander\Facade\VideoTransferExpanderFacadeInterface;
 
 class VideoReaderFactory implements VideoReaderFactoryInterface
 {
@@ -10,7 +11,8 @@ class VideoReaderFactory implements VideoReaderFactoryInterface
      * @param ClientReaderFacadeInterface $clientReaderFacade
      */
     public function __construct(
-        private readonly ClientReaderFacadeInterface $clientReaderFacade
+        private readonly ClientReaderFacadeInterface $clientReaderFacade,
+        private readonly VideoTransferExpanderFacadeInterface $videoTransferExpanderFacade
     ) {
     }
 
@@ -19,6 +21,9 @@ class VideoReaderFactory implements VideoReaderFactoryInterface
      */
     public function create(): VideoReaderInterface
     {
-        return new VideoReader($this->clientReaderFacade);
+        return new VideoReader(
+            $this->clientReaderFacade,
+            $this->videoTransferExpanderFacade
+        );
     }
 }

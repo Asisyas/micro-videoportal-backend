@@ -2,28 +2,40 @@
 
 namespace App\Frontend\VideoWatch\Controller;
 
+use App\Client\ClientReader\Exception\NotFoundException;
+use App\Client\Video\Client\ClientVideoInterface;
 use App\Frontend\VideoWatch\Facade\VideoWatchFacadeInterface;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
-use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
+use Micro\Plugin\Http\Exception\HttpNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 
 class VideoWatchController
 {
     /**
-     * @param VideoWatchFacadeInterface $videoWatchFacade
+     * @param ClientVideoInterface $clientVideo
      */
     public function __construct(
-        private readonly VideoWatchFacadeInterface $videoWatchFacade
+        private readonly ClientVideoInterface $clientVideo
     ) {
     }
 
     /**
      * @param Request $request
      *
-     * @return VideoWatchTransfer
+     * @return VideoTransfer
+     *
+     * @throws HttpNotFoundException
      */
-    public function getVideo(Request $request): VideoWatchTransfer
+    public function getVideo(Request $request): VideoTransfer
     {
-        return $this->videoWatchFacade->handleVideoWatchRequest($request);
+        try {
+            $videoGetTransfer = new VideoGetTransfer();
+            $videoGetTransfer->setVideoId($request->get('id'));
+
+            return $this->clientVideo->lookupVideo($videoGetTransfer);
+        } catch (NotFoundException $exception) {
+            throw new HttpNotFoundException();
+        }
     }
 }

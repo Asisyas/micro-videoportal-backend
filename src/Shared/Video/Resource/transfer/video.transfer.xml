@@ -6,11 +6,11 @@
     <class name="Video\Video">
         <property name="id" type="string" required="true"/>
         <property name="src" type="string" />
-        <property name="created_at" type="datetime" />
+        <property name="created_at" type="datetime"/>
     </class>
 
     <class name="Video\VideoCreate">
-        <property name="video_id" type="string" required="true" />
+        <property name="video_id" type="string" required="true"/>
     </class>
 
     <class name="Video\VideoGet">

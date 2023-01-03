@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<dto xmlns="micro:dto-01"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="micro:dto-01 https://raw.githubusercontent.com/Micro-PHP/dto/master/src/Resource/schema/dto-01.xsd">
+
+    <class name="Video\VideoThumbnailGenerated">
+        <property name="results" type="Video\VideoThumbnail" is_collection="true"/>
+    </class>
+
+    <class name="Video\VideoThumbnail">
+        <property name="src" type="string"/>
+    </class>
+
+    <class name="Video\Video">
+        <property name="thumbnail" type="string"/>
+    </class>
+</dto>

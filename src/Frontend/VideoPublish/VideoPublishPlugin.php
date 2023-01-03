@@ -4,6 +4,8 @@ namespace App\Frontend\VideoPublish;
 
 use App\Client\File\Client\ClientFileInterface;
 use App\Client\Video\Client\ClientVideoInterface;
+use App\Client\VideoChannel\Client\ClientVideoChannelInterface;
+use App\Frontend\Security\Facade\SecurityFacadeInterface;
 use App\Frontend\VideoPublish\Facade\VideoPublishFacade;
 use App\Frontend\VideoPublish\Facade\VideoPublishFacadeInterface;
 use App\Frontend\VideoPublish\Factory\VideoPublishTransferFactory;
@@ -18,19 +20,37 @@ class VideoPublishPlugin extends AbstractPlugin
      */
     private readonly ClientVideoInterface $videoClient;
 
+    /**
+     * @var ClientFileInterface
+     */
     private readonly ClientFileInterface $fileClient;
+    /**
+     * @var SecurityFacadeInterface
+     */
+    private readonly SecurityFacadeInterface $securityFacade;
 
     /**
+     * @var ClientVideoChannelInterface
+     */
+    private readonly ClientVideoChannelInterface $clientVideoChannel;
+
+    /**
+     * private readonly SecurityFacadeInterface $securityFacade,
+    private readonly ClientVideoChannelInterface $clientVideoChannel
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
         $container->register(VideoPublishFacadeInterface::class, function (
             ClientVideoInterface $videoClient,
-            ClientFileInterface $fileClient
+            ClientFileInterface $fileClient,
+            SecurityFacadeInterface $securityFacade,
+            ClientVideoChannelInterface $clientVideoChannel
         ) {
             $this->videoClient = $videoClient;
             $this->fileClient = $fileClient;
+            $this->securityFacade = $securityFacade;
+            $this->clientVideoChannel = $clientVideoChannel;
 
             return $this->createFacade();
         });
@@ -53,7 +73,10 @@ class VideoPublishPlugin extends AbstractPlugin
      */
     public function createVideoPublishTransferFactory(): VideoPublishTransferFactoryInterface
     {
-        return new VideoPublishTransferFactory();
+        return new VideoPublishTransferFactory(
+            $this->securityFacade,
+            $this->clientVideoChannel
+        );
     }
 
     /**

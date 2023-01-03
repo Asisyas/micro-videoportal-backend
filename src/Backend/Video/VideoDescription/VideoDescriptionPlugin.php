@@ -2,6 +2,7 @@
 
 namespace App\Backend\Video\VideoDescription;
 
+use App\Backend\ClientStorage\Facade\ClientStorageFacadeInterface;
 use App\Backend\Video\VideoDescription\Business\Expander\Entity\VideoDescriptionEntityExpanderFactory;
 use App\Backend\Video\VideoDescription\Business\Expander\Entity\VideoDescriptionEntityExpanderFactoryInterface;
 use App\Backend\Video\VideoDescription\Business\Factory\Entity\VideoDescriptionEntityFactory;
@@ -27,14 +28,21 @@ class VideoDescriptionPlugin implements DependencyProviderInterface, PluginDepen
     private readonly DoctrineFacadeInterface $doctrineFacade;
 
     /**
+     * @var ClientStorageFacadeInterface
+     */
+    private readonly ClientStorageFacadeInterface $clientStorageFacade;
+
+    /**
      * {@inheritDoc}
      */
     public function provideDependencies(Container $container): void
     {
         $container->register(VideoDescriptionFacadeInterface::class, function (
-            DoctrineFacadeInterface $doctrineFacade
+            DoctrineFacadeInterface $doctrineFacade,
+            ClientStorageFacadeInterface $clientStorageFacade
         ) {
             $this->doctrineFacade = $doctrineFacade;
+            $this->clientStorageFacade = $clientStorageFacade;
 
             return $this->createFacade();
         });
@@ -58,7 +66,8 @@ class VideoDescriptionPlugin implements DependencyProviderInterface, PluginDepen
             $this->doctrineFacade,
             $this->createVideoDescriptionEntityFactory($expanderFactory),
             $this->createVideoDescriptionTransferFactory(),
-            $expanderFactory
+            $expanderFactory,
+            $this->clientStorageFacade
         );
     }
 
