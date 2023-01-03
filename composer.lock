@@ -58,16 +58,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.255.7",
+            "version": "3.255.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "50585058d65fd676ba689783c437d341b1198554"
+                "reference": "6cfc9c8b63105bafb537964dd94d1f4070be172c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/50585058d65fd676ba689783c437d341b1198554",
-                "reference": "50585058d65fd676ba689783c437d341b1198554",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6cfc9c8b63105bafb537964dd94d1f4070be172c",
+                "reference": "6cfc9c8b63105bafb537964dd94d1f4070be172c",
                 "shasum": ""
             },
             "require": {
@@ -146,9 +146,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.255.7"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.255.8"
             },
-            "time": "2022-12-30T19:22:02+00:00"
+            "time": "2023-01-03T19:21:55+00:00"
         },
         {
             "name": "brick/math",
@@ -2350,16 +2350,16 @@
         },
         {
             "name": "micro/autowire",
-            "version": "v1.2",
+            "version": "v1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Micro-PHP/container-autowire.git",
-                "reference": "52e421c4165234bba067b84ea56b6cf9cc296196"
+                "reference": "e75f9e9ed83e6942ec58f8f35dcd72be1f3fffab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Micro-PHP/container-autowire/zipball/52e421c4165234bba067b84ea56b6cf9cc296196",
-                "reference": "52e421c4165234bba067b84ea56b6cf9cc296196",
+                "url": "https://api.github.com/repos/Micro-PHP/container-autowire/zipball/e75f9e9ed83e6942ec58f8f35dcd72be1f3fffab",
+                "reference": "e75f9e9ed83e6942ec58f8f35dcd72be1f3fffab",
                 "shasum": ""
             },
             "require": {
@@ -2384,9 +2384,9 @@
             "description": "Micro Framework: Component for autoconfiguring services",
             "support": {
                 "issues": "https://github.com/Micro-PHP/container-autowire/issues",
-                "source": "https://github.com/Micro-PHP/container-autowire/tree/v1.2"
+                "source": "https://github.com/Micro-PHP/container-autowire/tree/v1.3"
             },
-            "time": "2023-01-03T12:19:42+00:00"
+            "time": "2023-01-03T21:52:23+00:00"
         },
         {
             "name": "micro/dependency-injection",
@@ -9592,16 +9592,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.9.5",
+            "version": "1.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "4d18c5d98965029c2aa1ccbd91dc22e7ba8c5034"
+                "reference": "ef38a25950e5d0e6c95eedf49d8a784272f8dc5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4d18c5d98965029c2aa1ccbd91dc22e7ba8c5034",
-                "reference": "4d18c5d98965029c2aa1ccbd91dc22e7ba8c5034",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ef38a25950e5d0e6c95eedf49d8a784272f8dc5e",
+                "reference": "ef38a25950e5d0e6c95eedf49d8a784272f8dc5e",
                 "shasum": ""
             },
             "require": {
@@ -9631,7 +9631,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.9.5"
+                "source": "https://github.com/phpstan/phpstan/tree/1.9.6"
             },
             "funding": [
                 {
@@ -9647,7 +9647,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-02T21:35:42+00:00"
+            "time": "2023-01-03T13:40:32+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
