@@ -12,6 +12,8 @@ use App\Client\Video\Reader\VideoReaderFactory;
 use App\Client\Video\Reader\VideoReaderFactoryInterface;
 use App\Client\Video\Storage\VideoStorageFactory;
 use App\Client\Video\Storage\VideoStorageFactoryInterface;
+use App\Frontend\Common\Video\ClientExpander\VideoTransferExpander\Facade\VideoTransferExpanderFacadeInterface;
+use App\Frontend\Common\Video\ClientExpander\VideoTransferExpander\VideoTransferExpanderPlugin;
 use Micro\Component\DependencyInjection\Container;
 use Micro\Framework\Kernel\Plugin\DependencyProviderInterface;
 use Micro\Framework\Kernel\Plugin\PluginDependedInterface;
@@ -30,6 +32,11 @@ class ClientVideoPlugin implements DependencyProviderInterface, PluginDependedIn
      */
     private readonly TemporalFacadeInterface $temporalFacade;
 
+    /**
+     * @var VideoTransferExpanderFacadeInterface
+     */
+    private readonly VideoTransferExpanderFacadeInterface $videoTransferExpanderFacade;
+
 
     /**
      * {@inheritDoc}
@@ -38,10 +45,12 @@ class ClientVideoPlugin implements DependencyProviderInterface, PluginDependedIn
     {
         $container->register(ClientVideoInterface::class, function (
             ClientReaderFacadeInterface $clientReaderFacade,
+            VideoTransferExpanderFacadeInterface $videoTransferExpanderFacade,
             TemporalFacadeInterface $temporalFacade
         ) {
             $this->temporalFacade = $temporalFacade;
             $this->clientReaderFacade = $clientReaderFacade;
+            $this->videoTransferExpanderFacade = $videoTransferExpanderFacade;
 
             return $this->createClient();
         });
@@ -81,13 +90,15 @@ class ClientVideoPlugin implements DependencyProviderInterface, PluginDependedIn
     protected function createVideoReaderFactory(): VideoReaderFactoryInterface
     {
         return new VideoReaderFactory(
-            $this->clientReaderFacade
+            $this->clientReaderFacade,
+            $this->videoTransferExpanderFacade
         );
     }
 
     public function getDependedPlugins(): iterable
     {
         return [
+            VideoTransferExpanderPlugin::class,
             ClientReaderPlugin::class,
             TemporalPlugin::class,
         ];

@@ -5,7 +5,7 @@ namespace App\Backend\Video\VideoPublish\Business\Index\Propagator\Impl;
 use App\Backend\SearchStorage\Facade\SearchStorageFacadeInterface;
 use App\Backend\Video\VideoPublish\Business\Index\Propagator\IndexPropagatorInterface;
 use App\Shared\Generated\DTO\Search\IndexAddTransfer;
-use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
+use App\Shared\Generated\DTO\Video\VideoTransfer;
 use App\Shared\Video\Configuration;
 
 class SearchIndexPropagator implements IndexPropagatorInterface
@@ -21,13 +21,13 @@ class SearchIndexPropagator implements IndexPropagatorInterface
     /**
      * {@inheritDoc}
      */
-    public function propagate(VideoWatchTransfer $videoWatchTransfer): void
+    public function propagate(VideoTransfer $videoTransfer): void
     {
         $indexAddTransfer = new IndexAddTransfer();
         $indexAddTransfer
             ->setIndex(Configuration::STORAGE_INDEX_KEY)
-            ->setId($videoWatchTransfer->getId())
-            ->setBody($videoWatchTransfer)
+            ->setId($videoTransfer->getId())
+            ->setBody($videoTransfer)
         ;
 
         $this->searchStorageFacade->index($indexAddTransfer);

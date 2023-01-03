@@ -6,8 +6,8 @@ use App\Client\Video\Publisher\VideoPublisherFactoryInterface;
 use App\Client\Video\Reader\VideoReaderFactoryInterface;
 use App\Client\Video\Storage\VideoStorageFactoryInterface;
 use App\Shared\Generated\DTO\Video\VideoCreateTransfer;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoPublishTransfer;
-use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
 use App\Shared\Generated\DTO\Video\VideoTransfer;
 
 readonly class ClientVideo implements ClientVideoInterface
@@ -47,7 +47,7 @@ readonly class ClientVideo implements ClientVideoInterface
     /**
      * {@inheritDoc}
      */
-    public function lookupVideo(VideoWatchTransfer $videoGetTransfer): VideoTransfer
+    public function lookupVideo(VideoGetTransfer $videoGetTransfer): VideoTransfer
     {
         return $this->videoReaderFactory
             ->create()

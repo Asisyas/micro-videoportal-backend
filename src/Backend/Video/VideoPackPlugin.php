@@ -16,6 +16,8 @@ namespace App\Backend\Video;
 use App\Backend\Video\Video\VideoPlugin;
 use App\Backend\Video\VideoDescription\VideoDescriptionPlugin;
 use App\Backend\Video\VideoPublish\VideoPublishPlugin;
+use App\Backend\Video\VideoThumbnail\VideoThumbnailPlugin;
+use App\Frontend\Common\Video\ClientExpander\VideoTransferExpanderThumbnail\VideoTransferExpanderThumbnailPlugin;
 use Micro\Framework\Kernel\Plugin\PluginDependedInterface;
 
 /**
@@ -32,6 +34,9 @@ class VideoPackPlugin implements PluginDependedInterface
             VideoPublishPlugin::class,
             VideoDescriptionPlugin::class,
             VideoPlugin::class,
+            VideoThumbnailPlugin::class,
+
+            VideoTransferExpanderThumbnailPlugin::class,
         ];
     }
 }

@@ -89,6 +89,6 @@ class MediaConverterWorkflow implements MediaConvertWorkflowInterface
                 );
         }
 
-        return $mediaConfigurationTransfer;
+        return $convertedCollection;
     }
 }

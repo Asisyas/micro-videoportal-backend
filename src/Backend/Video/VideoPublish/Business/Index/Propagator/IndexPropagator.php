@@ -2,7 +2,7 @@
 
 namespace App\Backend\Video\VideoPublish\Business\Index\Propagator;
 
-use App\Shared\Generated\DTO\Video\VideoWatchTransfer;
+use App\Shared\Generated\DTO\Video\VideoTransfer;
 
 class IndexPropagator implements IndexPropagatorInterface
 {
@@ -16,10 +16,10 @@ class IndexPropagator implements IndexPropagatorInterface
     /**
      * {@inheritDoc}
      */
-    public function propagate(VideoWatchTransfer $videoWatchTransfer): void
+    public function propagate(VideoTransfer $videoTransfer): void
     {
         foreach ($this->indexPropagatorCollection as $propagator) {
-            $propagator->propagate($videoWatchTransfer);
+            $propagator->propagate($videoTransfer);
         }
     }
 }

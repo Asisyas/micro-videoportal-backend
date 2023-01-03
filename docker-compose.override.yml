@@ -80,6 +80,8 @@ services:
       - xpack.security.enabled=false
     volumes:
       - ./docker/elasticsearch/data:/usr/share/elasticsearch/data:rw
+    restart: on-failure
+    
   db:
     image: mysql:8
     restart: on-failure
@@ -99,6 +101,7 @@ services:
       - DYNAMIC_CONFIG_FILE_PATH=/config/dynamicconfig/development.yaml
     volumes:
       - ./docker/temporal:/config
+    restart: 'on-failure'
     
       
   keycloak:

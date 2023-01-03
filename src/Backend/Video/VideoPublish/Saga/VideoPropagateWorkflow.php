@@ -3,6 +3,7 @@
 namespace App\Backend\Video\VideoPublish\Saga;
 
 use App\Shared\Generated\DTO\Video\VideoGetTransfer;
+use App\Shared\Video\Exception\VideoNotFoundException;
 use App\Shared\Video\VideoPropagateWorkflowInterface;
 use App\Shared\Video\VideoPublishActivityInterface;
 use Carbon\CarbonInterval;
@@ -24,6 +25,9 @@ class VideoPropagateWorkflow implements VideoPropagateWorkflowInterface
                 ->withRetryOptions(
                     RetryOptions::new()
                         ->withMaximumAttempts(10)
+                        ->withNonRetryableExceptions([
+                            VideoNotFoundException::class
+                        ])
                 )
         );
 

@@ -8,6 +8,7 @@ use App\Shared\Generated\DTO\File\FileGetTransfer;
 use App\Shared\Generated\DTO\File\FileRemoveTransfer;
 use App\Shared\Generated\DTO\File\FileTransfer;
 use App\Shared\Generated\DTO\MediaConverter\MediaConfigurationTransfer;
+use App\Shared\Generated\DTO\MediaConverter\MediaConvertedResultCollectionTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
 use App\Shared\Generated\DTO\Video\VideoGetTransfer;
@@ -18,12 +19,11 @@ use App\Shared\Video\VideoCreateWorkflowInterface;
 use App\Shared\Video\VideoPublishActivityInterface;
 use App\Shared\Video\VideoPublishWorkflowInterface;
 use App\Shared\VideoDescription\Saga\VideoDescriptionCreateWorkflowInterface;
+use App\Shared\VideoThumbnail\Saga\VideoThumbnailGenerateWorkflowInterface;
 use Carbon\CarbonInterval;
-use React\Promise\Promise;
 use Temporal\Activity\ActivityOptions;
 use Temporal\Common\RetryOptions;
 use Temporal\Internal\Workflow\ActivityProxy;
-use Temporal\Internal\Workflow\ChildWorkflowProxy;
 use Temporal\Workflow;
 use Temporal\Workflow\Saga;
 
@@ -49,7 +49,20 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         );
     }
 
-    protected function createVideoDescriptionWorkflow(): ChildWorkflowProxy
+    /**
+     * @return VideoThumbnailGenerateWorkflowInterface
+     */
+    protected function createVideoThumbnailGeneratorWorkflow()
+    {
+        return Workflow::newChildWorkflowStub(
+            VideoThumbnailGenerateWorkflowInterface::class
+        );
+    }
+
+    /**
+     * @return VideoDescriptionCreateWorkflowInterface
+     */
+    protected function createVideoDescriptionWorkflow()
     {
         // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
@@ -57,7 +70,10 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         );
     }
 
-    protected function createVideoCreateWorkflow(): ChildWorkflowProxy
+    /**
+     * @return VideoCreateWorkflowInterface
+     */
+    protected function createVideoCreateWorkflow()
     {
         // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
@@ -65,7 +81,10 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         );
     }
 
-    protected function createMediaConverterWorkflow(): ChildWorkflowProxy
+    /**
+     * @return MediaConvertWorkflowInterface
+     */
+    protected function createMediaConverterWorkflow()
     {
         // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
@@ -73,7 +92,10 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
         );
     }
 
-    protected function createFileDeleteWorkflow(): ChildWorkflowProxy
+    /**
+     * @return FileDeleteWorkflowInterface
+     */
+    protected function createFileDeleteWorkflow()
     {
         // @phpstan-ignore-next-line
         return Workflow::newChildWorkflowStub(
@@ -124,12 +146,16 @@ class VideoPublishWorkflow implements VideoPublishWorkflowInterface
                 );
 
             yield $this->activity->propagateVideo($videoGetTransfer);
-
+            /** @var MediaConvertedResultCollectionTransfer $videoConverted */
             $videoConverted = yield $this->createMediaConverterWorkflow()->convert(
                 (new MediaConfigurationTransfer())
                     ->setFile($fileTransfer)
                     ->setVideo($videoTransfer)
             );
+
+            //$videoConverted->setResults();
+
+            yield $this->createVideoThumbnailGeneratorWorkflow()->generateThumbnail($videoGetTransfer);
 
             yield $this->createFileDeleteWorkflow()
                 ->deleteFile($fileRemoveTransfer);

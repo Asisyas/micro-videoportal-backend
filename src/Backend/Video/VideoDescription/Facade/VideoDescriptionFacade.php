@@ -7,6 +7,7 @@ use App\Shared\Generated\DTO\Video\VideoDescriptionDeleteTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionGetTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionPutTransfer;
 use App\Shared\Generated\DTO\Video\VideoDescriptionTransfer;
+use App\Shared\Generated\DTO\Video\VideoGetTransfer;
 
 class VideoDescriptionFacade implements VideoDescriptionFacadeInterface
 {
@@ -56,5 +57,15 @@ class VideoDescriptionFacade implements VideoDescriptionFacadeInterface
         return $this->videoDescriptionManagerFactory
             ->create()
             ->lookup($descriptionGetTransfer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function propagate(VideoGetTransfer $videoGetTransfer): void
+    {
+        $this->videoDescriptionManagerFactory
+            ->create()
+            ->propagate($videoGetTransfer);
     }
 }
